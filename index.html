@@ -309,13 +309,20 @@
 
     <!-- واجهة برمجية سريعة لربط أزرار الـ Sidebar بالخصائص المتقدمة الموديولية -->
     <script>
-        function triggerViewCV() {
-            if (typeof CareerHubEngine !== 'undefined' && typeof ATLAS_DOMAINS !== 'undefined') {
-                const currentDomainData = ATLAS_DOMAINS[userProgress.currentDomain];
-                const cv = CareerHubEngine.generateAutomatedCV(userProgress, currentDomainData);
-                alert(cv);
-            } else { alert("يرجى إتمام الاستبيان أولاً وتفعيل المسار!"); }
-        }
+      function triggerViewCV() {
+    if (typeof CareerHubEngine !== 'undefined' && typeof ATLAS_DOMAINS !== 'undefined') {
+        const currentDomainData = ATLAS_DOMAINS[userProgress.currentDomain];
+        
+        // استدعاء محرك التوظيف الجديد بالكامل وعرض النتيجة بشكل منظم
+        const cvPrettyText = CareerHubEngine.renderPrettyCV(userProgress, currentDomainData);
+        
+        // طباعته في الكونسول بشكل مبهر وعرضه للمستخدم في نافذة منسقة
+        console.log(cvPrettyText);
+        alert(cvPrettyText);
+    } else { 
+        alert("يرجى إتمام الاستبيان أولاً وتفعيل المسار لتوليد السيرة الذاتية!"); 
+    }
+}
         function triggerExportPortfolio() {
             if (typeof CareerHubEngine !== 'undefined') {
                 CareerHubEngine.exportPortfolioToText(userProgress);
