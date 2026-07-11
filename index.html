@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas | رحلة التعلم الذكي</title>
+    <!-- Tailwind CSS لضمان تصميم عصري وسريع -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome للأيقونات العالمية -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- خطوط جوجل الحديثة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0f19;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .roadmap-line::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: linear-gradient(to bottom, #3b82f6, #10b981, transparent);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen antialiased">
+
+    <!-- شريط التنقل العلوي -->
+    <nav class="glass-panel sticky top-0 z-50 px-6 py-4 flex justify-between items-center border-b border-gray-800">
+        <div class="flex items-center gap-3">
+            <div class="bg-gradient-to-tr from-blue-600 to-emerald-500 p-2.5 rounded-xl shadow-lg shadow-blue-500/20">
+                <i class="fa-solid fa-map-marked-alt text-xl text-white"></i>
+            </div>
+            <span class="text-2xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent tracking-wide">ATLAS</span>
+        </div>
+        <!-- نظام النقاط السريع (Gamification State) -->
+        <div id="nav-stats" class="hidden flex items-center gap-6">
+            <div class="flex items-center gap-2 bg-gray-900/80 px-3 py-1.5 rounded-full border border-gray-800">
+                <i class="fa-solid fa-bolt text-amber-500"></i>
+                <span id="user-xp" class="text-sm font-semibold text-gray-300">0 XP</span>
+            </div>
+            <div class="flex items-center gap-2 bg-gray-900/80 px-3 py-1.5 rounded-full border border-gray-800">
+                <i class="fa-solid fa-coins text-yellow-500"></i>
+                <span id="user-coins" class="text-sm font-semibold text-gray-300">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        
+        <!-- ================= شاشة الاستبيان الذكي (Onboarding) ================= -->
+        <section id="onboarding-section" class="transition-all duration-500">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-bold text-white mb-3">ابدأ رحلتك المعرفية المخصصة</h1>
+                <p class="text-gray-400">أجب عن بضعة أسئلة لنقوم بصياغة مسار احترافي يمنع تشتتك تماماً.</p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl shadow-2xl space-y-8 max-w-2xl mx-auto">
+                <!-- شريط التقدم داخل الاستبيان -->
+                <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                    <div id="survey-progress" class="bg-gradient-to-r from-blue-500 to-emerald-500 h-full transition-all duration-300" style="width: 20%"></div>
+                </div>
+
+                <!-- نموذج الأسئلة الديناميكي -->
+                <form id="onboarding-form" class="space-y-6">
+                    <!-- السؤال الأول -->
+                    <div class="survey-step">
+                        <label class="block text-lg font-medium text-gray-200 mb-3">ما هو عمرك الحالي؟</label>
+                        <input type="number" id="age" required min="8" max="90" class="w-full bg-gray-900/60 border border-gray-700 rounded-2xl px-4 py-3.5 text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="مثال: 20">
+                    </div>
+
+                    <!-- السؤال الثاني -->
+                    <div class="survey-step">
+                        <label class="block text-lg font-medium text-gray-200 mb-3">ما هي حالتك الحالية؟</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button type="button" onclick="selectOption('status', 'student')" class="opt-btn p-4 bg-gray-900/40 border border-gray-800 rounded-2xl hover:border-blue-500 text-center transition-all">طالب جامعي / مدرسي</button>
+                            <button type="button" onclick="selectOption('status', 'employee')" class="opt-btn p-4 bg-gray-900/40 border border-gray-800 rounded-2xl hover:border-blue-500 text-center transition-all">موظف / مستقل</button>
+                        </div>
+                    </div>
+
+                    <!-- السؤال الثالث -->
+                    <div class="survey-step">
+                        <label class="block text-lg font-medium text-gray-200 mb-3">كم ساعة تستطيع تخصيصها للتعلم يومياً؟</label>
+                        <select id="hours" class="w-full bg-gray-900/60 border border-gray-700 rounded-2xl px-4 py-3.5 text-white focus:outline-none focus:border-blue-500">
+                            <option value="1">ساعة واحدة</option>
+                            <option value="2">ساعتين</option>
+                            <option value="4">4 ساعات</option>
+                            <option value="6">6 ساعات أو أكثر</option>
+                        </select>
+                    </div>
+
+                    <!-- السؤال الرابع -->
+                    <div class="survey-step">
+                        <label class="block text-lg font-medium text-gray-200 mb-3">ما هو أسلوب التعلم الذي تفضله لترسيخ المعلومة؟</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button type="button" onclick="selectOption('style', 'video')" class="opt-btn p-3 bg-gray-900/40 border border-gray-800 rounded-xl hover:border-emerald-500 text-sm transition-all">فيديوهات</button>
+                            <button type="button" onclick="selectOption('style', 'reading')" class="opt-btn p-3 bg-gray-900/40 border border-gray-800 rounded-xl hover:border-emerald-500 text-sm transition-all">قراءة وكتب</button>
+                            <button type="button" onclick="selectOption('style', 'practical')" class="opt-btn p-3 bg-gray-900/40 border border-gray-800 rounded-xl hover:border-emerald-500 text-sm transition-all">تطبيق عملي</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold rounded-2xl hover:opacity-90 shadow-xl shadow-blue-600/10 transition-all transform hover:-translate-y-0.5">توليد مسار الرحلة الذكي مسبقاً 🚀</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ================= لوحة التحكم وخريطة الطريق التفاعلية (Dashboard) ================= -->
+        <section id="dashboard-section" class="hidden space-y-12 transition-all duration-500 opacity-0">
+            
+            <!-- ملخص الخطة اليومية المستهدفة -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-panel p-6 rounded-2xl flex items-center gap-4">
+                    <div class="p-3 bg-blue-500/10 text-blue-500 rounded-xl"><i class="fa-solid fa-graduation-cap text-2xl"></i></div>
+                    <div>
+                        <p class="text-xs text-gray-400">المسار الحالي</p>
+                        <h4 class="font-bold text-lg text-white">علوم الحاسب</h4>
+                    </div>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl flex items-center gap-4">
+                    <div class="p-3 bg-emerald-500/10 text-emerald-500 rounded-xl"><i class="fa-solid fa-clock text-2xl"></i></div>
+                    <div>
+                        <p class="text-xs text-gray-400">المستهدف اليومي</p>
+                        <h4 id="display-hours" class="font-bold text-lg text-white">-- دقيقة</h4>
+                    </div>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl flex items-center gap-4">
+                    <div class="p-3 bg-purple-500/10 text-purple-500 rounded-xl"><i class="fa-solid fa-chart-line text-2xl"></i></div>
+                    <div>
+                        <p class="text-xs text-gray-400">مستوى الإنجاز الحالي</p>
+                        <h4 class="font-bold text-lg text-white">Beginner</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- خريطة الطريق التفاعلية المتسلسلة (Learning Graph) -->
+            <div class="glass-panel p-8 rounded-3xl relative roadmap-line">
+                <h3 class="text-2xl font-bold mb-8 text-center flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-route text-emerald-500"></i> خريطة الطريق المخصصة لك لتفادي الشتات
+                </h3>
+
+                <div class="space-y-12 relative z-10">
+                    <!-- عقدة 1 -->
+                    <div class="flex flex-col items-center md:flex-row md:justify-start gap-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold ring-4 ring-blue-900 shadow-lg shadow-blue-600/50">1</div>
+                        <div class="glass-panel p-5 rounded-2xl w-full md:max-w-md hover:border-blue-500/40 transition-all cursor-pointer">
+                            <span class="text-xs font-semibold text-blue-400 tracking-wider uppercase">المرحلة الأولى</span>
+                            <h4 class="text-lg font-bold text-white mt-1">أساسيات علوم الكمبيوتر Hardware & OS</h4>
+                            <p class="text-xs text-gray-400 mt-2"><i class="fa-solid fa-play-circle ml-1"></i> 5 فيديوهات مختارة • 3 تمارين عملية • ملخص مكتوب</p>
+                        </div>
+                    </div>
+
+                    <!-- عقدة 2 -->
+                    <div class="flex flex-col items-center md:flex-row md:justify-end gap-6">
+                        <div class="glass-panel p-5 rounded-2xl w-full md:max-w-md hover:border-emerald-500/40 transition-all cursor-pointer opacity-70">
+                            <span class="text-xs font-semibold text-emerald-400 tracking-wider uppercase">المرحلة الثانية</span>
+                            <h4 class="text-lg font-bold text-white mt-1">التفكير المنطقي والـ Algorithms الفكرية</h4>
+                            <p class="text-xs text-gray-400 mt-2"><i class="fa-solid fa-book ml-1"></i> كتب وملفات PDF مقترحة • تحدي برمجي</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 font-bold border-2 border-gray-700">2</div>
+                    </div>
+
+                    <!-- عقدة 3 -->
+                    <div class="flex flex-col items-center md:flex-row md:justify-start gap-6">
+                        <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 font-bold border-2 border-gray-700">3</div>
+                        <div class="glass-panel p-5 rounded-2xl w-full md:max-w-md hover:border-blue-500/40 transition-all cursor-pointer opacity-70">
+                            <span class="text-xs font-semibold text-purple-400 tracking-wider uppercase">المرحلة الثالثة</span>
+                            <h4 class="text-lg font-bold text-white mt-1">أساسيات البرمجة والهيكلة الأساسية Data Structures</h4>
+                            <p class="text-xs text-gray-400 mt-2"><i class="fa-solid fa-code ml-1"></i> مشروع حقيقي متكامل • اختبار تقييمي</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- وحدة منطق التفاعل البرمجي الخفيف (Data & States) -->
+    <script>
+        const selectionState = { status: '', style: '' };
+
+        function selectOption(field, value) {
+            selectionState[field] = value;
+            // إضافة تأثير بصري بسيط للخيارات النشطة
+            event.target.parentNode.querySelectorAll('button').forEach(btn => btn.classList.remove('border-blue-500', 'border-emerald-500', 'bg-blue-950/20'));
+            event.target.classList.add('border-blue-500', 'bg-blue-950/20');
+        }
+
+        document.getElementById('onboarding-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // سحب البيانات ومعالجتها برمجياً لبناء الخطة
+            const age = document.getElementById('age').value;
+            const hours = document.getElementById('hours').value;
+            
+            // إظهار وإخفاء الأقسام بنعومة بدون تشتيت
+            document.getElementById('onboarding-section').classList.add('hidden');
+            const dash = document.getElementById('dashboard-section');
+            dash.classList.remove('hidden');
+            
+            // تحديث بيانات لوحة تحكم المتعلم
+            document.getElementById('display-hours').innerText = `${hours * 60} دقيقة يومياً`;
+            document.getElementById('nav-stats').classList.remove('hidden');
+            
+            setTimeout(() => {
+                dash.classList.remove('opacity-0');
+            }, 50);
+        });
+    </script>
+</body>
+</html>
+
