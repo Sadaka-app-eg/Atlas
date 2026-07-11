@@ -1,148 +1,186 @@
-// app.js - المحرك البرمجي لإدارة الجلسات، النقاط، وبناء الخرائط ديناميكياً
+// domains.js - المستودع المعرفي والمادة العلمية الشاملة لتطبيق Atlas
 
-// 1. حالة التطبيق الافتراضية (State)
-let userProgress = {
-    hasCompletedOnboarding: false,
-    age: 0,
-    dailyTargetMinutes: 0,
-    learningStyle: '',
-    currentDomain: 'computer_science', // الافتراضي
-    completedNodes: [], // العقد التي تم إنهاؤها
-    xp: 0,
-    coins: 0
+const ATLAS_DOMAINS = {
+    computer_science: {
+        id: "cs_01",
+        titleAr: "علوم الحاسب (المسار الشامل)",
+        titleEn: "Computer Science",
+        description: "فهم المبادئ العلمية والعملية التي تقوم عليها أنظمة الحوسبة والبرمجيات من الصفر.",
+        roadmap: [
+            {
+                id: "cs_node_1",
+                stepNumber: 1,
+                title: "1️⃣ عتاد الحاسوب والـ CLI بنظام Linux",
+                level: "Beginner",
+                writtenExplanation: "فهم كيف يتعامل المعالج (CPU) والذاكرة (RAM) مع البيانات، وكيفية التحكم الكامل في نظام التشغيل عبر سطر الأوامر (Command Line) باستخدام Linux.",
+                videos: [
+                    { title: "كيف يعمل المعالج والذاكرة داخلياً؟", url: "https://www.youtube.com/watch?v=example_cs1" },
+                    { title: "أوامر Linux الأساسية للمبتدئين", url: "https://www.youtube.com/watch?v=example_cs2" }
+                ],
+                project: { 
+                    title: "تثبيت نظام Ubuntu وهمي وإنشاء شجرة مجلدات برمجية كاملة وحذفها وإدارتها عبر التيرمينال فقط.", 
+                    evaluationCriteria: "تنفيذ المهام دون استخدام الواجهة الرسومية (GUI)." 
+                },
+                flashcards: [
+                    { question: "ما هو التيرمينال (Terminal)؟", answer: "واجهة نصية تسمح لك بإصدار أوامر مباشرة لنظام التشغيل." },
+                    { question: "ما الفرق بين RAM و HDD/SSD؟", answer: "الـ RAM ذاكرة مؤقتة فائقة السرعة، بينما الهاردوير لتخزين البيانات الدائم." }
+                ],
+                quizzes: [
+                    { 
+                        question: "أي أمر في Linux يُستخدم لعرض المجلد الحالي (Print Working Directory)؟", 
+                        options: ["ls", "cd", "pwd", "mkdir"], 
+                        correctIndex: 2 
+                    }
+                ]
+            },
+            {
+                id: "cs_node_2",
+                stepNumber: 2,
+                title: "2️⃣ التفكير المنطقي وبناء الخوارزميات (Algorithms)",
+                level: "Beginner",
+                writtenExplanation: "الخوارزمية هي تسلسل منطقي ورياضي لحل مشكلة معينة بكفاءة. هنا ستتعلم كيف تفكر مثل المبرمجين وتزن كفاءة الحلول عبر الـ Big O Notation.",
+                videos: [
+                    { title: "مقدمة في التفكير الخوارزمي", url: "https://www.youtube.com/watch?v=example_cs3" },
+                    { title: "شرح كفاءة الخوارزميات (Big O)", url: "https://www.youtube.com/watch?v=example_cs4" }
+                ],
+                project: { 
+                    title: "كتابة مخطط تدفقي (Flowchart) متكامل لخوارزمية تقوم بفرز وترتيب أرقام عشوائية بصورة منطقية.", 
+                    evaluationCriteria: "تغطية كافة الاحتمالات والشروط المنطقية للحل." 
+                },
+                flashcards: [
+                    { question: "ماذا تعني كفاءة الخوارزمية زمنياً (Time Complexity)؟", answer: "مقياس رياضي يوضح كيف يزداد وقت التنفيذ مع زيادة حجم البيانات المدخلة." }
+                ],
+                quizzes: [
+                    { 
+                        question: "ما هي الطريقة الأسرع للبحث في قائمة مرتبة؟", 
+                        options: ["Linear Search", "Binary Search", "Bubble Sort"], 
+                        correctIndex: 1 
+                    }
+                ]
+            },
+            {
+                id: "cs_node_3",
+                stepNumber: 3,
+                title: "3️⃣ أساسيات البرمجة وتراكيب البيانات (Data Structures)",
+                level: "Intermediate",
+                writtenExplanation: "الانتقال للتطبيق البرمجي الفعلي (باستخدام Python أو C++) وفهم كيف نخزن البيانات في الذاكرة باستخدام المصفوفات، الـ Stacks، والـ Queues.",
+                videos: [
+                    { title: "المتغيرات والدوال وحلقات التكرار", url: "https://www.youtube.com/watch?v=example_cs5" },
+                    { title: "شرح الـ Stack والـ Queue ببساطة", url: "https://www.youtube.com/watch?v=example_cs6" }
+                ],
+                project: { 
+                    title: "بناء برنامج لإدارة قائمة المهام اليومية (To-Do List) يعتمد على تراكيب البيانات لإضافة وحذف المهام وتحديثها.", 
+                    evaluationCriteria: "خلو الكود من الأخطاء والتعامل السليم مع الذاكرة." 
+                },
+                flashcards: [
+                    { question: "ما هو مبدأ عمل الـ Stack؟", answer: "يعتمد على مبدأ LIFO (Last In, First Out) - الأخير دخولاً هو الأول خروجاً." }
+                ],
+                quizzes: [
+                    { 
+                        question: "أي تركيب بيانات يتبع مبدأ (الأول دخولاً هو الأول خروجاً - FIFO)؟", 
+                        options: ["Stack", "Queue", "Tree"], 
+                        correctIndex: 1 
+                    }
+                ]
+            },
+            {
+                id: "cs_node_4",
+                stepNumber: 4,
+                title: "4️⃣ قواعد البيانات وأنظمة الـ SQL",
+                level: "Advanced",
+                writtenExplanation: "تعلم كيف تُخزن البيانات الضخمة للمواقع والتطبيقات بشكل دائم داخل جداول مترابطة وكيفية استعلامها وتعديلها بكفاءة وأمان.",
+                videos: [
+                    { title: "تصميم قواعد البيانات (ERD)", url: "https://www.youtube.com/watch?v=example_cs7" },
+                    { title: "تعلم لغة الاستعلام SQL في فيديو واحد", url: "https://www.youtube.com/watch?v=example_cs8" }
+                ],
+                project: { 
+                    title: "تصميم قاعدة بيانات لمتجر إلكتروني وإنشاء استعلامات SQL لجلب المنتجات الأكثر مبيعاً.", 
+                    evaluationCriteria: "الربط الصحيح بين الجداول (Primary & Foreign Keys)." 
+                },
+                flashcards: [
+                    { question: "ما هو المفتاح الأساسي (Primary Key)؟", answer: "حقل فريد يميز كل سجل داخل الجدول ولا يمكن تكراره." }
+                ],
+                quizzes: [
+                    { 
+                        question: "أي أمر SQL يُستخدم لجلب وتصفية البيانات من الجدول؟", 
+                        options: ["INSERT", "UPDATE", "SELECT", "DELETE"], 
+                        correctIndex: 2 
+                    }
+                ]
+            }
+        ]
+    },
+
+    cyber_security: {
+        id: "cyber_02",
+        titleAr: "الأمن السيبراني واختبار الاختراق",
+        titleEn: "Cyber Security",
+        description: "تعلم حماية الأنظمة واكتشاف الثغرات الأمنية بأسلوب أخلاقي واحترافي.",
+        roadmap: [
+            {
+                id: "cyber_node_1",
+                stepNumber: 1,
+                title: "1️⃣ أساسيات الشبكات والبروتوكولات (Networking)",
+                level: "Beginner",
+                writtenExplanation: "لا يمكنك حماية ما لا تفهم كيف يتصل! في هذه المرحلة ستدرس بروتوكولات الإنترنت وعناوين الـ IP وكيف تنتقل حزم البيانات.",
+                videos: [
+                    { title: "كيف تعمل شبكة الإنترنت؟ نموذج OSI", url: "https://youtube.com" }
+                ],
+                project: { title: "تحليل حزم البيانات المارة بالشبكة باستخدام أداة Wireshark وفك شفرتها.", evaluationCriteria: "القدرة على تصفية البروتوكولات النظيفة." },
+                flashcards: [{ question: "ما هو بروتوكول DHCP؟", answer: "بروتوكول مسؤول عن توزيع عناوين الـ IP تلقائياً على الأجهزة بالشبكة." }],
+                quizzes: [{ question: "ما هو المنفذ الافتراضي (Port) لبروتوكول تصفح المواقع الآمن HTTPS؟", options: ["80", "21", "443"], correctIndex: 2 }]
+            },
+            {
+                id: "cyber_node_2",
+                stepNumber: 2,
+                title: "2️⃣ ثغرات الويب والتطبيقات (OWASP Top 10)",
+                level: "Intermediate",
+                writtenExplanation: "دراسة أشهر 10 ثغرات أمنية تصيب المواقع الإلكترونية مثل حقن قواعد البيانات (SQL Injection) وثغرات الـ XSS اللعينة وكيفية ترقيعها.",
+                videos: [{ title: "شرح ثغرة SQL Injection عملياً", url: "https://youtube.com" }],
+                project: { title: "اختراق معمل ويب وهمي مصاب واستخراج بيانات الأدمن بشكل أخلاقي.", evaluationCriteria: "الوصول للملف السري بنجاح." },
+                flashcards: [{ question: "ما هي ثغرة XSS؟", answer: "حقن أكواد خبيثة (غالباً JavaScript) في متصفح مستخدم آخر عبر موقع مصاب." }],
+                quizzes: [{ question: "لحماية المواقع من ثغرات الحقن، ماذا يجب على المطور فعله؟", options: ["تشفير الألوان", "فحص وتنقية مدخلات المستخدم (Input Validation)"], correctIndex: 1 }]
+            }
+        ]
+    },
+
+    entrepreneurship: {
+        id: "biz_03",
+        titleAr: "ريادة الأعمال وإنشاء المشاريع",
+        titleEn: "Entrepreneurship",
+        description: "تحويل الأفكار الناشئة إلى مشاريع حقيقية ومربحة في سوق العمل المنافس.",
+        roadmap: [
+            {
+                id: "biz_node_1",
+                stepNumber: 1,
+                title: "1️⃣ دراسة السوق ونموذج العمل التجاري",
+                level: "Beginner",
+                writtenExplanation: "صياغة فكرتك التجارية واختبارها في السوق الحقيقي وتصميم مخطط نموذج العمل التجاري (Business Model Canvas).",
+                videos: [{ title: "كيف تصمم مخطط نموذج العمل التجاري؟", url: "https://youtube.com" }],
+                project: { title: "إعداد مخطط عمل تجاري كامل لفكرة تطبيق جوال وحساب القيمة المقترحة للعميل.", evaluationCriteria: "وضوح قنوات الإيرادات وتحديد الشريحة المستهدفة." },
+                flashcards: [{ question: "ما هو الـ MVP؟", answer: "المنتج الحد الأدنى الأولي (Minimum Viable Product) لاختبار السوق بأقل تكلفة." }],
+                quizzes: [{ question: "ما هي أول خطوة قبل إطلاق أي منتج؟", options: ["شراء مكتب فخم", "دراسة حاجة السوق والجمهور المستهدف"], correctIndex: 1 }]
+            }
+        ]
+    },
+
+    quran_sciences: {
+        id: "quran_04",
+        titleAr: "العلوم الشرعية وحفظ القرآن والتجويد",
+        titleEn: "Quran & Tajweed Sciences",
+        description: "ضبط التلاوة الصحيحة، ودراسة أحكام التجويد، مع بناء خطة مخصصة للحفظ والمراجعة الدورية.",
+        roadmap: [
+            {
+                id: "quran_node_1",
+                stepNumber: 1,
+                title: "1️⃣ أحكام النون الساكنة والتنوين",
+                level: "Beginner",
+                writtenExplanation: "دراسة الأحكام الأربعة الأساسية لقراءة القرآن بشكل صحيح ومجود: الإظهار، الإدغام، الإقلاب، والإخفاء.",
+                videos: [{ title: "شرح أحكام النون الساكنة والتنوين بالتفصيل والـأمثلة", url: "https://youtube.com" }],
+                project: { title: "استخراج 10 أمثلة للإدغام بغنة وبدون غنة من جزء عم وتلاوتها بصوتك.", evaluationCriteria: "النطق الصحيح لزمن الغنة ومخرج الحرف." },
+                flashcards: [{ question: "ما هي حروف الإظهار الحلقي؟", answer: "ستة أحرف: الهمزة، الهاء، العين، الحاء، الغين، الخاء." }],
+                quizzes: [{ question: "ما حكم النون الساكنة في كلمة (مَنْ يَقُولُ)؟", options: ["إظهار", "إدغام بغنة", "إقلاب"], correctIndex: 1 }]
+            }
+        ]
+    }
 };
-
-// 2. عند تشغيل التطبيق: التحقق من وجود بيانات محفوظة محلياً
-document.addEventListener("DOMContentLoaded", () => {
-    const savedData = localStorage.getItem("atlas_user_progress");
-    if (savedData) {
-        userProgress = JSON.parse(savedData);
-        if (userProgress.hasCompletedOnboarding) {
-            goToDashboard();
-        }
-    }
-    setupOnboardingInteractions();
-});
-
-// إعداد أزرار الاختيار في الاستبيان
-function setupOnboardingInteractions() {
-    window.selectSurveyOption = function(field, value, buttonElement) {
-        userProgress[field] = value;
-        // إزالة التصميم النشط من الأزرار المجاورة
-        buttonElement.parentNode.querySelectorAll('button').forEach(btn => {
-            btn.classList.remove('border-blue-500', 'bg-blue-950/20', 'border-emerald-500', 'bg-emerald-950/20');
-        });
-        // إضافة التصميم النشط
-        const activeClass = field === 'style' ? 'border-emerald-500' : 'border-blue-500';
-        const bgClass = field === 'style' ? 'bg-emerald-950/20' : 'bg-blue-950/20';
-        buttonElement.classList.add(activeClass, bgClass);
-    };
-
-    // معالجة إرسال الاستبيان
-    const form = document.getElementById('onboarding-form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            userProgress.age = parseInt(document.getElementById('age').value);
-            const hours = parseInt(document.getElementById('hours').value);
-            userProgress.dailyTargetMinutes = hours * 60;
-            userProgress.hasCompletedOnboarding = true;
-            
-            // حفظ البيانات محلياً والانتقال للوحة التحكم
-            saveDataToLocalStorage();
-            goToDashboard();
-        });
-    }
-}
-
-// 3. الانتقال للوحة التحكم وتوليد الخريطة ديناميكياً
-function goToDashboard() {
-    document.getElementById('onboarding-section').classList.add('hidden');
-    const dash = document.getElementById('dashboard-section');
-    dash.classList.remove('hidden');
-    
-    // تحديث الإحصائيات العلوية (Navbar)
-    document.getElementById('nav-stats').classList.remove('hidden');
-    updateUIStats();
-
-    // رندرة خريطة الطريق بناء على المجال الحالي المختار من الداتا
-    renderDynamicRoadmap();
-
-    setTimeout(() => {
-        dash.classList.remove('opacity-0');
-    }, 50);
-}
-
-// 4. دالة بناء خريطة الطريق بشكل تفاعلي بالكامل من الـ Data
-function renderDynamicRoadmap() {
-    const domainKey = userProgress.currentDomain;
-    const domainData = ATLAS_DOMAINS[domainKey];
-    const container = document.getElementById('roadmap-nodes-container');
-    
-    if (!container || !domainData) return;
-    
-    // تحديث البيانات العامة للمجال في الكروت العلوية
-    document.getElementById('display-domain-title').innerText = domainData.titleAr;
-    document.getElementById('display-hours').innerText = `${userProgress.dailyTargetMinutes} دقيقة يومياً`;
-    
-    container.innerHTML = ""; // تصفية الحاوية أولاً
-
-    domainData.roadmap.forEach((node, index) => {
-        const isCompleted = userProgress.completedNodes.includes(node.id);
-        const alignmentClass = index % 2 === 0 ? 'md:justify-start' : 'md:justify-end';
-        const numBg = isCompleted ? 'bg-emerald-500 ring-emerald-900' : 'bg-blue-600 ring-blue-900';
-        const borderHover = isCompleted ? 'hover:border-emerald-500/40' : 'hover:border-blue-500/40';
-        const opacityClass = isCompleted ? 'opacity-90 border-emerald-500/30' : '';
-
-        const nodeHTML = `
-            <div class="flex flex-col items-center md:flex-row ${alignmentClass} gap-6 transition-all">
-                ${index % 2 === 0 ? `<div class="w-12 h-12 rounded-full ${numBg} flex items-center justify-center text-white font-bold ring-4 shadow-lg">${node.stepNumber}</div>` : ''}
-                
-                <div onclick="learnNode('${node.id}')" class="glass-panel p-5 rounded-2xl w-full md:max-w-md ${borderHover} ${opacityClass} transition-all cursor-pointer relative group">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-semibold ${isCompleted ? 'text-emerald-400' : 'text-blue-400'} tracking-wider uppercase">${node.level}</span>
-                        ${isCompleted ? '<i class="fa-solid fa-circle-check text-emerald-500"></i>' : '<i class="fa-regular fa-circle text-gray-500 group-hover:text-blue-400"></i>'}
-                    </div>
-                    <h4 class="text-lg font-bold text-white mt-1">${node.title}</h4>
-                    <p class="text-xs text-gray-400 mt-2 line-clamp-2">${node.writtenExplanation}</p>
-                    <div class="mt-3 pt-3 border-t border-gray-800/60 flex justify-between text-[11px] text-gray-500">
-                        <span><i class="fa-solid fa-video ml-1"></i> ${node.videos.length} فيديو</span>
-                        <span><i class="fa-solid fa-tasks ml-1"></i> ${node.quizzes.length} اختبار</span>
-                        <span><i class="fa-solid fa-trophy ml-1"></i> +50 XP</span>
-                    </div>
-                </div>
-
-                ${index % 2 !== 0 ? `<div class="w-12 h-12 rounded-full ${numBg} flex items-center justify-center text-white font-bold ring-4 shadow-lg">${node.stepNumber}</div>` : ''}
-            </div>
-        `;
-        container.insertAdjacentHTML('beforeend', nodeHTML);
-    });
-}
-
-// 5. محاكاة عملية التعلم وإعطاء الجوائز (Gamification Engine)
-window.learnNode = function(nodeId) {
-    if (!userProgress.completedNodes.includes(nodeId)) {
-        userProgress.completedNodes.push(nodeId);
-        userProgress.xp += 50;  // إضافة نقاط خبرة
-        userProgress.coins += 10; // إضافة عملات
-        
-        saveDataToLocalStorage();
-        updateUIStats();
-        renderDynamicRoadmap();
-        
-        alert("🎉 أحسنت! أنهيت هذه المرحلة المعرفية وحصلت على +50 XP و +10 Coins لتجنب التشتت!");
-    } else {
-        alert("لقد قمت بإنهاء هذه المرحلة سابقاً. يمكنك مراجعة محتواها في أي وقت!");
-    }
-};
-
-// تحديث العدادات الفورية في الشاشة
-function updateUIStats() {
-    document.getElementById('user-xp').innerText = `${userProgress.xp} XP`;
-    document.getElementById('user-coins').innerText = userProgress.coins;
-}
-
-// حفظ الحالة الحالية في التخزين المحلي للمتصفح
-function saveDataToLocalStorage() {
-    localStorage.setItem("atlas_user_progress", JSON.stringify(userProgress));
-}
