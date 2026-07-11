@@ -11,7 +11,7 @@
     <!-- خطوط جوجل الحديثة وفائقة الأناقة -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2 family=Plus+Jakarta+Sans:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         body {
@@ -20,16 +20,16 @@
             overflow-x: hidden;
         }
         .glass-panel {
-            background: rgba(17, 24, 39, 0.45);
+            background: rgba(11, 15, 25, 0.65);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         .neon-glow-blue {
-            box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.3);
         }
         .neon-glow-emerald {
-            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.3);
         }
         .roadmap-line::after {
             content: '';
@@ -42,22 +42,19 @@
             transform: translateX(-50%);
             z-index: 0;
         }
-        /* حركات أنيقة للتفاعل مع الكروت */
         .glow-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glow-card:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: translateY(-4px);
             border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15);
         }
-        /* كود الحفاظ على الأبعاد الثلاثية للبطاقة التعليمية */
         .preserve-3d {
             transform-style: preserve-3d;
         }
-        /* تخصيص السكرول بار ليناسب الطابع المظلم */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 5px;
         }
         ::-webkit-scrollbar-track {
             background: #030712;
@@ -71,288 +68,274 @@
         }
     </style>
 </head>
-<body class="text-gray-100 min-h-screen antialiased relative">
+<body class="text-gray-100 min-h-screen antialiased relative flex flex-col md:flex-row">
 
     <!-- خلفية الجزيئات الحية المتحركة عبر الـ Canvas لإبهار المستخدم -->
     <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
 
-    <!-- شريط التنقل العلوي الفخم -->
-    <nav class="glass-panel sticky top-0 z-40 px-8 py-4 flex justify-between items-center border-b border-gray-900 shadow-xl">
-        <div class="flex items-center gap-4">
-            <div class="bg-gradient-to-tr from-blue-600 to-emerald-500 p-2.5 rounded-2xl shadow-lg neon-glow-blue animate-pulse">
-                <i class="fa-solid fa-compass text-2xl text-white"></i>
+    <!-- ================= شريط التصفح الجانبي الفخم (Premium Sidebar) ================= -->
+    <aside id="sidebar-nav" class="hidden md:flex flex-col w-full md:w-64 glass-panel min-h-screen border-l border-gray-900 p-6 z-30 relative shrink-0">
+        <!-- شعار التطبيق الثابت -->
+        <div class="flex items-center gap-3 mb-10 pb-6 border-b border-gray-900">
+            <div class="bg-gradient-to-tr from-blue-600 to-emerald-500 p-2 rounded-xl shadow-lg neon-glow-blue">
+                <i class="fa-solid fa-compass text-xl text-white"></i>
             </div>
             <div>
-                <span class="text-2xl font-black bg-gradient-to-r from-white via-gray-200 to-gray-500 bg-clip-text text-transparent tracking-wider">ATLAS</span>
-                <span class="text-[10px] text-blue-400 block font-bold tracking-widest mr-0.5">رحلة المعرفة رقم 1</span>
+                <span class="text-xl font-black bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent tracking-wider">ATLAS</span>
+                <span class="text-[9px] text-emerald-400 block font-bold tracking-widest mr-0.5">ANTI-DISTRACTION</span>
             </div>
         </div>
 
-        <!-- نظام النقاط والألعاب الفوري (Gamification Display) -->
-        <div id="nav-stats" class="hidden flex items-center gap-4">
-            <!-- منتقي المجالات السريع لاختبار المحرك الديناميكي -->
-            <select id="domain-switcher" onchange="changeUserDomain(this.value)" class="bg-gray-900/90 border border-gray-800 rounded-xl px-3 py-1.5 text-xs text-gray-300 focus:outline-none focus:border-blue-500 transition-colors ml-4 cursor-pointer">
-                <option value="computer_science">💻 علوم الحاسب</option>
-                <option value="arabic_language">✍️ اللغة العربية</option>
-            </select>
+        <!-- الأزرار والروابط التفاعلية الموجهة لمحركات الخصائص المتقدمة -->
+        <div class="flex-1 space-y-2 text-sm">
+            <button onclick="window.location.reload()" class="w-full flex items-center gap-3 px-4 py-3 bg-blue-600/10 text-blue-400 font-bold rounded-xl border border-blue-500/25 transition-all text-right">
+                <i class="fa-solid fa-map-location-dot"></i> خريطة المسار النشط
+            </button>
             
-            <div class="flex items-center gap-2 bg-gray-900/60 px-4 py-2 rounded-xl border border-gray-800/80 hover:border-amber-500/30 transition-colors">
-                <i class="fa-solid fa-fire text-amber-500 text-sm animate-bounce"></i>
-                <span id="user-xp" class="text-xs font-bold text-gray-200 tracking-wide">0 XP</span>
-            </div>
-            <div class="flex items-center gap-2 bg-gray-900/60 px-4 py-2 rounded-xl border border-gray-800/80 hover:border-yellow-500/30 transition-colors">
-                <i class="fa-solid fa-coins text-yellow-500 text-sm"></i>
-                <span id="user-coins" class="text-xs font-bold text-gray-200 tracking-wide">0</span>
-            </div>
-        </div>
-    </nav>
+            <button onclick="triggerViewCV()" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-900/50 font-medium rounded-xl transition-all text-right">
+                <i class="fa-solid fa-file-invoice"></i> توليد السيرة الذاتية الـ CV
+            </button>
 
-    <div class="max-w-6xl mx-auto px-4 py-12 relative z-10">
+            <button onclick="triggerExportPortfolio()" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-900/50 font-medium rounded-xl transition-all text-right">
+                <i class="fa-solid fa-download"></i> تصدير الـ Portfolio المحلي
+            </button>
+
+            <button onclick="triggerViewBadges()" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-900/50 font-medium rounded-xl transition-all text-right">
+                <i class="fa-solid fa-trophy"></i> سجل الشارات والإنجازات
+            </button>
+        </div>
+
+        <!-- البصمة الفنية السفلية للنسخة -->
+        <div class="pt-4 border-t border-gray-900 text-[10px] text-gray-500 text-center">
+            <p>نسخة التطبيق المستقلة v1.1</p>
+            <p class="mt-1">جميع البيانات محفوظة محلياً 🔒</p>
+        </div>
+    </aside>
+
+    <!-- مساحة المحتوى الرئيسي وعرض الواجهات (Main Content Area) -->
+    <div class="flex-1 flex flex-col min-w-0 z-10 relative">
         
-        <!-- ================= شاشة الاستبيان الذكي الفخمة (Onboarding) ================= -->
-        <section id="onboarding-section" class="transition-all duration-700 transform">
-            <div class="text-center mb-12 space-y-3">
-                <span class="px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20 tracking-wide uppercase">نظام الذكاء الهيكلي الشخصي</span>
-                <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight">اصنع مسار احترافك المخصص</h1>
-                <p class="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">أجب عن هذه المحددات البرمجية لنقوم بصياغة خطتك المعرفية وهيكلة وقتك لمنع التشتت الرقمي تماماً.</p>
+        <!-- شريط الحساب العلوي الصغير -->
+        <nav class="glass-panel w-full px-8 py-4 flex justify-between items-center border-b border-gray-900 shadow-md">
+            <div>
+                <!-- يظهر اسم التطبيق علوياً فقط في الشاشات الصغيرة عند اختفاء القائمة الجانبية -->
+                <span class="text-xl font-black text-white md:hidden tracking-wider">ATLAS</span>
             </div>
 
-            <div class="glass-panel p-8 md:p-10 rounded-3xl shadow-2xl max-w-xl mx-auto space-y-8 border border-gray-800/80 relative overflow-hidden">
-                <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl"></div>
-                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-600/10 rounded-full blur-3xl"></div>
+            <!-- نظام النقاط السحابي التفاعلي والمحرك الديناميكي -->
+            <div id="nav-stats" class="hidden flex items-center gap-3">
+                <select id="domain-switcher" onchange="changeUserDomain(this.value)" class="bg-gray-950 border border-gray-850 rounded-xl px-3 py-1.5 text-xs text-gray-300 focus:outline-none focus:border-blue-500 transition-colors ml-2 cursor-pointer font-medium">
+                    <option value="computer_science">💻 علوم الحاسب</option>
+                    <option value="arabic_language">✍️ اللغة العربية</option>
+                </select>
+                
+                <div class="flex items-center gap-2 bg-gray-950 px-4 py-2 rounded-xl border border-gray-850">
+                    <i class="fa-solid fa-fire text-amber-500 text-sm"></i>
+                    <span id="user-xp" class="text-xs font-bold text-gray-200">0 XP</span>
+                </div>
+                <div class="flex items-center gap-2 bg-gray-950 px-4 py-2 rounded-xl border border-gray-850">
+                    <i class="fa-solid fa-coins text-yellow-500 text-sm"></i>
+                    <span id="user-coins" class="text-xs font-bold text-gray-200">0</span>
+                </div>
+            </div>
+        </nav>
 
-                <!-- نموذج الأسئلة الديناميكي المعزز -->
-                <form id="onboarding-form" class="space-y-8">
-                    <div class="space-y-2">
-                        <label class="block text-sm font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-calendar-day text-blue-500 ml-2"></i>كم عمرك الحالي؟</label>
-                        <input type="number" id="age" required min="8" max="90" class="w-full bg-gray-900/80 border border-gray-800 rounded-2xl px-4 py-4 text-white font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm" placeholder="أدخل عمرك الحقيقي...">
-                    </div>
+        <main class="max-w-5xl w-full mx-auto px-6 py-12">
+            <!-- ================= شاشة الاستبيان الذكي (Onboarding) ================= -->
+            <section id="onboarding-section" class="transition-all duration-700">
+                <div class="text-center mb-12 space-y-3">
+                    <span class="px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20 tracking-wide uppercase">نظام التخصيص ومنع التشتت</span>
+                    <h1 class="text-4xl font-black text-white tracking-tight">اصنع مسار احترافك الشخصي</h1>
+                    <p class="text-gray-400 max-w-md mx-auto text-xs leading-relaxed">أجب عن المحددات لبناء خطتك المعرفية وتوزيع وقتك بدقة وتفادي الشتات الرقمي تماماً.</p>
+                </div>
 
-                    <div class="space-y-3">
-                        <label class="block text-sm font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-briefcase text-blue-500 ml-2"></i>ما هي حالتك الحالية؟</label>
-                        <div class="grid grid-cols-2 gap-4">
-                            <button type="button" onclick="selectSurveyOption('status', 'student', this)" class="p-4 bg-gray-900/40 border border-gray-850 rounded-2xl hover:border-blue-500/60 text-center font-medium text-sm transition-all text-gray-300 hover:text-white">طالب علم / أكاديمي</button>
-                            <button type="button" onclick="selectSurveyOption('status', 'employee', this)" class="p-4 bg-gray-900/40 border border-gray-850 rounded-2xl hover:border-blue-500/60 text-center font-medium text-sm transition-all text-gray-300 hover:text-white">مهني / موظف / مستقل</button>
+                <div class="glass-panel p-8 rounded-3xl shadow-2xl max-w-xl mx-auto space-y-8 border border-gray-850 relative overflow-hidden">
+                    <form id="onboarding-form" class="space-y-6">
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-calendar-day text-blue-500 ml-2"></i>كم عمرك الحالي؟</label>
+                            <input type="number" id="age" required min="8" max="90" class="w-full bg-gray-950 border border-gray-850 rounded-2xl px-4 py-4 text-white font-semibold focus:outline-none focus:border-blue-500 transition-all text-sm" placeholder="مثال: 20">
+                        </div>
+
+                        <div class="space-y-3">
+                            <label class="block text-xs font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-briefcase text-blue-500 ml-2"></i>ما هي حالتك الحالية؟</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <button type="button" onclick="selectSurveyOption('status', 'student', this)" class="p-4 bg-gray-950 border border-gray-850 rounded-2xl hover:border-blue-500/60 text-center font-medium text-xs transition-all text-gray-300 hover:text-white">طالب علم / أكاديمي</button>
+                                <button type="button" onclick="selectSurveyOption('status', 'employee', this)" class="p-4 bg-gray-950 border border-gray-850 rounded-2xl hover:border-blue-500/60 text-center font-medium text-xs transition-all text-gray-300 hover:text-white">مهني / موظف مستقر</button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-hourglass-half text-emerald-500 ml-2"></i>كم ساعة تستطيع تخصيصها للتعلم يومياً؟</label>
+                            <select id="hours" class="w-full bg-gray-950 border border-gray-850 rounded-2xl px-4 py-4 text-white font-medium text-xs focus:outline-none focus:border-emerald-500 cursor-pointer">
+                                <option value="1">ساعة واحدة مركزة (المسار الهادئ)</option>
+                                <option value="2">ساعتين يومياً (المسار المتوازن)</option>
+                                <option value="4">4 ساعات يومياً (المسار المتقدم)</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-3">
+                            <label class="block text-xs font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-lightbulb text-emerald-500 ml-2"></i>ما هو أسلوب التلقي المفضل لديك؟</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button type="button" onclick="selectSurveyOption('style', 'video', this)" class="p-3 bg-gray-950 border border-gray-850 rounded-xl hover:border-emerald-500/60 text-[11px] font-semibold transition-all text-gray-400 hover:text-white">مرئي (فيديو)</button>
+                                <button type="button" onclick="selectSurveyOption('style', 'reading', this)" class="p-3 bg-gray-950 border border-gray-850 rounded-xl hover:border-emerald-500/60 text-[11px] font-semibold transition-all text-gray-400 hover:text-white">مقروء (كتب)</button>
+                                <button type="button" onclick="selectSurveyOption('style', 'practical', this)" class="p-3 bg-gray-950 border border-gray-850 rounded-xl hover:border-emerald-500/60 text-[11px] font-semibold transition-all text-gray-400 hover:text-white">تطبيقي (مشاريع)</button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 text-white font-bold rounded-2xl hover:opacity-95 shadow-xl neon-glow-blue transition-all transform hover:-translate-y-0.5 text-xs">
+                            توليد مسار الرحلة الخالي من الشتات 🚀
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ================= لوحة التحكم الأساسية وخريطة الطريق الشجرية (Dashboard) ================= -->
+            <section id="dashboard-section" class="hidden space-y-12 transition-all duration-700 opacity-0 transform translate-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 border-r-4 border-r-blue-500 shadow-md">
+                        <div class="p-3 bg-blue-500/10 text-blue-400 rounded-xl"><i class="fa-solid fa-graduation-cap text-xl"></i></div>
+                        <div>
+                            <p class="text-[9px] text-gray-500 font-bold uppercase tracking-wider">المسار النشط حالياً</p>
+                            <h4 id="display-domain-title" class="font-bold text-base text-white tracking-tight">--</h4>
                         </div>
                     </div>
-
-                    <div class="space-y-2">
-                        <label class="block text-sm font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-hourglass-half text-emerald-500 ml-2"></i>كم ساعة تستطيع الالتزام بها للتعلم يومياً؟</label>
-                        <select id="hours" class="w-full bg-gray-900/80 border border-gray-800 rounded-2xl px-4 py-4 text-white font-medium text-sm focus:outline-none focus:border-emerald-500 cursor-pointer">
-                            <option value="1">ساعة واحدة مركزة (المسار الهادئ)</option>
-                            <option value="2">ساعتين يومياً (المسار المتوازن)</option>
-                            <option value="4">4 ساعات يومياً (المسار المتقدم)</option>
-                            <option value="6">6 ساعات فأكثر (مسار المعسكر المكثف)</option>
-                        </select>
-                    </div>
-
-                    <div class="space-y-3">
-                        <label class="block text-sm font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-lightbulb text-emerald-500 ml-2"></i>ما هو أسلوب التلقي المفضل لديك؟</label>
-                        <div class="grid grid-cols-3 gap-3">
-                            <button type="button" onclick="selectSurveyOption('style', 'video', this)" class="p-3 bg-gray-900/40 border border-gray-850 rounded-xl hover:border-emerald-500/60 text-xs font-semibold transition-all text-gray-400 hover:text-white">مرئي (فيديو)</button>
-                            <button type="button" onclick="selectSurveyOption('style', 'reading', this)" class="p-3 bg-gray-900/40 border border-gray-850 rounded-xl hover:border-emerald-500/60 text-xs font-semibold transition-all text-gray-400 hover:text-white">مقروء (كتب)</button>
-                            <button type="button" onclick="selectSurveyOption('style', 'practical', this)" class="p-3 bg-gray-900/40 border border-gray-850 rounded-xl hover:border-emerald-500/60 text-xs font-semibold transition-all text-gray-400 hover:text-white">تطبيقي (مشاريع)</button>
+                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 border-r-4 border-r-purple-500 shadow-md">
+                        <div class="p-3 bg-purple-500/10 text-purple-400 rounded-xl"><i class="fa-solid fa-stopwatch text-xl"></i></div>
+                        <div>
+                            <p class="text-[9px] text-gray-500 font-bold uppercase tracking-wider">المستهدف اليومي الملتزم</p>
+                            <h4 id="display-hours" class="font-bold text-base text-white tracking-tight">-- دقيقة</h4>
                         </div>
                     </div>
-
-                    <button type="submit" class="w-full py-4.5 bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 text-white font-bold rounded-2xl hover:opacity-95 shadow-xl neon-glow-blue transition-all transform hover:-translate-y-0.5 text-sm tracking-wide">
-                        توليد وتأمين مسار الرحلة الخالي من الشتات 🚀
-                    </button>
-                </form>
-            </div>
-        </section>
-
-        <!-- ================= لوحة التحكم وخريطة الطريق التفاعلية المتكاملة (Dashboard) ================= -->
-        <section id="dashboard-section" class="hidden space-y-12 transition-all duration-700 opacity-0 transform translate-y-4">
-            
-            <!-- لوحة كروت البيانات الإحصائية المعززة بـ Neon Glow -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 relative overflow-hidden border-r-4 border-r-blue-500 shadow-md">
-                    <div class="p-3.5 bg-blue-500/10 text-blue-400 rounded-xl shadow-inner"><i class="fa-solid fa-graduation-cap text-2xl"></i></div>
-                    <div>
-                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">الخريطة والمجال النشط</p>
-                        <h4 id="display-domain-title" class="font-bold text-xl text-white tracking-tight">--</h4>
+                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 border-r-4 border-r-emerald-500 shadow-md">
+                        <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl"><i class="fa-solid fa-medal text-xl"></i></div>
+                        <div>
+                            <p class="text-[9px] text-gray-500 font-bold uppercase tracking-wider">مستوى الكفاءة الحالي</p>
+                            <h4 class="font-bold text-base text-white tracking-tight">Beginner</h4>
+                        </div>
                     </div>
                 </div>
-                <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 relative overflow-hidden border-r-4 border-r-purple-500 shadow-md">
-                    <div class="p-3.5 bg-purple-500/10 text-purple-400 rounded-xl shadow-inner"><i class="fa-solid fa-stopwatch text-2xl"></i></div>
-                    <div>
-                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">المستهدف الزمني اليومي</p>
-                        <h4 id="display-hours" class="font-bold text-xl text-white tracking-tight">-- دقيقة</h4>
+
+                <div class="glass-panel p-8 md:p-12 rounded-3xl relative roadmap-line border border-gray-850 shadow-2xl">
+                    <div class="text-center mb-12 relative z-10">
+                        <h3 class="text-2xl font-black text-white tracking-tight flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-map text-emerald-400"></i> خريطة التدفق المعرفي المصفى
+                        </h3>
+                    </div>
+                    <div id="roadmap-nodes-container" class="space-y-16 relative z-10">
+                        <!-- جلب العقد التعليمية تلقائياً من ملف app.js -->
                     </div>
                 </div>
-                <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 relative overflow-hidden border-r-4 border-r-emerald-500 shadow-md">
-                    <div class="p-3.5 bg-emerald-500/10 text-emerald-400 rounded-xl shadow-inner"><i class="fa-solid fa-medal text-2xl"></i></div>
-                    <div>
-                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">مستوى الكفاءة الحالي</p>
-                        <h4 class="font-bold text-xl text-white tracking-tight">Beginner</h4>
-                    </div>
-                </div>
-            </div>
-
-            <!-- خريطة الطريق الشجرية التفاعلية الحية (Interactive Learning Graph) -->
-            <div class="glass-panel p-8 md:p-12 rounded-3xl relative roadmap-line border border-gray-850/80 shadow-2xl">
-                <div class="text-center mb-12 relative z-10">
-                    <h3 class="text-3xl font-black text-white tracking-tight flex items-center justify-center gap-3">
-                        <i class="fa-solid fa-map text-emerald-400 animate-pulse"></i> خريطة التدفق المعرفي
-                    </h3>
-                    <p class="text-xs text-gray-400 mt-2">اضغط على أي مرحلة لفتح المحتوى التعليمي الكامل، أتمم الاختبار لتفتح الخطوات التالية.</p>
-                </div>
-
-                <!-- حاوية العقد البرمجية الحية التي يغذيها ملف app.js -->
-                <div id="roadmap-nodes-container" class="space-y-16 relative z-10">
-                    <!-- سيتم حقن المراحل التعليمية هنا تلقائياً بنظام اليمين واليسار -->
-                </div>
-            </div>
-        </section>
+            </section>
+        </main>
     </div>
 
     <!-- ================= صندوق عرض المحتوى التعليمي وتأمين العزل الكامل (Modal) ================= -->
     <div id="content-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl transition-all duration-300 opacity-0">
         <div class="glass-panel w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl border border-gray-800 flex flex-col max-h-[85vh] transform scale-95 transition-all duration-300 relative">
-            
-            <!-- رأس الصندوق -->
-            <div class="p-6 border-b border-gray-800/80 flex justify-between items-center bg-gray-900/40">
+            <div class="p-6 border-b border-gray-850 flex justify-between items-center bg-gray-900/40">
                 <div>
-                    <span id="modal-node-level" class="px-2 py-0.5 rounded bg-blue-500/10 text-[10px] font-bold text-blue-400 uppercase tracking-widest border border-blue-500/20">LEVEL</span>
-                    <h3 id="modal-node-title" class="text-xl font-bold text-white mt-2 tracking-tight">عنوان المرحلة التعليمية</h3>
+                    <span id="modal-node-level" class="px-2 py-0.5 rounded bg-blue-500/10 text-[9px] font-bold text-blue-400 uppercase tracking-widest border border-blue-500/20">LEVEL</span>
+                    <h3 id="modal-node-title" class="text-lg font-bold text-white mt-2 tracking-tight">عنوان المرحلة التعليمية</h3>
                 </div>
-                <button onclick="closeModal()" class="w-10 h-10 rounded-xl bg-gray-800/60 hover:bg-gray-700 border border-gray-700/50 flex items-center justify-center text-gray-400 hover:text-white transition-all">
-                    <i class="fa-solid fa-xmark text-lg"></i>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-xl bg-gray-800/60 hover:bg-gray-700 border border-gray-750 flex items-center justify-center text-gray-400 hover:text-white transition-all">
+                    <i class="fa-solid fa-xmark text-base"></i>
                 </button>
             </div>
 
-            <!-- تبويبات التنقل العلوية لمنع التشتت الداخلي -->
-            <div class="flex border-b border-gray-900 bg-gray-950/40 text-xs font-bold tracking-wide">
-                <button onclick="switchTab('study')" id="tab-btn-study" class="flex-1 py-4 text-center border-b-2 border-blue-500 text-blue-400 transition-all uppercase"><i class="fa-solid fa-book-open ml-2 text-sm"></i>الدراسة والتطبيق</button>
-                <button onclick="switchTab('flashcards')" id="tab-btn-flashcards" class="flex-1 py-4 text-center border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all uppercase"><i class="fa-solid fa-clone ml-2 text-sm"></i>البطاقات التكرارية</button>
-                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="flex-1 py-4 text-center border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all uppercase"><i class="fa-solid fa-vial ml-2 text-sm"></i>اختبار الكفاءة</button>
+            <div class="flex border-b border-gray-900 bg-gray-950/40 text-[11px] font-bold">
+                <button onclick="switchTab('study')" id="tab-btn-study" class="flex-1 py-4 text-center border-b-2 border-blue-500 text-blue-400 transition-all"><i class="fa-solid fa-book-open ml-2"></i>الدراسة والتطبيق</button>
+                <button onclick="switchTab('flashcards')" id="tab-btn-flashcards" class="flex-1 py-4 text-center border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all"><i class="fa-solid fa-clone ml-2"></i>البطاقات التكرارية</button>
+                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="flex-1 py-4 text-center border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all"><i class="fa-solid fa-vial ml-2"></i>اختبار الكفاءة</button>
             </div>
 
-            <!-- محتويات التبويبات الفعالة -->
             <div class="p-6 overflow-y-auto flex-1 space-y-6" id="modal-body-container">
-                
-                <!-- تبويب الدراسة الرئيسي -->
                 <div id="tab-content-study" class="space-y-6">
                     <div class="space-y-2">
-                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider"><i class="fa-solid fa-quote-right ml-2 text-blue-500"></i>الشرح الأكاديمي المبسط</h5>
-                        <p id="modal-explanation" class="text-gray-300 leading-relaxed text-sm bg-gray-900/30 p-4 rounded-2xl border border-gray-850/60 shadow-inner"></p>
+                        <h5 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-solid fa-quote-right ml-2 text-blue-500"></i>الشرح الأكاديمي المبسط</h5>
+                        <p id="modal-explanation" class="text-gray-300 leading-relaxed text-sm bg-gray-950 p-4 rounded-2xl border border-gray-850 shadow-inner"></p>
                     </div>
                     <div class="space-y-3">
-                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider"><i class="fa-brands fa-youtube ml-2 text-red-500"></i>المحتوى المرئي المصفى (منع التشتت)</h5>
+                        <h5 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-brands fa-youtube ml-2 text-red-500"></i>المحتوى المرئي المصفى (منع التشتت)</h5>
                         <div id="modal-videos-list" class="grid grid-cols-1 gap-2"></div>
                     </div>
                     <div class="space-y-2">
-                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider"><i class="fa-solid fa-laptop-code ml-2 text-emerald-500"></i>المشروع التطبيقي المطلوب لتحديث الـ Portfolio</h5>
-                        <div id="modal-project-box" class="bg-emerald-950/10 border border-emerald-900/30 p-4 rounded-2xl text-xs leading-relaxed text-gray-300 shadow-sm"></div>
+                        <h5 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-solid fa-laptop-code ml-2 text-emerald-500"></i>المشروع التطبيقي المطلوب لتحديث الـ Portfolio</h5>
+                        <div id="modal-project-box" class="bg-emerald-950/10 border border-emerald-900/30 p-4 rounded-2xl text-xs text-gray-300"></div>
                     </div>
                 </div>
 
-                <!-- تبويب البطاقات التعليمية التكرارية الفعالة -->
                 <div id="tab-content-flashcards" class="hidden flex flex-col items-center justify-center py-4 space-y-6">
-                    <p class="text-[11px] text-gray-500 text-center"><i class="fa-solid fa-circle-info ml-1 text-blue-500"></i> اضغط على كارت البطاقة لقلبه ورؤية الإجابة لترسيخ التكرار المتباعد.</p>
-                    <div onclick="flipCard()" class="w-full max-w-sm h-44 bg-gradient-to-br from-gray-900 to-gray-950 border border-gray-800 rounded-3xl p-6 flex items-center justify-center text-center cursor-pointer shadow-2xl transition-all duration-300 transform preserve-3d hover:border-gray-700 relative neon-glow-blue" id="flashcard-element">
-                        <h4 id="flashcard-text" class="text-base font-bold text-white px-2">السؤال؟</h4>
+                    <div onclick="flipCard()" class="w-full max-w-sm h-40 bg-gradient-to-br from-gray-900 to-gray-950 border border-gray-800 rounded-3xl p-6 flex items-center justify-center text-center cursor-pointer shadow-2xl transition-all duration-300 transform preserve-3d neon-glow-blue" id="flashcard-element">
+                        <h4 id="flashcard-text" class="text-sm font-bold text-white px-2">السؤال؟</h4>
                     </div>
-                    <button onclick="nextFlashcard()" class="px-5 py-2.5 bg-gray-900 border border-gray-800 hover:border-blue-500/40 text-xs font-bold rounded-xl text-gray-300 hover:text-white transition-all">
-                        البطاقة التالية <i class="fa-solid fa-arrow-left mr-2"></i>
-                    </button>
+                    <button onclick="nextFlashcard()" class="px-5 py-2.5 bg-gray-900 border border-gray-800 text-xs font-bold rounded-xl text-gray-300 hover:text-white transition-all">البطاقة التالية <i class="fa-solid fa-arrow-left mr-2"></i></button>
                 </div>
 
-                <!-- تبويب الاختبار الذكي وتقييم الكفاءة -->
                 <div id="tab-content-quiz" class="hidden space-y-6">
                     <div id="quiz-question-box">
-                        <h4 id="quiz-question-text" class="text-base font-bold text-white mb-4 tracking-tight">السؤال؟</h4>
+                        <h4 id="quiz-question-text" class="text-sm font-bold text-white mb-4">السؤال؟</h4>
                         <div id="quiz-options-container" class="grid grid-cols-1 gap-3"></div>
                     </div>
                     <div id="quiz-result-box" class="hidden text-center py-8 space-y-4">
-                        <div class="w-16 h-16 bg-gradient-to-tr from-emerald-500 to-teal-400 text-white rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-lg neon-glow-emerald transform rotate-12"><i class="fa-solid fa-award"></i></div>
-                        <div class="space-y-1">
-                            <h4 class="text-xl font-bold text-white tracking-tight">تم تثبيت الكفاءة واجتياز المرحلة!</h4>
-                            <p class="text-xs text-gray-400">تم تحديث لوحة التحكم وسجل الحفظ المحلي بنجاح.</p>
-                        </div>
-                        <button onclick="completeCurrentNode()" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold rounded-xl text-xs shadow-lg neon-glow-blue transition-all">
-                            إغلاق وتحديث الخريطة المعرفية 🏆
-                        </button>
+                        <div class="w-14 h-14 bg-gradient-to-tr from-emerald-500 to-teal-400 text-white rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg neon-glow-emerald transform rotate-12"><i class="fa-solid fa-award"></i></div>
+                        <h4 class="text-base font-bold text-white">تم تثبيت الكفاءة واجتياز المرحلة!</h4>
+                        <button onclick="completeCurrentNode()" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold rounded-xl text-xs shadow-lg">إغلاق وتحديث الخريطة المعرفية 🏆</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- ================= محرك الـ Canvas للجزيئات التفاعلية المذهلة ================= -->
+    <!-- ================= محرك الـ Canvas للجزيئات المتحركة ================= -->
     <script>
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeCanvas); resizeCanvas();
         class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.4;
-                this.vy = (Math.random() - 0.5) * 0.4;
-                this.radius = Math.random() * 1.5 + 0.5;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(59, 130, 246, 0.3)';
-                ctx.fill();
-            }
+            constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.vx = (Math.random() - 0.5) * 0.3; this.vy = (Math.random() - 0.5) * 0.3; this.radius = Math.random() * 1.2 + 0.5; }
+            update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > canvas.width) this.vx *= -1; if (this.y < 0 || this.y > canvas.height) this.vy *= -1; }
+            draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = 'rgba(59, 130, 246, 0.25)'; ctx.fill(); }
         }
-
-        function initParticles() {
-            particles = [];
-            const count = Math.min(Math.floor(canvas.width / 15), 90);
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
-        }
-        initParticles();
-
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            
-            // رسم خطوط الترابط الشبكي الخفيفة بين الجزيئات القريبة لبناء مفهوم الـ Connection المعرفي
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-                    if (dist < 100) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.12 * (1 - dist / 100)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
+            particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animateParticles);
         }
         animateParticles();
     </script>
 
-    <!-- استدعاء مستودع البيانات الديناميكي ومحرك الجلسات والألعاب ذو الكفاءة العالية -->
+    <!-- واجهة برمجية سريعة لربط أزرار الـ Sidebar بالخصائص المتقدمة الموديولية -->
+    <script>
+        function triggerViewCV() {
+            if (typeof CareerHubEngine !== 'undefined' && typeof ATLAS_DOMAINS !== 'undefined') {
+                const currentDomainData = ATLAS_DOMAINS[userProgress.currentDomain];
+                const cv = CareerHubEngine.generateAutomatedCV(userProgress, currentDomainData);
+                alert(cv);
+            } else { alert("يرجى إتمام الاستبيان أولاً وتفعيل المسار!"); }
+        }
+        function triggerExportPortfolio() {
+            if (typeof CareerHubEngine !== 'undefined') {
+                CareerHubEngine.exportPortfolioToText(userProgress);
+            }
+        }
+        function triggerViewBadges() {
+            let unlocked = JSON.parse(localStorage.getItem('atlas_unlocked_badges')) || [];
+            if (unlocked.length === 0) {
+                alert("🔒 لم تقم بفتح أي شارات كبرى بعد. واصل حل الاختبارات وتجميع الـ XP لفتحها!");
+            } else {
+                alert(`🏆 الشارات التي تمتلكها حالياً في محفظتك المحلية:\n${unlocked.map(id => `• ${id}`).join('\n')}`);
+            }
+        }
+    </script>
+
+    <!-- استدعاء ملفات الخصائص المتقدمة الموديولية بالترتيب الصحيح -->
     <script src="domains.js"></script>
+    <script src="spacedRepetition.js"></script>
+    <script src="careerHub.js"></script>
+    <script src="achievements.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
