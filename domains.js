@@ -146,7 +146,9 @@ const ATLAS_DOMAINS = {
                         correctIndex: 1 
                     }
                 ]
-            },
+            }
+            ] // <--- انزل تحت السطر ده بالظبط (قفل مصفوفة الـ roadmap للفرونت إند)
+    },    // 🔴 ضَعْ هذا السطر هنا بالظبط (قفل حقل الـ frontend بالكامل مع الفاصلة),
 backend: {
         id: "track_be_2026",
         titleAr: "الموسوعة المعمارية لهندسة الأنظمة الخلفية (Back-End Engineering)",
