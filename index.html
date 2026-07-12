@@ -3,33 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlas | رحلة التعلم الذكي ومنع التشتت</title>
-    <!-- Tailwind CSS لضمان تصميم عصري وسريع -->
+    <title>Atlas | مدرسة الهندسة البرمجية المتكاملة</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome للأيقونات العالمية -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- خطوط جوجل الحديثة وفائقة الأناقة -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Plus+Jakarta+Sans:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <style>
         body {
             font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif;
-            background-color: #030712;
-            overflow-x: hidden;
+            transition: background-color 0.5s ease;
         }
         .glass-panel {
-            background: rgba(11, 15, 25, 0.65);
+            background: rgba(10, 15, 30, 0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .neon-glow-blue {
-            box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.3);
-        }
-        .neon-glow-emerald {
-            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.3);
         }
         .roadmap-line::after {
             content: '';
@@ -43,72 +33,50 @@
             z-index: 0;
         }
         .glow-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glow-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15);
+            box-shadow: 0 12px 30px -10px rgba(59, 130, 246, 0.2);
         }
-        .preserve-3d {
-            transform-style: preserve-3d;
-        }
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #030712;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f2937;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3b82f6;
-        }
+        .preserve-3d { transform-style: preserve-3d; }
     </style>
 </head>
 <body class="text-gray-100 min-h-screen antialiased relative flex flex-col md:flex-row">
 
     <!-- خلفية الجزيئات الحية المتحركة عبر الـ Canvas لإبهار المستخدم -->
-    <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+    <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-30"></canvas>
 
     <!-- ================= شريط التصفح الجانبي الفخم (Premium Sidebar) ================= -->
     <aside id="sidebar-nav" class="hidden md:flex flex-col w-full md:w-64 glass-panel min-h-screen border-l border-gray-900 p-6 z-30 relative shrink-0">
-        <!-- شعار التطبيق الثابت -->
         <div class="flex items-center gap-3 mb-10 pb-6 border-b border-gray-900">
-            <div class="bg-gradient-to-tr from-blue-600 to-emerald-500 p-2 rounded-xl shadow-lg neon-glow-blue">
-                <i class="fa-solid fa-compass text-xl text-white"></i>
+            <div class="bg-gradient-to-tr from-blue-600 to-purple-600 p-2.5 rounded-xl shadow-lg">
+                <i class="fa-solid fa-code text-xl text-white"></i>
             </div>
             <div>
                 <span class="text-xl font-black bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent tracking-wider">ATLAS</span>
-                <span class="text-[9px] text-emerald-400 block font-bold tracking-widest mr-0.5">ANTI-DISTRACTION</span>
+                <span class="text-[9px] text-blue-400 block font-bold tracking-widest mr-0.5">SOFTWARE SCHOOL</span>
             </div>
         </div>
 
-        <!-- الأزرار والروابط التفاعلية الموجهة لمحركات الخصائص المتقدمة -->
         <div class="flex-1 space-y-2 text-sm">
             <button onclick="window.location.reload()" class="w-full flex items-center gap-3 px-4 py-3 bg-blue-600/10 text-blue-400 font-bold rounded-xl border border-blue-500/25 transition-all text-right">
-                <i class="fa-solid fa-map-location-dot"></i> خريطة المسار النشط
-            </button>
-            
-            <button onclick="triggerViewCV()" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-900/50 font-medium rounded-xl transition-all text-right">
-                <i class="fa-solid fa-file-invoice"></i> توليد السيرة الذاتية الـ CV
+                <i class="fa-solid fa-route"></i> خريطة المسارات النشطة
             </button>
 
-            <button onclick="triggerExportPortfolio()" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-900/50 font-medium rounded-xl transition-all text-right">
-                <i class="fa-solid fa-download"></i> تصدير الـ Portfolio المحلي
-            </button>
-
-            <button onclick="triggerViewBadges()" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-900/50 font-medium rounded-xl transition-all text-right">
-                <i class="fa-solid fa-trophy"></i> سجل الشارات والإنجازات
-            </button>
+            <!-- وحدة المبدل السحري للثيمات داخل السايدبار للتحكم المرئي بالفخامة -->
+            <div class="pt-6 mt-6 border-t border-gray-900 space-y-3">
+                <span class="text-[11px] font-bold text-gray-500 tracking-wider uppercase block"><i class="fa-solid fa-palette ml-1"></i> اختر ثيم الواجهة المفضلة:</span>
+                <div class="grid grid-cols-3 gap-2">
+                    <button id="btn-theme-cyber" onclick="switchTheme('theme-cyber')" class="theme-selector-btn h-8 rounded-lg bg-gray-950 border border-gray-800 flex items-center justify-center hover:scale-105 transition-all" title="المدار المظلم"><div class="w-3 h-3 rounded-full bg-blue-500"></div></button>
+                    <button id="btn-theme-emerald" onclick="switchTheme('theme-emerald')" class="theme-selector-btn h-8 rounded-lg bg-emerald-950 border border-emerald-900 flex items-center justify-center hover:scale-105 transition-all" title="غابة الزمرد"><div class="w-3 h-3 rounded-full bg-emerald-500"></div></button>
+                    <button id="btn-theme-purple" onclick="switchTheme('theme-purple')" class="theme-selector-btn h-8 rounded-lg bg-indigo-950 border border-indigo-900 flex items-center justify-center hover:scale-105 transition-all" title="الشفق الأرجواني"><div class="w-3 h-3 rounded-full bg-purple-500"></div></button>
+                </div>
+            </div>
         </div>
 
-        <!-- البصمة الفنية السفلية للنسخة -->
         <div class="pt-4 border-t border-gray-900 text-[10px] text-gray-500 text-center">
-            <p>نسخة التطبيق المستقلة v1.1</p>
-            <p class="mt-1">جميع البيانات محفوظة محلياً 🔒</p>
+            <p>جميع تفاصيل المادة العلمية حرة 🔒</p>
         </div>
     </aside>
 
@@ -118,15 +86,14 @@
         <!-- شريط الحساب العلوي الصغير -->
         <nav class="glass-panel w-full px-8 py-4 flex justify-between items-center border-b border-gray-900 shadow-md">
             <div>
-                <!-- يظهر اسم التطبيق علوياً فقط في الشاشات الصغيرة عند اختفاء القائمة الجانبية -->
                 <span class="text-xl font-black text-white md:hidden tracking-wider">ATLAS</span>
             </div>
 
-            <!-- نظام النقاط السحابي التفاعلي والمحرك الديناميكي -->
             <div id="nav-stats" class="hidden flex items-center gap-3">
-                <select id="domain-switcher" onchange="changeUserDomain(this.value)" class="bg-gray-950 border border-gray-850 rounded-xl px-3 py-1.5 text-xs text-gray-300 focus:outline-none focus:border-blue-500 transition-colors ml-2 cursor-pointer font-medium">
-                    <option value="computer_science">💻 علوم الحاسب</option>
-                    <option value="arabic_language">✍️ اللغة العربية</option>
+                <select id="domain-switcher" onchange="changeUserDomain(this.value)" class="bg-gray-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-blue-500 transition-colors ml-2 cursor-pointer font-bold">
+                    <option value="frontend">🎨 مسار واجهات المستخدم Front-End</option>
+                    <option value="backend">⚙️ مسار الأنظمة الخلفية Back-End</option>
+                    <option value="fullstack">👑 مسار المطور الشامل Full-Stack</option>
                 </select>
                 
                 <div class="flex items-center gap-2 bg-gray-950 px-4 py-2 rounded-xl border border-gray-850">
@@ -140,16 +107,16 @@
             </div>
         </nav>
 
-        <main class="max-w-5xl w-full mx-auto px-6 py-12">
+        <main class="max-w-4xl w-full mx-auto px-6 py-12">
             <!-- ================= شاشة الاستبيان الذكي (Onboarding) ================= -->
             <section id="onboarding-section" class="transition-all duration-700">
                 <div class="text-center mb-12 space-y-3">
-                    <span class="px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20 tracking-wide uppercase">نظام التخصيص ومنع التشتت</span>
+                    <span class="px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20 tracking-wide uppercase">أكاديمية تفكيك هندسة البرمجيات</span>
                     <h1 class="text-4xl font-black text-white tracking-tight">اصنع مسار احترافك الشخصي</h1>
-                    <p class="text-gray-400 max-w-md mx-auto text-xs leading-relaxed">أجب عن المحددات لبناء خطتك المعرفية وتوزيع وقتك بدقة وتفادي الشتات الرقمي تماماً.</p>
+                    <p class="text-gray-400 max-w-md mx-auto text-xs leading-relaxed">أجب لتوليد الخطة التفصيلية الموضحة للفوائد والبدائل المعمارية لتفادي التشتت تماماً.</p>
                 </div>
 
-                <div class="glass-panel p-8 rounded-3xl shadow-2xl max-w-xl mx-auto space-y-8 border border-gray-850 relative overflow-hidden">
+                <div class="glass-panel p-8 rounded-3xl shadow-2xl max-w-xl mx-auto space-y-6 border border-gray-850 relative overflow-hidden">
                     <form id="onboarding-form" class="space-y-6">
                         <div class="space-y-2">
                             <label class="block text-xs font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-calendar-day text-blue-500 ml-2"></i>كم عمرك الحالي؟</label>
@@ -160,12 +127,12 @@
                             <label class="block text-xs font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-briefcase text-blue-500 ml-2"></i>ما هي حالتك الحالية؟</label>
                             <div class="grid grid-cols-2 gap-4">
                                 <button type="button" onclick="selectSurveyOption('status', 'student', this)" class="p-4 bg-gray-950 border border-gray-850 rounded-2xl hover:border-blue-500/60 text-center font-medium text-xs transition-all text-gray-300 hover:text-white">طالب علم / أكاديمي</button>
-                                <button type="button" onclick="selectSurveyOption('status', 'employee', this)" class="p-4 bg-gray-950 border border-gray-850 rounded-2xl hover:border-blue-500/60 text-center font-medium text-xs transition-all text-gray-300 hover:text-white">مهني / موظف مستقر</button>
+                                <button type="button" onclick="selectSurveyOption('status', 'employee', this)" class="p-4 bg-gray-950 border border-gray-850 rounded-2xl hover:border-blue-500/60 text-center font-medium text-xs transition-all text-gray-300 hover:text-white">مهني / مستقل</button>
                             </div>
                         </div>
 
                         <div class="space-y-2">
-                            <label class="block text-xs font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-hourglass-half text-emerald-500 ml-2"></i>كم ساعة تستطيع تخصيصها للتعلم يومياً؟</label>
+                            <label class="block text-xs font-bold text-gray-300 tracking-wide"><i class="fa-solid fa-hourglass-half text-emerald-500 ml-2"></i>كم ساعة تستطيع تخصيصها يومياً؟</label>
                             <select id="hours" class="w-full bg-gray-950 border border-gray-850 rounded-2xl px-4 py-4 text-white font-medium text-xs focus:outline-none focus:border-emerald-500 cursor-pointer">
                                 <option value="1">ساعة واحدة مركزة (المسار الهادئ)</option>
                                 <option value="2">ساعتين يومياً (المسار المتوازن)</option>
@@ -182,8 +149,8 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 text-white font-bold rounded-2xl hover:opacity-95 shadow-xl neon-glow-blue transition-all transform hover:-translate-y-0.5 text-xs">
-                            توليد مسار الرحلة الخالي من الشتات 🚀
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 text-white font-bold rounded-2xl hover:opacity-95 shadow-xl transition-all transform hover:-translate-y-0.5 text-xs">
+                            توليد الخطة الفخمة بدون شتات 🚀
                         </button>
                     </form>
                 </div>
@@ -192,93 +159,86 @@
             <!-- ================= لوحة التحكم الأساسية وخريطة الطريق الشجرية (Dashboard) ================= -->
             <section id="dashboard-section" class="hidden space-y-12 transition-all duration-700 opacity-0 transform translate-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 border-r-4 border-r-blue-500 shadow-md">
+                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 border-r-4 border-r-blue-500 shadow-sm">
                         <div class="p-3 bg-blue-500/10 text-blue-400 rounded-xl"><i class="fa-solid fa-graduation-cap text-xl"></i></div>
                         <div>
                             <p class="text-[9px] text-gray-500 font-bold uppercase tracking-wider">المسار النشط حالياً</p>
-                            <h4 id="display-domain-title" class="font-bold text-base text-white tracking-tight">--</h4>
+                            <h4 id="display-domain-title" class="font-bold text-sm text-white tracking-tight">--</h4>
                         </div>
                     </div>
-                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 border-r-4 border-r-purple-500 shadow-md">
+                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 border-r-4 border-r-purple-500 shadow-sm">
                         <div class="p-3 bg-purple-500/10 text-purple-400 rounded-xl"><i class="fa-solid fa-stopwatch text-xl"></i></div>
                         <div>
                             <p class="text-[9px] text-gray-500 font-bold uppercase tracking-wider">المستهدف اليومي الملتزم</p>
-                            <h4 id="display-hours" class="font-bold text-base text-white tracking-tight">-- دقيقة</h4>
+                            <h4 id="display-hours" class="font-bold text-sm text-white tracking-tight">-- دقيقة</h4>
                         </div>
                     </div>
-                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 border-r-4 border-r-emerald-500 shadow-md">
+                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4 border-r-4 border-r-emerald-500 shadow-sm">
                         <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl"><i class="fa-solid fa-medal text-xl"></i></div>
                         <div>
                             <p class="text-[9px] text-gray-500 font-bold uppercase tracking-wider">مستوى الكفاءة الحالي</p>
-                            <h4 class="font-bold text-base text-white tracking-tight">Beginner</h4>
+                            <h4 class="font-bold text-sm text-white tracking-tight">Beginner</h4>
                         </div>
                     </div>
                 </div>
 
                 <div class="glass-panel p-8 md:p-12 rounded-3xl relative roadmap-line border border-gray-850 shadow-2xl">
-                    <div class="text-center mb-12 relative z-10">
-                        <h3 class="text-2xl font-black text-white tracking-tight flex items-center justify-center gap-3">
-                            <i class="fa-solid fa-map text-emerald-400"></i> خريطة التدفق المعرفي المصفى
-                        </h3>
-                    </div>
                     <div id="roadmap-nodes-container" class="space-y-16 relative z-10">
-                        <!-- جلب العقد التعليمية تلقائياً من ملف app.js -->
+                        <!-- جلب العقد التعليمية تلقائياً وعزل الشتات عبر ملف app.js -->
                     </div>
                 </div>
             </section>
         </main>
     </div>
 
-    <!-- ================= صندوق عرض المحتوى التعليمي وتأمين العزل الكامل (Modal) ================= -->
-    <div id="content-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl transition-all duration-300 opacity-0">
+    <!-- ================= صندوق عرض المحتوى التعليمي وتأمين العزل الكامل والتفصيل الممل (Modal) ================= -->
+    <div id="content-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl transition-all duration-300 opacity-0">
         <div class="glass-panel w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl border border-gray-800 flex flex-col max-h-[85vh] transform scale-95 transition-all duration-300 relative">
             <div class="p-6 border-b border-gray-850 flex justify-between items-center bg-gray-900/40">
                 <div>
                     <span id="modal-node-level" class="px-2 py-0.5 rounded bg-blue-500/10 text-[9px] font-bold text-blue-400 uppercase tracking-widest border border-blue-500/20">LEVEL</span>
-                    <h3 id="modal-node-title" class="text-lg font-bold text-white mt-2 tracking-tight">عنوان المرحلة التعليمية</h3>
+                    <h3 id="modal-node-title" class="text-base font-bold text-white mt-2 tracking-tight">عنوان الخطوة المعمارية</h3>
                 </div>
                 <button onclick="closeModal()" class="w-10 h-10 rounded-xl bg-gray-800/60 hover:bg-gray-700 border border-gray-750 flex items-center justify-center text-gray-400 hover:text-white transition-all">
-                    <i class="fa-solid fa-xmark text-base"></i>
+                    <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
             </div>
 
             <div class="flex border-b border-gray-900 bg-gray-950/40 text-[11px] font-bold">
-                <button onclick="switchTab('study')" id="tab-btn-study" class="flex-1 py-4 text-center border-b-2 border-blue-500 text-blue-400 transition-all"><i class="fa-solid fa-book-open ml-2"></i>الدراسة والتطبيق</button>
+                <button onclick="switchTab('study')" id="tab-btn-study" class="flex-1 py-4 text-center border-b-2 border-blue-500 text-blue-400 transition-all"><i class="fa-solid fa-book-open ml-2"></i>التفصيل الهيكلي الممل</button>
                 <button onclick="switchTab('flashcards')" id="tab-btn-flashcards" class="flex-1 py-4 text-center border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all"><i class="fa-solid fa-clone ml-2"></i>البطاقات التكرارية</button>
-                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="flex-1 py-4 text-center border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all"><i class="fa-solid fa-vial ml-2"></i>اختبار الكفاءة</button>
+                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="flex-1 py-4 text-center border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all"><i class="fa-solid fa-vial ml-2"></i>اختبار تثبيت الكفاءة</button>
             </div>
 
             <div class="p-6 overflow-y-auto flex-1 space-y-6" id="modal-body-container">
                 <div id="tab-content-study" class="space-y-6">
-                    <div class="space-y-2">
-                        <h5 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-solid fa-quote-right ml-2 text-blue-500"></i>الشرح الأكاديمي المبسط</h5>
-                        <p id="modal-explanation" class="text-gray-300 leading-relaxed text-sm bg-gray-950 p-4 rounded-2xl border border-gray-850 shadow-inner"></p>
+                    <div class="space-y-2" id="modal-explanation">
+                        <!-- يتم حقن كروت (لماذا، الفائدة، البدائل) هنا بالكامل لمنع التشتت المعرفي -->
                     </div>
-                    <div class="space-y-3">
-                        <h5 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-brands fa-youtube ml-2 text-red-500"></i>المحتوى المرئي المصفى (منع التشتت)</h5>
+                    <div class="hidden space-y-3">
+                        <h5 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-brands fa-youtube ml-2 text-red-500"></i>المحتوى المرئي المصفى</h5>
                         <div id="modal-videos-list" class="grid grid-cols-1 gap-2"></div>
                     </div>
                     <div class="space-y-2">
-                        <h5 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-solid fa-laptop-code ml-2 text-emerald-500"></i>المشروع التطبيقي المطلوب لتحديث الـ Portfolio</h5>
                         <div id="modal-project-box" class="bg-emerald-950/10 border border-emerald-900/30 p-4 rounded-2xl text-xs text-gray-300"></div>
                     </div>
                 </div>
 
                 <div id="tab-content-flashcards" class="hidden flex flex-col items-center justify-center py-4 space-y-6">
-                    <div onclick="flipCard()" class="w-full max-w-sm h-40 bg-gradient-to-br from-gray-900 to-gray-950 border border-gray-800 rounded-3xl p-6 flex items-center justify-center text-center cursor-pointer shadow-2xl transition-all duration-300 transform preserve-3d neon-glow-blue" id="flashcard-element">
-                        <h4 id="flashcard-text" class="text-sm font-bold text-white px-2">السؤال؟</h4>
+                    <div onclick="flipCard()" class="w-full max-w-sm h-40 bg-gradient-to-br from-gray-900 to-gray-950 border border-gray-800 rounded-3xl p-6 flex items-center justify-center text-center cursor-pointer shadow-2xl transition-all duration-300 transform preserve-3d" id="flashcard-element">
+                        <h4 id="flashcard-text" class="text-xs font-bold text-white px-2">السؤال؟</h4>
                     </div>
                     <button onclick="nextFlashcard()" class="px-5 py-2.5 bg-gray-900 border border-gray-800 text-xs font-bold rounded-xl text-gray-300 hover:text-white transition-all">البطاقة التالية <i class="fa-solid fa-arrow-left mr-2"></i></button>
                 </div>
 
                 <div id="tab-content-quiz" class="hidden space-y-6">
                     <div id="quiz-question-box">
-                        <h4 id="quiz-question-text" class="text-sm font-bold text-white mb-4">السؤال؟</h4>
+                        <h4 id="quiz-question-text" class="text-xs font-bold text-white mb-4">السؤال؟</h4>
                         <div id="quiz-options-container" class="grid grid-cols-1 gap-3"></div>
                     </div>
                     <div id="quiz-result-box" class="hidden text-center py-8 space-y-4">
-                        <div class="w-14 h-14 bg-gradient-to-tr from-emerald-500 to-teal-400 text-white rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg neon-glow-emerald transform rotate-12"><i class="fa-solid fa-award"></i></div>
-                        <h4 class="text-base font-bold text-white">تم تثبيت الكفاءة واجتياز المرحلة!</h4>
+                        <div class="w-14 h-14 bg-gradient-to-tr from-emerald-500 to-teal-400 text-white rounded-xl flex items-center justify-center text-xl mx-auto shadow-lg transform rotate-12"><i class="fa-solid fa-award"></i></div>
+                        <h4 class="text-xs font-bold text-white">تم تثبيت كفاءة هذه الخطوة المعمارية بنجاح!</h4>
                         <button onclick="completeCurrentNode()" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold rounded-xl text-xs shadow-lg">إغلاق وتحديث الخريطة المعرفية 🏆</button>
                     </div>
                 </div>
@@ -286,7 +246,7 @@
         </div>
     </div>
 
-    <!-- ================= محرك الـ Canvas للجزيئات المتحركة ================= -->
+    <!-- ================= محرك الـ Canvas للجزيئات المتحركة بالخلفية ================= -->
     <script>
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
@@ -294,11 +254,11 @@
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resizeCanvas); resizeCanvas();
         class Particle {
-            constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.vx = (Math.random() - 0.5) * 0.3; this.vy = (Math.random() - 0.5) * 0.3; this.radius = Math.random() * 1.2 + 0.5; }
+            constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.vx = (Math.random() - 0.5) * 0.2; this.vy = (Math.random() - 0.5) * 0.2; this.radius = Math.random() * 1.2 + 0.5; }
             update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > canvas.width) this.vx *= -1; if (this.y < 0 || this.y > canvas.height) this.vy *= -1; }
             draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = 'rgba(59, 130, 246, 0.25)'; ctx.fill(); }
         }
-        for (let i = 0; i < 60; i++) particles.push(new Particle());
+        for (let i = 0; i < 40; i++) particles.push(new Particle());
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => { p.update(); p.draw(); });
@@ -307,42 +267,8 @@
         animateParticles();
     </script>
 
-    <!-- واجهة برمجية سريعة لربط أزرار الـ Sidebar بالخصائص المتقدمة الموديولية -->
-    <script>
-      function triggerViewCV() {
-    if (typeof CareerHubEngine !== 'undefined' && typeof ATLAS_DOMAINS !== 'undefined') {
-        const currentDomainData = ATLAS_DOMAINS[userProgress.currentDomain];
-        
-        // استدعاء محرك التوظيف الجديد بالكامل وعرض النتيجة بشكل منظم
-        const cvPrettyText = CareerHubEngine.renderPrettyCV(userProgress, currentDomainData);
-        
-        // طباعته في الكونسول بشكل مبهر وعرضه للمستخدم في نافذة منسقة
-        console.log(cvPrettyText);
-        alert(cvPrettyText);
-    } else { 
-        alert("يرجى إتمام الاستبيان أولاً وتفعيل المسار لتوليد السيرة الذاتية!"); 
-    }
-}
-        function triggerExportPortfolio() {
-            if (typeof CareerHubEngine !== 'undefined') {
-                CareerHubEngine.exportPortfolioToText(userProgress);
-            }
-        }
-        function triggerViewBadges() {
-            let unlocked = JSON.parse(localStorage.getItem('atlas_unlocked_badges')) || [];
-            if (unlocked.length === 0) {
-                alert("🔒 لم تقم بفتح أي شارات كبرى بعد. واصل حل الاختبارات وتجميع الـ XP لفتحها!");
-            } else {
-                alert(`🏆 الشارات التي تمتلكها حالياً في محفظتك المحلية:\n${unlocked.map(id => `• ${id}`).join('\n')}`);
-            }
-        }
-    </script>
-
-    <!-- استدعاء ملفات الخصائص المتقدمة الموديولية بالترتيب الصحيح -->
+    <!-- استدعاء ملفات المشروع البرمجية المستقلة بنجاح وعزل كامل للشتات -->
     <script src="domains.js"></script>
-    <script src="spacedRepetition.js"></script>
-    <script src="careerHub.js"></script>
-    <script src="achievements.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
