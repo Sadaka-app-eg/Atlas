@@ -295,7 +295,9 @@ backend: {
                         correctIndex: 2 
                     }
                 ]
-            },
+           }
+        ]
+    },
 
   fullstack: {
         id: "track_fs_2026",
