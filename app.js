@@ -198,11 +198,14 @@ window.openTrackStep = function(nodeId) {
     `;
 
     // 2. ضخ الفيديوهات التوجيهية بشكل برمي سليم خارج النصوص
+   // 2. ضخ الفيديوهات التوجيهية بشكل برمي سليم مع إضافة زر الرابط التفاعلي
     const videoContainer = document.getElementById('modal-videos-list');
     if (videoContainer && activeStepData.videos) {
         videoContainer.innerHTML = activeStepData.videos.map(v => `
-            <div class="flex items-center justify-between p-3 bg-gray-950 border border-gray-850 rounded-xl transition-all text-xs text-gray-300">
-                <span class="font-medium text-gray-300"><i class="fa-solid fa-play text-xs text-red-500 ml-2"></i> ${v.title}</span>
+            <div class="flex items-center justify-between p-3 bg-gray-950 border border-gray-850 rounded-xl transition-all text-xs text-gray-300 gap-4">
+                <span class="font-medium text-gray-300 flex items-center"><i class="fa-solid fa-play text-[10px] text-red-500 ml-2"></i> ${v.title}</span>
+                <!-- 🌟 زر الرابط التفاعلي المضاف -->
+                <a href="${v.url}" target="_blank" class="px-3 py-1.5 bg-red-600/10 hover:bg-red-600/20 text-red-400 hover:text-red-300 font-bold rounded-lg border border-red-500/20 transition-all whitespace-nowrap"><i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i> انتقال</a>
             </div>
         `).join('');
     }
