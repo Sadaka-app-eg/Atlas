@@ -89,7 +89,38 @@ function renderTrackRoadmap() {
     const container = document.getElementById('roadmap-nodes-container');
     
     if (!container || !trackData) return;
-    
+    if (trackData.overview) {
+        const textAccent = THEMES_CONFIG[userProgress.activeTheme].text;
+        overviewBox.classList.remove('hidden');
+        overviewBox.innerHTML = `
+            <div class="flex flex-col gap-4">
+                <div class="border-b border-gray-850 pb-3">
+                    <span class="text-[10px] font-bold ${textAccent} tracking-widest uppercase">التعريف المعماري بالمجال</span>
+                    <p class="text-sm text-gray-200 font-medium mt-1 leading-relaxed">${trackData.overview.definition}</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="bg-gray-900/40 p-3 rounded-xl border border-gray-850">
+                        <span class="text-gray-500 font-bold block mb-1">📊 منحنى الصعوبة الفعلي:</span>
+                        <span class="text-gray-300 leading-relaxed">${trackData.overview.difficulty}</span>
+                    </div>
+                    <div class="bg-gray-900/40 p-3 rounded-xl border border-gray-850">
+                        <span class="text-gray-500 font-bold block mb-1">💼 متطلبات سوق العمل والرواتب:</span>
+                        <span class="text-gray-300 leading-relaxed">${trackData.overview.marketDemand}</span>
+                    </div>
+                    <div class="bg-gray-900/40 p-3 rounded-xl border border-gray-850">
+                        <span class="text-gray-500 font-bold block mb-1">⏳ المدة الزمنية المتوقعة:</span>
+                        <span class="text-gray-300 font-semibold">${trackData.overview.estimatedDuration}</span>
+                    </div>
+                    <div class="bg-gray-900/40 p-3 rounded-xl border border-gray-850">
+                        <span class="text-gray-500 font-bold block mb-1">🎯 هل هذا المجال مناسب لك؟</span>
+                        <span class="text-gray-300 leading-relaxed">${trackData.overview.idealFor}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        overviewBox.classList.add('hidden');
+    }
     document.getElementById('display-domain-title').innerText = trackData.titleAr;
     document.getElementById('display-hours').innerText = `${userProgress.dailyTargetMinutes} دقيقة يومياً`;
     
