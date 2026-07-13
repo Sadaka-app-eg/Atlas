@@ -90,11 +90,13 @@
             </div>
 
             <div id="nav-stats" class="hidden flex items-center gap-3">
-                <select id="domain-switcher" onchange="changeUserDomain(this.value)" class="bg-gray-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-blue-500 transition-colors ml-2 cursor-pointer font-bold">
-                    <option value="frontend">🎨 مسار واجهات المستخدم Front-End</option>
-                    <option value="backend">⚙️ مسار الأنظمة الخلفية Back-End</option>
-                    <option value="fullstack">👑 مسار المطور الشامل Full-Stack</option>
-                </select>
+               <!-- استبدل عنصر الـ select القديم في ملف index.html بهذا المحدث بالكامل -->
+<select id="domain-switcher" onchange="changeUserDomain(this.value)" class="bg-gray-950 border border-gray-850 rounded-xl px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-blue-500 transition-colors ml-2 cursor-pointer font-bold">
+    <option value="frontend">🎨 مسار واجهات المستخدم Front-End</option>
+    <option value="backend">⚙️ مسار الأنظمة الخلفية Back-End</option>
+    <option value="fullstack">👑 مسار المطور الشامل Full-Stack</option>
+    <option value="cybersecurity">🛡️ مسار الأمن السيبراني Cyber Security</option> <!-- 🔥 هذا هو الخيار الجديد -->
+</select>
                 
                 <div class="flex items-center gap-2 bg-gray-950 px-4 py-2 rounded-xl border border-gray-850">
                     <i class="fa-solid fa-fire text-amber-500 text-sm"></i>
