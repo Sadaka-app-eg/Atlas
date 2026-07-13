@@ -177,6 +177,15 @@ window.openTrackStep = function(nodeId) {
     
     // ضخ الشرح المفصل والممل (السبب، الفائدة، والبدائل) داخل كروت معزولة ومبهرة
     document.getElementById('modal-explanation').innerHTML = `
+    // 🟢 ضعي هذا الكود هنا بالظبط ليرسم الفيديوهات التوجيهية في المودال:
+    const videoContainer = document.getElementById('modal-videos-list');
+    if (videoContainer && activeStepData.videos) {
+        videoContainer.innerHTML = activeStepData.videos.map(v => `
+            <div class="flex items-center justify-between p-3 bg-gray-950 border border-gray-850 rounded-xl transition-all text-xs text-gray-300">
+                <span class="font-medium text-gray-300"><i class="fa-solid fa-play text-xs text-red-500 ml-2"></i> ${v.title}</span>
+            </div>
+        `).join('');
+    }
         <div class="space-y-4">
             <div class="bg-gray-900/80 p-4 rounded-xl border border-gray-800">
                 <h6 class="text-xs font-bold text-blue-400 mb-1.5 flex items-center gap-1.5"><i class="fa-solid fa-circle-question"></i> ١. لماذا نتعلم هذه الأداة/الخطوة تحديداً؟</h6>
