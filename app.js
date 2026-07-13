@@ -83,15 +83,21 @@ function goToDashboard() {
     }, 50);
 }
 
+// 🟢 عدل الأسطر الأولى من الدالة لتصبح هكذا بالضبط:
 function renderTrackRoadmap() {
     const trackKey = userProgress.currentTrack;
     const trackData = ATLAS_DOMAINS[trackKey];
     const container = document.getElementById('roadmap-nodes-container');
     
+    // 🌟 السطر المفقود الذي يجب إضافته لتعريف الصندوق ومنع الكراش:
+    const overviewBox = document.getElementById('track-overview-box');
+    
     if (!container || !trackData) return;
-    if (trackData.overview) {
+    
+    if (trackData.overview && overviewBox) { // أضفنا التحقق من وجود العنصر أيضاً لحماية الكود
         const textAccent = THEMES_CONFIG[userProgress.activeTheme].text;
         overviewBox.classList.remove('hidden');
+        // ... باقي الكود مستمر بشكل سليم تماماً دون تعديل
         overviewBox.innerHTML = `
             <div class="flex flex-col gap-4">
                 <div class="border-b border-gray-850 pb-3">
@@ -167,7 +173,7 @@ window.openTrackStep = function(nodeId) {
     if (!activeStepData) return;
 
     document.getElementById('modal-node-title').innerText = activeStepData.title;
-    document.getElementById('modal-node-level').innerText = activeNodeData = activeStepData.level;
+   document.getElementById('modal-node-level').innerText = activeStepData.level;
     
     // ضخ الشرح المفصل والممل (السبب، الفائدة، والبدائل) داخل كروت معزولة ومبهرة
     document.getElementById('modal-explanation').innerHTML = `
