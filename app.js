@@ -13,6 +13,8 @@ let userProgress = {
 };
 
 let activeStepData = null;
+let currentFlashcardIndex = 0;
+let isCardFlipped = false;
 
 // مصفوفة الثيمات البرمجية وألوانها المدمجة بالـ Tailwind
 const THEMES_CONFIG = {
@@ -83,21 +85,16 @@ function goToDashboard() {
     }, 50);
 }
 
-// 🟢 عدل الأسطر الأولى من الدالة لتصبح هكذا بالضبط:
 function renderTrackRoadmap() {
     const trackKey = userProgress.currentTrack;
     const trackData = ATLAS_DOMAINS[trackKey];
     const container = document.getElementById('roadmap-nodes-container');
-    
-    // 🌟 السطر المفقود الذي يجب إضافته لتعريف الصندوق ومنع الكراش:
     const overviewBox = document.getElementById('track-overview-box');
     
     if (!container || !trackData) return;
-    
-    if (trackData.overview && overviewBox) { // أضفنا التحقق من وجود العنصر أيضاً لحماية الكود
+    if (trackData.overview) {
         const textAccent = THEMES_CONFIG[userProgress.activeTheme].text;
         overviewBox.classList.remove('hidden');
-        // ... باقي الكود مستمر بشكل سليم تماماً دون تعديل
         overviewBox.innerHTML = `
             <div class="flex flex-col gap-4">
                 <div class="border-b border-gray-850 pb-3">
@@ -175,7 +172,7 @@ window.openTrackStep = function(nodeId) {
     document.getElementById('modal-node-title').innerText = activeStepData.title;
     document.getElementById('modal-node-level').innerText = activeStepData.level;
     
-    // 1. ضخ الشرح المفصل والممل (السبب، الفائدة، والبدائل)
+    // ضخ الشرح المفصل والممل (السبب، الفائدة، والبدائل) داخل كروت معزولة ومبهرة
     document.getElementById('modal-explanation').innerHTML = `
         <div class="space-y-4">
             <div class="bg-gray-900/80 p-4 rounded-xl border border-gray-800">
@@ -194,23 +191,19 @@ window.openTrackStep = function(nodeId) {
                 <h6 class="text-xs font-bold text-gray-400 mb-1.5 flex items-center gap-1.5"><i class="fa-solid fa-file-code"></i> ٤. المادة العلمية ومحاور الدراسة التفصيلية:</h6>
                 <p class="text-xs text-gray-300 leading-relaxed">${activeStepData.content}</p>
             </div>
+            ${activeStepData.practicePlatform ? `
+            <div class="bg-amber-950/20 p-4 rounded-xl border border-amber-900/40">
+                <h6 class="text-xs font-bold text-amber-400 mb-1.5 flex items-center gap-1.5"><i class="fa-solid fa-laptop-code"></i> ٥. فين تطبّق اللي اتعلمته دلوقتي؟</h6>
+                <p class="text-xs text-gray-300 leading-relaxed">${activeStepData.practicePlatform}</p>
+            </div>` : ''}
+            ${activeStepData.takeaway ? `
+            <div class="bg-blue-950/20 p-4 rounded-xl border border-blue-900/40">
+                <h6 class="text-xs font-bold text-blue-400 mb-1.5 flex items-center gap-1.5"><i class="fa-solid fa-trophy"></i> ٦. المستفاد لما تخلص الخطوة دي:</h6>
+                <p class="text-xs text-gray-300 leading-relaxed">${activeStepData.takeaway}</p>
+            </div>` : ''}
         </div>
     `;
 
-    // 2. ضخ الفيديوهات التوجيهية بشكل برمي سليم خارج النصوص
-   // 2. ضخ الفيديوهات التوجيهية بشكل برمي سليم مع إضافة زر الرابط التفاعلي
-    const videoContainer = document.getElementById('modal-videos-list');
-    if (videoContainer && activeStepData.videos) {
-        videoContainer.innerHTML = activeStepData.videos.map(v => `
-            <div class="flex items-center justify-between p-3 bg-gray-950 border border-gray-850 rounded-xl transition-all text-xs text-gray-300 gap-4">
-                <span class="font-medium text-gray-300 flex items-center"><i class="fa-solid fa-play text-[10px] text-red-500 ml-2"></i> ${v.title}</span>
-                <!-- 🌟 زر الرابط التفاعلي المضاف -->
-                <a href="${v.url}" target="_blank" class="px-3 py-1.5 bg-red-600/10 hover:bg-red-600/20 text-red-400 hover:text-red-300 font-bold rounded-lg border border-red-500/20 transition-all whitespace-nowrap"><i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i> انتقال</a>
-            </div>
-        `).join('');
-    }
-
-    // 3. ضخ كارت المشروع المطلوب
     document.getElementById('modal-project-box').innerHTML = `
         <p class="font-bold text-gray-200 text-xs mb-1"><i class="fa-solid fa-laptop-code text-emerald-400 ml-1"></i> المشروع المطلوب للانتقال:</p>
         <p class="text-xs text-gray-400 leading-relaxed">${activeStepData.project.title}</p>
