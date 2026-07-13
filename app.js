@@ -201,6 +201,21 @@ window.openTrackStep = function(nodeId) {
                 <h6 class="text-xs font-bold text-blue-400 mb-1.5 flex items-center gap-1.5"><i class="fa-solid fa-trophy"></i> ٦. المستفاد لما تخلص الخطوة دي:</h6>
                 <p class="text-xs text-gray-300 leading-relaxed">${activeStepData.takeaway}</p>
             </div>` : ''}
+            ${activeStepData.vsCodeGuideSteps ? `
+            <div class="bg-gray-900/60 rounded-xl border border-gray-800 overflow-hidden">
+                <button onclick="toggleVsCodeGuide()" id="vscode-guide-toggle-btn" class="w-full p-4 flex items-center justify-between text-right bg-gradient-to-l from-blue-600/20 to-transparent hover:from-blue-600/30 transition-all">
+                    <span class="text-xs font-bold text-blue-300 flex items-center gap-2"><i class="fa-solid fa-display"></i> اضغط هنا لتتعلم تثبيت واستخدام VS Code خطوة بخطوة</span>
+                    <i class="fa-solid fa-chevron-down text-blue-400 text-xs" id="vscode-guide-chevron"></i>
+                </button>
+                <div id="vscode-guide-steps-list" class="hidden p-4 pt-2 space-y-2 border-t border-gray-850">
+                    ${activeStepData.vsCodeGuideSteps.map(s => `
+                        <div class="flex items-start gap-3">
+                            <span class="shrink-0 w-6 h-6 rounded-full bg-blue-600/20 text-blue-400 text-[10px] font-bold flex items-center justify-center mt-0.5">${s.step}</span>
+                            <p class="text-xs text-gray-300 leading-relaxed">${s.text}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>` : ''}
         </div>
     `;
 
@@ -224,6 +239,14 @@ window.closeModal = function() {
     const modal = document.getElementById('content-modal');
     modal.classList.add('opacity-0');
     setTimeout(() => { modal.classList.add('hidden'); }, 300);
+};
+
+window.toggleVsCodeGuide = function() {
+    const list = document.getElementById('vscode-guide-steps-list');
+    const chevron = document.getElementById('vscode-guide-chevron');
+    if (!list) return;
+    list.classList.toggle('hidden');
+    if (chevron) chevron.classList.toggle('rotate-180');
 };
 
 window.switchTab = function(tabName) {
