@@ -1,7 +1,7 @@
 // domains.js - الموسوعة الأكاديمية العميقة والموسعة لهندسة الواجهات الأمامية (Front-End Universe)
 const ATLAS_DOMAINS = {
     frontend: {
-        id: "track_fe_2026",
+        id: "track_fe_2026", 
         titleAr: "الموسوعة الكاملة لهندسة الواجهات (Front-End Engineering)",
         titleEn: "Advanced Front-End Web Engineering",
         description: "المسار الأكاديمي الشامل لابتكار وتطوير واجهات المستخدم التفاعلية فائقة الأداء، بدءاً من تفكيك وسم الـ HTML وحتى بناء البنى التحتية لأطر العمل العملاقة.",
