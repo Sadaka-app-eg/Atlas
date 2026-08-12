@@ -3,228 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS | منصة التعلم التفاعلية الشاملة</title>
-    <!-- خطوط احترافية: Plus Jakarta Sans للإنجليزية و Tajawal للعربية -->
+    <title>NEXUS | المنصة التفاعلية لخرائط التعلم والبرمجة واللغات</title>
+    
+    <!-- Design System Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide System Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- خلفية شبكية ديناميكية مع شبكة نقاط وضباب ضوئي -->
-    <div class="ambient-background">
-        <div class="glow-orb orb-1"></div>
-        <div class="glow-orb orb-2"></div>
-        <div class="grid-overlay"></div>
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Offline Banner -->
+    <div id="offline-banner" class="system-banner hidden">
+        <i data-lucide="wifi-off"></i>
+        <span>أنت تعمل حالياً في وضع عدم الاتصال (Offline Mode). قد لا تتحدث الأنشطة فوراً.</span>
     </div>
 
-    <!-- الشريط العلوي الاحترافي -->
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="#" class="brand-logo">
-                <div class="logo-icon"><i data-lucide="layers"></i></div>
-                <span class="logo-text">NEXUS<span class="dot">.</span></span>
+    <!-- Global Sticky Header -->
+    <header class="global-header">
+        <div class="header-container">
+            <a href="#" class="brand-logo" aria-label="NEXUS الصفحة الرئيسية">
+                <div class="logo-badge"><i data-lucide="layers"></i></div>
+                <span class="logo-title">NEXUS<span class="accent-dot">.</span></span>
             </a>
 
-            <nav class="nav-menu">
-                <a href="#tracks" class="nav-link active"><i data-lucide="compass"></i> المسارات</a>
-                <a href="#roadmaps" class="nav-link"><i data-lucide="map"></i> الخرائط الذهنية</a>
-                <a href="#community" class="nav-link"><i data-lucide="users"></i> المجتمع</a>
+            <nav class="desktop-nav" aria-label="التنقل الرئيسي">
+                <a href="#tracks" class="nav-item active"><i data-lucide="compass"></i> المسارات</a>
+                <a href="#roadmaps" class="nav-item"><i data-lucide="git-fork"></i> خرائط الطريق</a>
+                <a href="#about" class="nav-item"><i data-lucide="info"></i> عن المنصة</a>
+                <a href="#faq" class="nav-item"><i data-lucide="help-circle"></i> الأسئلة الشائعة</a>
+                <a href="#contact" class="nav-item"><i data-lucide="mail"></i> تواصل معنا</a>
             </nav>
 
-            <div class="nav-actions">
-                <button class="search-trigger-btn">
+            <div class="header-actions">
+                <button class="search-trigger" id="searchTriggerBtn" aria-label="فتح البحث السريع">
                     <i data-lucide="search"></i>
-                    <span>ابحث عن مسار، لغة، تقنية...</span>
+                    <span class="search-label">ابحث عن مسار، تقنية...</span>
                     <kbd>Ctrl K</kbd>
                 </button>
-                <button class="btn-secondary">تسجيل الدخول</button>
-                <button class="btn-primary">ابدأ مجاناً</button>
+
+                <div class="notifications-wrapper">
+                    <button class="icon-button" id="notifBtn" aria-label="الإشعارات">
+                        <i data-lucide="bell"></i>
+                        <span class="notif-badge">2</span>
+                    </button>
+                    <!-- Notification Drawer / Dropdown -->
+                    <div class="notif-dropdown hidden" id="notifDropdown">
+                        <div class="dropdown-header">
+                            <h4>الإشعارات</h4>
+                            <button class="link-btn" id="markAllRead">تحديد الكل كمقروء</button>
+                        </div>
+                        <div class="notif-list">
+                            <div class="notif-item unread">
+                                <div class="notif-icon success"><i data-lucide="check-circle-2"></i></div>
+                                <div class="notif-content">
+                                    <p>تم اجتياز اختبار مهارة <strong>JavaScript DOM</strong> بنجاح!</p>
+                                    <span class="time">منذ 15 دقيقة</span>
+                                </div>
+                            </div>
+                            <div class="notif-item unread">
+                                <div class="notif-icon info"><i data-lucide="sparkles"></i></div>
+                                <div class="notif-content">
+                                    <p>تم إدراج خريطة طريق جديدة: <strong>German Deutsch B1</strong>.</p>
+                                    <span class="time">منذ ساعتين</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="auth-buttons" id="authActions">
+                    <button class="btn btn-secondary" id="loginBtn">تسجيل الدخول</button>
+                    <button class="btn btn-primary" id="signupBtn">إنشاء حساب</button>
+                </div>
+
+                <!-- Logged In User Profile Menu (Hidden by Default) -->
+                <div class="user-profile-menu hidden" id="userMenu">
+                    <button class="avatar-btn" id="avatarBtn">
+                        <span class="avatar-text">أ ش</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="القائمة">
+                    <i data-lucide="menu"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <main>
+    <!-- Main Content Shell -->
+    <main id="main-content">
+
         <!-- Hero Section -->
         <section class="hero-section">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                <span>تحديث 2.0: إطلاق خرائط التعلم الذكية لعام 2026</span>
-                <i data-lucide="arrow-left"></i>
-            </div>
-            
-            <h1 class="hero-title">
-                احترف أي مجال من <span class="text-gradient">الصفر تماماً</span><br>
-                بإستراتيجية الخرائط التفاعلية
-            </h1>
-            
-            <p class="hero-subtitle">
-                منصة تعليمية صُممت لإغلاق الفجوة بين النظرية والتطبيق. اختر مسارك في البرمجة، اللغات، أو العلوم المتقدمة واتبع خريطة طريق واضحة ومحدثة باستمرار.
-            </p>
-
-            <div class="hero-cta-group">
-                <button class="btn-primary btn-large">
-                    <span>استكشف كافة المسارات</span>
-                    <i data-lucide="sparkles"></i>
-                </button>
-                <button class="btn-ghost btn-large">
-                    <i data-lucide="play-circle"></i>
-                    <span>جولة سريعة في المنصة</span>
-                </button>
-            </div>
-
-            <!-- إحصائيات سريعة بتصميم نظيف -->
-            <div class="stats-banner">
-                <div class="stat-item">
-                    <span class="stat-number">120+</span>
-                    <span class="stat-label">خريطة طريق (Roadmap)</span>
+            <div class="hero-content">
+                <div class="pill-badge">
+                    <span class="pulse-indicator"></span>
+                    <span>تحديث النظام: خرائط البرمجة واللغات محدثة لعام 2026</span>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">15+</span>
-                    <span class="stat-label">مجال وتخصص رئيسي</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">98%</span>
-                    <span class="stat-label">نسبة إنجاز التطبيقات</span>
+                <h1 class="hero-heading">
+                    تعلم التقنية واللغات عبر <br>
+                    <span class="text-accent">خرائط طريق تفاعلية مبسطة</span>
+                </h1>
+                <p class="hero-lead">
+                    منصة NEXUS توفر لك مسارات مهنية مجتمعة في مكان واحد. لا تشتت بعد اليوم بين المصادر، اتبع التسلسل البصري واختبر مهاراتك خطوة بخطوة.
+                </p>
+                <div class="hero-controls">
+                    <a href="#tracks" class="btn btn-primary btn-lg">استكشف كافة المسارات <i data-lucide="arrow-left"></i></a>
+                    <a href="#roadmaps" class="btn btn-secondary btn-lg"><i data-lucide="play-circle"></i> تجربة خريطة حية</a>
                 </div>
             </div>
         </section>
 
-        <!-- تبويب المجالات الرئيسية (Categories Filter) -->
-        <section class="container" id="tracks">
-            <div class="section-header">
+        <!-- Tracks & Categories Section -->
+        <section class="section-container" id="tracks">
+            <div class="section-title-group">
                 <div>
-                    <h2 class="section-title">اختر المجال الذي تريد احترافه</h2>
-                    <p class="section-desc">مسارات متكاملة تبدأ معك من المفاهيم الأساسية وحتى المستويات المتقدمة.</p>
+                    <h2 class="section-heading">مسارات التعلم المتاحة</h2>
+                    <p class="section-subheading">اختر المجال الذي ترغب في احترافه للوصول إلى خريطة الطريق المخصصة له.</p>
                 </div>
-                
-                <div class="category-pills">
-                    <button class="pill-btn active" data-category="all">الكل</button>
-                    <button class="pill-btn" data-category="programming"><i data-lucide="code-2"></i> البرمجة والعلوم</button>
-                    <button class="pill-btn" data-category="languages"><i data-lucide="languages"></i> اللغات والأدبيات</button>
-                    <button class="pill-btn" data-category="design"><i data-lucide="figma"></i> التصميم و UI/UX</button>
+                <div class="filter-pills" role="tablist">
+                    <button class="pill active" role="tab" data-category="all">الكل</button>
+                    <button class="pill" role="tab" data-category="programming"><i data-lucide="code"></i> البرمجة والتقنية</button>
+                    <button class="pill" role="tab" data-category="languages"><i data-lucide="languages"></i> اللغات والأدبيات</button>
                 </div>
             </div>
 
-            <!-- شبكة الكروت التفاعلية (مع Skeleton Loading On Scroll) -->
-            <div class="cards-grid" id="cardsGrid">
-                
-                <!-- Skeleton Loader Cards (تظهر تلقائياً أثناء التحميل أون سكرول) -->
-                <div class="card skeleton-card">
-                    <div class="skeleton skeleton-icon"></div>
-                    <div class="skeleton skeleton-title"></div>
-                    <div class="skeleton skeleton-text"></div>
-                    <div class="skeleton skeleton-text short"></div>
-                    <div class="skeleton-footer">
-                        <div class="skeleton skeleton-pill"></div>
-                        <div class="skeleton skeleton-btn"></div>
-                    </div>
-                </div>
-
-                <div class="card skeleton-card">
-                    <div class="skeleton skeleton-icon"></div>
-                    <div class="skeleton skeleton-title"></div>
-                    <div class="skeleton skeleton-text"></div>
-                    <div class="skeleton skeleton-text short"></div>
-                    <div class="skeleton-footer">
-                        <div class="skeleton skeleton-pill"></div>
-                        <div class="skeleton skeleton-btn"></div>
-                    </div>
-                </div>
-
-                <div class="card skeleton-card">
-                    <div class="skeleton skeleton-icon"></div>
-                    <div class="skeleton skeleton-title"></div>
-                    <div class="skeleton skeleton-text"></div>
-                    <div class="skeleton skeleton-text short"></div>
-                    <div class="skeleton-footer">
-                        <div class="skeleton skeleton-pill"></div>
-                        <div class="skeleton skeleton-btn"></div>
-                    </div>
-                </div>
-
+            <!-- Dynamic Track Grid -->
+            <div class="grid-layout" id="tracksGrid" aria-live="polite">
+                <!-- Skeletons render first via JS -->
             </div>
         </section>
 
-        <!-- قسم خريطة الطريق التفاعلية (Roadmap Live Preview) -->
-        <section class="container roadmap-section" id="roadmaps">
-            <div class="roadmap-wrapper">
-                <div class="roadmap-info">
-                    <div class="tag"><i data-lucide="git-merge"></i> ميزة خرائط الطريق</div>
-                    <h2>لا تتشتت بعد اليوم.. اتبع مساراً بصرياً خطوة بخطوة</h2>
-                    <p>نظام الخرائط لا يعطيك فيديوهات فقط، بل يمنحك شجرة مهارات (Skill Tree) تفاعلية تقيس تقدمك الحقيقي وتتيح لك فتح المهارات المتقدمة بعد إتقان الأساسيات.</p>
+        <!-- Interactive Roadmap Node Preview -->
+        <section class="section-container roadmap-preview-block" id="roadmaps">
+            <div class="roadmap-grid-view">
+                <div class="roadmap-info-side">
+                    <span class="section-tag"><i data-lucide="git-commit"></i> تجربة التعلم بالخرائط</span>
+                    <h2>تتبع تقدمك في المهارات دون ضياع</h2>
+                    <p>تحتوي كل خريطة على شجرة محطات تنقلية. لا يمكنك للانتقال للمحطة القادمة حتى تؤكد فهمك للمفاهيم السابقة بتطبيق عملي.</p>
                     
-                    <div class="roadmap-features">
-                        <div class="feature-point">
-                            <div class="feature-icon"><i data-lucide="check-circle-2"></i></div>
+                    <ul class="feature-list">
+                        <li>
+                            <i data-lucide="check-circle" class="icon-success"></i>
                             <div>
-                                <h4>تتبع الإنجاز لحظياً</h4>
-                                <p>علم على المهارات التي أتقنتها واعرف المتبقي لك للوصول للجاهزية سوق العمل.</p>
+                                <strong>مهام واسئلة تفاعلية:</strong> قياس حقيقي للمستوى مع إمكانية رفع المشروعات.
                             </div>
-                        </div>
-                        <div class="feature-point">
-                            <div class="feature-icon"><i data-lucide="layers"></i></div>
+                        </li>
+                        <li>
+                            <i data-lucide="check-circle" class="icon-success"></i>
                             <div>
-                                <h4>مشاريع تطبيقية في كل محطة</h4>
-                                <p>لن تنتقل لمفهوم جديد حتى تبني مشروعاً مصغراً يؤكد فهمك.</p>
+                                <strong>تنسيق منظم ومباشر:</strong> الابتعاد عن الحشو والتحديث المستمر للمصادر.
                             </div>
-                        </div>
-                    </div>
-
-                    <button class="btn-primary">استكشف خريطة تطوير المواقع (Full-Stack) <i data-lucide="arrow-left"></i></button>
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- معاينة جرافيك احترافي للـ Node-based Roadmap -->
-                <div class="roadmap-visual-card">
-                    <div class="visual-header">
-                        <div class="window-dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                        <span class="visual-title">Web Development Roadmap 2026</span>
+                <div class="roadmap-canvas-card">
+                    <div class="canvas-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        <span class="canvas-title">Interactive Graph Node Viewer</span>
                     </div>
-                    <div class="nodes-container">
-                        <div class="node-item completed">
-                            <div class="node-status"><i data-lucide="check"></i></div>
-                            <div class="node-content">
-                                <h5>أساسيات الـ Web & HTML/CSS</h5>
-                                <span>100% مكتمل</span>
+                    <div class="nodes-tree">
+                        <div class="tree-node completed" data-node="1">
+                            <div class="node-icon"><i data-lucide="check"></i></div>
+                            <div class="node-details">
+                                <h4>1. أساسيات الإنترنت والهيكل HTML5</h4>
+                                <p>مكتمـل • 100%</p>
                             </div>
                         </div>
-                        <div class="node-connector active-connector"></div>
-                        <div class="node-item active">
-                            <div class="node-status"><div class="pulse-dot"></div></div>
-                            <div class="node-content">
-                                <h5>JavaScript الحديثة & DOM</h5>
-                                <span>جاري التعلم (65%)</span>
+                        <div class="tree-line active"></div>
+                        <div class="tree-node active" data-node="2">
+                            <div class="node-icon"><i data-lucide="play"></i></div>
+                            <div class="node-details">
+                                <h4>2. التنسيق البرمجي والتنسيق التجاوُبي CSS3</h4>
+                                <p>قيد التعلم • 60%</p>
                             </div>
                         </div>
-                        <div class="node-connector"></div>
-                        <div class="node-item locked">
-                            <div class="node-status"><i data-lucide="lock"></i></div>
-                            <div class="node-content">
-                                <h5>React.js & State Management</h5>
-                                <span>مغلق حتى إتمام المهارة السابقة</span>
-                            </div>
-                        </div>
-                        <div class="node-connector"></div>
-                        <div class="node-item locked">
-                            <div class="node-status"><i data-lucide="lock"></i></div>
-                            <div class="node-content">
-                                <h5>Backend APIs & Node.js</h5>
-                                <span>مغلق</span>
+                        <div class="tree-line"></div>
+                        <div class="tree-node locked" data-node="3">
+                            <div class="node-icon"><i data-lucide="lock"></i></div>
+                            <div class="node-details">
+                                <h4>3. البرمجة التفاعلية JavaScript ES6+</h4>
+                                <p>محظور حتى إتمام المحطة السابقة</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- About Us Section -->
+        <section class="section-container" id="about">
+            <div class="about-card">
+                <div class="about-body">
+                    <h2>عن منصة NEXUS</h2>
+                    <p>
+                        تم تطوير NEXUS بهدف سد الفجوة التنظيمية في التعلم الذاتي. نساعد المتعلمين والمهندسين في العالم العربي على الوصول إلى خرائط طريق تقنية ولغوية مدروسة بعناية، مبتعدين عن المناهج التقليدية ومشتتات الإنترنت.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-box">
+                            <span class="stat-num">+24</span>
+                            <span class="stat-desc">خريطة طريق محدثة</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-num">100%</span>
+                            <span class="stat-desc">مسارات مجانية وتفاعلية</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-num">2026</span>
+                            <span class="stat-desc">إصدار الهيكلية الأحدث</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section-container" id="faq">
+            <div class="section-title-group">
+                <h2 class="section-heading">الأسئلة الشائعة</h2>
+                <p class="section-subheading">كل ما تحتاج معرفته عن كيفية استخدام المنصة والاستفادة من الخرائط.</p>
+            </div>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>هل جميع خرائط الطريق والمسارات مجانية؟</span>
+                        <i data-lucide="chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>نعم، جميع الخرائط الأساسية والمسارات الخاصة بالبرمجة واللغات متاحة للجميع مجاناً لضمان وصول المعرفة بشكل سلس.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>كيف يتم تتبع تقدمي في المهارات؟</span>
+                        <i data-lucide="chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>عند تسجيل الدخول، يمكنك التأشير على أي محطة داخل الخريطة كـ "مكتملة"، وسيحفظ النظام تقدمك تلقائياً لاستكمال التتبع في أي وقت ومن أي جهاز.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>هل يمكنني اقتراح مسار أو خريطة جديدة؟</span>
+                        <i data-lucide="chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>بالتأكيد، يمكنك التواصل معنا عبر نموذج الاتصال وإرسال المقترح لدرسه وإدراجه ضمن الخطة البرمجية للعام.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section-container" id="contact">
+            <div class="contact-wrapper">
+                <div class="contact-details">
+                    <h2>تواصل معنا</h2>
+                    <p>هل لديك استفسار أو اقتراح لتطوير مسار تعليمي؟ فريقنا يسعد بتواصلك.</p>
+                    
+                    <div class="contact-info-list">
+                        <div class="info-item">
+                            <i data-lucide="phone"></i>
+                            <div>
+                                <span>الهاتف المباشر والدعم:</span>
+                                <strong>01069168725</strong>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i data-lucide="clock"></i>
+                            <div>
+                                <span>ساعات العمل:</span>
+                                <strong>الأحد - الخميس (9:00 ص - 5:00 م)</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="contactName">الاسم الكامل</label>
+                        <input type="text" id="contactName" class="form-input" placeholder="أدخل اسمك" required>
+                        <span class="error-msg">يرجى كتابة الاسم بشكل صحيح.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">البريد الإلكتروني</label>
+                        <input type="email" id="contactEmail" class="form-input" placeholder="name@example.com" required>
+                        <span class="error-msg">يرجى كتابة بريد إلكتروني صحيح.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">الرسالة أو الاستفسار</label>
+                        <textarea id="contactMessage" class="form-input" rows="4" placeholder="اكتب تفاصيل استفسارك هنا..." required></textarea>
+                        <span class="error-msg">الرسالة لا يمكن أن تكون فارغة.</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <span>إرسال الرسالة</span>
+                        <i data-lucide="send"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+
     </main>
 
+    <!-- Global Footer -->
+    <footer class="global-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="brand-logo">
+                    <div class="logo-badge"><i data-lucide="layers"></i></div>
+                    <span class="logo-title">NEXUS<span class="accent-dot">.</span></span>
+                </a>
+                <p class="brand-desc">المنصة العربية الاحترافية للتعلم القائم على خرائط الطريق التفاعلية للبرمجة واللغات.</p>
+            </div>
+
+            <div class="footer-links-group">
+                <div class="footer-col">
+                    <h4>المنتج والمسارات</h4>
+                    <ul>
+                        <li><a href="#tracks">مسارات البرمجة</a></li>
+                        <li><a href="#tracks">مسارات اللغات</a></li>
+                        <li><a href="#roadmaps">خرائط الطريق التفاعلية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>الشركة والمساعدة</h4>
+                    <ul>
+                        <li><a href="#about">عن المنصة</a></li>
+                        <li><a href="#faq">الأسئلة الشائعة</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>الصفحات القانونية</h4>
+                    <ul>
+                        <li><a href="#privacyModal" class="modal-trigger">سياسة الخصوصية</a></li>
+                        <li><a href="#termsModal" class="modal-trigger">الشروط والأحكام</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container bottom-flex">
+                <p>© 2026 NEXUS. جميع الحقوق محفوظة.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Github"><i data-lucide="github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals & Command Palette -->
+
+    <!-- Search Modal / Command Palette -->
+    <div class="modal-overlay hidden" id="searchModal">
+        <div class="modal-card search-card">
+            <div class="search-input-wrapper">
+                <i data-lucide="search"></i>
+                <input type="text" id="globalSearchInput" placeholder="ابحث عن مسار، لغة، تقنية (مثل: Python, German, React)...">
+                <button class="modal-close" id="closeSearchModal"><i data-lucide="x"></i></button>
+            </div>
+            <div class="search-results-list" id="searchResults">
+                <p class="search-hint">اكتب للبدء في البحث المباشر...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal (Login / Sign Up) -->
+    <div class="modal-overlay hidden" id="authModal">
+        <div class="modal-card auth-card">
+            <button class="modal-close" id="closeAuthModal"><i data-lucide="x"></i></button>
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tabLogin">تسجيل الدخول</button>
+                <button class="auth-tab" id="tabSignup">حساب جديد</button>
+            </div>
+            
+            <form id="authForm" class="auth-form" novalidate>
+                <div class="form-group">
+                    <label for="authEmail">البريد الإلكتروني</label>
+                    <input type="email" id="authEmail" class="form-input" placeholder="user@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="authPassword">كلمة المرور</label>
+                    <input type="password" id="authPassword" class="form-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="authSubmitBtn">دخول</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Application Script Engine -->
     <script src="main.js"></script>
 </body>
 </html>
