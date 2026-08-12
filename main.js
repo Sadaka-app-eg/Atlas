@@ -21,12 +21,13 @@ import {
 
 // ⚠️ ضع إعدادات مشروع Firebase الخاص بك هنا:
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyB1EI6RB0EfCaq1pm5z4dcQEzhEPpNEwEA",
+    authDomain: "atlas-c883c.firebaseapp.com",
+    projectId: "atlas-c883c",
+    storageBucket: "atlas-c883c.firebasestorage.app",
+    messagingSenderId: "414987185997",
+    appId: "1:414987185997:web:57f34540ef1b4ca7d6d104",
+    measurementId: "G-TMTGLX2VJT"
 };
 
 // Initialize Firebase Engine
