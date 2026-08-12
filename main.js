@@ -280,3 +280,27 @@ function setupModalHandlers() {
 function openTrackDetails(trackId) {
     showToast(`جاري فتح خريطة الطريق: ${trackId}`, "success");
 }
+// Theme Toggle Engine (Light / Dark)
+function setupThemeToggle() {
+    const themeBtn = document.getElementById("themeToggleBtn");
+    const currentTheme = localStorage.getItem("nexus_theme") || "dark";
+
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            const activeTheme = document.documentElement.getAttribute("data-theme");
+            const newTheme = activeTheme === "dark" ? "light" : "dark";
+
+            document.documentElement.setAttribute("data-theme", newTheme);
+            localStorage.setItem("nexus_theme", newTheme);
+            showToast(`تم التغيير إلى ${newTheme === "dark" ? "الوضع الليلي" : "الوضع النهاري"}`, "success");
+        });
+    }
+}
+
+// أضف setupThemeToggle() داخل DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+    setupThemeToggle();
+    // بقية الأكواد السابقة كما هي...
+});
