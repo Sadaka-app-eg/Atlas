@@ -25,122 +25,239 @@
         <span>أنت تعمل حالياً في وضع عدم الاتصال (Offline Mode). قد لا تتحديث الأنشطة فوراً.</span>
     </div>
 
-    <!-- Global Header -->
-    <header class="global-header">
-        <div class="header-container">
-            <a href="#" class="brand-logo" aria-label="NEXUS الصفحة الرئيسية">
-                <div class="logo-badge"><i data-lucide="layers"></i></div>
-                <span class="logo-title">NEXUS<span class="accent-dot">.</span></span>
-            </a>
-
-            <nav class="desktop-nav" aria-label="التنقل الرئيسي">
-                <a href="#tracks" class="nav-item active"><i data-lucide="compass"></i> المسارات</a>
-                <a href="#roadmaps" class="nav-item"><i data-lucide="git-fork"></i> خرائط الطريق</a>
-                <a href="#about" class="nav-item"><i data-lucide="info"></i> عن المنصة</a>
-                <a href="#faq" class="nav-item"><i data-lucide="help-circle"></i> الأسئلة الشائعة</a>
-                <a href="#contact" class="nav-item"><i data-lucide="mail"></i> تواصل معنا</a>
-            </nav>
-
-            <div class="header-actions">
-                <button class="search-trigger" id="searchTriggerBtn" aria-label="فتح البحث السريع">
-                    <i data-lucide="search"></i>
-                    <span class="search-label">ابحث عن مسار، تقنية...</span>
-                    <kbd>Ctrl K</kbd>
-                </button>
-
-                <button class="icon-button theme-toggle-btn" id="themeToggleBtn" title="تبديل الثيم">
-                    <i data-lucide="sun" class="sun-icon"></i>
-                    <i data-lucide="moon" class="moon-icon"></i>
-                </button>
-
-                <div class="notifications-wrapper">
-                    <button class="icon-button" id="notifBtn" aria-label="الإشعارات">
-                        <i data-lucide="bell"></i>
-                        <span class="notif-badge hidden" id="notifBadge">0</span>
-                    </button>
-                    
-                    <div class="notif-dropdown hidden" id="notifDropdown">
-                        <div class="dropdown-header">
-                            <h4>الإشعارات</h4>
-                            <button class="link-btn" id="markAllRead">تحديد الكل كمقروء</button>
-                        </div>
-                        <div class="notif-list" id="notifList">
-                            <p class="empty-notif">لا توجد إشعارات جديدة حالياً.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unauthenticated State -->
-                <div class="auth-buttons" id="loggedOutView">
-                    <button class="btn btn-secondary" id="loginBtn">تسجيل الدخول</button>
-                    <button class="btn btn-primary" id="signupBtn">إنشاء حساب</button>
-                </div>
-
-                <!-- Authenticated User Profile -->
-                <div class="user-profile-menu hidden" id="loggedInView">
-                    <button class="avatar-btn" id="avatarBtn">
-                        <span class="avatar-text" id="avatarText">U</span>
-                    </button>
-                    <div class="profile-dropdown hidden" id="profileDropdown">
-                        <div class="user-info">
-                            <strong id="userNameDisplay">المستخدم</strong>
-                            <span id="userEmailDisplay">user@example.com</span>
-                        </div>
-                        <hr>
-                        <a href="#settings" id="openSettingsBtn" class="dropdown-item"><i data-lucide="settings"></i> الإعدادات</a>
-                        <button id="logoutBtn" class="dropdown-item danger"><i data-lucide="log-out"></i> تسجيل الخروج</button>
-                    </div>
-                </div>
-
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="القائمة">
-                    <i data-lucide="menu"></i>
-                </button>
+  <!-- ==========================================================================
+   Global Sticky Header Architecture - ATLAS Platform
+   ========================================================================== -->
+<header class="global-header" id="mainHeader">
+    <div class="header-container">
+        
+        <!-- Brand Identity & Logo -->
+        <a href="#" class="brand-logo" aria-label="ATLAS الصفحة الرئيسية">
+            <div class="logo-badge" aria-hidden="true">
+                <i data-lucide="compass"></i>
             </div>
+            <span class="logo-title">ATLAS<span class="accent-dot">.</span></span>
+        </a>
+
+        <!-- Desktop Navigation Items -->
+        <nav class="desktop-nav" aria-label="التنقل الرئيسي داخل المنصة">
+            <a href="#tracks" class="nav-item active" data-nav="tracks">
+                <i data-lucide="layers"></i>
+                <span>المسارات</span>
+            </a>
+            <a href="#roadmaps" class="nav-item" data-nav="roadmaps">
+                <i data-lucide="git-fork"></i>
+                <span>خرائط الطريق</span>
+            </a>
+            <a href="#about" class="nav-item" data-nav="about">
+                <i data-lucide="info"></i>
+                <span>عن المنصة</span>
+            </a>
+            <a href="#faq" class="nav-item" data-nav="faq">
+                <i data-lucide="help-circle"></i>
+                <span>الأسئلة الشائعة</span>
+            </a>
+            <a href="#contact" class="nav-item" data-nav="contact">
+                <i data-lucide="mail"></i>
+                <span>تواصل معنا</span>
+            </a>
+        </nav>
+
+        <!-- Global Header Controls & Actions -->
+        <div class="header-actions">
+            
+            <!-- Quick Search Palette Trigger -->
+            <button class="search-trigger" id="searchTriggerBtn" type="button" aria-label="فتح نافذة البحث السريع">
+                <i data-lucide="search" aria-hidden="true"></i>
+                <span class="search-label">ابحث في ATLAS...</span>
+                <kbd class="key-badge">Ctrl K</kbd>
+            </button>
+
+            <!-- Theme Switcher Button (Dark / Light) -->
+            <button class="icon-button theme-toggle-btn" id="themeToggleBtn" type="button" title="تبديل مظهر المنصة" aria-label="تبديل مظهر المنصة">
+                <i data-lucide="sun" class="sun-icon" aria-hidden="true"></i>
+                <i data-lucide="moon" class="moon-icon" aria-hidden="true"></i>
+            </button>
+
+            <!-- Notifications Center Component -->
+            <div class="notifications-wrapper" id="notifWrapper">
+                <button class="icon-button notif-btn" id="notifBtn" type="button" aria-label="مركز الإشعارات" aria-expanded="false">
+                    <i data-lucide="bell" aria-hidden="true"></i>
+                    <span class="notif-badge hidden" id="notifBadge" aria-label="عدد الإشعارات غير المقروءة">0</span>
+                </button>
+                
+                <!-- Notifications Dropdown Panel -->
+                <div class="notif-dropdown hidden" id="notifDropdown" role="menu">
+                    <div class="dropdown-header">
+                        <div class="title-group">
+                            <h4>الإشعارات</h4>
+                            <span class="unread-count-pill" id="unreadCountPill">0 جديد</span>
+                        </div>
+                        <button class="link-btn" id="markAllReadBtn" type="button">تحديد الكل كمقروء</button>
+                    </div>
+                    <div class="notif-list" id="notifList">
+                        <div class="empty-notif-state">
+                            <i data-lucide="bell-off" aria-hidden="true"></i>
+                            <p>لا توجد إشعارات جديدة في الوقت الحالي.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Auth State Container 1: Guest View (Default Unauthenticated) -->
+            <div class="auth-buttons" id="loggedOutView">
+                <button class="btn btn-secondary" id="loginBtn" type="button">تسجيل الدخول</button>
+                <button class="btn btn-primary" id="signupBtn" type="button">إنشاء حساب</button>
+            </div>
+
+            <!-- Auth State Container 2: Logged In User View (Hidden by Default) -->
+            <div class="user-profile-menu hidden" id="loggedInView">
+                <button class="avatar-btn" id="avatarBtn" type="button" aria-expanded="false" aria-label="قائمة الحساب الشخصي">
+                    <span class="avatar-text" id="avatarText">A</span>
+                    <span class="status-dot-online" title="متصل الآن"></span>
+                </button>
+                
+                <!-- Profile Dropdown Menu -->
+                <div class="profile-dropdown hidden" id="profileDropdown" role="menu">
+                    <div class="user-info-card">
+                        <div class="user-avatar-large" id="menuAvatarLarge">A</div>
+                        <div class="user-text-details">
+                            <strong id="userNameDisplay">أحمد حسني</strong>
+                            <span id="userEmailDisplay">ahmed@example.com</span>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#settings" class="dropdown-item" id="openSettingsBtn" role="menuitem">
+                        <i data-lucide="settings" aria-hidden="true"></i>
+                        <span>إعدادات الحساب</span>
+                    </a>
+                    <a href="#my-progress" class="dropdown-item" id="myProgressBtn" role="menuitem">
+                        <i data-lucide="bookmark" aria-hidden="true"></i>
+                        <span>مساراتي المحفوظة</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item danger-item" id="logoutBtn" type="button" role="menuitem">
+                        <i data-lucide="log-out" aria-hidden="true"></i>
+                        <span>تسجيل الخروج</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Drawer Menu Toggle Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="فتح القائمة الجانبية">
+                <i data-lucide="menu" aria-hidden="true"></i>
+            </button>
+
         </div>
-    </header>
+    </div>
+</header>
 
     <!-- Main Application Canvas -->
     <main id="main-content">
 
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-content">
-                <div class="pill-badge">
-                    <span class="pulse-indicator"></span>
-                    <span>تحديث النظام: خرائط البرمجة واللغات محدثة لعام 2026</span>
-                </div>
-                <h1 class="hero-heading">
-                    تعلم التقنية واللغات عبر <br>
-                    <span class="text-accent">خرائط طريق تفاعلية مبسطة</span>
-                </h1>
-                <p class="hero-lead">
-                    منصة NEXUS توفر لك مسارات مهنية متكاملة. اتبع التسلسل البصري، تتبع تقدمك عبر الحساب، واختبر مهاراتك خطوة بخطوة بدون تشتت.
-                </p>
-                <div class="hero-controls">
-                    <a href="#tracks" class="btn btn-primary btn-lg">استكشف كافة المسارات <i data-lucide="arrow-left"></i></a>
-                    <a href="#roadmaps" class="btn btn-secondary btn-lg"><i data-lucide="play-circle"></i> تجربة خريطة حية</a>
-                </div>
-            </div>
-        </section>
+<!-- ==========================================================================
+   Hero Section Architecture - ATLAS Engine
+   ========================================================================== -->
+<section class="hero-section" id="heroSection">
+    <div class="hero-container">
+        
+        <!-- Live Status Pill Badge -->
+        <div class="pill-badge" role="status">
+            <span class="pulse-indicator" aria-hidden="true"></span>
+            <span class="badge-text">إصدار 2026: تم تحديث خرائط البرمجة واللغات بالكامل</span>
+            <i data-lucide="arrow-left" class="badge-icon" aria-hidden="true"></i>
+        </div>
 
-        <!-- Tracks Section -->
-        <section class="section-container" id="tracks">
-            <div class="section-title-group">
-                <div>
-                    <h2 class="section-heading">مسارات التعلم المتاحة</h2>
-                    <p class="section-subheading">اختر المجال الذي ترغب في احترافه للوصول إلى خريطة الطريق المخصصة له.</p>
-                </div>
-                <div class="filter-pills" role="tablist">
-                    <button class="pill active" role="tab" data-category="all">الكل</button>
-                    <button class="pill" role="tab" data-category="programming"><i data-lucide="code"></i> البرمجة والتقنية</button>
-                    <button class="pill" role="tab" data-category="languages"><i data-lucide="languages"></i> اللغات والأدبيات</button>
-                </div>
-            </div>
+        <!-- Main Headline & Value Proposition -->
+        <h1 class="hero-heading">
+            احترف أي مجال من <span class="text-accent">الصفر تماماً</span><br>
+            بمنهجية الخرائط الذهنية التفاعلية
+        </h1>
 
-            <div class="grid-layout" id="tracksGrid" aria-live="polite">
-                <!-- Tracks or Skeletons injected dynamically -->
+        <!-- Subtitle Narrative -->
+        <p class="hero-lead">
+            منصة ATLAS صُممت لإغلاق الفجوة بين النظرية والتطبيق. اختر مسارك في البرمجة، اللغات، أو العلوم المتقدمة، واتبع خريطة طريق واضحة ومحدثة تتتبع تقدمك خطوة بخطوة.
+        </p>
+
+        <!-- Primary Call To Actions -->
+        <div class="hero-controls">
+            <a href="#tracks" class="btn btn-primary btn-lg" id="exploreTracksCta">
+                <span>استكشف كافة المسارات</span>
+                <i data-lucide="sparkles" aria-hidden="true"></i>
+            </a>
+            <a href="#roadmaps" class="btn btn-secondary btn-lg" id="demoRoadmapCta">
+                <i data-lucide="play-circle" aria-hidden="true"></i>
+                <span>جولة سريعة في الخرائط</span>
+            </a>
+        </div>
+
+        <!-- Platform Proof Stats Banner -->
+        <div class="stats-banner" id="statsBanner" aria-label="إحصائيات المنصة">
+            <div class="stat-item">
+                <span class="stat-number" id="statRoadmapsCount">+120</span>
+                <span class="stat-label">خريطة طريق تفاعلية</span>
             </div>
-        </section>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="stat-item">
+                <span class="stat-number" id="statTracksCount">+15</span>
+                <span class="stat-label">مجال وتخصص رئيسي</span>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="stat-item">
+                <span class="stat-number" id="statCompletionRate">98%</span>
+                <span class="stat-label">نسبة إنجاز التطبيقات العمليات</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ==========================================================================
+   Tracks Grid & Filter Engine - ATLAS Engine
+   ========================================================================== -->
+<section class="section-container" id="tracks" aria-labelledby="tracksHeading">
+    
+    <!-- Section Header & Category Pills -->
+    <div class="section-title-group">
+        <div class="title-text-block">
+            <span class="section-tag-inline">
+                <i data-lucide="compass" aria-hidden="true"></i>
+                <span>المجالات المتاحة</span>
+            </span>
+            <h2 class="section-heading" id="tracksHeading">اختر المجال الذي تريد احترافه</h2>
+            <p class="section-subheading">مسارات تعليمية متكاملة تبدأ معك من الأساسيات وحتى الجاهزية التامة لسوق العمل.</p>
+        </div>
+
+        <!-- Filter Category Tabs -->
+        <div class="filter-pills" role="tablist" aria-label="تصفية مجالات التعلم">
+            <button class="pill active" role="tab" aria-selected="true" data-category="all" id="tab-all">
+                <span>الكل</span>
+                <span class="pill-count" id="count-all">0</span>
+            </button>
+            <button class="pill" role="tab" aria-selected="false" data-category="programming" id="tab-programming">
+                <i data-lucide="code-2" aria-hidden="true"></i>
+                <span>البرمجة والتقنية</span>
+                <span class="pill-count" id="count-programming">0</span>
+            </button>
+            <button class="pill" role="tab" aria-selected="false" data-category="languages" id="tab-languages">
+                <i data-lucide="languages" aria-hidden="true"></i>
+                <span>اللغات والأدبيات</span>
+                <span class="pill-count" id="count-languages">0</span>
+            </button>
+            <button class="pill" role="tab" aria-selected="false" data-category="design" id="tab-design">
+                <i data-lucide="figma" aria-hidden="true"></i>
+                <span>التصميم والـ UI/UX</span>
+                <span class="pill-count" id="count-design">0</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Dynamic Grid View Container -->
+    <div class="grid-layout" id="tracksGrid" aria-live="polite" aria-busy="false">
+        <!-- Javascript will inject Skeleton Loaders first, then real Track Cards -->
+    </div>
+
+</section>
 
         <!-- Interactive Node Graph Preview -->
         <section class="section-container roadmap-preview-block" id="roadmaps">
