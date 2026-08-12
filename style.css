@@ -4,36 +4,49 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap');
 
+/* ==========================================================================
+   1. Design System Tokens (Color Palette & Theme Switch)
+   ========================================================================== */
+
+/* الوضع الافتراضي: Dark Mode احترافي (الاعتماد على درجات Slate/Zinc المطفأة) */
 :root {
-    --bg-base: #090a0f;
-    --bg-surface: #12141d;
-    --bg-surface-hover: #1a1e2d;
-    --bg-elevated: #222638;
+    /* Surfaces */
+    --bg-base: #090d16;
+    --bg-surface: #111726;
+    --bg-surface-hover: #1a2336;
+    --bg-elevated: #222d42;
     
+    /* Text & Contrast */
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
     --text-muted: #64748b;
     
+    /* Borders */
     --border-color: rgba(255, 255, 255, 0.08);
     --border-strong: rgba(255, 255, 255, 0.16);
     
+    /* Primary Accent (Indigo-Violet Spectrum) */
     --brand-primary: #4f46e5;
     --brand-hover: #4338ca;
     --brand-accent: #818cf8;
     
+    /* Status Colors */
     --success: #10b981;
     --warning: #f59e0b;
     --error: #ef4444;
     
+    /* Radii & Shadows */
     --radius-sm: 8px;
     --radius-md: 12px;
-    --radius-lg: 18px;
+    --radius-lg: 20px;
     
-    --font-main: 'Tajawal', 'Plus Jakarta Sans', sans-serif;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+    
     --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    --shadow-card: 0 4px 20px rgba(0,0,0,0.4);
 }
 
+/* الوضع النهاري: Light Mode متناسق عالي التباين */
 [data-theme="light"] {
     --bg-base: #f8fafc;
     --bg-surface: #ffffff;
@@ -41,17 +54,18 @@
     --bg-elevated: #e2e8f0;
     
     --text-primary: #0f172a;
-    --text-secondary: #475569;
+    --text-secondary: #334155;
     --text-muted: #64748b;
     
     --border-color: #e2e8f0;
     --border-strong: #cbd5e1;
     
     --brand-primary: #4f46e5;
-    --brand-hover: #4338ca;
-    --brand-accent: #6366f1;
+    --brand-hover: #3730a3;
+    --brand-accent: #4f46e5;
     
-    --shadow-card: 0 4px 15px rgba(0,0,0,0.05);
+    --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 8px 20px rgba(15, 23, 42, 0.08);
 }
 
 * {
