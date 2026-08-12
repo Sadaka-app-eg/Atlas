@@ -1,306 +1,361 @@
 /* ==========================================================================
-   NEXUS Engine - Real Production Interactivity & State Handlers
+   NEXUS Engine - Full Production JavaScript + Firebase v10 SDK
    ========================================================================== */
 
-// 1. البيانات الحقيقية الكاملة للمسارات والخرائط
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut, 
+    onAuthStateChanged,
+    updateProfile 
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { 
+    getFirestore, 
+    doc, 
+    setDoc, 
+    getDoc, 
+    updateDoc 
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// ⚠️ ضع إعدادات مشروع Firebase الخاص بك هنا:
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+// Initialize Firebase Engine
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Local App State
+let currentUser = null;
+let userCompletedNodes = [];
+
+// Track Data Source
 const platformTracks = [
     {
         id: "web-dev",
         title: "تطوير الويب المتكامل (Full-Stack Web)",
         category: "programming",
         icon: "code-2",
-        desc: "مسار تفاعلي يغطي أساسيات الويب HTML/CSS، لغة JavaScript، مكتبة React، وبيئة Node.js مع قواعد البيانات.",
-        nodesCount: 28,
-        level: "من الصفر لـ الاحتراف"
+        desc: "مسار تفاعلي يغطي أساسيات HTML/CSS، لغة JavaScript، React، وNode.js مع قواعد البيانات.",
+        nodesCount: 3,
+        nodes: [
+            { id: "node_1", title: "1. أساسيات الويب و HTML5", desc: "فهم كيف يعمل الإنترنت وهيكلة الصفحات." },
+            { id: "node_2", title: "2. التنسيق التجاوُبي CSS3", desc: "تصميم واجهات متناسقة مع كافة الشاشات." },
+            { id: "node_3", title: "3. البرمجة التفاعلية JavaScript", desc: "إعطاء الحياة للواجهات والتحكم في العناصر." }
+        ]
     },
     {
         id: "german-lang",
         title: "إتقان اللغة الألمانية (Deutsch A1-B2)",
         category: "languages",
         icon: "languages",
-        desc: "تعلم القواعد، بناء الجمل، النطق المباشر والمحادثات اليومية المعتمدة لاجتياز اختبارات معهد جوته.",
-        nodesCount: 22,
-        level: "جميع المستويات"
-    },
-    {
-        id: "data-science",
-        title: "علم البيانات والذكاء الاصطناعي",
-        category: "programming",
-        icon: "brain-circuit",
-        desc: "دراسة تحليل البيانات باستخدام Python، مكتبات Pandas & NumPy، وبناء نماذج التعلم الآلي Machine Learning.",
-        nodesCount: 30,
-        level: "متوسط"
-    },
-    {
-        id: "english-fluency",
-        title: "الإنجليزية للأعمال والمحادثة (Business English)",
-        category: "languages",
-        icon: "message-square-code",
-        desc: "طريقة عملك، كتابة البريد الإلكتروني الاحترافي، واجتياز المقابلات الوظيفية باللغة الإنجليزية في الشركات العالمية.",
-        nodesCount: 16,
-        level: "مبتدئ -> متقدم"
+        desc: "تعلم القواعد، بناء الجمل، النطق المباشر لاجتياز اختبارات معهد جوته المعتمدة.",
+        nodesCount: 2,
+        nodes: [
+            { id: "de_node_1", title: "1. النطق والحروف الألمانية A1", desc: "أساسيات الأبجدية وتراكيب الصوتيات." },
+            { id: "de_node_2", title: "2. قواعد الضمائر والجمل البسيطة", desc: "تركيب الجمل والتعريف بالنفس." }
+        ]
     }
 ];
 
-// 2. Initializing Core Application System
+// App Initialization
 document.addEventListener("DOMContentLoaded", () => {
-    // A. Initialize Lucide Icons
     if (window.lucide) lucide.createIcons();
 
-    // B. Setup Online/Offline Network Detectors
+    setupThemeToggle();
     setupNetworkMonitor();
-
-    // C. Render Track Cards with Skeleton Loader delay
-    renderTracksWithSkeleton("all");
-
-    // D. Filter Event Listeners
-    setupFilterEvents();
-
-    // E. Setup FAQ Accordion Toggles
     setupAccordion();
+    setupModalsAndSearch();
+    setupContactForm();
+    
+    // Auth Listener
+    setupAuthListeners();
 
-    // F. Form Validation Engine
-    setupFormValidation();
-
-    // G. Modals & Search System Setup
-    setupModalHandlers();
+    // Render Initial Tracks & Roadmaps
+    renderTracks("all");
+    renderRoadmapTree(platformTracks[0]);
 });
 
 /* ==========================================================================
-   Network Status & Offline Detection System
+   Firebase Authentication & User Progress Synchronization
    ========================================================================== */
-function setupNetworkMonitor() {
-    const offlineBanner = document.getElementById("offline-banner");
+function setupAuthListeners() {
+    onAuthStateChanged(auth, async (user) => {
+        const loggedOutView = document.getElementById("loggedOutView");
+        const loggedInView = document.getElementById("loggedInView");
 
-    function updateOnlineStatus() {
-        if (navigator.onLine) {
-            offlineBanner.classList.add("hidden");
-            showToast("تم إعادة الاتصال بالشبكة بنجاح", "success");
+        if (user) {
+            currentUser = user;
+            loggedOutView.classList.add("hidden");
+            loggedInView.classList.remove("hidden");
+
+            document.getElementById("userNameDisplay").textContent = user.displayName || "مستخدم NEXUS";
+            document.getElementById("userEmailDisplay").textContent = user.email;
+            document.getElementById("avatarText").textContent = (user.displayName || user.email)[0].toUpperCase();
+
+            // Fetch User Progress from Firebase Firestore
+            await loadUserProgress(user.uid);
+            showToast(`أهلاً بك مجدداً، ${user.displayName || 'يا بطل'}!`, "success");
         } else {
-            offlineBanner.classList.remove("hidden");
-            showToast("فقدت الاتصال بالإنترنت. تعمل الآن في وضع عدم الاتصال.", "error");
+            currentUser = null;
+            userCompletedNodes = [];
+            loggedOutView.classList.remove("hidden");
+            loggedInView.classList.add("hidden");
         }
+
+        // Re-render Roadmap tree with updated progress state
+        renderRoadmapTree(platformTracks[0]);
+    });
+
+    // Auth Modal Form Submission (Login / Sign Up)
+    const authForm = document.getElementById("authForm");
+    const tabLoginBtn = document.getElementById("tabLoginBtn");
+    const tabSignupBtn = document.getElementById("tabSignupBtn");
+    const nameGroup = document.getElementById("nameGroup");
+    let isSignupMode = false;
+
+    tabLoginBtn.addEventListener("click", () => {
+        isSignupMode = false;
+        tabLoginBtn.classList.add("active");
+        tabSignupBtn.classList.remove("active");
+        nameGroup.classList.add("hidden");
+        document.getElementById("authSubmitBtn").textContent = "دخول";
+    });
+
+    tabSignupBtn.addEventListener("click", () => {
+        isSignupMode = true;
+        tabSignupBtn.classList.add("active");
+        tabLoginBtn.classList.remove("active");
+        nameGroup.classList.remove("hidden");
+        document.getElementById("authSubmitBtn").textContent = "إنشاء حساب";
+    });
+
+    authForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("authEmail").value;
+        const password = document.getElementById("authPassword").value;
+        const name = document.getElementById("authName").value;
+
+        try {
+            if (isSignupMode) {
+                const userCred = await createUserWithEmailAndPassword(auth, email, password);
+                await updateProfile(userCred.user, { displayName: name });
+                // Create user document in Firestore
+                await setDoc(doc(db, "users", userCred.user.uid), {
+                    displayName: name,
+                    email: email,
+                    completedNodes: []
+                });
+                showToast("تم إنشاء الحساب بنجاح!", "success");
+            } else {
+                await signInWithEmailAndPassword(auth, email, password);
+                showToast("تم تسجيل الدخول بنجاح!", "success");
+            }
+            document.getElementById("authModal").classList.add("hidden");
+        } catch (error) {
+            showToast(`خطأ: ${error.message}`, "error");
+        }
+    });
+
+    // Logout Action
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+        signOut(auth);
+        showToast("تم تسجيل الخروج بنجاح.", "success");
+    });
+
+    // Toggle Profile Dropdown
+    document.getElementById("avatarBtn").addEventListener("click", () => {
+        document.getElementById("profileDropdown").classList.toggle("hidden");
+    });
+}
+
+// Fetch Progress from Firestore
+async function loadUserProgress(uid) {
+    try {
+        const userDoc = await getDoc(doc(db, "users", uid));
+        if (userDoc.exists()) {
+            userCompletedNodes = userDoc.data().completedNodes || [];
+        }
+    } catch (err) {
+        console.error("Error loading progress:", err);
+    }
+}
+
+// Save Completed Node to Firestore
+async function toggleNodeCompletion(nodeId) {
+    if (!currentUser) {
+        showToast("يرجى تسجيل الدخول أولاً لحفظ تقدمك السحابي!", "error");
+        document.getElementById("authModal").classList.remove("hidden");
+        return;
     }
 
-    window.addEventListener("online", updateOnlineStatus);
-    window.addEventListener("offline", updateOnlineStatus);
+    if (userCompletedNodes.includes(nodeId)) {
+        userCompletedNodes = userCompletedNodes.filter(id => id !== nodeId);
+    } else {
+        userCompletedNodes.push(nodeId);
+    }
+
+    try {
+        await updateDoc(doc(db, "users", currentUser.uid), {
+            completedNodes: userCompletedNodes
+        });
+        showToast("تم حفظ التحديث في حسابك بنجاح!", "success");
+        renderRoadmapTree(platformTracks[0]);
+    } catch (err) {
+        showToast("تعذر حفظ التغيير في قاعدة البيانات.", "error");
+    }
 }
 
 /* ==========================================================================
-   Toast Notification System
+   UI Renderers & Component Control
    ========================================================================== */
+function renderRoadmapTree(track) {
+    const container = document.getElementById("nodesTreeContainer");
+    document.getElementById("activeRoadmapTitle").textContent = `${track.title} Nodes Graph`;
+    container.innerHTML = "";
+
+    track.nodes.forEach((node, index) => {
+        const isCompleted = userCompletedNodes.includes(node.id);
+        const nodeHTML = `
+            <div class="tree-node ${isCompleted ? 'completed' : ''}" data-id="${node.id}">
+                <div class="node-icon">
+                    <i data-lucide="${isCompleted ? 'check' : 'play'}"></i>
+                </div>
+                <div class="node-details">
+                    <h4>${node.title}</h4>
+                    <p>${node.desc} ${isCompleted ? '• (مكتملة ✅)' : ''}</p>
+                </div>
+            </div>
+            ${index < track.nodes.length - 1 ? `<div class="tree-line ${isCompleted ? 'active' : ''}"></div>` : ''}
+        `;
+        container.innerHTML += nodeHTML;
+    });
+
+    if (window.lucide) lucide.createIcons();
+
+    // Add Click Handler to Nodes
+    document.querySelectorAll(".tree-node").forEach(element => {
+        element.addEventListener("click", () => {
+            const nodeId = element.getAttribute("data-id");
+            toggleNodeCompletion(nodeId);
+        });
+    });
+}
+
+function renderTracks(category) {
+    const grid = document.getElementById("tracksGrid");
+    grid.innerHTML = "";
+
+    const filtered = category === "all" ? platformTracks : platformTracks.filter(t => t.category === category);
+
+    filtered.forEach(track => {
+        grid.innerHTML += `
+            <div class="card">
+                <div>
+                    <div class="card-icon"><i data-lucide="${track.icon}"></i></div>
+                    <h3 class="card-title">${track.title}</h3>
+                    <p class="card-desc">${track.desc}</p>
+                </div>
+                <div class="card-footer">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">
+                        <i data-lucide="git-commit" style="width: 14px; display: inline-block;"></i> ${track.nodesCount} محطات
+                    </span>
+                    <button class="btn btn-secondary" onclick="selectTrack('${track.id}')">
+                        عرض الخريطة
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+    if (window.lucide) lucide.createIcons();
+}
+
+window.selectTrack = (trackId) => {
+    const track = platformTracks.find(t => t.id === trackId);
+    if (track) {
+        renderRoadmapTree(track);
+        showToast(`تم عرض خريطة: ${track.title}`, "success");
+        document.getElementById("roadmaps").scrollIntoView({ behavior: 'smooth' });
+    }
+};
+
+/* ==========================================================================
+   Utilities & System Functions
+   ========================================================================== */
+function setupThemeToggle() {
+    const themeBtn = document.getElementById("themeToggleBtn");
+    const activeTheme = localStorage.getItem("nexus_theme") || "dark";
+    document.documentElement.setAttribute("data-theme", activeTheme);
+
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            const current = document.documentElement.getAttribute("data-theme");
+            const next = current === "dark" ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", next);
+            localStorage.setItem("nexus_theme", next);
+            showToast(`تم التبديل للوضع ${next === "dark" ? "الليلي" : "النهاري"}`, "success");
+        });
+    }
+}
+
 function showToast(message, type = "success") {
     const container = document.getElementById("toast-container");
     const toast = document.createElement("div");
     toast.className = `toast ${type}`;
-    
-    const iconName = type === "success" ? "check-circle" : "alert-circle";
-    toast.innerHTML = `<i data-lucide="${iconName}"></i> <span>${message}</span>`;
-    
+    toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check-circle' : 'alert-circle'}"></i> <span>${message}</span>`;
     container.appendChild(toast);
     if (window.lucide) lucide.createIcons();
-
-    setTimeout(() => {
-        toast.style.opacity = "0";
-        setTimeout(() => toast.remove(), 300);
-    }, 4000);
+    setTimeout(() => toast.remove(), 4000);
 }
 
-/* ==========================================================================
-   Skeleton Loading & Track Rendering Logic
-   ========================================================================== */
-function renderTracksWithSkeleton(category) {
-    const grid = document.getElementById("tracksGrid");
-    grid.innerHTML = "";
-
-    // Show Skeletons
-    for (let i = 0; i < 3; i++) {
-        grid.innerHTML += `
-            <div class="card skeleton-card">
-                <div class="skeleton-box" style="height: 44px; width: 44px; margin-bottom: 1rem;"></div>
-                <div class="skeleton-box" style="height: 20px; width: 70%; margin-bottom: 0.5rem;"></div>
-                <div class="skeleton-box" style="height: 14px; width: 100%; margin-bottom: 0.5rem;"></div>
-                <div class="skeleton-box" style="height: 14px; width: 80%; margin-bottom: 1.5rem;"></div>
-                <div class="skeleton-box" style="height: 30px; width: 100%;"></div>
-            </div>
-        `;
-    }
-
-    // Simulate async data fetching
-    setTimeout(() => {
-        grid.innerHTML = "";
-        const filtered = category === "all" 
-            ? platformTracks 
-            : platformTracks.filter(item => item.category === category);
-
-        if (filtered.length === 0) {
-            grid.innerHTML = `
-                <div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-                    <i data-lucide="folder-open" style="width: 48px; height: 48px; color: var(--text-muted);"></i>
-                    <h3 style="margin-top: 1rem;">لا توجد مسارات متوفرة في هذا القسم حالياً</h3>
-                    <p style="color: var(--text-secondary);">يرجى اختيار قسم آخر أو البحث عن مهارة مختلفة.</p>
-                </div>
-            `;
-        } else {
-            filtered.forEach(track => {
-                grid.innerHTML += `
-                    <div class="card">
-                        <div>
-                            <div class="card-icon"><i data-lucide="${track.icon}"></i></div>
-                            <h3 class="card-title">${track.title}</h3>
-                            <p class="card-desc">${track.desc}</p>
-                        </div>
-                        <div class="card-footer">
-                            <span style="font-size: 0.8rem; color: var(--text-muted);">
-                                <i data-lucide="git-commit" style="width: 14px; display: inline-block;"></i> ${track.nodesCount} محطة
-                            </span>
-                            <button class="btn btn-secondary" onclick="openTrackDetails('${track.id}')">
-                                استكشف الخريطة
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-        if (window.lucide) lucide.createIcons();
-    }, 600);
-}
-
-function setupFilterEvents() {
-    const pills = document.querySelectorAll(".filter-pills .pill");
-    pills.forEach(pill => {
-        pill.addEventListener("click", () => {
-            pills.forEach(p => p.classList.remove("active"));
-            pill.classList.add("active");
-            renderTracksWithSkeleton(pill.getAttribute("data-category"));
-        });
+function setupNetworkMonitor() {
+    window.addEventListener("online", () => {
+        document.getElementById("offline-banner").classList.add("hidden");
+        showToast("عادت الشبكة مجدداً!", "success");
+    });
+    window.addEventListener("offline", () => {
+        document.getElementById("offline-banner").classList.remove("hidden");
+        showToast("أنت الآن تعمل بدون إنترنت.", "error");
     });
 }
 
-/* ==========================================================================
-   Accordion & UI Controls
-   ========================================================================== */
 function setupAccordion() {
-    const items = document.querySelectorAll(".accordion-item");
-    items.forEach(item => {
-        const header = item.querySelector(".accordion-header");
-        header.addEventListener("click", () => {
-            const isActive = item.classList.contains("active");
-            items.forEach(i => i.classList.remove("active"));
-            if (!isActive) item.classList.add("active");
+    document.querySelectorAll(".accordion-header").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const parent = btn.parentElement;
+            parent.classList.toggle("active");
         });
     });
 }
 
-/* ==========================================================================
-   Form Validation Engine (Contact Form)
-   ========================================================================== */
-function setupFormValidation() {
-    const form = document.getElementById("contactForm");
-    if (!form) return;
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let isValid = true;
-
-        const inputs = form.querySelectorAll(".form-input");
-        inputs.forEach(input => {
-            const group = input.parentElement;
-            if (!input.checkValidity()) {
-                group.classList.add("invalid");
-                isValid = false;
-            } else {
-                group.classList.remove("invalid");
-            }
-        });
-
-        if (isValid) {
-            showToast("تم إرسال رسالتك بنجاح! سيتواصل معك فريق الدعم قريباً.", "success");
-            form.reset();
-        } else {
-            showToast("يرجى التأكد من ملء جميع الحقول بشكل صحيح.", "error");
-        }
-    });
-}
-
-/* ==========================================================================
-   Modals & Command Palette Search Logic
-   ========================================================================== */
-function setupModalHandlers() {
+function setupModalsAndSearch() {
     const searchModal = document.getElementById("searchModal");
-    const searchTrigger = document.getElementById("searchTriggerBtn");
-    const closeSearch = document.getElementById("closeSearchModal");
-    const searchInput = document.getElementById("globalSearchInput");
-    const searchResults = document.getElementById("searchResults");
+    const authModal = document.getElementById("authModal");
 
-    // Open Search via button or Ctrl + K
-    if (searchTrigger) {
-        searchTrigger.addEventListener("click", () => searchModal.classList.remove("hidden"));
-    }
+    document.getElementById("searchTriggerBtn")?.addEventListener("click", () => searchModal.classList.remove("hidden"));
+    document.getElementById("closeSearchModal")?.addEventListener("click", () => searchModal.classList.add("hidden"));
 
-    document.addEventListener("keydown", (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
-            e.preventDefault();
-            searchModal.classList.remove("hidden");
-            searchInput.focus();
-        }
+    document.getElementById("loginBtn")?.addEventListener("click", () => authModal.classList.remove("hidden"));
+    document.getElementById("signupBtn")?.addEventListener("click", () => {
+        authModal.classList.remove("hidden");
+        document.getElementById("tabSignupBtn").click();
     });
-
-    if (closeSearch) {
-        closeSearch.addEventListener("click", () => searchModal.classList.add("hidden"));
-    }
-
-    // Live Search Output
-    if (searchInput) {
-        searchInput.addEventListener("input", (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            if (query === "") {
-                searchResults.innerHTML = `<p class="search-hint">اكتب للبدء في البحث المباشر...</p>`;
-                return;
-            }
-
-            const matches = platformTracks.filter(t => 
-                t.title.toLowerCase().includes(query) || t.desc.toLowerCase().includes(query)
-            );
-
-            if (matches.length === 0) {
-                searchResults.innerHTML = `<p class="search-hint">لم نجد أي مسار يطابق بحثك.</p>`;
-            } else {
-                searchResults.innerHTML = matches.map(m => `
-                    <div style="padding: 0.75rem; border-bottom: 1px solid var(--border-color); cursor: pointer;" onclick="openTrackDetails('${m.id}')">
-                        <strong>${m.title}</strong>
-                        <p style="font-size: 0.8rem; color: var(--text-muted);">${m.desc}</p>
-                    </div>
-                `).join("");
-            }
-        });
-    }
+    document.getElementById("closeAuthModal")?.addEventListener("click", () => authModal.classList.add("hidden"));
 }
 
-function openTrackDetails(trackId) {
-    showToast(`جاري فتح خريطة الطريق: ${trackId}`, "success");
+function setupContactForm() {
+    document.getElementById("contactForm")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        showToast("تم إرسال استفسارك بنجاح!", "success");
+        e.target.reset();
+    });
 }
-// Theme Toggle Engine (Light / Dark)
-function setupThemeToggle() {
-    const themeBtn = document.getElementById("themeToggleBtn");
-    const currentTheme = localStorage.getItem("nexus_theme") || "dark";
-
-    document.documentElement.setAttribute("data-theme", currentTheme);
-
-    if (themeBtn) {
-        themeBtn.addEventListener("click", () => {
-            const activeTheme = document.documentElement.getAttribute("data-theme");
-            const newTheme = activeTheme === "dark" ? "light" : "dark";
-
-            document.documentElement.setAttribute("data-theme", newTheme);
-            localStorage.setItem("nexus_theme", newTheme);
-            showToast(`تم التغيير إلى ${newTheme === "dark" ? "الوضع الليلي" : "الوضع النهاري"}`, "success");
-        });
-    }
-}
-
-// أضف setupThemeToggle() داخل DOMContentLoaded
-document.addEventListener("DOMContentLoaded", () => {
-    setupThemeToggle();
-    // بقية الأكواد السابقة كما هي...
-});
