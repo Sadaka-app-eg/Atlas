@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXUS | المنصة التفاعلية لخرائط التعلم والبرمجة واللغات</title>
     
-    <!-- Design System Typography -->
+    <!-- Design System Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
-    <!-- Lucide System Icons -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -22,10 +22,10 @@
     <!-- Offline Banner -->
     <div id="offline-banner" class="system-banner hidden">
         <i data-lucide="wifi-off"></i>
-        <span>أنت تعمل حالياً في وضع عدم الاتصال (Offline Mode). قد لا تتحدث الأنشطة فوراً.</span>
+        <span>أنت تعمل حالياً في وضع عدم الاتصال (Offline Mode). قد لا تتحديث الأنشطة فوراً.</span>
     </div>
 
-    <!-- Global Sticky Header -->
+    <!-- Global Header -->
     <header class="global-header">
         <div class="header-container">
             <a href="#" class="brand-logo" aria-label="NEXUS الصفحة الرئيسية">
@@ -48,56 +48,50 @@
                     <kbd>Ctrl K</kbd>
                 </button>
 
+                <button class="icon-button theme-toggle-btn" id="themeToggleBtn" title="تبديل الثيم">
+                    <i data-lucide="sun" class="sun-icon"></i>
+                    <i data-lucide="moon" class="moon-icon"></i>
+                </button>
+
                 <div class="notifications-wrapper">
                     <button class="icon-button" id="notifBtn" aria-label="الإشعارات">
                         <i data-lucide="bell"></i>
-                        <span class="notif-badge">2</span>
+                        <span class="notif-badge hidden" id="notifBadge">0</span>
                     </button>
-               
-                    <!-- Theme Toggle Button -->
-<button class="icon-button theme-toggle-btn" id="themeToggleBtn" aria-label="تبديل الوضع">
-    <i data-lucide="sun" class="sun-icon"></i>
-    <i data-lucide="moon" class="moon-icon"></i>
-</button>
                     
-                    <!-- Notification Drawer / Dropdown -->
                     <div class="notif-dropdown hidden" id="notifDropdown">
                         <div class="dropdown-header">
                             <h4>الإشعارات</h4>
                             <button class="link-btn" id="markAllRead">تحديد الكل كمقروء</button>
                         </div>
-                        <div class="notif-list">
-                            <div class="notif-item unread">
-                                <div class="notif-icon success"><i data-lucide="check-circle-2"></i></div>
-                                <div class="notif-content">
-                                    <p>تم اجتياز اختبار مهارة <strong>JavaScript DOM</strong> بنجاح!</p>
-                                    <span class="time">منذ 15 دقيقة</span>
-                                </div>
-                            </div>
-                            <div class="notif-item unread">
-                                <div class="notif-icon info"><i data-lucide="sparkles"></i></div>
-                                <div class="notif-content">
-                                    <p>تم إدراج خريطة طريق جديدة: <strong>German Deutsch B1</strong>.</p>
-                                    <span class="time">منذ ساعتين</span>
-                                </div>
-                            </div>
+                        <div class="notif-list" id="notifList">
+                            <p class="empty-notif">لا توجد إشعارات جديدة حالياً.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="auth-buttons" id="authActions">
+                <!-- Unauthenticated State -->
+                <div class="auth-buttons" id="loggedOutView">
                     <button class="btn btn-secondary" id="loginBtn">تسجيل الدخول</button>
                     <button class="btn btn-primary" id="signupBtn">إنشاء حساب</button>
                 </div>
 
-                <!-- Logged In User Profile Menu (Hidden by Default) -->
-                <div class="user-profile-menu hidden" id="userMenu">
+                <!-- Authenticated User Profile -->
+                <div class="user-profile-menu hidden" id="loggedInView">
                     <button class="avatar-btn" id="avatarBtn">
-                        <span class="avatar-text">أ ش</span>
+                        <span class="avatar-text" id="avatarText">U</span>
                     </button>
+                    <div class="profile-dropdown hidden" id="profileDropdown">
+                        <div class="user-info">
+                            <strong id="userNameDisplay">المستخدم</strong>
+                            <span id="userEmailDisplay">user@example.com</span>
+                        </div>
+                        <hr>
+                        <a href="#settings" id="openSettingsBtn" class="dropdown-item"><i data-lucide="settings"></i> الإعدادات</a>
+                        <button id="logoutBtn" class="dropdown-item danger"><i data-lucide="log-out"></i> تسجيل الخروج</button>
+                    </div>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="القائمة">
                     <i data-lucide="menu"></i>
                 </button>
@@ -105,7 +99,7 @@
         </div>
     </header>
 
-    <!-- Main Content Shell -->
+    <!-- Main Application Canvas -->
     <main id="main-content">
 
         <!-- Hero Section -->
@@ -120,7 +114,7 @@
                     <span class="text-accent">خرائط طريق تفاعلية مبسطة</span>
                 </h1>
                 <p class="hero-lead">
-                    منصة NEXUS توفر لك مسارات مهنية مجتمعة في مكان واحد. لا تشتت بعد اليوم بين المصادر، اتبع التسلسل البصري واختبر مهاراتك خطوة بخطوة.
+                    منصة NEXUS توفر لك مسارات مهنية متكاملة. اتبع التسلسل البصري، تتبع تقدمك عبر الحساب، واختبر مهاراتك خطوة بخطوة بدون تشتت.
                 </p>
                 <div class="hero-controls">
                     <a href="#tracks" class="btn btn-primary btn-lg">استكشف كافة المسارات <i data-lucide="arrow-left"></i></a>
@@ -129,7 +123,7 @@
             </div>
         </section>
 
-        <!-- Tracks & Categories Section -->
+        <!-- Tracks Section -->
         <section class="section-container" id="tracks">
             <div class="section-title-group">
                 <div>
@@ -143,31 +137,30 @@
                 </div>
             </div>
 
-            <!-- Dynamic Track Grid -->
             <div class="grid-layout" id="tracksGrid" aria-live="polite">
-                <!-- Skeletons render first via JS -->
+                <!-- Tracks or Skeletons injected dynamically -->
             </div>
         </section>
 
-        <!-- Interactive Roadmap Node Preview -->
+        <!-- Interactive Node Graph Preview -->
         <section class="section-container roadmap-preview-block" id="roadmaps">
             <div class="roadmap-grid-view">
                 <div class="roadmap-info-side">
                     <span class="section-tag"><i data-lucide="git-commit"></i> تجربة التعلم بالخرائط</span>
-                    <h2>تتبع تقدمك في المهارات دون ضياع</h2>
-                    <p>تحتوي كل خريطة على شجرة محطات تنقلية. لا يمكنك للانتقال للمحطة القادمة حتى تؤكد فهمك للمفاهيم السابقة بتطبيق عملي.</p>
+                    <h2>تتبع تقدمك في المهارات لحظة بلحظة</h2>
+                    <p>عند تسجيل الدخول، يمكنك وضع علامة على المحطات التي أتقنتها، ويقوم Firebase بحفظ تقدمك تلقائياً لاسترجاعه من أي جهاز.</p>
                     
                     <ul class="feature-list">
                         <li>
                             <i data-lucide="check-circle" class="icon-success"></i>
                             <div>
-                                <strong>مهام واسئلة تفاعلية:</strong> قياس حقيقي للمستوى مع إمكانية رفع المشروعات.
+                                <strong>حفظ التقدم التلقائي:</strong> مزامنة سحابية فورية لكل محطة تتجاوزها.
                             </div>
                         </li>
                         <li>
                             <i data-lucide="check-circle" class="icon-success"></i>
                             <div>
-                                <strong>تنسيق منظم ومباشر:</strong> الابتعاد عن الحشو والتحديث المستمر للمصادر.
+                                <strong>تنسيق محدد ومباشر:</strong> الابتعاد عن العشوائية والتركيز على التطبيق.
                             </div>
                         </li>
                     </ul>
@@ -176,32 +169,10 @@
                 <div class="roadmap-canvas-card">
                     <div class="canvas-header">
                         <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                        <span class="canvas-title">Interactive Graph Node Viewer</span>
+                        <span class="canvas-title" id="activeRoadmapTitle">Full-Stack Roadmap Node Graph</span>
                     </div>
-                    <div class="nodes-tree">
-                        <div class="tree-node completed" data-node="1">
-                            <div class="node-icon"><i data-lucide="check"></i></div>
-                            <div class="node-details">
-                                <h4>1. أساسيات الإنترنت والهيكل HTML5</h4>
-                                <p>مكتمـل • 100%</p>
-                            </div>
-                        </div>
-                        <div class="tree-line active"></div>
-                        <div class="tree-node active" data-node="2">
-                            <div class="node-icon"><i data-lucide="play"></i></div>
-                            <div class="node-details">
-                                <h4>2. التنسيق البرمجي والتنسيق التجاوُبي CSS3</h4>
-                                <p>قيد التعلم • 60%</p>
-                            </div>
-                        </div>
-                        <div class="tree-line"></div>
-                        <div class="tree-node locked" data-node="3">
-                            <div class="node-icon"><i data-lucide="lock"></i></div>
-                            <div class="node-details">
-                                <h4>3. البرمجة التفاعلية JavaScript ES6+</h4>
-                                <p>محظور حتى إتمام المحطة السابقة</p>
-                            </div>
-                        </div>
+                    <div class="nodes-tree" id="nodesTreeContainer">
+                        <!-- Dynamic Nodes rendering -->
                     </div>
                 </div>
             </div>
@@ -213,7 +184,7 @@
                 <div class="about-body">
                     <h2>عن منصة NEXUS</h2>
                     <p>
-                        تم تطوير NEXUS بهدف سد الفجوة التنظيمية في التعلم الذاتي. نساعد المتعلمين والمهندسين في العالم العربي على الوصول إلى خرائط طريق تقنية ولغوية مدروسة بعناية، مبتعدين عن المناهج التقليدية ومشتتات الإنترنت.
+                        تم تطوير NEXUS بهدف سد الفجوة التنظيمية في التعلم الذاتي. نساعد المتعلمين في العالم العربي على الوصول إلى خرائط طريق تقنية ولغوية مدروسة بعناية ومربوطة بأدوات قياس حقيقية.
                     </p>
                     <div class="about-stats">
                         <div class="stat-box">
@@ -222,7 +193,7 @@
                         </div>
                         <div class="stat-box">
                             <span class="stat-num">100%</span>
-                            <span class="stat-desc">مسارات مجانية وتفاعلية</span>
+                            <span class="stat-desc">مزامنة سحابية مجانية</span>
                         </div>
                         <div class="stat-box">
                             <span class="stat-num">2026</span>
@@ -237,34 +208,25 @@
         <section class="section-container" id="faq">
             <div class="section-title-group">
                 <h2 class="section-heading">الأسئلة الشائعة</h2>
-                <p class="section-subheading">كل ما تحتاج معرفته عن كيفية استخدام المنصة والاستفادة من الخرائط.</p>
+                <p class="section-subheading">كل ما تحتاج معرفته عن استخدام المنصة وحفظ تقدمك.</p>
             </div>
             <div class="accordion" id="faqAccordion">
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <span>هل جميع خرائط الطريق والمسارات مجانية؟</span>
+                        <span>هل يحفظ النظام تقدمي بدون تسجيل حساب؟</span>
                         <i data-lucide="chevron-down"></i>
                     </button>
                     <div class="accordion-content">
-                        <p>نعم، جميع الخرائط الأساسية والمسارات الخاصة بالبرمجة واللغات متاحة للجميع مجاناً لضمان وصول المعرفة بشكل سلس.</p>
+                        <p>يمكنك التصفح مجاناً بدون حساب، لكن لحفظ التقدم في الخرائط التفاعلية ومزامنته عبر الأجهزة يتوجب عليك إنشاء حساب مجاني.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <span>كيف يتم تتبع تقدمي في المهارات؟</span>
+                        <span>كيف أستطيع التواصل مع فريق المنصة مباشرة؟</span>
                         <i data-lucide="chevron-down"></i>
                     </button>
                     <div class="accordion-content">
-                        <p>عند تسجيل الدخول، يمكنك التأشير على أي محطة داخل الخريطة كـ "مكتملة"، وسيحفظ النظام تقدمك تلقائياً لاستكمال التتبع في أي وقت ومن أي جهاز.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>هل يمكنني اقتراح مسار أو خريطة جديدة؟</span>
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <p>بالتأكيد، يمكنك التواصل معنا عبر نموذج الاتصال وإرسال المقترح لدرسه وإدراجه ضمن الخطة البرمجية للعام.</p>
+                        <p>عبر استمارة تواصل معنا أدناه أو بالاتصال على رقم الهاتف المباشر المرفق في قسم التواصل.</p>
                     </div>
                 </div>
             </div>
@@ -275,7 +237,7 @@
             <div class="contact-wrapper">
                 <div class="contact-details">
                     <h2>تواصل معنا</h2>
-                    <p>هل لديك استفسار أو اقتراح لتطوير مسار تعليمي؟ فريقنا يسعد بتواصلك.</p>
+                    <p>هل لديك استفسار أو اقتراح لمسار جديد؟ فريقنا يسعد بتواصلك.</p>
                     
                     <div class="contact-info-list">
                         <div class="info-item">
@@ -298,7 +260,7 @@
                 <form class="contact-form" id="contactForm" novalidate>
                     <div class="form-group">
                         <label for="contactName">الاسم الكامل</label>
-                        <input type="text" id="contactName" class="form-input" placeholder="أدخل اسمك" required>
+                        <input type="text" id="contactName" class="form-input" placeholder="أدخل اسمك الكامل" required>
                         <span class="error-msg">يرجى كتابة الاسم بشكل صحيح.</span>
                     </div>
                     <div class="form-group">
@@ -308,7 +270,7 @@
                     </div>
                     <div class="form-group">
                         <label for="contactMessage">الرسالة أو الاستفسار</label>
-                        <textarea id="contactMessage" class="form-input" rows="4" placeholder="اكتب تفاصيل استفسارك هنا..." required></textarea>
+                        <textarea id="contactMessage" class="form-input" rows="4" placeholder="اكتب تفاصيل استفسارك..." required></textarea>
                         <span class="error-msg">الرسالة لا يمكن أن تكون فارغة.</span>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
@@ -342,7 +304,7 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>الشركة والمساعدة</h4>
+                    <h4>المساعدة والدعم</h4>
                     <ul>
                         <li><a href="#about">عن المنصة</a></li>
                         <li><a href="#faq">الأسئلة الشائعة</a></li>
@@ -352,8 +314,8 @@
                 <div class="footer-col">
                     <h4>الصفحات القانونية</h4>
                     <ul>
-                        <li><a href="#privacyModal" class="modal-trigger">سياسة الخصوصية</a></li>
-                        <li><a href="#termsModal" class="modal-trigger">الشروط والأحكام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
                     </ul>
                 </div>
             </div>
@@ -361,23 +323,18 @@
         <div class="footer-bottom">
             <div class="container bottom-flex">
                 <p>© 2026 NEXUS. جميع الحقوق محفوظة.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Github"><i data-lucide="github"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-                    <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
-                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Modals & Command Palette -->
+    <!-- Modals System -->
 
-    <!-- Search Modal / Command Palette -->
+    <!-- Search Command Palette -->
     <div class="modal-overlay hidden" id="searchModal">
         <div class="modal-card search-card">
             <div class="search-input-wrapper">
                 <i data-lucide="search"></i>
-                <input type="text" id="globalSearchInput" placeholder="ابحث عن مسار، لغة، تقنية (مثل: Python, German, React)...">
+                <input type="text" id="globalSearchInput" placeholder="ابحث عن مسار، تقنية، أو لغة (مثال: Python, German)...">
                 <button class="modal-close" id="closeSearchModal"><i data-lucide="x"></i></button>
             </div>
             <div class="search-results-list" id="searchResults">
@@ -386,16 +343,20 @@
         </div>
     </div>
 
-    <!-- Auth Modal (Login / Sign Up) -->
+    <!-- Firebase Auth Modal -->
     <div class="modal-overlay hidden" id="authModal">
         <div class="modal-card auth-card">
             <button class="modal-close" id="closeAuthModal"><i data-lucide="x"></i></button>
             <div class="auth-tabs">
-                <button class="auth-tab active" id="tabLogin">تسجيل الدخول</button>
-                <button class="auth-tab" id="tabSignup">حساب جديد</button>
+                <button class="auth-tab active" id="tabLoginBtn">تسجيل الدخول</button>
+                <button class="auth-tab" id="tabSignupBtn">حساب جديد</button>
             </div>
             
             <form id="authForm" class="auth-form" novalidate>
+                <div class="form-group hidden" id="nameGroup">
+                    <label for="authName">الاسم الكامل</label>
+                    <input type="text" id="authName" class="form-input" placeholder="اسمك الكريم">
+                </div>
                 <div class="form-group">
                     <label for="authEmail">البريد الإلكتروني</label>
                     <input type="email" id="authEmail" class="form-input" placeholder="user@example.com" required>
@@ -409,7 +370,7 @@
         </div>
     </div>
 
-    <!-- Application Script Engine -->
-    <script src="main.js"></script>
+    <!-- Firebase Scripts (Modular ES Modules Native Imports via type="module") -->
+    <script type="module" src="main.js"></script>
 </body>
 </html>
