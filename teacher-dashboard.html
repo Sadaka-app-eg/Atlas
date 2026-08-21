@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>لوحة المشرف والتحكم | ATLAS ACADEMY</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root {
+    --brand-primary: #4F46E5;   /* النيلي لأطلس */
+    --brand-accent:  #06B6D4;   /* السيان */
+    --dark-bg:       #0A0F1D;
+    --dark-card:     #111827;
+    --dark-line:     #1E293B;
+  }
+  html[lang="ar"] body, html[lang="ar"] * { font-family: 'Tajawal', sans-serif; }
+  .num-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  body { background-color: var(--dark-bg); color: #F8FAFC; transition: background-color 0.3s ease, color 0.3s ease; }
+  body.light { background-color: #F8FAFC; color: #0F172A; }
+
+  .bg-card-theme { background-color: var(--dark-card); border-color: var(--dark-line); }
+  body.light .bg-card-theme { background-color: #FFFFFF !important; border-color: #E2E8F0 !important; color: #0F172A !important; }
+  body.light .text-white { color: #0F172A !important; }
+  body.light .text-slate-400, body.light .text-slate-300 { color: #64748B !important; }
+  body.light input, body.light select { background-color: #F1F5F9 !important; border-color: #CBD5E1 !important; color: #0F172A !important; }
+  body.light table thead { background-color: #F1F5F9 !important; color: #475569 !important; }
+
+  .bg-brand { background-color: var(--brand-primary); }
+
+  .theme-toggle-pill {
+    width: 52px;
+    height: 26px;
+    border-radius: 9999px;
+    background-color: var(--brand-primary);
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+  body.light .theme-toggle-pill { background-color: #334155; }
+  .theme-toggle-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  [dir="rtl"] body.light .theme-toggle-thumb { transform: translateX(-26px); }
+</style>
+</head>
+
+<body class="antialiased min-h-screen">
+
+<!-- شاشة التحميل والتأكد من تسجيل الدخول -->
+<div id="authGate" class="fixed inset-0 z-[100] flex items-center justify-center bg-[#0A0F1D]">
+  <div class="flex flex-col items-center gap-3">
+    <div class="w-10 h-10 rounded-full border-4 border-t-transparent animate-spin border-cyan-500"></div>
+    <span class="text-xs font-bold text-slate-300">جاري تحميل بيانات لوحة تحكم أطلس...</span>
+  </div>
+</div>
+
+<div class="max-w-[1550px] mx-auto px-4 md:px-8 py-8">
+
+  <header class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+    <div class="flex items-center justify-between w-full lg:w-auto">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-brand flex items-center justify-center text-white font-black text-xl shadow-lg">
+          A
+        </div>
+        <div>
+          <h1 class="text-lg md:text-xl font-black text-white">لوحة تحكم المشرف | أطلس ⚡</h1>
+          <p class="text-[11px] text-slate-400">إدارة الطلاب، نشر المحاضرات السحابية، وبنوك الأسئلة التقنية</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- أزرار التبويبات للتقسيم والتنظيم -->
+    <div class="flex items-center gap-2 bg-[#111827] p-1.5 rounded-2xl border border-slate-800 self-start lg:self-auto flex-wrap">
+      <button onclick="switchAdminTab('students')" id="adminTabStudents" class="px-4 py-2 rounded-xl text-xs font-black transition bg-brand text-white shadow">
+        👥 إدارة وتفعيل الطلاب
+      </button>
+      <button onclick="switchAdminTab('lectures')" id="adminTabLectures" class="px-4 py-2 rounded-xl text-xs font-black transition text-slate-400 hover:text-white">
+        📚 إدارة ونشر المحاضرات
+      </button>
+      <button onclick="switchAdminTab('glossary')" id="adminTabGlossary" class="px-4 py-2 rounded-xl text-xs font-black transition text-slate-400 hover:text-white">
+        📖 القاموس التقني واللغوي
+      </button>
+    </div>
+
+    <div class="flex items-center gap-2.5">
+      <div id="themeBtn" class="theme-toggle-pill" title="تبديل الوضع">
+        <span class="text-[10px] z-10">☀️</span>
+        <span class="text-[10px] z-10">🌙</span>
+        <div class="theme-toggle-thumb"></div>
+      </div>
+      <a href="index.html" class="px-3.5 py-2 rounded-xl border border-slate-700 hover:border-slate-500 text-xs font-bold text-slate-200 transition">
+        ← المنصة
+      </a>
+      <button id="logoutBtn" class="px-3.5 py-2 rounded-xl bg-rose-950/60 text-rose-300 hover:bg-rose-900 text-xs font-bold transition">
+        خروج
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ تبويب إدارة الطلاب ============ -->
+  <div id="sectionStudentsTab" class="space-y-6">
+    <!-- إحصائيات سريعة -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
+      <div class="p-5 rounded-2xl bg-card-theme border border-slate-800 shadow-md">
+        <span class="text-xs font-bold text-slate-400 block">إجمالي الطلاب المسجلين</span>
+        <span id="statTotalStudents" class="text-2xl md:text-3xl font-black text-cyan-400 num-font mt-1 block">0</span>
+      </div>
+      <div class="p-5 rounded-2xl bg-card-theme border border-slate-800 shadow-md">
+        <span class="text-xs font-bold text-slate-400 block">مسار البرمجة والسكيورتي</span>
+        <span id="statTechStudents" class="text-2xl md:text-3xl font-black text-indigo-400 num-font mt-1 block">0</span>
+      </div>
+      <div class="p-5 rounded-2xl bg-card-theme border border-slate-800 shadow-md">
+        <span class="text-xs font-bold text-slate-400 block">مسار اللغات والـ Office</span>
+        <span id="statLangStudents" class="text-2xl md:text-3xl font-black text-amber-400 num-font mt-1 block">0</span>
+      </div>
+      <div class="p-5 rounded-2xl bg-card-theme border border-slate-800 shadow-md">
+        <span class="text-xs font-bold text-slate-400 block">إجمالي الاشتراكات المفعلة</span>
+        <span id="statActiveSubscriptions" class="text-2xl md:text-3xl font-black text-emerald-400 num-font mt-1 block">0</span>
+      </div>
+    </section>
+
+    <!-- شريط البحث والفلترة -->
+    <section class="bg-card-theme border border-slate-800 rounded-2xl p-4 mb-6 flex flex-col sm:flex-row gap-3 items-center justify-between">
+      <div class="w-full sm:w-80">
+        <input type="text" id="searchInput" placeholder="🔍 بحث بالاسم، الإيميل، أو رقم الواتساب..." class="w-full h-11 rounded-xl px-4 bg-[#0A0F1D] border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:border-cyan-500 outline-none" />
+      </div>
+      <div class="flex items-center gap-2 w-full sm:w-auto">
+        <select id="yearFilter" class="h-11 px-3 rounded-xl bg-[#0A0F1D] border border-slate-700 text-xs text-white focus:border-cyan-500 outline-none">
+          <option value="all">كل المسارات والتخصصات</option>
+          <option value="tech">البرمجة والأمن السيبراني</option>
+          <option value="lang_office">اللغات وحزم الـ Office</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- جدول الطلاب -->
+    <section class="bg-card-theme border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
+      <div class="overflow-x-auto">
+        <table class="w-full text-right text-xs">
+          <thead class="bg-[#0A0F1D] text-slate-400 border-b border-slate-800">
+            <tr>
+              <th class="p-4">بيانات الطالب</th>
+              <th class="p-4">التخصص / الكلية</th>
+              <th class="p-4">المسار</th>
+              <th class="p-4">رقم الواتساب</th>
+              <th class="p-4">الكورسات المفعلة</th>
+              <th class="p-4 text-center">إجراء وتفعيل الكورسات</th>
+            </tr>
+          </thead>
+          <tbody id="studentsTableBody" class="divide-y divide-slate-800/60">
+            <!-- سيتم تحميل الطلاب ديناميكياً -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ تبويب إدارة ونشر المحاضرات ============ -->
+  <div id="sectionLecturesTab" class="hidden space-y-6">
+    <section class="mt-8 bg-card-theme border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-slate-800 pb-6">
+        <div>
+          <span class="text-xs font-black text-cyan-400 uppercase tracking-wider">لوحة النشر السحابية</span>
+          <h2 class="text-xl md:text-2xl font-black text-white mt-1">📚 إدارة المحاضرات وبنوك الأسئلة</h2>
+        </div>
+        
+        <div class="flex items-center gap-3">
+          <label class="text-xs font-bold text-slate-300">اختر المقرر:</label>
+          <select id="adminCourseSelect" class="bg-[#0A0F1D] border border-slate-700 text-cyan-300 font-bold text-xs md:text-sm rounded-xl px-4 py-2.5 focus:border-brand">
+            <!-- يتعبأ تلقائياً -->
+          </select>
+        </div>
+      </div>
+
+      <!-- نموذج إضافة محاضرة جديدة -->
+      <form id="addLectureForm" class="space-y-6 bg-[#0A0F1D] border border-slate-800 p-6 rounded-2xl">
+        <h3 class="text-base font-black text-cyan-400 flex items-center gap-2">
+          <span>➕</span> إضافة محاضرة / درس جديد
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-300">ترتيب المحاضرة</label>
+            <select id="lecNumber" class="w-full bg-[#111827] border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-cyan-300 font-bold focus:border-brand">
+              <option value="المحاضرة الأولى">المحاضرة الأولى (1)</option>
+              <option value="المحاضرة الثانية">المحاضرة الثانية (2)</option>
+              <option value="المحاضرة الثالثة">المحاضرة الثالثة (3)</option>
+              <option value="المحاضرة الرابعة">المحاضرة الرابعة (4)</option>
+              <option value="المحاضرة الخامسة">المحاضرة الخامسة (5)</option>
+              <option value="المحاضرة السادسة">المحاضرة السادسة (6)</option>
+              <option value="المحاضرة السابعة">المحاضرة السابعة (7)</option>
+              <option value="المحاضرة الثامنة">المحاضرة الثامنة (8)</option>
+              <option value="المحاضرة التاسعة">المحاضرة التاسعة (9)</option>
+              <option value="المحاضرة العاشرة">المحاضرة العاشرة (10)</option>
+              <option value="المحاضرة 11">المحاضرة 11</option>
+              <option value="المحاضرة 12">المحاضرة 12</option>
+            </select>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-300">عنوان الدرس / المحاضرة</label>
+            <input type="text" id="lecCustomName" required placeholder="مثال: مقدمة إلى DOM Manipulation و Events" class="w-full bg-[#111827] border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-brand" />
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-300">نوع الإتاحة</label>
+            <select id="lecIsFree" class="w-full bg-[#111827] border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-brand">
+              <option value="false">🔒 مخصصة للمشتركين فقط</option>
+              <option value="true">🔓 معاينة مجانية (مفتوحة للجميع)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-bold text-slate-300">وصف موجز للمحاضرة</label>
+          <input type="text" id="lecDesc" placeholder="نبذة توضيحية عما يتعلمه الطالب في الدرس..." class="w-full bg-[#111827] border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-brand" />
+        </div>
+
+        <!-- رفع الفيديو وملفات الأوفيس/PDF -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          <div class="border border-dashed border-slate-700 bg-[#111827]/60 p-4 rounded-2xl space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-cyan-300">🎬 فيديو المحاضرة (Cloudinary / YouTube)</span>
+              <span id="videoUploadStatus" class="text-[10px] text-slate-400">جاهز للرفع</span>
+            </div>
+            <input type="file" id="videoFileInput" accept="video/*" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-brand file:text-white hover:file:bg-indigo-700" />
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] text-slate-500">أو رابط يوتيوب / خارجي:</span>
+              <input type="url" id="videoUrlManual" placeholder="https://www.youtube.com/watch?v=..." class="flex-1 bg-[#0A0F1D] border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white" />
+            </div>
+          </div>
+
+          <div class="border border-dashed border-slate-700 bg-[#111827]/60 p-4 rounded-2xl space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-cyan-300">📄 ملخص وتطبيقات (PDF / Word / Excel)</span>
+              <span id="pdfUploadStatus" class="text-[10px] text-slate-400">جاهز للرفع</span>
+            </div>
+            <input type="file" id="pdfFileInput" accept=".pdf,.doc,.docx,.xls,.xlsx,.zip" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-brand file:text-white hover:file:bg-indigo-700" />
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] text-slate-500">أو رابط ملف جاهز:</span>
+              <input type="url" id="pdfUrlManual" placeholder="https://..." class="flex-1 bg-[#0A0F1D] border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white" />
+            </div>
+          </div>
+        </div>
+
+        <!-- بنك الأسئلة MCQ -->
+        <div class="border-t border-slate-800 pt-5 space-y-4">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs md:text-sm font-black text-amber-300 flex items-center gap-2">
+              <span>❓</span> بنك أسئلة الـ MCQ المرفق مع المحاضرة
+            </h4>
+            <button type="button" onclick="addQuizQuestionInput()" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-bold transition">
+              + إضافة سؤال جديد
+            </button>
+          </div>
+          <div id="quizQuestionsContainer" class="space-y-4"></div>
+        </div>
+
+        <div class="pt-4 flex justify-end gap-2">
+          <button type="button" id="cancelEditBtn" onclick="cancelLectureEdit()" class="hidden px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-black text-xs transition">
+            إلغاء التعديل ✕
+          </button>
+          <button type="submit" id="saveLectureBtn" class="px-8 py-3 rounded-xl bg-brand hover:bg-indigo-700 text-white font-black text-xs md:text-sm shadow-xl transition active:scale-95">
+            نشر المحاضرة للمقرر 🚀
+          </button>
+        </div>
+      </form>
+
+      <!-- قائمة المحاضرات المنشورة -->
+      <div class="mt-8 space-y-4">
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <h3 class="text-sm font-black text-slate-200">📋 المحاضرات المنشورة في هذا المقرر:</h3>
+          <input type="text" id="lecturesSearchInput" placeholder="🔍 بحث بعنوان المحاضرة..." class="h-10 w-full sm:w-64 rounded-xl px-3 bg-[#0A0F1D] border border-slate-700 text-xs text-white focus:border-brand" />
+        </div>
+        <div id="lecturesSummaryBar" class="text-[11px] font-bold text-slate-400"></div>
+        <div id="publishedLecturesList" class="space-y-3"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ تبويب القاموس التقني واللغوي ============ -->
+  <div id="sectionGlossaryTab" class="hidden space-y-6">
+    <section class="bg-card-theme border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl">
+      <div class="border-b border-slate-800 pb-6 mb-6">
+        <span class="text-xs font-black text-cyan-400 uppercase tracking-wider">قاموس أطلس التقني واللغوي</span>
+        <h2 class="text-xl md:text-2xl font-black text-white mt-1">📖 إدارة مصطلحات البرمجة واللغات</h2>
+        <p class="text-xs text-slate-400 mt-1">تظهر هذه المصطلحات والمفاهيم لكافة المتدربين للمساعدة في استيعاب المصطلحات التخصصية</p>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-[#111827] border border-slate-800 space-y-4">
+        <h3 class="text-sm font-black text-cyan-300">➕ إضافة مصطلح / مفهوم جديد</h3>
+        <form id="addTermForm" class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <input id="termName" type="text" placeholder="اسم المصطلح (مثلاً: Recursion / Der Artikel)" required class="h-10 rounded-xl px-3 bg-[#0A0F1D] border border-slate-700 text-xs text-white" />
+          <input id="termCategory" type="text" placeholder="التصنيف (مثلاً: خوارزميات / قواعد ألماني)" required class="h-10 rounded-xl px-3 bg-[#0A0F1D] border border-slate-700 text-xs text-white" />
+          <input id="termDef" type="text" placeholder="الشرح والتعريف الميسر" required class="h-10 rounded-xl px-3 bg-[#0A0F1D] border border-slate-700 text-xs text-white md:col-span-2" />
+          <button type="submit" class="h-10 rounded-xl bg-brand text-white font-black text-xs hover:bg-indigo-700 transition">نشر في القاموس ✨</button>
+        </form>
+      </div>
+
+      <!-- قائمة المصطلحات المنشورة -->
+      <div class="mt-8 space-y-4">
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <h3 class="text-sm font-black text-slate-200">📋 المصطلحات المنشورة (<span id="termsCountBadge">0</span>)</h3>
+          <input type="text" id="termsSearchInput" placeholder="🔍 بحث في المصطلحات..." class="h-10 w-full sm:w-64 rounded-xl px-3 bg-[#0A0F1D] border border-slate-700 text-xs text-white focus:border-brand" />
+        </div>
+        <div id="publishedTermsList" class="space-y-3"></div>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<!-- نافذة المودال لتفعيل كورسات الطالب (Course Activation Modal) -->
+<div id="courseModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+  <div class="bg-[#111827] border border-slate-700 rounded-3xl max-w-lg w-full p-6 space-y-5 shadow-2xl">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+      <div>
+        <h3 id="modalStudentName" class="font-black text-base text-white">تفعيل كورسات الطالب</h3>
+        <p id="modalStudentEmail" class="text-xs text-slate-400"></p>
+      </div>
+      <button onclick="closeModal()" class="text-slate-400 hover:text-white text-lg">✕</button>
+    </div>
+
+    <!-- قائمة كل الكورسات المتاحة -->
+    <div id="modalCoursesList" class="space-y-2.5 max-h-80 overflow-y-auto pe-1"></div>
+
+    <div class="pt-2 border-t border-slate-800 flex justify-end">
+      <button onclick="closeModal()" class="px-6 py-2.5 rounded-xl bg-brand text-white font-black text-xs hover:bg-indigo-700 transition">
+        إتمام وإغلاق
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FIREBASE & LOGIC FOR ATLAS ADMIN ============ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, updateDoc, doc, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB1EI6RB0EfCaq1pm5z4dcQEzhEPpNEwEA",
+  authDomain: "atlas-c883c.firebaseapp.com",
+  projectId: "atlas-c883c",
+  storageBucket: "atlas-c883c.firebasestorage.app",
+  messagingSenderId: "414987185997",
+  appId: "1:414987185997:web:57f34540ef1b4ca7d6d104"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const ADMIN_EMAILS = [
+  "ahmedmohamedhosny100@gmail.com",
+  "admin@atlas.com",
+  "admin@khedr.com"
+];
+
+// قائمة كورسات منصة أطلس الشاملة
+const allCourses = [
+  { id: "c_frontend", title: "تطوير الواجهات (Frontend - HTML, CSS, JS, React)" },
+  { id: "c_backend", title: "تطوير الواجهات الخلفية (Backend - Node.js, Express & DB)" },
+  { id: "c_linux", title: "أساسيات Linux وإدارة الشبكات" },
+  { id: "c_pentest", title: "الأمن السيبراني واختبار الاختراق (Penetration Testing)" },
+  { id: "c_deutsch", title: "احتراف اللغة الألمانية (Deutsch A1-B2)" },
+  { id: "c_office", title: "حزمة الـ Office الاحترافية (Word, Excel, PowerPoint)" }
+];
+
+const packageBundles = {
+  pkg_fullstack: ["c_frontend", "c_backend"],
+  pkg_cyber: ["c_linux", "c_pentest"]
+};
+
+let studentsList = [];
+let currentEditingStudent = null;
+let currentSelectedCourse = allCourses[0].id;
+
+const authGate = document.getElementById("authGate");
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "index.html#authSection";
+    return;
+  }
+
+  const userEmail = (user.email || "").toLowerCase().trim();
+  const isAllowed = ADMIN_EMAILS.some(admin => admin.toLowerCase().trim() === userEmail);
+
+  if (ADMIN_EMAILS.length > 0 && !isAllowed) {
+    alert("عذراً، هذا الحساب ليس لديه صلاحيات المشرف.");
+    window.location.href = "index.html";
+    return;
+  }
+
+  await loadAllStudents();
+  if (authGate) authGate.style.display = "none";
+});
+
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.href = "index.html";
+  });
+}
+
+async function loadAllStudents() {
+  try {
+    const snap = await getDocs(collection(db, "students"));
+    studentsList = [];
+    snap.forEach(docSnap => {
+      const data = docSnap.data();
+      const email = (data.email || "").toLowerCase().trim();
+      const isSupervisor = ADMIN_EMAILS.some(admin => admin.toLowerCase().trim() === email);
+      if (!isSupervisor) {
+        studentsList.push({ id: docSnap.id, ...data });
+      }
+    });
+    updateStats();
+    renderStudents();
+  } catch (e) {
+    console.error("Error loading students:", e);
+  }
+}
+
+function updateStats() {
+  const totalEl = document.getElementById("statTotalStudents");
+  const techEl = document.getElementById("statTechStudents");
+  const langEl = document.getElementById("statLangStudents");
+  const activeEl = document.getElementById("statActiveSubscriptions");
+
+  if (totalEl) totalEl.textContent = studentsList.length;
+  if (techEl) techEl.textContent = studentsList.filter(s => s.academicYear === "tech" || !s.academicYear).length;
+  if (langEl) langEl.textContent = studentsList.filter(s => s.academicYear === "lang_office").length;
+  
+  let totalEnrolled = 0;
+  studentsList.forEach(s => {
+    if (s.enrolledCourses) totalEnrolled += s.enrolledCourses.length;
+  });
+  if (activeEl) activeEl.textContent = totalEnrolled;
+}
+
+function renderStudents() {
+  const searchInput = document.getElementById("searchInput");
+  const yearFilter = document.getElementById("yearFilter");
+  const searchVal = searchInput ? searchInput.value.trim().toLowerCase() : "";
+  const yearVal = yearFilter ? yearFilter.value : "all";
+
+  const filtered = studentsList.filter(s => {
+    const matchName = (s.fullName || "").toLowerCase().includes(searchVal);
+    const matchEmail = (s.email || "").toLowerCase().includes(searchVal);
+    const matchPhone = (s.phone || "").includes(searchVal);
+    const matchUni = (s.major || s.university || "").toLowerCase().includes(searchVal);
+    const matchYear = yearVal === "all" || s.academicYear === yearVal;
+
+    return (matchName || matchEmail || matchPhone || matchUni) && matchYear;
+  });
+
+  const tbody = document.getElementById("studentsTableBody");
+  if (!tbody) return;
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-400 font-bold">لا يوجد متدربون مطابقون للبحث.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(s => {
+    const enrolled = s.enrolledCourses || [];
+    const trackLabel = s.academicYear === "lang_office" ? "لغات وOffice" : "برمجة وأمن سيبراني";
+
+    return `
+      <tr class="hover:bg-slate-800/30 transition border-b border-slate-800/40">
+        <td class="p-4">
+          <span class="font-black text-sm text-white block">${s.fullName || "بدون اسم"}</span>
+          <span class="text-[11px] text-slate-400 dir-ltr inline-block">${s.email || ""}</span>
+        </td>
+        <td class="p-4">
+          <span class="text-xs font-bold text-cyan-300 block">🎓 ${s.major || s.university || "عام"}</span>
+        </td>
+        <td class="p-4">
+          <span class="px-2.5 py-1 rounded-lg text-[10px] font-black ${s.academicYear === 'lang_office' ? 'bg-amber-950/60 text-amber-400 border border-amber-800/40' : 'bg-indigo-950/60 text-indigo-400 border border-indigo-800/40'}">
+            ${trackLabel}
+          </span>
+        </td>
+        <td class="p-4">
+          <a href="https://wa.me/2${s.phone}" target="_blank" class="text-emerald-400 font-bold hover:underline dir-ltr inline-block">
+            ${s.phone || "—"}
+          </a>
+        </td>
+        <td class="p-4">
+          <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-cyan-300 font-bold text-xs">
+            ${enrolled.length} كورسات مفعلة
+          </span>
+        </td>
+        <td class="p-4 text-center">
+          <button onclick="openCourseModal('${s.id}')" class="px-4 py-2 rounded-xl bg-brand hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition">
+            ⚙️ إدارة وتفعيل الكورسات
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join("");
+}
+
+window.openCourseModal = function(studentId) {
+  const student = studentsList.find(s => s.id === studentId);
+  if (!student) return;
+  currentEditingStudent = student;
+
+  document.getElementById("modalStudentName").textContent = `تفعيل كورسات: ${student.fullName}`;
+  document.getElementById("modalStudentEmail").textContent = `${student.email} • ${student.phone || ''}`;
+
+  renderModalCourses();
+  document.getElementById("courseModal").classList.remove("hidden");
+};
+
+function renderModalCourses() {
+  if (!currentEditingStudent) return;
+  const enrolled = currentEditingStudent.enrolledCourses || [];
+
+  document.getElementById("modalCoursesList").innerHTML = allCourses.map(crs => {
+    const isEnrolled = enrolled.includes(crs.id);
+
+    return `
+      <div class="p-3 rounded-2xl border border-slate-800 bg-[#0A0F1D] flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-200">${crs.title}</span>
+        <button onclick="toggleEnroll('${crs.id}')" class="px-3.5 py-1.5 rounded-lg text-xs font-black transition ${
+          isEnrolled 
+            ? 'bg-emerald-600 text-white hover:bg-rose-700' 
+            : 'bg-slate-800 text-slate-400 hover:bg-brand hover:text-white'
+        }">
+          ${isEnrolled ? '✓ مفعل (إلغاء)' : '+ تفعيل'}
+        </button>
+      </div>
+    `;
+  }).join("");
+}
+
+window.toggleEnroll = async function(courseId) {
+  if (!currentEditingStudent) return;
+  let enrolled = currentEditingStudent.enrolledCourses || [];
+
+  if (enrolled.includes(courseId)) {
+    enrolled = enrolled.filter(id => id !== courseId);
+  } else {
+    enrolled.push(courseId);
+  }
+
+  try {
+    await updateDoc(doc(db, "students", currentEditingStudent.id), { enrolledCourses: enrolled });
+    currentEditingStudent.enrolledCourses = enrolled;
+    renderModalCourses();
+    renderStudents();
+    updateStats();
+  } catch (e) {
+    console.error(e);
+    alert("حدث خطأ أثناء حفظ التعديل في السيرفر.");
+  }
+};
+
+window.closeModal = function() {
+  document.getElementById("courseModal").classList.add("hidden");
+  currentEditingStudent = null;
+};
+
+const sInput = document.getElementById("searchInput");
+const yFilter = document.getElementById("yearFilter");
+if (sInput) sInput.addEventListener("input", renderStudents);
+if (yFilter) yFilter.addEventListener("change", renderStudents);
+
+// ============ CLOUDINARY UPLOAD LOGIC ============
+const CLOUD_NAME = "sohjyczp";
+const UPLOAD_PRESET = "khedr_uploads";
+
+const adminCourseSelect = document.getElementById("adminCourseSelect");
+if (adminCourseSelect) {
+  adminCourseSelect.innerHTML = allCourses.map(c => `<option value="${c.id}">${c.title}</option>`).join("");
+  adminCourseSelect.addEventListener("change", (e) => {
+    currentSelectedCourse = e.target.value;
+    loadPublishedLectures();
+  });
+}
+
+function uploadToCloudinary(file, resourceType, statusElementId) {
+  const statusEl = document.getElementById(statusElementId);
+  if (statusEl) statusEl.textContent = "⏳ جارٍ الرفع... 0%";
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", UPLOAD_PRESET);
+
+  return new Promise((resolve) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${resourceType}/upload`);
+
+    xhr.upload.addEventListener("progress", (e) => {
+      if (e.lengthComputable && statusEl) {
+        const percent = Math.round((e.loaded / e.total) * 100);
+        statusEl.textContent = `⏳ جارٍ الرفع... ${percent}%`;
+      }
+    });
+
+    xhr.onload = () => {
+      try {
+        const data = JSON.parse(xhr.responseText);
+        if (data.secure_url) {
+          if (statusEl) statusEl.textContent = "✅ تم الرفع بنجاح!";
+          resolve(data.secure_url);
+        } else {
+          throw new Error("Upload failed");
+        }
+      } catch (err) {
+        if (statusEl) statusEl.textContent = "❌ فشل الرفع";
+        resolve(null);
+      }
+    };
+
+    xhr.onerror = () => {
+      if (statusEl) statusEl.textContent = "❌ فشل الرفع";
+      resolve(null);
+    };
+
+    xhr.send(formData);
+  });
+}
+
+window.addQuizQuestionInput = function() {
+  const container = document.getElementById("quizQuestionsContainer");
+  const qIndex = container.children.length;
+
+  const qDiv = document.createElement("div");
+  qDiv.className = "p-4 rounded-xl border border-slate-800 bg-[#111827] space-y-3";
+  qDiv.innerHTML = `
+    <div class="flex items-center justify-between">
+      <span class="text-xs font-black text-cyan-400">سؤال #${qIndex + 1}</span>
+      <button type="button" onclick="this.parentElement.parentElement.remove()" class="text-rose-400 hover:text-rose-300 text-xs font-bold">حذف السؤال ✕</button>
+    </div>
+    <input type="text" placeholder="نص السؤال التدريبي..." class="quiz-q-text w-full bg-[#0A0F1D] border border-slate-700 rounded-lg px-3 py-2 text-xs text-white" required />
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <input type="text" placeholder="الخيار A" class="quiz-opt-0 bg-[#0A0F1D] border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white" required />
+      <input type="text" placeholder="الخيار B" class="quiz-opt-1 bg-[#0A0F1D] border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white" required />
+      <input type="text" placeholder="الخيار C" class="quiz-opt-2 bg-[#0A0F1D] border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white" required />
+      <input type="text" placeholder="الخيار D" class="quiz-opt-3 bg-[#0A0F1D] border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white" required />
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-xs font-bold text-slate-400">الإجابة الصحيحة:</span>
+      <select class="quiz-correct bg-[#0A0F1D] border border-slate-700 rounded-lg px-3 py-1 text-xs text-emerald-400 font-bold">
+        <option value="0">الخيار A</option>
+        <option value="1">الخيار B</option>
+        <option value="2">الخيار C</option>
+        <option value="3">الخيار D</option>
+      </select>
+    </div>
+  `;
+  container.appendChild(qDiv);
+};
+
+document.getElementById("addTermForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const term = document.getElementById("termName").value.trim();
+  const cat = document.getElementById("termCategory").value.trim();
+  const def = document.getElementById("termDef").value.trim();
+
+  await addDoc(collection(db, "tech_terms"), {
+    term, category: cat, definition: def, createdAt: serverTimestamp()
+  });
+  alert("✅ تم نشر المصطلح في قاموس أطلس بنجاح!");
+  e.target.reset();
+  loadPublishedTerms();
+});
+
+const addLectureForm = document.getElementById("addLectureForm");
+if (addLectureForm) {
+  addLectureForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const saveBtn = document.getElementById("saveLectureBtn");
+    saveBtn.disabled = true;
+    saveBtn.textContent = "⏳ جارٍ رفع الوسائط وحفظ المحاضرة...";
+
+    try {
+      const videoFile = document.getElementById("videoFileInput").files[0];
+      const pdfFile = document.getElementById("pdfFileInput").files[0];
+
+      let videoUrl = document.getElementById("videoUrlManual").value.trim();
+      let pdfUrl = document.getElementById("pdfUrlManual").value.trim();
+
+      if (videoFile) {
+        const uploadedVideo = await uploadToCloudinary(videoFile, "video", "videoUploadStatus");
+        if (uploadedVideo) videoUrl = uploadedVideo;
+      }
+
+      if (pdfFile) {
+        const uploadedPdf = await uploadToCloudinary(pdfFile, "raw", "pdfUploadStatus");
+        if (uploadedPdf) pdfUrl = uploadedPdf;
+      }
+
+      if (videoUrl.includes("youtube.com/watch?v=")) {
+        videoUrl = videoUrl.replace("watch?v=", "embed/");
+      } else if (videoUrl.includes("youtu.be/")) {
+        videoUrl = videoUrl.replace("youtu.be/", "www.youtube.com/embed/");
+      }
+
+      const quiz = [];
+      document.querySelectorAll("#quizQuestionsContainer > div").forEach(div => {
+        const qText = div.querySelector(".quiz-q-text").value.trim();
+        const opts = [
+          div.querySelector(".quiz-opt-0").value.trim(),
+          div.querySelector(".quiz-opt-1").value.trim(),
+          div.querySelector(".quiz-opt-2").value.trim(),
+          div.querySelector(".quiz-opt-3").value.trim()
+        ];
+        const correct = parseInt(div.querySelector(".quiz-correct").value, 10);
+        if (qText) quiz.push({ question: qText, options: opts, correctIndex: correct });
+      });
+
+      const lectureData = {
+        courseId: currentSelectedCourse,
+        title: `${document.getElementById("lecNumber").value}: ${document.getElementById("lecCustomName").value.trim()}`,
+        order: parseInt(document.getElementById("lecNumber").selectedIndex, 10),
+        desc: document.getElementById("lecDesc").value.trim(),
+        isFree: document.getElementById("lecIsFree").value === "true",
+        videoUrl: videoUrl,
+        pdfUrl: pdfUrl,
+        quiz: quiz
+      };
+
+      const editingId = saveBtn.dataset.editingId;
+
+      if (editingId) {
+        await updateDoc(doc(db, "lectures", editingId), lectureData);
+        alert("✅ تم حفظ التعديلات على المحاضرة بنجاح!");
+        delete saveBtn.dataset.editingId;
+      } else {
+        lectureData.createdAt = new Date();
+        await addDoc(collection(db, "lectures"), lectureData);
+        alert("🎉 تم نشر المحاضرة بنجاح وحفظها سحابياً!");
+      }
+
+      addLectureForm.reset();
+      saveBtn.textContent = "نشر المحاضرة للمقرر 🚀";
+      document.getElementById("quizQuestionsContainer").innerHTML = "";
+      loadPublishedLectures();
+    } catch (err) {
+      console.error(err);
+      alert("حدث خطأ أثناء نشر المحاضرة.");
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.textContent = "نشر المحاضرة للمقرر 🚀";
+    }
+  });
+}
+
+let currentCourseLectures = [];
+
+async function loadPublishedLectures() {
+  const container = document.getElementById("publishedLecturesList");
+  if (!container) return;
+  container.innerHTML = `<span class="text-xs text-slate-500">جارٍ جلب المحاضرات...</span>`;
+
+  try {
+    const q = query(collection(db, "lectures"), where("courseId", "==", currentSelectedCourse));
+    const snap = await getDocs(q);
+    currentCourseLectures = snap.docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() }));
+    currentCourseLectures.sort((a, b) => (a.order || 0) - (b.order || 0));
+    renderLecturesList(currentCourseLectures);
+  } catch (e) {
+    container.innerHTML = `<span class="text-xs text-rose-400">حدث خطأ أثناء جلب المحاضرات.</span>`;
+  }
+}
+
+function renderLecturesList(lectures) {
+  const container = document.getElementById("publishedLecturesList");
+  const summaryBar = document.getElementById("lecturesSummaryBar");
+  if (!container) return;
+
+  if (summaryBar) {
+    const freeCount = lectures.filter(l => l.isFree).length;
+    const totalQuiz = lectures.reduce((sum, l) => sum + (l.quiz ? l.quiz.length : 0), 0);
+    summaryBar.textContent = lectures.length > 0
+      ? `${lectures.length} محاضرة منشورة • ${freeCount} مجانية • ${totalQuiz} سؤال MCQ إجمالي`
+      : "";
+  }
+
+  if (lectures.length === 0) {
+    container.innerHTML = `<span class="text-xs text-slate-500 font-bold">لا توجد محاضرات منشورة لهذا المقرر بعد.</span>`;
+    return;
+  }
+
+  container.innerHTML = lectures.map(lec => {
+    const docId = lec.id;
+    return `
+      <div class="p-4 rounded-2xl border border-slate-800 bg-[#0A0F1D] flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-black text-white">${lec.title}</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded ${lec.isFree ? 'bg-emerald-950 text-emerald-400 border border-emerald-800/40' : 'bg-slate-800 text-cyan-300'}">
+              ${lec.isFree ? 'معاينة مجانية' : 'مقفولة للمشتركين'}
+            </span>
+          </div>
+          <span class="text-[10px] text-slate-400 block">${lec.quiz ? lec.quiz.length : 0} أسئلة MCQ</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick='editLecture("${docId}", ${JSON.stringify(lec.title)}, ${lec.isFree}, ${JSON.stringify(lec.desc || "")}, ${JSON.stringify(lec.videoUrl || "")}, ${JSON.stringify(lec.pdfUrl || "")}, ${JSON.stringify(lec.quiz || [])})' class="px-3 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/40 border border-cyan-500/40 text-cyan-300 text-xs font-bold transition">
+            تعديل ✏️
+          </button>
+          ${lec.videoUrl ? `<a href="${lec.videoUrl}" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 text-xs font-bold transition">🎬 مشاهدة</a>` : ''}
+          ${lec.pdfUrl ? `<a href="${lec.pdfUrl}" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-bold transition">📄 ملف</a>` : ''}
+          <button onclick="deleteLecture('${docId}')" class="px-3 py-1.5 rounded-lg bg-rose-950/60 hover:bg-rose-900 border border-rose-800/40 text-rose-300 text-xs font-bold transition">
+            حذف ✕
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+const lecturesSearchInput = document.getElementById("lecturesSearchInput");
+if (lecturesSearchInput) {
+  lecturesSearchInput.addEventListener("input", (e) => {
+    const q = e.target.value.toLowerCase().trim();
+    const filtered = currentCourseLectures.filter(l => (l.title || "").toLowerCase().includes(q));
+    renderLecturesList(filtered);
+  });
+}
+
+let allPublishedTerms = [];
+
+async function loadPublishedTerms() {
+  const container = document.getElementById("publishedTermsList");
+  if (!container) return;
+  container.innerHTML = `<span class="text-xs text-slate-500">جارٍ جلب المصطلحات...</span>`;
+
+  try {
+    const snap = await getDocs(collection(db, "tech_terms"));
+    allPublishedTerms = [];
+    snap.forEach(docSnap => {
+      allPublishedTerms.push({ id: docSnap.id, ...docSnap.data() });
+    });
+    renderTermsList(allPublishedTerms);
+  } catch (e) {
+    container.innerHTML = `<span class="text-xs text-rose-400">حدث خطأ أثناء جلب المصطلحات.</span>`;
+  }
+}
+
+function renderTermsList(list) {
+  const container = document.getElementById("publishedTermsList");
+  const countBadge = document.getElementById("termsCountBadge");
+  if (!container) return;
+
+  if (countBadge) countBadge.textContent = list.length;
+
+  if (list.length === 0) {
+    container.innerHTML = `<span class="text-xs text-slate-500 font-bold">لا توجد مصطلحات منشورة بعد.</span>`;
+    return;
+  }
+
+  container.innerHTML = list.map(t => `
+    <div class="p-4 rounded-2xl border border-slate-800 bg-[#0A0F1D] flex items-center justify-between gap-3">
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-black text-cyan-300 font-mono">${t.term || ""}</span>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-indigo-300">${t.category || "تقنية"}</span>
+        </div>
+        <p class="text-[11px] text-slate-400">${t.definition || ""}</p>
+      </div>
+      <button onclick="deleteTerm('${t.id}')" class="shrink-0 px-3 py-1.5 rounded-lg bg-rose-950/60 hover:bg-rose-900 border border-rose-800/40 text-rose-300 text-xs font-bold transition">
+        حذف ✕
+      </button>
+    </div>
+  `).join("");
+}
+
+window.deleteTerm = async function(termId) {
+  if (!confirm("هل أنت متأكد من حذف هذا المصطلح؟")) return;
+  try {
+    await deleteDoc(doc(db, "tech_terms", termId));
+    loadPublishedTerms();
+  } catch (e) {
+    alert("حدث خطأ أثناء الحذف.");
+  }
+};
+
+window.deleteLecture = async function(lecId) {
+  if (!confirm("هل أنت متأكد من حذف هذه المحاضرة؟")) return;
+  try {
+    await deleteDoc(doc(db, "lectures", lecId));
+    loadPublishedLectures();
+  } catch (e) {
+    alert("حدث خطأ أثناء الحذف.");
+  }
+};
+
+const themeBtn = document.getElementById("themeBtn");
+if (themeBtn) {
+  if (localStorage.getItem("adminTheme") === "light") {
+    document.body.classList.add("light");
+  }
+
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    const isLight = document.body.classList.contains("light");
+    localStorage.setItem("adminTheme", isLight ? "light" : "dark");
+  });
+}
+
+window.switchAdminTab = function(tab) {
+  const sections = {
+    students: document.getElementById("sectionStudentsTab"),
+    lectures: document.getElementById("sectionLecturesTab"),
+    glossary: document.getElementById("sectionGlossaryTab")
+  };
+  const buttons = {
+    students: document.getElementById("adminTabStudents"),
+    lectures: document.getElementById("adminTabLectures"),
+    glossary: document.getElementById("adminTabGlossary")
+  };
+
+  const activeClass = "px-4 py-2 rounded-xl text-xs font-black transition bg-brand text-white shadow";
+  const inactiveClass = "px-4 py-2 rounded-xl text-xs font-black transition text-slate-400 hover:text-white";
+
+  Object.keys(sections).forEach(key => {
+    if (key === tab) {
+      sections[key].classList.remove("hidden");
+      buttons[key].className = activeClass;
+    } else {
+      sections[key].classList.add("hidden");
+      buttons[key].className = inactiveClass;
+    }
+  });
+
+  if (tab === 'lectures') {
+    loadPublishedLectures();
+  } else if (tab === 'glossary') {
+    loadPublishedTerms();
+  }
+};
+
+window.editLecture = function(lecId, fullTitle, isFree, desc, videoUrl, pdfUrl, quiz) {
+  let parts = fullTitle.split(":");
+  let lecNum = parts[0] ? parts[0].trim() : "المحاضرة الأولى";
+  let lecName = parts.slice(1).join(":").trim() || fullTitle;
+
+  const numSelect = document.getElementById("lecNumber");
+  if (numSelect) numSelect.value = lecNum;
+
+  document.getElementById("lecCustomName").value = lecName;
+  document.getElementById("lecIsFree").value = isFree ? "true" : "false";
+  document.getElementById("lecDesc").value = desc || "";
+  document.getElementById("videoUrlManual").value = videoUrl || "";
+  document.getElementById("pdfUrlManual").value = pdfUrl || "";
+  document.getElementById("cancelEditBtn").classList.remove("hidden");
+
+  const quizContainer = document.getElementById("quizQuestionsContainer");
+  quizContainer.innerHTML = "";
+  if (Array.isArray(quiz) && quiz.length > 0) {
+    quiz.forEach(q => {
+      addQuizQuestionInput();
+      const lastBlock = quizContainer.lastElementChild;
+      lastBlock.querySelector(".quiz-q-text").value = q.question || "";
+      lastBlock.querySelector(".quiz-opt-0").value = q.options?.[0] || "";
+      lastBlock.querySelector(".quiz-opt-1").value = q.options?.[1] || "";
+      lastBlock.querySelector(".quiz-opt-2").value = q.options?.[2] || "";
+      lastBlock.querySelector(".quiz-opt-3").value = q.options?.[3] || "";
+      lastBlock.querySelector(".quiz-correct").value = q.correctIndex ?? 0;
+    });
+  }
+
+  const saveBtn = document.getElementById("saveLectureBtn");
+  saveBtn.textContent = "حفظ التعديلات على المحاضرة 💾";
+  saveBtn.dataset.editingId = lecId;
+
+  document.getElementById("addLectureForm").scrollIntoView({ behavior: "smooth" });
+};
+
+window.cancelLectureEdit = function() {
+  const saveBtn = document.getElementById("saveLectureBtn");
+  delete saveBtn.dataset.editingId;
+  saveBtn.textContent = "نشر المحاضرة للمقرر 🚀";
+  document.getElementById("addLectureForm").reset();
+  document.getElementById("quizQuestionsContainer").innerHTML = "";
+  document.getElementById("cancelEditBtn").classList.add("hidden");
+};
+</script>
+</body>
+</html>
