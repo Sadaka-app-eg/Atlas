@@ -489,5 +489,41 @@
 
     <!-- Firebase Scripts (Modular ES Modules Native Imports via type="module") -->
     <script type="module" src="main.js"></script>
+    <!-- Admin Add Course Modal -->
+<div class="modal-overlay hidden" id="adminModal">
+    <div class="modal-card">
+        <button class="modal-close" id="closeAdminModal"><i data-lucide="x"></i></button>
+        <h3 style="margin-bottom: 1.5rem;">لوحة المشرف - إضافة درس جديد</h3>
+        <form id="adminAddLessonForm" class="auth-form">
+            <div class="form-group">
+                <label>اختر المسار</label>
+                <select id="lessonTrackSelect" class="form-input" required>
+                    <option value="fullstack-web">تطوير الويب المتكامل</option>
+                    <option value="deutsch-a1-b2">اللغة الألمانية</option>
+                    <option value="data-science-ai">علم البيانات والذكاء الاصطناعي</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>عنوان المحاضرة / المحطة</label>
+                <input type="text" id="lessonTitle" class="form-input" placeholder="مثال: مقدمة إلى DOM Manipulation" required>
+            </div>
+            <div class="form-group">
+                <label>رابط فيديو اليوتيوب</label>
+                <input type="url" id="lessonYoutubeUrl" class="form-input" placeholder="https://www.youtube.com/watch?v=..." required>
+            </div>
+            <div class="form-group">
+                <label>وصف سريع للمحاضرة</label>
+                <textarea id="lessonDesc" class="form-input" rows="3" placeholder="أهم النقاط المشروحة..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">حفظ المحاضرة في المسار</button>
+        </form>
+    </div>
+</div>
+
+<!-- زر دخول المشرف السريع (يظهر في أسفل الشاشة) -->
+<button class="admin-badge-trigger" id="openAdminModalBtn">
+    <i data-lucide="plus-circle"></i>
+    <span>إضافة محتوى (المشرف)</span>
+</button>
 </body>
 </html>
