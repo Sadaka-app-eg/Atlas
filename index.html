@@ -1,529 +1,1265 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="dark">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS | المنصة التفاعلية لخرائط التعلم والبرمجة واللغات</title>
-    
-    <!-- Design System Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ATLAS | منصة أطلس التعليمية الشاملة للبرمجة واللغات والتقنية</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root {
+    --brand-primary: #4F46E5;   /* النيلي والبنفسجي الاحترافي لأطلس */
+    --brand-dark:    #3730A3;
+    --brand-accent:  #06B6D4;
+    --ink:           #0E1726;
+    --mist:          #0A0F1D;
+    --mist-line:     #1E293B;
+    --dark-bg:       #0A0F1D;
+    --dark-card:     #111827;
+    --dark-line:     #1E293B;
+  }
+
+  html {
+    font-size: 108%;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 145%;
+    }
+  }
+  html[lang="ar"] body, html[lang="ar"] * { font-family: 'Tajawal', 'IBM Plex Sans Arabic', sans-serif; }
+  html[lang="en"] body, html[lang="en"] * { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .num-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  body { background-color: var(--dark-bg); color: #F8FAFC; transition: background-color 0.3s ease, color 0.3s ease; }
+  body.light { background-color: #F8FAFC; color: #0F172A; }
+
+  .hero-banner-bg {
+    background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 45%, #312E81 100%);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7);
+  }
+  body.light .hero-banner-bg {
+    background: linear-gradient(135deg, #4338CA 0%, #4F46E5 50%, #6366F1 100%) !important;
+    box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.25);
+  }
+  .bg-card-theme { background-color: var(--dark-card); border-color: var(--dark-line); color: #F8FAFC; }
+  body.light .bg-card-theme { background-color: #FFFFFF !important; border-color: #E2E8F0 !important; color: #0F172A !important; }
+  
+  .text-theme-main { color: #F8FAFC; }
+  body.light .text-theme-main { color: #0F172A !important; }
+  
+  .text-theme-sub { color: #94A3B8; }
+  body.light .text-theme-sub { color: #64748B !important; }
+
+  .bg-brand { background-color: var(--brand-primary); }
+  .text-brand { color: var(--brand-primary); }
+  .border-brand { border-color: var(--brand-primary); }
+
+  #scrollProgress {
+    position: fixed;
+    top: 64px;
+    right: 0;
+    height: 3px;
+    background-color: #06B6D4;
+    width: 0%;
+    z-index: 100;
+    transition: width 0.1s ease-out;
+  }
+
+  .theme-toggle-pill {
+    width: 54px;
+    height: 28px;
+    border-radius: 9999px;
+    background-color: var(--brand-primary);
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+  body.light .theme-toggle-pill { background-color: #334155; }
+  .theme-toggle-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 3px;
+    inset-inline-start: 3px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  body.light .theme-toggle-thumb {
+    transform: translateX(26px);
+  }
+  html[dir="rtl"] body.light .theme-toggle-thumb {
+    transform: translateX(-26px);
+  }
+
+  .card-hover { transition: transform .25s ease, box-shadow .25s ease; }
+  .card-hover:hover { transform: translateY(-5px); box-shadow: 0 16px 35px -10px rgba(79, 70, 229, 0.35); }
+
+  .fade-up { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .fade-up.show { opacity: 1; transform: translateY(0); }
+
+  [dir="rtl"] .rtl-flip { transform: scaleX(-1); }
+  ::selection { background: var(--brand-primary); color: #fff; }
+
+  .auth-nav-bg { background-color: #1E293B; }
+  body.light .auth-nav-bg { background-color: #E2E8F0 !important; }
+
+  .auth-tab { color: #94A3B8; font-weight: 800; transition: all 0.2s ease; }
+  .auth-tab.active { background-color: var(--dark-card); color: #38BDF8; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+  
+  body.light .auth-tab { color: #475569 !important; }
+  body.light .auth-tab.active { background-color: #FFFFFF !important; color: var(--brand-primary) !important; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+  div[id^="videoContainer_"]:fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    border-radius: 0 !important;
+  }
+  div[id^="videoContainer_"]:fullscreen div[id^="watermark_"] {
+    font-size: 1.35rem !important;
+    z-index: 99999 !important;
+  }
+</style>
 </head>
-<body>
 
-    <!-- Notification Toast Container -->
-    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+<body class="antialiased">
 
-    <!-- Offline Banner -->
-    <div id="offline-banner" class="system-banner hidden">
-        <i data-lucide="wifi-off"></i>
-        <span>أنت تعمل حالياً في وضع عدم الاتصال (Offline Mode). قد لا تتحديث الأنشطة فوراً.</span>
-    </div>
+<!-- Scroll Progress Bar -->
+<div id="scrollProgress"></div>
 
-  <!-- ==========================================================================
-   Global Sticky Header Architecture - ATLAS Platform
-   ========================================================================== -->
-<header class="global-header" id="mainHeader">
-    <div class="header-container">
-        
-        <!-- Brand Identity & Logo -->
-        <a href="#" class="brand-logo" aria-label="ATLAS الصفحة الرئيسية">
-            <div class="logo-badge" aria-hidden="true">
-                <i data-lucide="compass"></i>
-            </div>
-            <span class="logo-title">ATLAS<span class="accent-dot">.</span></span>
-        </a>
+<!-- ============ NAVBAR ============ -->
+<header id="mainNavbar" class="fixed top-0 inset-x-0 z-[100] backdrop-blur-md bg-[#0A0F1D]/95 border-b border-slate-800 transition-colors">
+  
+  <div class="w-full max-w-[1650px] mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
 
-        <!-- Desktop Navigation Items -->
-        <nav class="desktop-nav" aria-label="التنقل الرئيسي داخل المنصة">
-            <a href="#tracks" class="nav-item active" data-nav="tracks">
-                <i data-lucide="layers"></i>
-                <span>المسارات</span>
-            </a>
-            <a href="#roadmaps" class="nav-item" data-nav="roadmaps">
-                <i data-lucide="git-fork"></i>
-                <span>خرائط الطريق</span>
-            </a>
-            <a href="#about" class="nav-item" data-nav="about">
-                <i data-lucide="info"></i>
-                <span>عن المنصة</span>
-            </a>
-            <a href="#faq" class="nav-item" data-nav="faq">
-                <i data-lucide="help-circle"></i>
-                <span>الأسئلة الشائعة</span>
-            </a>
-            <a href="#contact" class="nav-item" data-nav="contact">
-                <i data-lucide="mail"></i>
-                <span>تواصل معنا</span>
-            </a>
-        </nav>
+    <!-- 1. اللوجو -->
+    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="flex items-center gap-3">
+      <img src="logo.png" alt="ATLAS ACADEMY" class="h-11 md:h-12 w-auto object-contain" onerror="this.src='logo.png'" />
+      <span class="hidden sm:inline font-black text-base md:text-lg text-white tracking-wide" data-i18n="brand">ATLAS ACADEMY</span>
+    </a>
 
-        <!-- Global Header Controls & Actions -->
-        <div class="header-actions">
-            
-            <!-- Quick Search Palette Trigger -->
-            <button class="search-trigger" id="searchTriggerBtn" type="button" aria-label="فتح نافذة البحث السريع">
-                <i data-lucide="search" aria-hidden="true"></i>
-                <span class="search-label">ابحث في ATLAS...</span>
-                <kbd class="key-badge">Ctrl K</kbd>
+    <!-- 2. أزرار التحكم والقائمة -->
+    <div class="flex items-center gap-3">
+      
+      <!-- زر تبديل الثيم -->
+      <div id="themeBtn" class="theme-toggle-pill" title="تبديل الوضع الليلي والنهاري">
+        <span class="text-[10px] z-10">☀️</span>
+        <span class="text-[10px] z-10">🌙</span>
+        <div class="theme-toggle-thumb"></div>
+      </div>
+
+      <!-- زر تبديل اللغة -->
+      <button id="langBtn" class="text-xs font-bold px-3 h-8 rounded-full border border-slate-700 text-slate-200 flex items-center gap-1.5 hover:border-brand transition">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>
+        <span id="langLabel">EN</span>
+      </button>
+
+      <!-- حاوية زر القائمة المنسدلة -->
+      <div class="relative">
+        <button id="drawerBtn" onclick="toggleDrawer()" class="w-11 h-11 rounded-2xl bg-[#111827] border border-slate-700 hover:border-brand text-cyan-400 flex items-center justify-center shadow-lg transition active:scale-95 cursor-pointer" title="القائمة">
+          <svg id="iconBars" class="w-6 h-6 transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+          <svg id="iconAtom" class="hidden w-6 h-6 transition-all duration-500 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(0 12 12)"></ellipse>
+            <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"></ellipse>
+            <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"></ellipse>
+            <circle cx="12" cy="12" r="2.2" fill="currentColor"></circle>
+          </svg>
+        </button>
+
+        <!-- المينيو المنبثقة -->
+        <div id="drawer" class="hidden absolute top-14 end-0 z-50 w-56 p-2.5 rounded-2xl bg-[#111827]/95 backdrop-blur-xl border border-slate-700 shadow-2xl space-y-1.5 text-start">
+          
+          <!-- أزرار الزائر -->
+          <div id="drawerGuestActions" class="flex flex-col gap-1.5">
+            <button onclick="toggleDrawer(); openAuthView('register');" class="w-full py-2.5 px-3 rounded-xl bg-brand hover:bg-indigo-700 text-white font-black text-xs transition active:scale-95 text-start flex items-center gap-2 cursor-pointer">
+              <span>✨</span> <span data-i18n="auth_tab_register">حساب جديد</span>
             </button>
-
-            <!-- Theme Switcher Button (Dark / Light) -->
-            <button class="icon-button theme-toggle-btn" id="themeToggleBtn" type="button" title="تبديل مظهر المنصة" aria-label="تبديل مظهر المنصة">
-                <i data-lucide="sun" class="sun-icon" aria-hidden="true"></i>
-                <i data-lucide="moon" class="moon-icon" aria-hidden="true"></i>
+            <button onclick="toggleDrawer(); openAuthView('login');" class="w-full py-2.5 px-3 rounded-xl bg-[#0A0F1D] hover:bg-slate-800 text-slate-200 font-bold text-xs border border-slate-700/60 transition active:scale-95 text-start flex items-center gap-2 cursor-pointer">
+              <span>🔑</span> <span data-i18n="auth_tab_login">تسجيل الدخول</span>
             </button>
+          </div>
 
-            <!-- Notifications Center Component -->
-            <div class="notifications-wrapper" id="notifWrapper">
-                <button class="icon-button notif-btn" id="notifBtn" type="button" aria-label="مركز الإشعارات" aria-expanded="false">
-                    <i data-lucide="bell" aria-hidden="true"></i>
-                    <span class="notif-badge hidden" id="notifBadge" aria-label="عدد الإشعارات غير المقروءة">0</span>
-                </button>
-                
-                <!-- Notifications Dropdown Panel -->
-                <div class="notif-dropdown hidden" id="notifDropdown" role="menu">
-                    <div class="dropdown-header">
-                        <div class="title-group">
-                            <h4>الإشعارات</h4>
-                            <span class="unread-count-pill" id="unreadCountPill">0 جديد</span>
-                        </div>
-                        <button class="link-btn" id="markAllReadBtn" type="button">تحديد الكل كمقروء</button>
-                    </div>
-                    <div class="notif-list" id="notifList">
-                        <div class="empty-notif-state">
-                            <i data-lucide="bell-off" aria-hidden="true"></i>
-                            <p>لا توجد إشعارات جديدة في الوقت الحالي.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Auth State Container 1: Guest View (Default Unauthenticated) -->
-            <div class="auth-buttons" id="loggedOutView">
-                <button class="btn btn-secondary" id="loginBtn" type="button">تسجيل الدخول</button>
-                <button class="btn btn-primary" id="signupBtn" type="button">إنشاء حساب</button>
-            </div>
-
-            <!-- Auth State Container 2: Logged In User View (Hidden by Default) -->
-            <div class="user-profile-menu hidden" id="loggedInView">
-                <button class="avatar-btn" id="avatarBtn" type="button" aria-expanded="false" aria-label="قائمة الحساب الشخصي">
-                    <span class="avatar-text" id="avatarText">A</span>
-                    <span class="status-dot-online" title="متصل الآن"></span>
-                </button>
-                
-                <!-- Profile Dropdown Menu -->
-                <div class="profile-dropdown hidden" id="profileDropdown" role="menu">
-                    <div class="user-info-card">
-                        <div class="user-avatar-large" id="menuAvatarLarge">A</div>
-                        <div class="user-text-details">
-                            <strong id="userNameDisplay">أحمد حسني</strong>
-                            <span id="userEmailDisplay">ahmed@example.com</span>
-                        </div>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a href="#settings" class="dropdown-item" id="openSettingsBtn" role="menuitem">
-                        <i data-lucide="settings" aria-hidden="true"></i>
-                        <span>إعدادات الحساب</span>
-                    </a>
-                    <a href="#my-progress" class="dropdown-item" id="myProgressBtn" role="menuitem">
-                        <i data-lucide="bookmark" aria-hidden="true"></i>
-                        <span>مساراتي المحفوظة</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <button class="dropdown-item danger-item" id="logoutBtn" type="button" role="menuitem">
-                        <i data-lucide="log-out" aria-hidden="true"></i>
-                        <span>تسجيل الخروج</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Mobile Drawer Menu Toggle Button -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="فتح القائمة الجانبية">
-                <i data-lucide="menu" aria-hidden="true"></i>
+          <!-- أزرار الطالب -->
+          <div id="drawerStudentActions" class="hidden flex-col gap-1.5">
+            <a href="dashboard.html" class="w-full py-2.5 px-3 rounded-xl bg-brand hover:bg-indigo-700 text-white font-black text-xs transition flex items-center gap-2 text-start">
+              <span>🎓</span> <span data-i18n="menu_student_dash">لوحة تحكم الطالب</span>
+            </a>
+            <button onclick="handleLogoutClick();" class="w-full py-2 px-3 rounded-xl bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 font-bold text-xs border border-rose-900/30 transition text-start flex items-center gap-2 cursor-pointer">
+              <span>🚪</span> <span data-i18n="menu_logout">تسجيل الخروج</span>
             </button>
+          </div>
+
+          <!-- أزرار المشرف -->
+          <div id="drawerAdminActions" class="hidden flex-col gap-1.5">
+            <a href="teacher-dashboard.html" class="w-full py-2.5 px-3 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-xs transition flex items-center gap-2 text-start">
+              <span>⚙️</span> <span data-i18n="menu_admin_dash">لوحة المشرف</span>
+            </a>
+            <a href="dashboard.html" class="w-full py-2 px-3 rounded-xl bg-[#0A0F1D] hover:bg-slate-800 text-slate-200 font-bold text-xs border border-slate-700 transition flex items-center gap-2 text-start">
+              <span>🎓</span> <span data-i18n="menu_student_dash">لوحة الطالب</span>
+            </a>
+            <button onclick="handleLogoutClick();" class="w-full py-2 px-3 rounded-xl bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 font-bold text-xs border border-rose-900/30 transition text-start flex items-center gap-2 cursor-pointer">
+              <span>🚪</span> <span data-i18n="menu_logout">تسجيل الخروج</span>
+            </button>
+          </div>
 
         </div>
+      </div>
+
     </div>
+  </div>
 </header>
 
-    <!-- Main Application Canvas -->
-    <main id="main-content">
-
-<!-- ==========================================================================
-   Hero Section Architecture - ATLAS Engine
-   ========================================================================== -->
-<section class="hero-section" id="heroSection">
-    <div class="hero-container">
-        
-        <!-- Live Status Pill Badge -->
-        <div class="pill-badge" role="status">
-            <span class="pulse-indicator" aria-hidden="true"></span>
-            <span class="badge-text">إصدار 2026: تم تحديث خرائط البرمجة واللغات بالكامل</span>
-            <i data-lucide="arrow-left" class="badge-icon" aria-hidden="true"></i>
-        </div>
-
-        <!-- Main Headline & Value Proposition -->
-        <h1 class="hero-heading">
-            احترف أي مجال من <span class="text-accent">الصفر تماماً</span><br>
-            بمنهجية الخرائط الذهنية التفاعلية
-        </h1>
-
-        <!-- Subtitle Narrative -->
-        <p class="hero-lead">
-            منصة ATLAS صُممت لإغلاق الفجوة بين النظرية والتطبيق. اختر مسارك في البرمجة، اللغات، أو العلوم المتقدمة، واتبع خريطة طريق واضحة ومحدثة تتتبع تقدمك خطوة بخطوة.
-        </p>
-
-        <!-- Primary Call To Actions -->
-        <div class="hero-controls">
-            <a href="#tracks" class="btn btn-primary btn-lg" id="exploreTracksCta">
-                <span>استكشف كافة المسارات</span>
-                <i data-lucide="sparkles" aria-hidden="true"></i>
-            </a>
-            <a href="#roadmaps" class="btn btn-secondary btn-lg" id="demoRoadmapCta">
-                <i data-lucide="play-circle" aria-hidden="true"></i>
-                <span>جولة سريعة في الخرائط</span>
-            </a>
-        </div>
-
-        <!-- Platform Proof Stats Banner -->
-        <div class="stats-banner" id="statsBanner" aria-label="إحصائيات المنصة">
-            <div class="stat-item">
-                <span class="stat-number" id="statRoadmapsCount">+120</span>
-                <span class="stat-label">خريطة طريق تفاعلية</span>
-            </div>
-            <div class="stat-divider" aria-hidden="true"></div>
-            <div class="stat-item">
-                <span class="stat-number" id="statTracksCount">+15</span>
-                <span class="stat-label">مجال وتخصص رئيسي</span>
-            </div>
-            <div class="stat-divider" aria-hidden="true"></div>
-            <div class="stat-item">
-                <span class="stat-number" id="statCompletionRate">98%</span>
-                <span class="stat-label">نسبة إنجاز التطبيقات العمليات</span>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- ==========================================================================
-   Tracks Grid & Filter Engine - ATLAS Engine
-   ========================================================================== -->
-<section class="section-container" id="tracks" aria-labelledby="tracksHeading">
+<!-- ============ HERO SECTION ============ -->
+<section id="hero" class="w-full max-w-[1650px] mx-auto px-3 sm:px-6 md:px-8 pt-28 md:pt-24 pb-8">
+  <div class="relative overflow-hidden rounded-[2.5rem] hero-banner-bg min-h-[520px] md:min-h-[580px] lg:min-h-[640px] flex flex-col md:flex-row items-center justify-between px-6 sm:px-10 md:px-16 py-10 md:py-12 border border-white/10 shadow-2xl">
     
-    <!-- Section Header & Category Pills -->
-    <div class="section-title-group">
-        <div class="title-text-block">
-            <span class="section-tag-inline">
-                <i data-lucide="compass" aria-hidden="true"></i>
-                <span>المجالات المتاحة</span>
-            </span>
-            <h2 class="section-heading" id="tracksHeading">اختر المجال الذي تريد احترافه</h2>
-            <p class="section-subheading">مسارات تعليمية متكاملة تبدأ معك من الأساسيات وحتى الجاهزية التامة لسوق العمل.</p>
+    <!-- نصوص الهيرو -->
+    <div class="w-full md:w-7/12 text-center md:text-right text-white space-y-5 md:space-y-6 z-10 relative">
+      <span class="inline-block text-xs sm:text-sm md:text-base font-black text-cyan-300 tracking-wide" data-i18n="hero_eyebrow">
+        منصة أطلس الشاملة — طريقك لاحتراف البرمجة، الأمن السيبراني، اللغات الأجنبية، وحزم البرمجيات المكتبية
+      </span>
+
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.25] tracking-tight" data-i18n="hero_title">
+        طريقك للاحتراف مع <span class="text-cyan-300">أطـلـس</span><br/>
+        تعلم عملي.. من الصفر لسوق العمل
+      </h1>
+
+      <p class="text-xs sm:text-base md:text-lg font-semibold opacity-90 leading-6 md:leading-8 max-w-xl mx-auto md:mx-0 text-slate-200" data-i18n="hero_sub">
+        خرائط طريق تفاعلية، محاضرات فيديو منتقاة بعناية، وتطبيقات عملية على كل درس لتصل لأعلى درجات الإتقان.
+      </p>
+
+      <!-- أزرار الهيرو -->
+      <div class="pt-2 flex justify-center md:justify-start">
+        <div id="heroGuestCta">
+          <button onclick="openAuthView('register')" class="inline-block bg-white text-[#312E81] font-black text-xs sm:text-sm md:text-base px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl shadow-2xl hover:bg-cyan-50 transition transform hover:scale-105 cursor-pointer" data-i18n="hero_cta1">
+            انضم وابدأ رحلتك الآن 🚀
+          </button>
         </div>
 
-        <!-- Filter Category Tabs -->
-        <div class="filter-pills" role="tablist" aria-label="تصفية مجالات التعلم">
-            <button class="pill active" role="tab" aria-selected="true" data-category="all" id="tab-all">
-                <span>الكل</span>
-                <span class="pill-count" id="count-all">0</span>
-            </button>
-            <button class="pill" role="tab" aria-selected="false" data-category="programming" id="tab-programming">
-                <i data-lucide="code-2" aria-hidden="true"></i>
-                <span>البرمجة والتقنية</span>
-                <span class="pill-count" id="count-programming">0</span>
-            </button>
-            <button class="pill" role="tab" aria-selected="false" data-category="languages" id="tab-languages">
-                <i data-lucide="languages" aria-hidden="true"></i>
-                <span>اللغات والأدبيات</span>
-                <span class="pill-count" id="count-languages">0</span>
-            </button>
-            <button class="pill" role="tab" aria-selected="false" data-category="design" id="tab-design">
-                <i data-lucide="figma" aria-hidden="true"></i>
-                <span>التصميم والـ UI/UX</span>
-                <span class="pill-count" id="count-design">0</span>
-            </button>
+        <div id="heroUserCta" class="hidden">
+          <div class="inline-flex items-center gap-2 bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-white/15 text-cyan-300 font-black text-xs sm:text-sm shadow-lg">
+            <span>👋</span>
+            <span>أهلاً بك يا بطل <span id="heroUserName" class="text-white"></span></span>
+          </div>
         </div>
+      </div>
+
+      <div class="pt-4 border-t border-white/15 text-[11px] md:text-sm font-bold opacity-80 hidden md:block" data-i18n="hero_footer_note">
+        أطلس: بيئة تعليمية ذكية وتطبيقية لكل مجالات المستقبل
+      </div>
     </div>
 
-    <!-- Dynamic Grid View Container -->
-    <div class="grid-layout" id="tracksGrid" aria-live="polite" aria-busy="false">
-        <!-- Javascript will inject Skeleton Loaders first, then real Track Cards -->
+    <!-- صورة المشرف الأساسية -->
+    <div class="absolute inset-0 md:static md:w-5/12 flex justify-center md:justify-end items-end pointer-events-none md:pointer-events-auto z-0 opacity-25 md:opacity-100">
+      <img src="atlas.png" alt="مشرف منصة أطلس" class="max-h-[480px] lg:max-h-[580px] w-auto object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.85)] scale-110 md:scale-105 transform translate-y-6 md:translate-y-0" onerror="this.src='atlas.jpg'" />
     </div>
+
+  </div>
+</section>
+<!-- ============ TRACKS & FIELDS SECTION ============ -->
+<section id="years" class="w-full max-w-[1650px] mx-auto px-6 md:px-12 py-20 border-b border-slate-800">
+  <div class="grid lg:grid-cols-12 gap-10 items-center">
+    
+    <div class="lg:col-span-5 text-right space-y-5">
+      <span class="text-xs md:text-sm font-extrabold uppercase tracking-widest text-cyan-400" data-i18n="years_eyebrow">المسارات المعتمدة</span>
+      <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-theme-main leading-tight" data-i18n="years_title">المجالات والمسارات</h2>
+      <p class="text-sm md:text-lg font-semibold text-theme-sub leading-7" data-i18n="years_sub">
+        اختر مجالك وابدأ التعلم العملي من الأساسيات إلى الاحتراف على هاتفك، التابلت، أو حاسوبك الشخصي.
+      </p>
+      <div class="pt-3">
+        <button id="yearsCtaBtn" type="button" onclick="handleYearsCtaClick()" class="inline-block bg-brand hover:bg-indigo-700 text-white font-black text-sm md:text-base px-9 py-4 rounded-2xl shadow-xl transition cursor-pointer" data-i18n="btn_years_cta">
+          انشئ حسابك الآن مجاناً
+        </button>
+      </div>
+    </div>
+
+    <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6">
+      
+      <!-- مسار البرمجة والأمن السيبراني -->
+      <div id="year1Card" class="fade-up card-hover rounded-3xl p-8 border border-slate-800 bg-card-theme flex flex-col justify-between shadow-xl">
+        <div>
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center font-black text-2xl mb-4 bg-brand text-white shadow-lg">💻</div>
+          <h3 class="text-xl font-black text-theme-main" data-i18n="year1_title">البرمجة والأمن السيبراني</h3>
+          <p class="text-xs md:text-sm text-theme-sub font-semibold mt-2.5 leading-6" data-i18n="year1_desc">Full-Stack Web, React, Node.js, Python, Ethical Hacking, Linux, الشبكات وتأمين النظم.</p>
+        </div>
+        <button onclick="goToYearCourses('tech')" class="mt-6 inline-flex items-center text-xs md:text-sm font-black text-cyan-400 hover:underline">
+          دخول مسارات البرمجة والتقنية ←
+        </button>
+      </div>
+
+      <!-- مسار اللغات والأدوات المكتبية -->
+      <div id="year2Card" class="fade-up card-hover rounded-3xl p-8 border border-slate-800 bg-card-theme flex flex-col justify-between shadow-xl">
+        <div>
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center font-black text-2xl mb-4 bg-cyan-600 text-white shadow-lg">🌐</div>
+          <h3 class="text-xl font-black text-theme-main" data-i18n="year2_title">اللغات وحزم الـ Office</h3>
+          <p class="text-xs md:text-sm text-theme-sub font-semibold mt-2.5 leading-6" data-i18n="year2_desc">احتراف اللغة الألمانية (A1-B2), Business English, واحتراف أدوات Word, Excel, PowerPoint.</p>
+        </div>
+        <button onclick="goToYearCourses('lang_office')" class="mt-6 inline-flex items-center text-xs md:text-sm font-black text-cyan-400 hover:underline">
+          دخول مسارات اللغات والبرمجيات ←
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ COURSES & SLIDER SECTION ============ -->
+<section id="courses" class="w-full max-w-[1650px] mx-auto px-4 md:px-8 py-16 border-b border-slate-800 relative">
+  
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+    <div>
+      <span class="text-xs md:text-sm font-extrabold uppercase tracking-widest text-cyan-400">المكتبة الرقمية والمقررات التفاعلية</span>
+      <h2 class="text-3xl md:text-5xl font-black mt-1 text-theme-main">الكورسات والباقات المتاحة</h2>
+    </div>
+
+    <div id="coursesFilterBar" class="flex items-center gap-1.5 bg-[#111827] p-1.5 rounded-2xl border border-slate-800 flex-wrap">
+      <button onclick="filterCourses('all')" class="filter-tab active px-4 py-2 rounded-xl text-xs font-black transition bg-brand text-white" id="flt-all">الكل</button>
+      <button onclick="filterCourses('tech')" class="filter-tab px-4 py-2 rounded-xl text-xs font-black text-slate-400 transition" id="flt-tech">برمجة وسكيورتي</button>
+      <button onclick="filterCourses('lang_office')" class="filter-tab px-4 py-2 rounded-xl text-xs font-black text-slate-400 transition" id="flt-lang_office">لغات وOffice</button>
+      <button onclick="filterCourses('pkg')" class="filter-tab px-4 py-2 rounded-xl text-xs font-black text-slate-400 transition" id="flt-pkg">الباقات الشاملة</button>
+    </div>
+  </div>
+
+  <div class="relative group">
+    <button onclick="scrollSlider('right')" class="slider-arrow absolute -end-2 md:-end-6 top-1/2 -translate-y-1/2 z-20 text-cyan-500/40 hover:text-cyan-400 active:text-cyan-500 text-5xl md:text-7xl font-light transition-all duration-200 transform hover:scale-125 select-none" title="السابق">
+      ›
+    </button>
+    <button onclick="scrollSlider('left')" class="slider-arrow absolute -start-2 md:-start-6 top-1/2 -translate-y-1/2 z-20 text-cyan-500/40 hover:text-cyan-400 active:text-cyan-500 text-5xl md:text-7xl font-light transition-all duration-200 transform hover:scale-125 select-none" title="التالي">
+      ‹
+    </button>
+
+    <div id="coursesSlider" class="flex gap-6 overflow-x-auto px-4 py-6 scroll-smooth snap-x snap-mandatory" style="scrollbar-width: none; -ms-overflow-style: none;">
+      <!-- يتم التعبئة ديناميكياً عبر JS -->
+    </div>
+  </div>
 
 </section>
 
-        <!-- Interactive Node Graph Preview -->
-        <section class="section-container roadmap-preview-block" id="roadmaps">
-            <div class="roadmap-grid-view">
-                <div class="roadmap-info-side">
-                    <span class="section-tag"><i data-lucide="git-commit"></i> تجربة التعلم بالخرائط</span>
-                    <h2>تتبع تقدمك في المهارات لحظة بلحظة</h2>
-                    <p>عند تسجيل الدخول، يمكنك وضع علامة على المحطات التي أتقنتها، ويقوم Firebase بحفظ تقدمك تلقائياً لاسترجاعه من أي جهاز.</p>
-                    
-                    <ul class="feature-list">
-                        <li>
-                            <i data-lucide="check-circle" class="icon-success"></i>
-                            <div>
-                                <strong>حفظ التقدم التلقائي:</strong> مزامنة سحابية فورية لكل محطة تتجاوزها.
-                            </div>
-                        </li>
-                        <li>
-                            <i data-lucide="check-circle" class="icon-success"></i>
-                            <div>
-                                <strong>تنسيق محدد ومباشر:</strong> الابتعاد عن العشوائية والتركيز على التطبيق.
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+<!-- ============ FEATURES SECTION ============ -->
+<section id="features" class="w-full max-w-[1550px] mx-auto px-5 md:px-8 py-16 border-b border-slate-800">
+  <div class="text-center max-w-2xl mx-auto mb-12 fade-up">
+    <span class="text-xs font-extrabold uppercase tracking-widest text-cyan-400" data-i18n="feat_eyebrow">لماذا تختار منصة أطلس؟</span>
+    <h2 class="text-2xl md:text-3xl font-black mt-2 text-theme-main" data-i18n="feat_title">ما الذي يميز تجربة التعلم معنا؟</h2>
+  </div>
 
-                <div class="roadmap-canvas-card">
-                    <div class="canvas-header">
-                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                        <span class="canvas-title" id="activeRoadmapTitle">Full-Stack Roadmap Node Graph</span>
-                    </div>
-                    <div class="nodes-tree" id="nodesTreeContainer">
-                        <!-- Dynamic Nodes rendering -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Us Section -->
-        <section class="section-container" id="about">
-            <div class="about-card">
-                <div class="about-body">
-                    <h2>عن منصة NEXUS</h2>
-                    <p>
-                        تم تطوير NEXUS بهدف سد الفجوة التنظيمية في التعلم الذاتي. نساعد المتعلمين في العالم العربي على الوصول إلى خرائط طريق تقنية ولغوية مدروسة بعناية ومربوطة بأدوات قياس حقيقية.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat-box">
-                            <span class="stat-num">+24</span>
-                            <span class="stat-desc">خريطة طريق محدثة</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-num">100%</span>
-                            <span class="stat-desc">مزامنة سحابية مجانية</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-num">2026</span>
-                            <span class="stat-desc">إصدار الهيكلية الأحدث</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="section-container" id="faq">
-            <div class="section-title-group">
-                <h2 class="section-heading">الأسئلة الشائعة</h2>
-                <p class="section-subheading">كل ما تحتاج معرفته عن استخدام المنصة وحفظ تقدمك.</p>
-            </div>
-            <div class="accordion" id="faqAccordion">
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>هل يحفظ النظام تقدمي بدون تسجيل حساب؟</span>
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <p>يمكنك التصفح مجاناً بدون حساب، لكن لحفظ التقدم في الخرائط التفاعلية ومزامنته عبر الأجهزة يتوجب عليك إنشاء حساب مجاني.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>كيف أستطيع التواصل مع فريق المنصة مباشرة؟</span>
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <p>عبر استمارة تواصل معنا أدناه أو بالاتصال على رقم الهاتف المباشر المرفق في قسم التواصل.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="section-container" id="contact">
-            <div class="contact-wrapper">
-                <div class="contact-details">
-                    <h2>تواصل معنا</h2>
-                    <p>هل لديك استفسار أو اقتراح لمسار جديد؟ فريقنا يسعد بتواصلك.</p>
-                    
-                    <div class="contact-info-list">
-                        <div class="info-item">
-                            <i data-lucide="phone"></i>
-                            <div>
-                                <span>الهاتف المباشر والدعم:</span>
-                                <strong>01069168725</strong>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i data-lucide="clock"></i>
-                            <div>
-                                <span>ساعات العمل:</span>
-                                <strong>الأحد - الخميس (9:00 ص - 5:00 م)</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <form class="contact-form" id="contactForm" novalidate>
-                    <div class="form-group">
-                        <label for="contactName">الاسم الكامل</label>
-                        <input type="text" id="contactName" class="form-input" placeholder="أدخل اسمك الكامل" required>
-                        <span class="error-msg">يرجى كتابة الاسم بشكل صحيح.</span>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactEmail">البريد الإلكتروني</label>
-                        <input type="email" id="contactEmail" class="form-input" placeholder="name@example.com" required>
-                        <span class="error-msg">يرجى كتابة بريد إلكتروني صحيح.</span>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactMessage">الرسالة أو الاستفسار</label>
-                        <textarea id="contactMessage" class="form-input" rows="4" placeholder="اكتب تفاصيل استفسارك..." required></textarea>
-                        <span class="error-msg">الرسالة لا يمكن أن تكون فارغة.</span>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <span>إرسال الرسالة</span>
-                        <i data-lucide="send"></i>
-                    </button>
-                </form>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Global Footer -->
-    <footer class="global-footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <a href="#" class="brand-logo">
-                    <div class="logo-badge"><i data-lucide="layers"></i></div>
-                    <span class="logo-title">NEXUS<span class="accent-dot">.</span></span>
-                </a>
-                <p class="brand-desc">المنصة العربية الاحترافية للتعلم القائم على خرائط الطريق التفاعلية للبرمجة واللغات.</p>
-            </div>
-
-            <div class="footer-links-group">
-                <div class="footer-col">
-                    <h4>المنتج والمسارات</h4>
-                    <ul>
-                        <li><a href="#tracks">مسارات البرمجة</a></li>
-                        <li><a href="#tracks">مسارات اللغات</a></li>
-                        <li><a href="#roadmaps">خرائط الطريق التفاعلية</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>المساعدة والدعم</h4>
-                    <ul>
-                        <li><a href="#about">عن المنصة</a></li>
-                        <li><a href="#faq">الأسئلة الشائعة</a></li>
-                        <li><a href="#contact">تواصل معنا</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>الصفحات القانونية</h4>
-                    <ul>
-                        <li><a href="#">سياسة الخصوصية</a></li>
-                        <li><a href="#">الشروط والأحكام</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container bottom-flex">
-                <p>© 2026 NEXUS. جميع الحقوق محفوظة.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Modals System -->
-
-    <!-- Search Command Palette -->
-    <div class="modal-overlay hidden" id="searchModal">
-        <div class="modal-card search-card">
-            <div class="search-input-wrapper">
-                <i data-lucide="search"></i>
-                <input type="text" id="globalSearchInput" placeholder="ابحث عن مسار، تقنية، أو لغة (مثال: Python, German)...">
-                <button class="modal-close" id="closeSearchModal"><i data-lucide="x"></i></button>
-            </div>
-            <div class="search-results-list" id="searchResults">
-                <p class="search-hint">اكتب للبدء في البحث المباشر...</p>
-            </div>
-        </div>
+  <div class="grid sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
+    <div class="fade-up card-hover rounded-3xl border border-slate-800 bg-card-theme p-6 text-center shadow-sm">
+      <div class="w-14 h-14 rounded-2xl bg-indigo-950/50 text-indigo-400 text-2xl flex items-center justify-center mx-auto mb-4">🚀</div>
+      <h3 class="font-black text-sm text-theme-main" data-i18n="f1_title">تطبيق عملي بمشاريع حقيقية</h3>
+      <p class="text-xs text-theme-sub font-semibold mt-2 leading-6" data-i18n="f1_desc">شرح عملي خطوة بخطوة يبتعد عن الحشو النظري ويركز على بناء بورتفوليو وتطبيقات واقعية.</p>
     </div>
 
-    <!-- Firebase Auth Modal -->
-    <div class="modal-overlay hidden" id="authModal">
-        <div class="modal-card auth-card">
-            <button class="modal-close" id="closeAuthModal"><i data-lucide="x"></i></button>
-            <div class="auth-tabs">
-                <button class="auth-tab active" id="tabLoginBtn">تسجيل الدخول</button>
-                <button class="auth-tab" id="tabSignupBtn">حساب جديد</button>
-            </div>
-            
-            <form id="authForm" class="auth-form" novalidate>
-                <div class="form-group hidden" id="nameGroup">
-                    <label for="authName">الاسم الكامل</label>
-                    <input type="text" id="authName" class="form-input" placeholder="اسمك الكريم">
-                </div>
-                <div class="form-group">
-                    <label for="authEmail">البريد الإلكتروني</label>
-                    <input type="email" id="authEmail" class="form-input" placeholder="user@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="authPassword">كلمة المرور</label>
-                    <input type="password" id="authPassword" class="form-input" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block" id="authSubmitBtn">دخول</button>
-            </form>
-        </div>
+    <div class="fade-up card-hover rounded-3xl border border-slate-800 bg-card-theme p-6 text-center shadow-sm">
+      <div class="w-14 h-14 rounded-2xl bg-cyan-950/50 text-cyan-400 text-2xl flex items-center justify-center mx-auto mb-4">📝</div>
+      <h3 class="font-black text-sm text-theme-main" data-i18n="f2_title">كويزات واختبارات تقييمية</h3>
+      <p class="text-xs text-theme-sub font-semibold mt-2 leading-6" data-i18n="f2_desc">اختبارات MCQ تفاعلية بعد كل محاضرة تثبت استيعابك للمفاهيم وتصحح أخطاءك فوراً.</p>
     </div>
 
-    <!-- Firebase Scripts (Modular ES Modules Native Imports via type="module") -->
-    <script type="module" src="main.js"></script>
-    <!-- Admin Add Course Modal -->
-<div class="modal-overlay hidden" id="adminModal">
-    <div class="modal-card">
-        <button class="modal-close" id="closeAdminModal"><i data-lucide="x"></i></button>
-        <h3 style="margin-bottom: 1.5rem;">لوحة المشرف - إضافة درس جديد</h3>
-        <form id="adminAddLessonForm" class="auth-form">
-            <div class="form-group">
-                <label>اختر المسار</label>
-                <select id="lessonTrackSelect" class="form-input" required>
-                    <option value="fullstack-web">تطوير الويب المتكامل</option>
-                    <option value="deutsch-a1-b2">اللغة الألمانية</option>
-                    <option value="data-science-ai">علم البيانات والذكاء الاصطناعي</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>عنوان المحاضرة / المحطة</label>
-                <input type="text" id="lessonTitle" class="form-input" placeholder="مثال: مقدمة إلى DOM Manipulation" required>
-            </div>
-            <div class="form-group">
-                <label>رابط فيديو اليوتيوب</label>
-                <input type="url" id="lessonYoutubeUrl" class="form-input" placeholder="https://www.youtube.com/watch?v=..." required>
-            </div>
-            <div class="form-group">
-                <label>وصف سريع للمحاضرة</label>
-                <textarea id="lessonDesc" class="form-input" rows="3" placeholder="أهم النقاط المشروحة..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">حفظ المحاضرة في المسار</button>
-        </form>
+    <div class="fade-up card-hover rounded-3xl border border-slate-800 bg-card-theme p-6 text-center shadow-sm">
+      <div class="w-14 h-14 rounded-2xl bg-emerald-950/50 text-emerald-400 text-2xl flex items-center justify-center mx-auto mb-4">📂</div>
+      <h3 class="font-black text-sm text-theme-main" data-i18n="f3_title">ملفات وشيتات وتلخيصات</h3>
+      <p class="text-xs text-theme-sub font-semibold mt-2 leading-6" data-i18n="f3_desc">تحميل مباشر لكود المشاريع، قوالب Word وExcel الجاهزة، وملخصات PDF منسقة لكل درس.</p>
     </div>
+  </div>
+</section>
+
+<!-- ============ HONOR BOARD ============ -->
+<section id="honors" class="w-full max-w-[1550px] mx-auto px-5 md:px-8 py-16 border-b border-slate-800">
+  <div class="text-center max-w-xl mx-auto mb-10 fade-up">
+    <h2 class="text-2xl md:text-3xl font-black text-theme-main" data-i18n="honor_title">إحصائيات مجتمع أطلس</h2>
+    <p class="text-xs font-semibold text-theme-sub mt-2 leading-6" data-i18n="honor_sub">
+      أرقام ونتائج حقيقية لطلاب أتموا مساراتهم وحققوا أهدافهم في سوق العمل والجامعات
+    </p>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-4xl mx-auto">
+    <div class="fade-up rounded-2xl border border-slate-800 bg-card-theme p-5 text-center shadow-sm">
+      <div class="text-3xl font-black text-cyan-400 num-font" data-count="120">0+</div>
+      <div class="text-xs font-bold text-theme-sub mt-1" data-i18n="h1">محاضرة ومحطة تعليمية</div>
+    </div>
+    <div class="fade-up rounded-2xl border border-slate-800 bg-card-theme p-5 text-center shadow-sm">
+      <div class="text-3xl font-black text-cyan-400 num-font" data-count="15">0+</div>
+      <div class="text-xs font-bold text-theme-sub mt-1" data-i18n="h2">مشروع وتطبيق عملي</div>
+    </div>
+    <div class="fade-up rounded-2xl border border-slate-800 bg-card-theme p-5 text-center shadow-sm">
+      <div class="text-3xl font-black text-cyan-400 num-font" data-count="2026">2026</div>
+      <div class="text-xs font-bold text-theme-sub mt-1" data-i18n="h3">أحدث المناهج التقنية</div>
+    </div>
+    <div class="fade-up rounded-2xl border border-slate-800 bg-card-theme p-5 text-center shadow-sm">
+      <div class="text-3xl font-black text-cyan-400 num-font" data-count="98">0%</div>
+      <div class="text-xs font-bold text-theme-sub mt-1" data-i18n="h4">نسبة رضا المتعلمين</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews" class="w-full max-w-[1550px] mx-auto px-5 md:px-8 py-16 border-b border-slate-800">
+  <div class="text-center max-w-2xl mx-auto mb-10 fade-up">
+    <h2 class="text-2xl md:text-3xl font-black text-theme-main" data-i18n="rev_title">آراء المتعلمين في أطلس</h2>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+    <div class="fade-up card-hover rounded-3xl border border-slate-800 bg-card-theme p-6 shadow-sm">
+      <p class="text-xs md:text-sm font-semibold text-theme-main leading-7" data-i18n="r1_text">"تقسيم مستويات الألماني وتطبيقات الويب على المنصة وفر عليّ شهور من التشتت بين فيديوهات اليوتيوب العشوائية."</p>
+      <span class="block text-[11px] font-black text-cyan-400 mt-4">— أحمد من جامعة القاهرة</span>
+    </div>
+    <div class="fade-up card-hover rounded-3xl border border-slate-800 bg-card-theme p-6 shadow-sm">
+      <p class="text-xs md:text-sm font-semibold text-theme-main leading-7">"شرح أوامر الـ Linux والشبكات وتطبيقات الـ Excel المتقدمة من أفضل الكورسات المنظمة اللي درستها."</p>
+      <span class="block text-[11px] font-black text-cyan-400 mt-4">— سارة محمد • مطورة واجهات</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTRUCTOR SECTION ============ -->
+<section id="instructor" class="w-full max-w-[1550px] mx-auto px-4 md:px-8 py-16 border-b border-slate-800">
+  <div class="rounded-3xl hero-banner-bg p-6 sm:p-10 md:p-12 text-white flex flex-col md:flex-row items-center gap-6 md:gap-10 shadow-2xl border border-white/10">
+    <div class="w-36 h-48 sm:w-44 sm:h-56 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center shrink-0 border border-white/20 overflow-hidden shadow-xl">
+      <img src="atlas.png" alt="مشرف المنصة" class="w-full h-full object-cover object-top" onerror="this.src='atlas.jpg'" />
+    </div>
+    <div class="text-center md:text-right space-y-3 flex-1">
+      <span class="inline-block text-[11px] font-bold px-3 py-1 rounded-full bg-white/15 text-cyan-200" data-i18n="inst_eyebrow">عن مؤسس ومشرف المنصة</span>
+      <h3 class="text-2xl md:text-3xl font-black text-cyan-300" data-i18n="inst_name">فريق منصة أطلس التعليمية</h3>
+      <p class="opacity-90 leading-7 text-xs sm:text-sm font-medium text-slate-200 max-w-3xl mx-auto md:mx-0" data-i18n="inst_bio">
+        فريق متخصص في هندسة البرمجيات والعلوم التطبيقية، يهدف إلى إتاحة محتوى تعليمي عربي عالي الجودة يجمع بين قوة الشرح المنهجي وأحدث متطلبات سوق العمل العالمي.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUTHENTICATION VIEW ============ -->
+<div id="authSection" class="hidden fixed inset-0 z-[999] bg-black/80 backdrop-blur-md min-h-screen w-screen overflow-y-auto flex flex-col items-center justify-center p-4 py-8" onclick="if(event.target === this) closeAuthView();">
+  
+  <div class="mb-4 flex items-center justify-center cursor-pointer group shrink-0" onclick="closeAuthView()" title="إغلاق والعودة للرئيسية">
+    <div class="p-2.5 bg-[#111827] rounded-2xl border border-slate-800 group-hover:border-brand transition shadow-xl">
+      <img src="logo.png" alt="لوجو أطلس" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='logo.png'" />
+    </div>
+  </div>
+
+  <div class="w-full max-w-md rounded-3xl border border-slate-800 bg-[#111827] p-6 sm:p-7 shadow-2xl relative my-auto max-h-[85vh] overflow-y-auto">
+    
+    <button onclick="closeAuthView()" class="absolute top-4 start-4 text-slate-400 hover:text-white w-7 h-7 rounded-full bg-slate-800 flex items-center justify-center text-xs transition cursor-pointer">✕</button>
+
+    <!-- تبويبات الدخول / التسجيل -->
+    <div id="authTabsNav" class="grid grid-cols-2 gap-1.5 p-1.5 auth-nav-bg rounded-2xl mb-5">
+      <button id="tabLoginBtn" onclick="setAuthTab('login')" class="auth-tab h-10 rounded-xl text-xs md:text-sm font-black transition" data-i18n="auth_tab_login">تسجيل الدخول</button>
+      <button id="tabRegisterBtn" onclick="setAuthTab('register')" class="auth-tab h-10 rounded-xl text-xs md:text-sm font-black transition" data-i18n="auth_tab_register">حساب جديد</button>
+    </div>
+
+    <!-- 1. نموذج تسجيل الدخول -->
+    <form id="loginForm" class="flex flex-col gap-3.5" onsubmit="return false;">
+      <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
+        <span data-i18n="auth_email">البريد الإلكتروني</span>
+        <input id="loginEmail" type="email" required placeholder="student@example.com" class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
+      </label>
+      <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
+        <span data-i18n="auth_password">كلمة المرور</span>
+        <input id="loginPassword" type="password" required placeholder="••••••••" class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
+      </label>
+
+      <button type="button" onclick="openForgotPasswordView()" class="text-[11px] font-bold text-cyan-400 hover:text-cyan-300 hover:underline text-start -mt-1 cursor-pointer" data-i18n="auth_forgot_password">
+        هل نسيت كلمة المرور؟
+      </button>
+
+      <p id="loginError" class="hidden text-xs font-bold text-rose-500 text-center"></p>
+      <button id="loginSubmitBtn" type="submit" class="h-11 rounded-xl bg-brand text-white font-black text-xs md:text-sm mt-1 shadow-lg hover:bg-indigo-700 transition cursor-pointer" data-i18n="auth_login_btn">
+        تسجيل الدخول
+      </button>
+    </form>
+
+    <!-- 2. استعادة كلمة المرور -->
+    <form id="forgotPasswordForm" class="hidden flex-col gap-3.5" onsubmit="return false;">
+      <p class="text-xs text-slate-400 leading-6">
+        اكتب بريدك الإلكتروني المسجل به، وسنرسل لك رابطاً لإعادة تعيين كلمة المرور فوراً.
+      </p>
+      <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
+        <span data-i18n="auth_email">البريد الإلكتروني</span>
+        <input id="forgotEmail" type="email" required placeholder="student@example.com" class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
+      </label>
+      <p id="forgotError" class="hidden text-xs font-bold text-rose-500 text-center"></p>
+      <p id="forgotSuccess" class="hidden text-xs font-bold text-emerald-400 text-center leading-5"></p>
+      <button id="forgotSubmitBtn" type="submit" class="h-11 rounded-xl bg-brand text-white font-black text-xs md:text-sm mt-1 shadow-lg hover:bg-indigo-700 transition cursor-pointer">
+        إرسال رابط إعادة التعيين 📩
+      </button>
+      <button type="button" onclick="closeForgotPasswordView()" class="text-[11px] font-bold text-slate-400 hover:text-white text-center transition">
+        ← الرجوع لتسجيل الدخول
+      </button>
+    </form>
+
+    <!-- 3. نموذج إنشاء حساب جديد -->
+    <form id="registerForm" class="hidden flex-col gap-3" onsubmit="return false;">
+      <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
+        <span data-i18n="auth_name">الاسم بالكامل</span>
+        <input id="regName" type="text" required placeholder="مثال: أحمد محمد علي" class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
+      </label>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
+          <span data-i18n="auth_phone">رقم الهاتف (واتساب)</span>
+          <input id="regPhone" type="tel" required maxlength="11" placeholder="010XXXXXXXX" dir="ltr" class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand font-mono text-right" />
+        </label>
+        
+        <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
+          <span>المسار المستهدف</span>
+          <select id="regYear" required class="h-10 rounded-xl px-2.5 border border-slate-700 bg-[#0A0F1D] text-xs text-theme-main focus:border-brand">
+            <option value="tech">البرمجة والأمن السيبراني</option>
+            <option value="lang_office">اللغات الأجنبية وحزم Office</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
+        <span>المجال الدراسي / التخصص</span>
+        <input id="regUniversity" required placeholder="مثال: هندسة، حاسبات، تجارة، خريج..." class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
+      </label>
+
+      <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
+        <span data-i18n="auth_email">البريد الإلكتروني</span>
+        <input id="regEmail" type="email" required placeholder="student@example.com" class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
+      </label>
+
+      <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
+        <span data-i18n="auth_password">كلمة المرور (6 خانات على الأقل)</span>
+        <input id="regPassword" type="password" required placeholder="••••••••" minlength="6" class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
+      </label>
+
+      <p id="registerError" class="hidden text-xs font-bold text-rose-500 text-center py-1"></p>
+      
+      <button id="registerSubmitBtn" type="submit" class="h-11 rounded-xl bg-brand text-white font-black text-xs md:text-sm mt-1 shadow-lg hover:bg-indigo-700 transition cursor-pointer" data-i18n="auth_register_btn">
+        إنشاء الحساب وبدء التعلم 🚀
+      </button>
+    </form>
+
+  </div>
 </div>
 
-<!-- زر دخول المشرف السريع (يظهر في أسفل الشاشة) -->
-<button class="admin-badge-trigger" id="openAdminModalBtn">
-    <i data-lucide="plus-circle"></i>
-    <span>إضافة محتوى (المشرف)</span>
-</button>
+<!-- ============ PACKAGE DETAILS VIEW ============ -->
+<div id="packageDetailsView" class="hidden min-h-screen bg-[#0A0F1D] text-slate-100 py-10 px-5 transition-all">
+  <div class="max-w-5xl mx-auto">
+    
+    <button type="button" onclick="closePackageDetails()" class="mb-6 inline-flex items-center justify-center p-2 rounded-2xl bg-[#111827] border border-slate-800 hover:border-brand transition shadow-lg group cursor-pointer" title="العودة للصفحة الرئيسية">
+      <img src="logo.png" alt="العودة للرئيسية" class="h-9 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='logo.png'" />
+    </button>
+
+    <div class="rounded-3xl bg-gradient-to-l from-[#1E1B4B] via-[#312E81] to-[#0F172A] p-8 md:p-12 text-white shadow-xl relative overflow-hidden mb-8 border border-white/10">
+      <span id="pkgBadge" class="inline-block text-[11px] font-black px-3 py-1 rounded-full bg-cyan-400 text-slate-900 mb-3">باقة مميزة</span>
+      <h1 id="pkgTitle" class="text-2xl md:text-4xl font-black">اسم الباقة</h1>
+      <p id="pkgSub" class="text-xs md:text-sm opacity-85 mt-2 max-w-2xl leading-6">وصف تفصيلي للباقة وما تشمله من محاور ومشاريع عملية.</p>
+      
+      <div class="mt-6 flex flex-wrap items-baseline gap-4">
+        <span class="text-3xl md:text-4xl font-black text-cyan-300 num-font" id="pkgPrice">0 ج.م</span>
+        <span class="text-sm font-bold opacity-50 line-through num-font" id="pkgOldPrice">0 ج.م</span>
+        <span class="text-xs font-black px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30" id="pkgSave">وفر الآن 🔥</span>
+      </div>
+
+      <div class="mt-6">
+        <button id="pkgActionBtn" type="button" onclick="handlePkgSubscribe()" class="cursor-pointer inline-block bg-white text-[#312E81] font-black text-xs md:text-sm px-8 py-3.5 rounded-2xl shadow-xl hover:bg-cyan-50 transition active:scale-95">
+          اشترك في الباقة الآن
+        </button>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="md:col-span-2 space-y-4">
+        <h3 class="text-base font-black flex items-center gap-2">
+          <span>📚</span> الكورسات والوحدات المشمولة بالباقة
+        </h3>
+        <div id="pkgCoursesList" class="space-y-3"></div>
+      </div>
+
+      <div class="rounded-3xl border border-slate-800 bg-[#111827] p-6 shadow-sm h-fit space-y-4">
+        <h3 class="text-sm font-black text-cyan-400 flex items-center gap-2">
+          <span>👑</span> نظام التعلم المتكامل في أطلس
+        </h3>
+        <ul class="text-xs font-bold space-y-3 opacity-80 leading-5">
+          <li class="flex items-center gap-2"><span>🎥</span> شروحات عملية مسجلة بجودة عالية</li>
+          <li class="flex items-center gap-2"><span>💻</span> أكواد المشاريع والملفات المصدرية</li>
+          <li class="flex items-center gap-2"><span>📚</span> ملخصات وتفريغات PDF منظمة</li>
+          <li class="flex items-center gap-2"><span>❓</span> كويزات تقييمية بعد كل محاضرة</li>
+          <li class="flex items-center gap-2"><span>📂</span> قوالب Word وExcel وشيتات جاهزة</li>
+          <li class="flex items-center gap-2"><span>💬</span> مجتمع تعليمي ودعم للمتدربين</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ COURSE DETAILS & LESSONS VIEW ============ -->
+<div id="courseView" class="hidden min-h-screen bg-[#0A0F1D] text-slate-100 py-6 px-4 md:px-8 transition-all">
+  <div class="max-w-5xl mx-auto space-y-6">
+    
+    <!-- شريط العودة واسم الكورس -->
+    <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+      <button type="button" onclick="closeCourseView()" class="inline-flex items-center justify-center p-2.5 rounded-2xl bg-[#111827] border border-slate-800 hover:border-brand transition shadow-lg group cursor-pointer" title="العودة للصفحة الرئيسية">
+        <img src="logo.png" alt="العودة للرئيسية" class="h-8 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='logo.png'" />
+      </button>
+      <div class="text-start">
+        <span id="crsCategory" class="text-[10px] font-black px-2.5 py-1 rounded-full bg-cyan-400/20 text-cyan-300 border border-cyan-400/30">مقرر تدريبي</span>
+        <h2 id="crsTitle" class="text-base sm:text-lg font-black text-white mt-1">اسم الكورس</h2>
+      </div>
+    </div>
+
+    <!-- بانر الاشتراك -->
+    <div id="courseGuestBanner" class="rounded-3xl bg-gradient-to-l from-[#1E1B4B] via-[#312E81] to-[#0F172A] p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 border border-white/10">
+      <div class="space-y-2 text-center sm:text-start">
+        <span class="text-xs font-bold text-cyan-200">سعر الاشتراك بالمقرر كاملاً:</span>
+        <div id="crsPrice" class="text-3xl sm:text-4xl font-black text-cyan-300 num-font tracking-wide">0 ج.م</div>
+        <p id="crsDesc" class="text-xs opacity-85 max-w-xl leading-5 text-slate-200"></p>
+      </div>
+      <button id="crsActionBtn" onclick="toggleCourseEnrollment()" class="w-full sm:w-auto bg-white text-[#312E81] font-black text-xs md:text-sm px-8 py-3.5 rounded-2xl shadow-xl hover:bg-cyan-50 transition transform active:scale-95 cursor-pointer">
+        الاشتراك في هذا المقرر الآن 🚀
+      </button>
+    </div>
+
+    <!-- مشغل الفيديو والفهرس -->
+    <div class="space-y-6">
+
+      <!-- مشغل الفيديو الخارجي -->
+      <div id="videoContainerWrapper" class="hidden space-y-3">
+        <div id="videoPlayerContainer" class="rounded-3xl overflow-hidden bg-[#111827] border border-slate-800 aspect-video relative flex items-center justify-center shadow-2xl select-none">
+          <div id="videoWatermark" class="hidden absolute z-30 pointer-events-none text-slate-300/40 font-bold text-xs md:text-sm tracking-wide transition-all duration-1000 select-none">
+            <span id="wmStudentData"></span>
+          </div>
+          <button type="button" onclick="toggleCustomFullscreen('videoPlayerContainer')" class="absolute bottom-3 end-3 z-40 bg-black/60 hover:bg-black/90 text-white p-2 rounded-xl border border-white/20 text-xs font-bold transition flex items-center gap-1 cursor-pointer">
+            <span>⛶</span>
+            <span class="hidden sm:inline text-[10px]">ملء الشاشة</span>
+          </button>
+          <iframe id="videoIframe" class="w-full h-full border-0" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-[#111827] border border-slate-800">
+          <div>
+            <h3 id="currentLessonTitle" class="font-black text-sm text-cyan-300">جارٍ التشغيل...</h3>
+            <p id="currentLessonDesc" class="text-xs text-slate-400 mt-0.5"></p>
+          </div>
+          <button onclick="closeVideoPlayer()" class="text-xs text-rose-400 hover:text-white px-3 py-1.5 rounded-xl bg-slate-800 transition">إغلاق الفيديو ✕</button>
+        </div>
+      </div>
+
+      <!-- عارض الـ PDF -->
+      <div id="pdfViewerContainer" class="hidden rounded-3xl overflow-hidden bg-[#111827] border border-slate-800 p-3 space-y-2">
+        <div class="flex justify-between items-center px-2">
+          <span class="text-xs font-black text-cyan-300">📑 معاينة المذكرات والأكواد</span>
+          <button onclick="document.getElementById('pdfViewerContainer').classList.add('hidden')" class="text-xs text-rose-400 hover:text-white px-3 py-1 rounded-lg bg-slate-800 transition">إغلاق ✕</button>
+        </div>
+        <iframe id="pdfIframe" class="w-full h-[600px] rounded-2xl border-0" src=""></iframe>
+      </div>
+
+      <!-- نافذة الكويز -->
+      <div id="quizSection" class="hidden rounded-3xl bg-[#111827] border border-slate-800 p-6 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <h3 class="text-sm font-black text-cyan-300 flex items-center gap-2"><span>📝</span> اختبار تقييمي على الدرس</h3>
+          <span id="quizScoreBadge" class="hidden text-xs font-black px-3 py-1 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-800/40"></span>
+        </div>
+        <form id="studentQuizForm" class="space-y-4">
+          <div id="quizQuestionsList" class="space-y-4"></div>
+          <button type="submit" id="submitQuizBtn" class="w-full py-3 rounded-xl bg-brand hover:bg-indigo-700 text-white font-black text-xs shadow-xl transition">تسليم الإجابات واعتماد النتيجة ✨</button>
+        </form>
+      </div>
+
+      <!-- فهرس الدروس والمحاضرات -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-black text-sm sm:text-base text-slate-200">فهرس المحاضرات والسكاشن المتاحة</h3>
+          <span id="unlockedCountBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-[#111827] border border-slate-800 text-cyan-400"></span>
+        </div>
+        <div id="lessonsList" class="space-y-3"></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!-- ============ MODAL طرق الدفع وإرسال الإيصال للتليجرام ============ -->
+<div id="paymentModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4">
+  <div class="bg-[#111827] border border-slate-700 rounded-3xl max-w-lg w-full p-6 space-y-6 shadow-2xl relative overflow-hidden">
+    
+    <button onclick="closePaymentModal()" class="absolute top-5 start-5 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center transition">✕</button>
+
+    <div class="text-center space-y-2 pt-2">
+      <span class="inline-block text-[11px] font-black px-3 py-1 rounded-full bg-cyan-400 text-slate-900">تأكيد الاشتراك</span>
+      <h3 class="text-xl font-black text-white" id="payModalTitle">طرق الدفع المتاحة</h3>
+      <p class="text-xs text-cyan-300 font-bold" id="payModalPrice"></p>
+    </div>
+
+    <!-- بطاقات طرق الدفع -->
+    <div class="space-y-3">
+      <!-- فودافون كاش -->
+      <div class="p-3.5 rounded-2xl bg-[#0A0F1D] border border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-rose-600/20 text-rose-400 flex items-center justify-center font-black text-base">📱</div>
+          <div>
+            <span class="block text-xs font-black text-white">فودافون كاش</span>
+            <span class="block text-xs text-cyan-300 font-mono font-bold select-all dir-ltr text-right">01024397339</span>
+          </div>
+        </div>
+        <button type="button" onclick="navigator.clipboard.writeText('01024397339'); alert('تم النسخ')" class="text-[10px] font-bold px-3 py-1.5 rounded-lg bg-slate-800 text-slate-200 hover:bg-brand hover:text-white border border-slate-700 transition">نسخ الرقم</button>
+      </div>
+
+      <!-- انستاباي InstaPay -->
+      <div class="p-3.5 rounded-2xl bg-[#0A0F1D] border border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center font-black text-base">⚡</div>
+          <div>
+            <span class="block text-xs font-black text-white">انستاباي (InstaPay)</span>
+            <span class="block text-xs text-purple-300 font-mono font-bold select-all dir-ltr text-right">01005110351</span>
+          </div>
+        </div>
+        <button type="button" onclick="navigator.clipboard.writeText('01005110351'); alert('تم النسخ')" class="text-[10px] font-bold px-3 py-1.5 rounded-lg bg-slate-800 text-slate-200 hover:bg-purple-900 hover:text-white border border-slate-700 transition">نسخ الرقم</button>
+      </div>
+    </div>
+
+    <!-- زر إرسال صورة الإيصال للتليجرام -->
+    <div class="pt-2 flex flex-col items-center justify-center text-center space-y-3">
+      <p class="text-[11px] text-slate-300 font-semibold leading-5">
+        بعد تحويل الرسوم، اضغط على الزر بالأسفل لإرسال صورة إيصال التحويل مع إيميلك لتفعيل حسابك فوراً 👇
+      </p>
+
+      <button id="sendProofBtn" class="group relative w-20 h-20 rounded-full bg-gradient-to-tr from-[#229ED9] to-cyan-400 flex flex-col items-center justify-center text-white shadow-[0_0_25px_rgba(34,158,217,0.5)] transform hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-white/40">
+        <span class="absolute -inset-1 rounded-full bg-cyan-400 opacity-40 group-hover:opacity-80 animate-ping"></span>
+        <svg class="w-7 h-7 relative z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.97 9.28c-.15.67-.54.83-1.1.5l-3.02-2.23-1.46 1.4c-.16.16-.3.3-.61.3l.22-3.08 5.6-5.06c.24-.22-.05-.34-.37-.14l-6.92 4.36-2.99-.93c-.65-.2-.66-.65.14-.97l11.7-4.51c.54-.2 1.02.13.84.88z"/></svg>
+        <span class="text-[9px] font-black mt-0.5 relative z-10">إرسال الإيصال</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer id="mainFooter" class="bg-slate-900 text-white border-t border-slate-800 pt-10 pb-8 px-4 sm:px-6">
+  <div class="w-full max-w-[1550px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8 text-start">
+    
+    <div class="col-span-2 md:col-span-1 flex flex-col items-start gap-2">
+      <div class="flex items-center gap-2">
+        <img src="logo.png" class="w-8 h-8 object-contain" alt="ATLAS">
+        <span class="font-black text-base md:text-lg text-cyan-300" data-i18n="brand">ATLAS ACADEMY</span>
+      </div>
+      <p class="text-[11px] md:text-xs text-slate-400 font-semibold leading-5 mt-1 max-w-xs" data-i18n="foot_about">
+        المنصة التعليمية الأولى المتخصصة في تقديم مسارات برمجية ولغوية وتطبيقية تؤهلك لسوق العمل.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="font-black text-xs uppercase tracking-wider text-cyan-300 mb-3" data-i18n="foot_pages">الصفحات</h4>
+      <ul class="flex flex-col gap-2 text-[11px] md:text-xs text-slate-300 font-bold">
+        <li><a href="#hero" class="hover:text-cyan-300 transition" data-i18n="nav_home">الرئيسية</a></li>
+        <li><a href="#years" class="hover:text-cyan-300 transition" data-i18n="nav_years">المسارات التقنية</a></li>
+        <li><a href="#courses" class="hover:text-cyan-300 transition" data-i18n="nav_courses">الكورسات والمقررات</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-black text-xs uppercase tracking-wider text-cyan-300 mb-3" data-i18n="foot_social">السوشيال ميديا</h4>
+      <ul class="flex flex-col gap-2 text-[11px] md:text-xs text-slate-300 font-bold">
+        <li><a href="#" target="_blank" class="hover:text-cyan-300 transition" data-i18n="foot_fb">فيسبوك</a></li>
+        <li><a href="#" target="_blank" class="hover:text-cyan-300 transition" data-i18n="foot_yt">يوتيوب</a></li>
+        <li><a href="#" target="_blank" class="hover:text-cyan-300 transition" data-i18n="foot_li">لينكد إن</a></li>
+      </ul>
+    </div>
+
+    <div class="col-span-2 md:col-span-1 flex flex-col items-start gap-2.5">
+      <h4 class="font-black text-xs uppercase tracking-wider text-cyan-300 mb-1" data-i18n="foot_contact">تواصل معنا</h4>
+      <a href="https://t.me/Atlas_Academy" target="_blank" rel="noopener" class="group relative overflow-hidden w-full max-w-[240px] p-2.5 rounded-2xl bg-slate-800/80 hover:bg-[#1777A3]/40 text-white transition duration-300 border border-slate-700 hover:border-cyan-400/50 flex items-center justify-between shadow-lg">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl overflow-hidden border border-cyan-400/40 shrink-0 bg-[#0A0F1D] p-0.5">
+            <img src="image/support.png" alt="الدعم" class="w-full h-full object-cover rounded-lg" onerror="this.src='support.png'" />
+          </div>
+          <div>
+            <span class="block text-xs font-black text-slate-100" data-i18n="foot_support_team">تيم الدعم الفني</span>
+            <span class="block text-[10px] text-cyan-400 font-bold dir-ltr">@Atlas_Academy</span>
+          </div>
+        </div>
+        <div class="w-6 h-6 rounded-lg bg-[#229ED9] flex items-center justify-center text-white shrink-0 shadow">
+          <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.97 9.28c-.15.67-.54.83-1.1.5l-3.02-2.23-1.46 1.4c-.16.16-.3.3-.61.3l.22-3.08 5.6-5.06c.24-.22-.05-.34-.37-.14l-6.92 4.36-2.99-.93c-.65-.2-.66-.65.14-.97l11.7-4.51c.54-.2 1.02.13.84.88z"/></svg>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="w-full max-w-[1550px] mx-auto border-t border-slate-800 pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500 font-semibold text-center">
+    <div data-i18n="foot_rights">جميع الحقوق محفوظة © 2026 ATLAS ACADEMY</div>
+    <div class="font-mono text-xs font-bold text-slate-400 select-none">
+      &lt;Developed by="<a href="https://wa.me/201101579399" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-black transition">Ahmed Mohamed</a>" /&gt;
+    </div>
+  </div>
+</footer>
+
+<!-- ============ TRANSLATIONS & CATALOG LOGIC ============ -->
+<script>
+const translations = {
+  ar: {
+    brand: "ATLAS ACADEMY",
+    nav_home: "الرئيسية",
+    nav_years: "المسارات التقنية",
+    nav_courses: "الكورسات والمقررات",
+    nav_features: "مميزات المنصة",
+    hero_eyebrow: "منصة أطلس الشاملة — طريقك لاحتراف البرمجة، الأمن السيبراني واللغات",
+    hero_title: "طريقك للاحتراف مع <span class='text-cyan-300'>أطـلـس</span><br/>تعلم عملي.. من الصفر لسوق العمل",
+    hero_sub: "خرائط طريق تفاعلية، ومحاضرات فيديو لتصل لأعلى درجات الإتقان.",
+    hero_cta1: "انضم وابدأ رحلتك الآن 🚀",
+    years_eyebrow: "المسارات المعتمدة",
+    years_title: "المجالات والمسارات",
+    years_sub: "اختر مجالك وابدأ التعلم العملي من الأساسيات إلى الاحتراف.",
+    btn_years_cta: "انشئ حسابك الآن مجاناً",
+    year1_title: "البرمجة والأمن السيبراني",
+    year2_title: "اللغات وحزم الـ Office",
+    auth_tab_login: "تسجيل الدخول",
+    auth_tab_register: "حساب جديد",
+    auth_email: "البريد الإلكتروني",
+    auth_password: "كلمة المرور",
+    auth_name: "الاسم بالكامل",
+    auth_phone: "رقم الهاتف",
+    auth_login_btn: "تسجيل الدخول",
+    auth_register_btn: "إنشاء الحساب وبدء التعلم 🚀",
+    foot_rights: "جميع الحقوق محفوظة © 2026 ATLAS ACADEMY",
+    foot_support_team: "تيم الدعم الفني"
+  },
+  en: {
+    brand: "ATLAS ACADEMY",
+    nav_home: "Home",
+    nav_years: "Tech Tracks",
+    nav_courses: "Courses & Packages",
+    nav_features: "Features",
+    hero_eyebrow: "Atlas Comprehensive Platform — Your Path to Mastery",
+    hero_title: "Your Path to Mastery with <span class='text-cyan-300'>ATLAS</span><br/>Learn Practically",
+    hero_sub: "Interactive roadmaps, curated videos, and practical projects.",
+    hero_cta1: "Join & Start Now 🚀",
+    years_eyebrow: "Certified Tracks",
+    years_title: "Fields & Tracks",
+    years_sub: "Choose your field and start learning practically from scratch.",
+    btn_years_cta: "Create Your Free Account",
+    year1_title: "Programming & Cyber Security",
+    year2_title: "Languages & Office Suite",
+    auth_tab_login: "Log In",
+    auth_tab_register: "Register",
+    auth_email: "Email Address",
+    auth_password: "Password",
+    auth_name: "Full Name",
+    auth_phone: "Phone Number",
+    auth_login_btn: "Log In",
+    auth_register_btn: "Create Account 🚀",
+    foot_rights: "All Rights Reserved © 2026 ATLAS ACADEMY",
+    foot_support_team: "Support Team"
+  }
+};
+
+window.openAuthView = function(tab = 'login') {
+  const authSec = document.getElementById("authSection");
+  if (authSec) {
+    authSec.classList.remove("hidden");
+    setAuthTab(tab);
+    document.body.style.overflow = "hidden";
+  }
+};
+
+window.closeAuthView = function() {
+  const authSec = document.getElementById("authSection");
+  if (authSec) {
+    authSec.classList.add("hidden");
+    document.body.style.overflow = "auto";
+  }
+};
+
+function setAuthTab(tab) {
+  const isLogin = tab === "login";
+  document.getElementById("loginForm").classList.toggle("hidden", !isLogin);
+  document.getElementById("registerForm").classList.toggle("hidden", isLogin);
+  document.getElementById("registerForm").classList.toggle("flex", !isLogin);
+  document.getElementById("tabLoginBtn").classList.toggle("active", isLogin);
+  document.getElementById("tabRegisterBtn").classList.toggle("active", !isLogin);
+}
+
+let currentLang = "ar";
+function applyLanguage(lang) {
+  currentLang = lang;
+  const dict = translations[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    if (dict && dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+  document.getElementById("langLabel").textContent = lang === "ar" ? "EN" : "AR";
+  renderCatalog();
+}
+
+document.getElementById("langBtn").addEventListener("click", () => {
+  applyLanguage(currentLang === "ar" ? "en" : "ar");
+});
+
+// THEME TOGGLE LOGIC
+const themeBtn = document.getElementById("themeBtn");
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+  });
+}
+
+window.toggleDrawer = function() {
+  const drawer = document.getElementById("drawer");
+  if (!drawer) return;
+  drawer.classList.toggle("hidden");
+};
+
+// ============ ATLAS CATALOG DATA ============
+window.catalogData = {
+  pkg_fullstack: {
+    id: "pkg_fullstack", type: "package", year: "tech",
+    code: { ar: "شامل", en: "Pro" }, category: { ar: "برمجة • مسار كامل", en: "Programming • Full Track" },
+    title: { ar: "باقة مطور الويب الشامل (Full-Stack)", en: "Full-Stack Web Developer Bundle" },
+    sub: { ar: "تشمل HTML, CSS, JS, React, Node.js وقواعد البيانات مع بناء 5 مشاريع حقيقية.", en: "Includes HTML, CSS, JS, React, Node.js with 5 Real Projects." },
+    badge: { ar: "الأكثر طلباً 🔥", en: "Most Popular 🔥" },
+    price: "1,200", oldPrice: "1,800", img: "image/pkg_fullstack.png",
+    courses: [
+      { name: "تطوير الواجهات (Frontend)", desc: "HTML, CSS, JavaScript & React", id: "c_frontend" },
+      { name: "تطوير الخلفية (Backend)", desc: "Node.js, Express & MongoDB", id: "c_backend" }
+    ]
+  },
+  pkg_cyber: {
+    id: "pkg_cyber", type: "package", year: "tech",
+    code: { ar: "أمن", en: "Sec" }, category: { ar: "شبكات وحماية", en: "Networking & Security" },
+    title: { ar: "باقة الأمن السيبراني الشاملة", en: "Cyber Security Pro Bundle" },
+    sub: { ar: "تعلم Linux, الشبكات، واختبار الاختراق الأخلاقي (Ethical Hacking).", en: "Learn Linux, Networking, and Ethical Hacking." },
+    badge: { ar: "مطلوب جداً 🛡️", en: "High Demand 🛡️" },
+    price: "1,500", oldPrice: "2,000", img: "image/pkg_cyber.png",
+    courses: [
+      { name: "أساسيات Linux والشبكات", desc: "Command line, Permissions & Protocols", id: "c_linux" },
+      { name: "اختبار الاختراق (Pen Testing)", desc: "Vulnerability analysis & Exploitation", id: "c_pentest" }
+    ]
+  },
+  c_deutsch: {
+    id: "c_deutsch", type: "single", year: "lang_office",
+    code: { ar: "لغات", en: "Lang" }, category: { ar: "لغات أجنبية", en: "Foreign Languages" },
+    title: { ar: "احتراف اللغة الألمانية (A1 - B2)", en: "Master German Language (A1-B2)" },
+    desc: { ar: "كورس شامل من الصفر حتى اجتياز اختبارات معهد جوته والمحادثة بطلاقة.", en: "Comprehensive German course from scratch to Goethe exam readiness." },
+    price: "600", oldPrice: "900", img: "image/deutsch.png", lessons: []
+  },
+  c_office: {
+    id: "c_office", type: "single", year: "lang_office",
+    code: { ar: "أوفيس", en: "Office" }, category: { ar: "برمجيات مكتبية", en: "Office Suite" },
+    title: { ar: "حزمة الـ Office الاحترافية", en: "Professional Office Suite" },
+    desc: { ar: "تعلم Word, Excel, PowerPoint باحترافية لتجهيز السير الذاتية وإدارة البيانات.", en: "Master Word, Excel, and PowerPoint for professional data management." },
+    price: "400", oldPrice: "650", img: "image/office_master.png", lessons: []
+  }
+};
+
+let currentFilter = "all";
+window.currentItemData = null;
+let currentOpenedPkgId = "pkg_fullstack";
+
+function renderCatalog() {
+  const container = document.getElementById("coursesSlider");
+  if (!container) return;
+  const lang = currentLang;
+  const isEn = lang === "en";
+
+  let items = Object.values(window.catalogData).filter(item => {
+    if (currentFilter === "all") return true;
+    if (currentFilter === "pkg") return item.type === "package";
+    return item.year === currentFilter;
+  });
+
+  if (items.length === 0) {
+    container.innerHTML = `<div class="w-full text-center py-12 text-slate-400">لا توجد كورسات مطابقة.</div>`;
+    return;
+  }
+
+  container.innerHTML = items.map(item => {
+    const isPkg = item.type === "package";
+    const codeBadge = isPkg ? "⭐" : (item.code[lang] || item.code);
+    const titleText = typeof item.title === "object" ? item.title[lang] : item.title;
+    const categoryText = typeof item.category === "object" ? item.category[lang] : item.category;
+    const descText = isPkg ? item.sub[lang] : item.desc[lang];
+    const badgeText = item.badge ? item.badge[lang] : "";
+    const priceText = `${item.price} ${isEn ? 'EGP' : 'ج.م'}`;
+
+    return `
+      <article class="min-w-[300px] md:min-w-[370px] snap-start card-hover rounded-3xl overflow-hidden border ${isPkg ? "border-brand shadow-indigo-900/20" : "border-slate-800"} bg-[#111827] p-3.5 flex flex-col justify-between">
+        <div class="rounded-2xl overflow-hidden relative aspect-[4/3] bg-[#0A0F1D]">
+          ${badgeText ? `<span class="absolute top-2.5 start-2.5 z-10 text-[10px] font-black bg-cyan-400 text-slate-900 px-2.5 py-1 rounded-md shadow-md">${badgeText}</span>` : ""}
+          <img src="${item.img}" class="w-full h-full object-cover hover:scale-105 transition duration-300" onerror="this.style.display='none'" />
+        </div>
+        <div class="p-3 flex-1 flex flex-col space-y-4">
+          <div class="flex items-start gap-2.5">
+            <span class="w-6 h-6 rounded-lg ${isPkg ? "bg-cyan-400 text-slate-900" : "bg-brand/30 border border-brand text-cyan-300"} font-black text-xs flex items-center justify-center shrink-0 mt-0.5">${codeBadge}</span>
+            <h3 class="font-black text-sm md:text-base text-slate-100">${titleText}</h3>
+          </div>
+          <div class="mt-3 flex items-baseline justify-between">
+            <div class="flex items-baseline gap-2">
+              <span class="text-lg md:text-xl font-black ${isPkg ? "text-cyan-400" : "text-brand"} num-font">${priceText}</span>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400">${categoryText}</span>
+          </div>
+          <p class="font-semibold text-slate-400 text-[11px] line-clamp-2">${descText}</p>
+          <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-brand hover:bg-indigo-700 text-white font-black text-xs shadow-lg transition mt-auto">
+            ${isEn ? 'View Content 🚀' : 'استكشف المحتوى 🚀'}
+          </button>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function filterCourses(type) {
+  currentFilter = type;
+  document.querySelectorAll(".filter-tab").forEach(btn => {
+    btn.classList.remove("active", "text-white", "bg-brand");
+    btn.classList.add("text-slate-400");
+  });
+  const activeBtn = document.getElementById(`flt-${type}`);
+  if (activeBtn) {
+    activeBtn.classList.add("active", "text-white", "bg-brand");
+    activeBtn.classList.remove("text-slate-400");
+  }
+  renderCatalog();
+}
+
+function scrollSlider(direction) {
+  const slider = document.getElementById("coursesSlider");
+  const scrollAmount = 390;
+  if (direction === "left") slider.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  else slider.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+}
+
+function openPackageDetails(pkgId) {
+  const data = window.catalogData[pkgId];
+  if (!data) return;
+  currentOpenedPkgId = pkgId;
+  document.getElementById("pkgTitle").textContent = data.title[currentLang];
+  document.getElementById("pkgSub").textContent = data.sub[currentLang];
+  document.getElementById("pkgPrice").textContent = `${data.price} ج.م`;
+  document.getElementById("pkgOldPrice").textContent = `${data.oldPrice} ج.م`;
+
+  const listEl = document.getElementById("pkgCoursesList");
+  listEl.innerHTML = data.courses.map(c => `
+    <div class="rounded-2xl border border-slate-800 bg-[#111827] p-4 flex items-center justify-between shadow-sm">
+      <div>
+        <h4 class="text-sm font-black text-slate-100">${c.name}</h4>
+        <p class="text-[11px] opacity-60 text-slate-400 mt-1">${c.desc}</p>
+      </div>
+    </div>
+  `).join("");
+
+  ["mainNavbar", "hero", "years", "courses", "features", "honors", "reviews", "instructor", "mainFooter"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add("hidden");
+  });
+  document.getElementById("packageDetailsView").classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function closePackageDetails() {
+  document.getElementById("packageDetailsView").classList.add("hidden");
+  ["mainNavbar", "hero", "courses", "features", "honors", "reviews", "instructor", "mainFooter", "years"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove("hidden");
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function openCourseView(courseId) {
+  const crs = window.catalogData[courseId];
+  if (!crs) return;
+  window.currentItemData = crs;
+  document.getElementById("crsTitle").textContent = typeof crs.title === "object" ? crs.title[currentLang] : crs.title;
+  document.getElementById("crsDesc").textContent = typeof crs.desc === "object" ? crs.desc[currentLang] : crs.desc;
+  document.getElementById("crsPrice").textContent = `${crs.price} ج.م`;
+
+  ["mainNavbar", "hero", "years", "courses", "features", "honors", "reviews", "instructor", "mainFooter"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add("hidden");
+  });
+  document.getElementById("courseView").classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // عرض المحاضرات الافتراضية
+  window.renderDynamicLessonsAccordion(crs.lessons || []);
+}
+
+function closeCourseView() {
+  document.getElementById("courseView").classList.add("hidden");
+  ["mainNavbar", "hero", "courses", "features", "honors", "reviews", "instructor", "mainFooter", "years"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove("hidden");
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function openPaymentModal(id, title, price) {
+  document.getElementById("payModalTitle").textContent = `الاشتراك في: ${title}`;
+  document.getElementById("payModalPrice").textContent = `المبلغ المطلوب: ${price}`;
+  document.getElementById("paymentModal").classList.remove("hidden");
+}
+
+function closePaymentModal() {
+  document.getElementById("paymentModal").classList.add("hidden");
+}
+
+function handlePkgSubscribe() {
+  const data = window.catalogData[currentOpenedPkgId];
+  openPaymentModal(data.id, data.title[currentLang], data.price);
+}
+
+function toggleCourseEnrollment() {
+  openPaymentModal(window.currentItemData.id, window.currentItemData.title[currentLang], window.currentItemData.price);
+}
+
+document.getElementById("sendProofBtn").onclick = function() {
+  const message = encodeURIComponent("مرحباً فريق أطلس 👋\nأرغب في تفعيل اشتراكي وإرسال إيصال التحويل.");
+  window.open(`https://t.me/Atlas_Academy?text=${message}`, "_blank");
+  closePaymentModal();
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  applyLanguage("ar");
+  renderCatalog();
+});
+
+</script>
+
+<!-- ============ FIREBASE MODULE ============ -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+  // TODO: Add your Firebase config here
+const firebaseConfig = {
+  apiKey: "AIzaSyB1EI6RB0EfCaq1pm5z4dcQEzhEPpNEwEA",
+  authDomain: "atlas-c883c.firebaseapp.com",
+  projectId: "atlas-c883c",
+  storageBucket: "atlas-c883c.firebasestorage.app",
+  messagingSenderId: "414987185997",
+  appId: "1:414987185997:web:57f34540ef1b4ca7d6d104"
+};
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  window.authInstance = auth;
+
+  // تسجيل الدخول
+  const loginForm = document.getElementById("loginForm");
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      try {
+        await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
+        closeAuthView();
+        alert("تم تسجيل الدخول بنجاح!");
+      } catch (err) {
+        document.getElementById("loginError").textContent = "خطأ في البريد أو كلمة المرور";
+        document.getElementById("loginError").classList.remove("hidden");
+      }
+    });
+  }
+
+  // حساب جديد
+  const registerForm = document.getElementById("registerForm");
+  if (registerForm) {
+    registerForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("regEmail").value;
+      const pass = document.getElementById("regPassword").value;
+      const name = document.getElementById("regName").value;
+      try {
+        const cred = await createUserWithEmailAndPassword(auth, email, pass);
+        await updateProfile(cred.user, { displayName: name });
+        await setDoc(doc(db, "students", cred.user.uid), {
+          fullName: name,
+          phone: document.getElementById("regPhone").value,
+          major: document.getElementById("regUniversity").value,
+          createdAt: serverTimestamp()
+        });
+        closeAuthView();
+        alert("تم إنشاء الحساب بنجاح!");
+      } catch (err) {
+        document.getElementById("registerError").textContent = err.message;
+        document.getElementById("registerError").classList.remove("hidden");
+      }
+    });
+  }
+
+  window.handleLogoutClick = async function() {
+    await signOut(auth);
+    location.reload();
+  };
+    // دالة تحويل الروابط لمشغل متوافق
+function formatEmbedUrl(url) {
+  if (!url) return "";
+  let formatted = url.trim();
+  if (formatted.includes("youtube.com/watch?v=")) formatted = formatted.replace("watch?v=", "embed/");
+  else if (formatted.includes("youtu.be/")) formatted = formatted.replace("youtu.be/", "www.youtube.com/embed/");
+  return formatted.includes("?") ? `${formatted}&autoplay=1` : `${formatted}?autoplay=1`;
+}
+
+// عرض قائمة المحاضرات داخل الكورس
+window.renderDynamicLessonsAccordion = function(lessonsList) {
+  const container = document.getElementById("lessonsList");
+  if (!container) return;
+  if (!lessonsList || lessonsList.length === 0) {
+    container.innerHTML = `<div class="p-8 text-center bg-[#111827] rounded-2xl border border-slate-800 text-slate-400 text-xs">لم يقم المشرف بنشر محاضرات لهذا المقرر حتى الآن.</div>`;
+    return;
+  }
+  container.innerHTML = lessonsList.map((lec, index) => `
+    <div class="rounded-2xl border border-slate-800 bg-[#111827] overflow-hidden shadow-md">
+      <div class="p-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl flex items-center justify-center font-black text-xs bg-brand text-white">${index + 1}</span>
+          <h4 class="text-xs sm:text-sm font-black text-white">${lec.title}</h4>
+        </div>
+        <button onclick="playLessonVideo('${lec.title}', '${lec.videoUrl}')" class="px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold transition">مشاهدة ▶</button>
+      </div>
+    </div>
+  `).join("");
+};
+
+// تشغيل الفيديو المختار
+window.playLessonVideo = function(title, videoUrl) {
+  const wrapper = document.getElementById("videoContainerWrapper");
+  const iframe = document.getElementById("videoIframe");
+  const titleEl = document.getElementById("currentLessonTitle");
+  if (!wrapper || !iframe) return;
+  iframe.src = formatEmbedUrl(videoUrl);
+  if (titleEl) titleEl.textContent = title;
+  wrapper.classList.remove("hidden");
+  wrapper.scrollIntoView({ behavior: "smooth", block: "center" });
+};
+
+window.closeVideoPlayer = function() {
+  const wrapper = document.getElementById("videoContainerWrapper");
+  const iframe = document.getElementById("videoIframe");
+  if (iframe) iframe.src = "";
+  if (wrapper) wrapper.classList.add("hidden");
+};
+</script>
+
+<!-- نافذة تكبير بوستر الكورس (Image Lightbox Modal) -->
+<div id="imageLightboxModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 select-none">
+  <div class="relative max-w-4xl max-h-[90vh] flex flex-col items-center">
+    <button type="button" onclick="document.getElementById('imageLightboxModal').classList.add('hidden')" class="absolute -top-12 end-0 text-white bg-slate-800/80 hover:bg-rose-600 rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold transition shadow-lg z-50">✕</button>
+    <img id="lightboxImg" src="" alt="بوستر الكورس" class="max-w-full max-h-[80vh] rounded-3xl object-contain shadow-2xl border border-white/20" />
+  </div>
+</div>
+
 </body>
 </html>
