@@ -457,6 +457,18 @@
     
     <button onclick="closeAuthView()" class="absolute top-4 start-4 text-slate-400 hover:text-white w-7 h-7 rounded-full bg-slate-800 flex items-center justify-center text-xs transition cursor-pointer">✕</button>
 
+<!-- زر الدخول السريع عبر Google -->
+    <div class="mb-4">
+      <button type="button" onclick="handleGoogleSignIn()" class="w-full h-11 rounded-xl bg-white text-slate-900 font-bold text-xs flex items-center justify-center gap-2 shadow hover:bg-slate-100 transition cursor-pointer">
+        <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 10.04 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+        <span>المتابعة السريعة بحساب Google</span>
+      </button>
+      <div class="relative flex items-center justify-center my-3">
+        <div class="border-t border-slate-800 w-full"></div>
+        <span class="bg-[#111827] px-2 text-[10px] text-slate-500 font-bold uppercase">أو بالبيانات</span>
+      </div>
+    </div>
+
     <!-- تبويبات الدخول / التسجيل -->
     <div id="authTabsNav" class="grid grid-cols-2 gap-1.5 p-1.5 auth-nav-bg rounded-2xl mb-5">
       <button id="tabLoginBtn" onclick="setAuthTab('login')" class="auth-tab h-10 rounded-xl text-xs md:text-sm font-black transition" data-i18n="auth_tab_login">تسجيل الدخول</button>
@@ -503,17 +515,34 @@
       </button>
     </form>
 
-    <!-- 3. نموذج إنشاء حساب جديد -->
+    <!-- 3. نموذج إنشاء حساب جديد مع تأكيد رقم الهاتف (SMS OTP) -->
     <form id="registerForm" class="hidden flex-col gap-3" onsubmit="return false;">
       <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
         <span data-i18n="auth_name">الاسم بالكامل</span>
         <input id="regName" type="text" required placeholder="مثال: أحمد محمد علي" class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
       </label>
 
+      <!-- حقل الهاتف وزر إرسال الكود -->
+      <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
+        <span data-i18n="auth_phone">رقم الهاتف (الواتساب)</span>
+        <div class="flex gap-2">
+          <input id="regPhone" type="tel" required maxlength="11" placeholder="010XXXXXXXX" dir="ltr" class="flex-1 h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand font-mono text-right" />
+          <button type="button" id="sendOtpBtn" onclick="handleSendOtp()" class="px-3 h-10 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs whitespace-nowrap transition cursor-pointer">
+            إرسال كود التحقق 📲
+          </button>
+        </div>
+      </label>
+
+      <!-- حقل إدخال رمز التحقق -->
+      <div id="otpInputGroup" class="hidden flex-col gap-1 text-xs font-bold text-theme-main">
+        <span class="text-cyan-300">أدخل رمز الـ 6 أرقام المستلم:</span>
+        <input id="otpCode" type="text" maxlength="6" placeholder="------" class="h-10 rounded-xl px-3 border border-cyan-500 bg-[#0A0F1D] text-xs text-white text-center font-mono tracking-widest outline-none" />
+      </div>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
         <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
-          <span data-i18n="auth_phone">رقم الهاتف (واتساب)</span>
-          <input id="regPhone" type="tel" required maxlength="11" placeholder="010XXXXXXXX" dir="ltr" class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand font-mono text-right" />
+          <span>المجال / التخصص</span>
+          <input id="regUniversity" required placeholder="مثال: حاسبات، هندسة، خريج..." class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
         </label>
         
         <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
@@ -526,11 +555,6 @@
       </div>
 
       <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
-        <span>المجال الدراسي / التخصص</span>
-        <input id="regUniversity" required placeholder="مثال: هندسة، حاسبات، تجارة، خريج..." class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
-      </label>
-
-      <label class="flex flex-col gap-1 text-xs font-bold text-theme-main">
         <span data-i18n="auth_email">البريد الإلكتروني</span>
         <input id="regEmail" type="email" required placeholder="student@example.com" class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
       </label>
@@ -540,6 +564,7 @@
         <input id="regPassword" type="password" required placeholder="••••••••" minlength="6" class="h-10 rounded-xl px-3 border border-slate-700 bg-transparent text-xs text-theme-main focus:border-brand" />
       </label>
 
+      <div id="recaptcha-container"></div>
       <p id="registerError" class="hidden text-xs font-bold text-rose-500 text-center py-1"></p>
       
       <button id="registerSubmitBtn" type="submit" class="h-11 rounded-xl bg-brand text-white font-black text-xs md:text-sm mt-1 shadow-lg hover:bg-indigo-700 transition cursor-pointer" data-i18n="auth_register_btn">
@@ -1135,63 +1160,152 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </script>
 
-<!-- ============ FIREBASE MODULE ============ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword, 
+    updateProfile, 
+    signOut,
+    GoogleAuthProvider,
+    signInWithPopup,
+    RecaptchaVerifier,
+    signInWithPhoneNumber
+  } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-  // TODO: Add your Firebase config here
-const firebaseConfig = {
-  apiKey: "AIzaSyB1EI6RB0EfCaq1pm5z4dcQEzhEPpNEwEA",
-  authDomain: "atlas-c883c.firebaseapp.com",
-  projectId: "atlas-c883c",
-  storageBucket: "atlas-c883c.firebasestorage.app",
-  messagingSenderId: "414987185997",
-  appId: "1:414987185997:web:57f34540ef1b4ca7d6d104"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyB1EI6RB0EfCaq1pm5z4dcQEzhEPpNEwEA",
+    authDomain: "atlas-c883c.firebaseapp.com",
+    projectId: "atlas-c883c",
+    storageBucket: "atlas-c883c.firebasestorage.app",
+    messagingSenderId: "414987185997",
+    appId: "1:414987185997:web:57f34540ef1b4ca7d6d104"
+  };
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
 
   window.authInstance = auth;
+  const googleProvider = new GoogleAuthProvider();
+  let confirmationResultRef = null;
 
-  // تسجيل الدخول
+  // 1. الدخول السريع عبر Google
+  window.handleGoogleSignIn = async function() {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      await setDoc(doc(db, "students", user.uid), {
+        fullName: user.displayName || "متدرب أطلس",
+        email: user.email,
+        phone: user.phoneNumber || "مسجل بجوجل",
+        major: "عام",
+        academicYear: "tech",
+        createdAt: serverTimestamp()
+      }, { merge: true });
+
+      alert("🎉 تم تسجيل الدخول بحساب Google بنجاح!");
+      closeAuthView();
+      window.location.reload();
+    } catch (error) {
+      console.error("Google Sign-In Error:", error);
+      alert("تعذر الدخول بجوجل، تأكد من الضغط على Save في Firebase Console.");
+    }
+  };
+
+  // 2. إعداد الـ reCAPTCHA التلقائية
+  function setupRecaptcha() {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+        size: 'invisible'
+      });
+    }
+  }
+
+  // 3. إرسال كود التحقق SMS للرقم
+  window.handleSendOtp = async function() {
+    const phoneRaw = document.getElementById("regPhone").value.trim();
+    const sendBtn = document.getElementById("sendOtpBtn");
+
+    if (!/^01[0125][0-9]{8}$/.test(phoneRaw)) {
+      alert("⚠️ يرجى إدخال رقم مصري صحيح مكون من 11 رقماً.");
+      return;
+    }
+
+    const phoneFormatted = "+2" + phoneRaw;
+
+    try {
+      sendBtn.disabled = true;
+      sendBtn.textContent = "جاري الإرسال...";
+      setupRecaptcha();
+
+      confirmationResultRef = await signInWithPhoneNumber(auth, phoneFormatted, window.recaptchaVerifier);
+      document.getElementById("otpInputGroup").classList.remove("hidden");
+      document.getElementById("otpInputGroup").classList.add("flex");
+      sendBtn.textContent = "تم الإرسال ✓";
+      alert("📲 تم إرسال كود التحقق في رسالة نصية SMS لهاتفك.");
+    } catch (error) {
+      console.error("SMS Error:", error);
+      sendBtn.disabled = false;
+      sendBtn.textContent = "إعادة المحاولة";
+      alert("تعذر إرسال SMS، تأكد من إضافة رقمك في Phone testing numbers في Firebase.");
+    }
+  };
+
+  // 4. تسجيل الدخول بالبريد وكلمة المرور
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       try {
-        await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
+        await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value.trim(), document.getElementById("loginPassword").value);
         closeAuthView();
-        alert("تم تسجيل الدخول بنجاح!");
+        window.location.reload();
       } catch (err) {
-        document.getElementById("loginError").textContent = "خطأ في البريد أو كلمة المرور";
+        document.getElementById("loginError").textContent = "خطأ في البريد الإلكتروني أو كلمة المرور";
         document.getElementById("loginError").classList.remove("hidden");
       }
     });
   }
 
-  // حساب جديد
+  // 5. إنشاء حساب وتأكيد الـ OTP
   const registerForm = document.getElementById("registerForm");
   if (registerForm) {
     registerForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const email = document.getElementById("regEmail").value;
+      const email = document.getElementById("regEmail").value.trim();
       const pass = document.getElementById("regPassword").value;
-      const name = document.getElementById("regName").value;
+      const name = document.getElementById("regName").value.trim();
+      const phone = document.getElementById("regPhone").value.trim();
+      const otp = document.getElementById("otpCode").value.trim();
+
+      if (confirmationResultRef && otp.length === 6) {
+        try {
+          await confirmationResultRef.confirm(otp);
+        } catch (err) {
+          alert("❌ رمز التحقق غير صحيح، يرجى كتابة الرمز المستلم بدقة.");
+          return;
+        }
+      }
+
       try {
         const cred = await createUserWithEmailAndPassword(auth, email, pass);
         await updateProfile(cred.user, { displayName: name });
         await setDoc(doc(db, "students", cred.user.uid), {
           fullName: name,
-          phone: document.getElementById("regPhone").value,
-          major: document.getElementById("regUniversity").value,
+          phone: phone,
+          major: document.getElementById("regUniversity").value.trim(),
+          academicYear: document.getElementById("regYear").value,
+          email: email,
+          enrolledCourses: [],
           createdAt: serverTimestamp()
         });
         closeAuthView();
-        alert("تم إنشاء الحساب بنجاح!");
+        alert("🎉 تم إنشاء الحساب بنجاح!");
+        window.location.reload();
       } catch (err) {
         document.getElementById("registerError").textContent = err.message;
         document.getElementById("registerError").classList.remove("hidden");
@@ -1203,54 +1317,6 @@ const firebaseConfig = {
     await signOut(auth);
     location.reload();
   };
-    // دالة تحويل الروابط لمشغل متوافق
-function formatEmbedUrl(url) {
-  if (!url) return "";
-  let formatted = url.trim();
-  if (formatted.includes("youtube.com/watch?v=")) formatted = formatted.replace("watch?v=", "embed/");
-  else if (formatted.includes("youtu.be/")) formatted = formatted.replace("youtu.be/", "www.youtube.com/embed/");
-  return formatted.includes("?") ? `${formatted}&autoplay=1` : `${formatted}?autoplay=1`;
-}
-
-// عرض قائمة المحاضرات داخل الكورس
-window.renderDynamicLessonsAccordion = function(lessonsList) {
-  const container = document.getElementById("lessonsList");
-  if (!container) return;
-  if (!lessonsList || lessonsList.length === 0) {
-    container.innerHTML = `<div class="p-8 text-center bg-[#111827] rounded-2xl border border-slate-800 text-slate-400 text-xs">لم يقم المشرف بنشر محاضرات لهذا المقرر حتى الآن.</div>`;
-    return;
-  }
-  container.innerHTML = lessonsList.map((lec, index) => `
-    <div class="rounded-2xl border border-slate-800 bg-[#111827] overflow-hidden shadow-md">
-      <div class="p-4 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <span class="w-8 h-8 rounded-xl flex items-center justify-center font-black text-xs bg-brand text-white">${index + 1}</span>
-          <h4 class="text-xs sm:text-sm font-black text-white">${lec.title}</h4>
-        </div>
-        <button onclick="playLessonVideo('${lec.title}', '${lec.videoUrl}')" class="px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold transition">مشاهدة ▶</button>
-      </div>
-    </div>
-  `).join("");
-};
-
-// تشغيل الفيديو المختار
-window.playLessonVideo = function(title, videoUrl) {
-  const wrapper = document.getElementById("videoContainerWrapper");
-  const iframe = document.getElementById("videoIframe");
-  const titleEl = document.getElementById("currentLessonTitle");
-  if (!wrapper || !iframe) return;
-  iframe.src = formatEmbedUrl(videoUrl);
-  if (titleEl) titleEl.textContent = title;
-  wrapper.classList.remove("hidden");
-  wrapper.scrollIntoView({ behavior: "smooth", block: "center" });
-};
-
-window.closeVideoPlayer = function() {
-  const wrapper = document.getElementById("videoContainerWrapper");
-  const iframe = document.getElementById("videoIframe");
-  if (iframe) iframe.src = "";
-  if (wrapper) wrapper.classList.add("hidden");
-};
 </script>
 
 <!-- نافذة تكبير بوستر الكورس (Image Lightbox Modal) -->
