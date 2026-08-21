@@ -448,3 +448,46 @@ function animateHeroStats() {
         }, stepTime);
     });
 }
+// استخراج YouTube Video ID تلقائياً
+function extractYouTubeId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+}
+
+// تشغيل تحكم المشرف وإضافة الدروس لـ Firestore
+const adminModal = document.getElementById("adminModal");
+document.getElementById("openAdminModalBtn")?.addEventListener("click", () => adminModal.classList.remove("hidden"));
+document.getElementById("closeAdminModal")?.addEventListener("click", () => adminModal.classList.add("hidden"));
+
+document.getElementById("adminAddLessonForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const trackId = document.getElementById("lessonTrackSelect").value;
+    const title = document.getElementById("lessonTitle").value;
+    const rawUrl = document.getElementById("lessonYoutubeUrl").value;
+    const desc = document.getElementById("lessonDesc").value;
+    const videoId = extractYouTubeId(rawUrl);
+
+    if (!videoId) {
+        showToast("يرجى إدخال رابط يوتيوب صالح", "error");
+        return;
+    }
+
+    try {
+        // حفظ الدرس في Firebase Firestore
+        const lessonId = `lesson_${Date.now()}`;
+        await setDoc(doc(db, "tracks", trackId, "lessons", lessonId), {
+            title,
+            videoId,
+            youtubeUrl: rawUrl,
+            description: desc,
+            createdAt: new Date().toISOString()
+        });
+        showToast("تمت إضافة المحاضرة بنجاح للمسار!", "success");
+        adminModal.classList.add("hidden");
+        e.target.reset();
+    } catch (err) {
+        showToast("حدث خطأ أثناء الحفظ في السحابة", "error");
+        console.error(err);
+    }
+});
