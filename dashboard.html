@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>لوحة التحكم | ATLAS ACADEMY</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root {
+    --brand-primary: #4F46E5;
+    --brand-dark:    #3730A3;
+    --brand-accent:  #06B6D4;
+    --dark-bg:       #0A0F1D;
+    --dark-card:     #111827;
+    --dark-line:     #1E293B;
+  }
+  html[lang="ar"] body, html[lang="ar"] * { font-family: 'Tajawal', 'IBM Plex Sans Arabic', sans-serif; }
+  .num-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  body { background-color: var(--dark-bg); color: #F8FAFC; transition: background-color 0.3s ease, color 0.3s ease; }
+  body.light { background-color: #F8FAFC; color: #0F172A; }
+
+  .bg-card-theme { background-color: var(--dark-card); border-color: var(--dark-line); }
+  body.light .bg-card-theme { background-color: #FFFFFF !important; border-color: #E2E8F0 !important; }
+
+  .hero-banner-bg {
+    background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 45%, #312E81 100%);
+  }
+
+  .side-link { color: #94A3B8; transition: all 0.2s ease; }
+  .side-link:hover { color: #FFFFFF; background-color: rgba(255, 255, 255, 0.05); }
+  .side-link.active {
+    background-color: var(--brand-primary);
+    color: #FFFFFF;
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
+  }
+
+  .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .card-hover:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.25); }
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- Loading Gate -->
+<div id="authGate" class="fixed inset-0 z-[100] flex items-center justify-center bg-[#0A0F1D]">
+  <div class="flex flex-col items-center gap-3">
+    <div class="w-10 h-10 rounded-full border-4 border-t-transparent animate-spin border-cyan-500"></div>
+    <span class="text-xs font-bold text-slate-300">جاري تحميل مساحتك التعليمية في أطلس...</span>
+  </div>
+</div>
+
+<div class="lg:grid lg:grid-cols-[260px,1fr]">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="hidden lg:flex flex-col gap-1 h-screen sticky top-0 border-e border-[#1E293B] p-5 bg-[#111827]/95 backdrop-blur-md">
+    
+    <!-- لوجو المنصة والرجوع للموقع -->
+    <a href="index.html" class="inline-flex items-center justify-center p-2.5 mb-6 rounded-2xl bg-[#0A0F1D] border border-slate-800 hover:border-brand transition shadow-md group" title="العودة للصفحة الرئيسية">
+      <img src="logo.png" alt="الرئيسية" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='logo.png'" />
+    </a>
+
+    <!-- التبويبات -->
+    <nav class="flex flex-col gap-1.5 text-xs font-bold">
+      <button onclick="switchTab('overview')" id="tab-overview" class="side-link active flex items-center gap-3 px-3.5 h-11 rounded-xl w-full text-start">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>الرئيسية والإحصائيات</span>
+      </button>
+
+      <button onclick="switchTab('courses')" id="tab-courses" class="side-link flex items-center gap-3 px-3.5 h-11 rounded-xl w-full text-start">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+        <span>مساراتي المفعلة</span>
+      </button>
+
+      <button onclick="switchTab('lab')" id="tab-lab" class="side-link flex items-center gap-3 px-3.5 h-11 rounded-xl w-full text-start">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <span>مختبر الأكواد والتطبيق العملي</span>
+      </button>
+
+      <button onclick="switchTab('mcq')" id="tab-mcq" class="side-link flex items-center gap-3 px-3.5 h-11 rounded-xl w-full text-start">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>بنك الأسئلة والتقييمات</span>
+      </button>
+
+      <button onclick="switchTab('vault')" id="tab-vault" class="side-link flex items-center gap-3 px-3.5 h-11 rounded-xl w-full text-start">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span>الملفات والأكواد (PDF / Docs)</span>
+      </button>
+
+      <button onclick="switchTab('glossary')" id="tab-glossary" class="side-link flex items-center gap-3 px-3.5 h-11 rounded-xl w-full text-start">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span>المساعد التقني والقاموس</span>
+      </button>
+    </nav>
+
+    <!-- زر تسجيل الخروج -->
+    <button id="logoutBtn" class="mt-auto flex items-center gap-3 px-3.5 h-11 rounded-xl text-xs font-bold text-rose-400 hover:bg-rose-950/40 border border-rose-900/30 transition">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      <span>تسجيل الخروج</span>
+    </button>
+  </aside>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main class="px-5 md:px-8 py-8 max-w-6xl w-full mx-auto pb-24 lg:pb-8">
+
+    <!-- شريط الرأس الترحيبي -->
+    <div class="flex items-center justify-between mb-8 pb-4 border-b border-[#1E293B]">
+      <div>
+        <h1 class="text-xl sm:text-2xl font-black text-white" id="greeting">مرحبًا يا بطل 👋</h1>
+        <p class="text-xs text-slate-400 font-semibold mt-1" id="academicSub">متابعة تقدمك التقني والمسارات المفعلة</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="openAskModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-bold hover:bg-cyan-900/40 transition">
+          <span>💬</span> اسأل المشرف
+        </button>
+        <div id="userAvatar" class="w-10 h-10 rounded-2xl bg-brand flex items-center justify-center text-white font-black text-base shadow-lg border border-white/10">A</div>
+      </div>
+    </div>
+
+    <!-- 1. تبويب الرئيسية (Overview Panel) -->
+    <div id="panel-overview" class="tab-panel space-y-8">
+      
+      <!-- شريط استكمال المذاكرة -->
+      <section id="resumeCard" class="rounded-3xl hero-banner-bg p-6 sm:p-8 text-white relative overflow-hidden shadow-2xl border border-white/10">
+        <span class="text-[10px] font-black px-3 py-1 rounded-full bg-cyan-400 text-slate-900 shadow">آخر مقرر تم فتحه</span>
+        <h2 id="continueCourseTitle" class="text-lg sm:text-2xl font-black mt-3">تطوير الواجهات المتكاملة</h2>
+        <p id="continueLessonTitle" class="text-xs opacity-85 mt-1 text-cyan-100">المحاضرة الأولى: مقدمة في بنية الويب الحديثة</p>
+
+        <div class="mt-5 flex items-center gap-3">
+          <div class="flex-1 h-2.5 rounded-full bg-black/40 overflow-hidden border border-white/10">
+            <div id="continueProgressBar" class="h-full rounded-full bg-cyan-400 transition-all duration-700" style="width: 35%"></div>
+          </div>
+          <span id="continueProgressLabel" class="text-xs font-black num-font text-cyan-300">35%</span>
+        </div>
+
+        <button onclick="switchTab('courses')" class="mt-5 inline-block text-xs font-black bg-white text-[#312E81] px-6 py-2.5 rounded-xl shadow-xl hover:bg-cyan-50 transition transform hover:scale-105">
+          استكمال الشرح والتطبيق الآن 🚀
+        </button>
+      </section>
+
+      <!-- شريط الإحصائيات -->
+      <section class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-[#111827] border border-[#1E293B] rounded-2xl p-4 text-center shadow-md">
+          <span class="text-2xl">💻</span>
+          <span class="block text-xl font-black text-white mt-1 num-font" id="statEnrolled">0</span>
+          <span class="text-[10px] font-bold text-slate-400">مسارات مفعلة</span>
+        </div>
+        <div class="bg-[#111827] border border-[#1E293B] rounded-2xl p-4 text-center shadow-md">
+          <span class="text-2xl">📝</span>
+          <span class="block text-xl font-black text-cyan-400 mt-1 num-font" id="statQuizzes">0</span>
+          <span class="text-[10px] font-bold text-slate-400">كويزات منجزة</span>
+        </div>
+        <div class="bg-[#111827] border border-[#1E293B] rounded-2xl p-4 text-center shadow-md">
+          <span class="text-2xl">⚡</span>
+          <span class="block text-xl font-black text-indigo-400 mt-1 num-font" id="statLab">0</span>
+          <span class="text-[10px] font-bold text-slate-400">تطبيقات برمجية</span>
+        </div>
+        <div class="bg-[#111827] border border-[#1E293B] rounded-2xl p-4 text-center shadow-md">
+          <span class="text-2xl">📑</span>
+          <span class="block text-xl font-black text-emerald-400 mt-1 num-font" id="statPdfs">0</span>
+          <span class="text-[10px] font-bold text-slate-400">ملفات ومشاريع</span>
+        </div>
+      </section>
+
+      <!-- ودجات المذاكرة والملاحظات -->
+      <section class="grid lg:grid-cols-3 gap-6">
+        <!-- 1. مؤقت بومودورو للتركيز -->
+        <div class="rounded-3xl border border-[#1E293B] bg-[#111827] p-6 flex flex-col justify-between shadow-xl">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-black text-cyan-400 flex items-center gap-1.5"><span>⏱️</span> مؤقت التركيز (Pomodoro)</span>
+            <span id="timerStatus" class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">جاهز</span>
+          </div>
+          <div class="text-center py-5">
+            <span id="timerDisplay" class="text-4xl sm:text-5xl font-black text-white font-mono tracking-widest">25:00</span>
+          </div>
+          <div class="flex gap-2">
+            <button id="startTimerBtn" onclick="toggleTimer()" class="flex-1 py-2 rounded-xl bg-brand text-white font-black text-xs hover:bg-indigo-700 transition">بدء التركيز ▶</button>
+            <button onclick="resetTimer()" class="px-3.5 py-2 rounded-xl bg-[#0A0F1D] border border-slate-700 text-slate-300 font-bold text-xs hover:bg-slate-800 transition">إعادة</button>
+          </div>
+        </div>
+
+        <!-- 2. ورش العمل والمواعيد المباشرة -->
+        <div class="rounded-3xl border border-[#1E293B] bg-[#111827] p-6 flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-black text-cyan-400 flex items-center gap-1.5"><span>🔴</span> جلسات المراجعة والـ Live</span>
+            </div>
+            <div class="space-y-2.5" id="liveEventsList">
+              <div class="p-2.5 rounded-xl bg-[#0A0F1D] border border-slate-800 flex items-center justify-between">
+                <div>
+                  <h4 class="text-xs font-black text-white">ورشة تطبيق عملي: React Hooks</h4>
+                  <span class="text-[10px] text-slate-400 block">الجمعة • 8:00 مساءً</span>
+                </div>
+                <span class="text-[10px] font-black px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800/40">مجدولة</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://t.me/Atlas_Academy" target="_blank" rel="noopener" class="mt-3 text-center text-[11px] font-bold text-slate-400 hover:text-white transition">
+            قناة التنبيهات المباشرة ←
+          </a>
+        </div>
+
+        <!-- 3. المسودة السريعة -->
+        <div class="rounded-3xl border border-[#1E293B] bg-[#111827] p-6 flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-black text-cyan-300 flex items-center gap-1.5"><span>📝</span> مسودة الكود والملاحظات</span>
+              <span id="saveIndicator" class="text-[10px] text-emerald-400 font-bold opacity-0 transition-opacity">تم الحفظ ✓</span>
+            </div>
+            <textarea id="quickNotesArea" oninput="saveQuickNotes()" rows="3" placeholder="سجل ملاحظاتك البرمجية واللغوية هنا..." class="w-full rounded-xl p-2.5 bg-[#0A0F1D] border border-slate-700 text-xs text-slate-200 focus:border-brand resize-none leading-5"></textarea>
+          </div>
+          <button onclick="clearQuickNotes()" class="mt-2 text-start text-[10px] font-bold text-rose-400 hover:underline">مسح المسودة</button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 2. تبويب كورساتي (Courses Panel) -->
+    <div id="panel-courses" class="tab-panel hidden space-y-6">
+      <h3 class="text-sm font-black text-cyan-300">📚 المسارات والكورسات المشترك بها</h3>
+      <div id="studentEnrolledCoursesGrid" class="grid sm:grid-cols-2 gap-4"></div>
+    </div>
+
+    <!-- 3. تبويب مختبر التطبيق العملي (Lab Panel) -->
+    <div id="panel-lab" class="tab-panel hidden space-y-6">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-black text-cyan-300">⚡ مختبر التطبيقات البرمجية والمشاريع</h3>
+        <span class="text-[10px] font-bold px-3 py-1 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800/40">تحديات برمجية</span>
+      </div>
+      <div class="space-y-4" id="labChallengesList"></div>
+    </div>
+
+    <!-- 4. تبويب بنك الأسئلة (MCQ Bank Panel) -->
+    <div id="panel-mcq" class="tab-panel hidden space-y-6">
+      <h3 class="text-sm font-black text-cyan-300">📝 كويزات تقييم استيعاب المحاضرات</h3>
+      <div class="space-y-4" id="mcqTestsList"></div>
+    </div>
+
+    <!-- 5. تبويب المذكرات والأكواد (PDF Vault Panel) -->
+    <div id="panel-vault" class="tab-panel hidden space-y-6">
+      <h3 class="text-sm font-black text-cyan-300">📑 مكتبة الأكواد، الشيتات، والمذكرات المعتمدة</h3>
+      <div class="grid sm:grid-cols-2 gap-4" id="pdfVaultGrid"></div>
+    </div>
+
+    <!-- 6. تبويب المساعد التقني والقاموس (Glossary Panel) -->
+    <div id="panel-glossary" class="tab-panel hidden space-y-6">
+      <div class="bg-[#111827] p-5 rounded-2xl border border-[#1E2E42] space-y-3">
+        <h3 class="text-sm font-black text-cyan-300">🔍 محرك البحث في مصطلحات البرمجة واللغات</h3>
+        <input id="glossarySearchInput" oninput="filterGlossary()" type="text" placeholder="ابحث عن مصطلح تقني أو لغوي..." class="w-full h-11 rounded-xl px-4 bg-[#0A0F1D] border border-slate-700 text-xs text-white focus:border-brand" />
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4" id="glossaryResults"></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Mobile Nav Bar -->
+<nav class="lg:hidden fixed bottom-0 inset-x-0 z-40 border-t border-[#1E2E42] bg-[#111827]/95 backdrop-blur-lg flex items-center justify-around h-16 px-2 select-none">
+  <button onclick="switchTab('overview')" class="flex flex-col items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-cyan-300 transition">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>الرئيسية</span>
+  </button>
+  <button onclick="switchTab('courses')" class="flex flex-col items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-cyan-300 transition">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+    <span>مساراتي</span>
+  </button>
+  <button onclick="switchTab('lab')" class="flex flex-col items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-cyan-300 transition">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+    <span>المختبر</span>
+  </button>
+  <button onclick="switchTab('mcq')" class="flex flex-col items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-cyan-300 transition">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+    <span>الكويزات</span>
+  </button>
+  <button onclick="switchTab('vault')" class="flex flex-col items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-cyan-300 transition">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span>الملفات</span>
+  </button>
+</nav>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB1EI6RB0EfCaq1pm5z4dcQEzhEPpNEwEA",
+  authDomain: "atlas-c883c.firebaseapp.com",
+  projectId: "atlas-c883c",
+  storageBucket: "atlas-c883c.firebasestorage.app",
+  messagingSenderId: "414987185997",
+  appId: "1:414987185997:web:57f34540ef1b4ca7d6d104"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// تعريف بيانات كورسات منصة أطلس
+const allCoursesMeta = {
+  c_frontend: { title: "تطوير الواجهات (Frontend Web Development)", icon: "🎨", desc: "HTML, CSS, JavaScript, Responsive UI & React" },
+  c_backend: { title: "تطوير الواجهات الخلفية (Backend & Node.js)", icon: "⚙️", desc: "Node.js, Express, RESTful APIs & MongoDB" },
+  c_linux: { title: "أساسيات Linux وإدارة الشبكات", icon: "🐧", desc: "Linux Commands, Permissions, Bash & Networking Protocols" },
+  c_pentest: { title: "الأمن السيبراني واختبار الاختراق", icon: "🛡️", desc: "Ethical Hacking, OWASP Top 10 & Security Tools" },
+  c_deutsch: { title: "احتراف اللغة الألمانية (Deutsch A1-B2)", icon: "🇩🇪", desc: "Grammatik, Wortschatz, Aussprache & Goethe B1" },
+  c_office: { title: "حزمة الـ Office الاحترافية (Word & Excel)", icon: "📊", desc: "Advanced Excel Sheets, Data Analysis & Word Templates" }
+};
+
+// بنك التحديات البرمجية والتطبيقية
+const labDB = {
+  c_frontend: [
+    { title: "تحدي: بناء Interactive Dark Mode Switcher بـ JavaScript", time: "15 دقيقة", steps: ["إنشاء زر التبديل وتحديد الـ Theme في الـ LocalStorage", "إضافة Event Listener لتغيير خواص الـ CSS Root", "التأكد من حفظ التفضيل عند إعادة تحميل الصفحة"] }
+  ],
+  c_backend: [
+    { title: "تحدي: إنشاء RESTful Auth API مع JWT Token", time: "25 دقيقة", steps: ["إعداد Express Router وتشفير كلمة السر بـ bcrypt", "إنشاء JSON Web Token عند تسجيل الدخول", "تطبيق Middleware للتحقق من الصلاحيات"] }
+  ],
+  c_linux: [
+    { title: "تحدي: تأمين خادم Linux وضبط الـ Firewall", time: "20 دقيقة", steps: ["تعطيل الدخول بحساب Root عبر SSH", "تفعيل جدار الحماية UFW والسماح بالمنافذ المطلوبة فقط", "إعداد Cron Job للنسخ الاحتياطي التلقائي"] }
+  ]
+};
+
+let activeStudentGlossary = [];
+
+window.switchTab = function(tabKey) {
+  document.querySelectorAll(".tab-panel").forEach(p => p.classList.add("hidden"));
+  document.querySelectorAll(".side-link").forEach(l => l.classList.remove("active"));
+
+  const targetPanel = document.getElementById(`panel-${tabKey}`);
+  const targetTabBtn = document.getElementById(`tab-${tabKey}`);
+
+  if (targetPanel) targetPanel.classList.remove("hidden");
+  if (targetTabBtn) targetTabBtn.classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+const authGate = document.getElementById("authGate");
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  try {
+    const snap = await getDoc(doc(db, "students", user.uid));
+    if (!snap.exists()) {
+      alert("⚠️ لم يتم العثور على ملفك الشخصي.");
+      window.location.href = "index.html";
+      return;
+    }
+
+    const data = snap.data();
+    const enrolledCourses = data.enrolledCourses || [];
+
+    if (enrolledCourses.length === 0) {
+      alert("🔒 لا يمكنك الدخول للوحة الطالب حتى تقوم بتفعيل اشتراكك في مسار تدريبي واحد على الأقل.");
+      window.location.href = "index.html#courses";
+      return;
+    }
+
+    renderStudentDashboard(user, data, enrolledCourses);
+  } catch (err) {
+    console.error("Auth Error:", err);
+    window.location.href = "index.html";
+  } finally {
+    if (authGate) authGate.style.display = "none";
+  }
+});
+
+function renderStudentDashboard(user, data, enrolledCourses) {
+  const fullName = data.fullName || user.displayName || "متدرب أطلس";
+  const userTrack = data.major || data.academicYear === "lang_office" ? "مسار اللغات والبرمجيات" : "مسار البرمجة والأمن السيبراني";
+
+  document.getElementById("greeting").textContent = `مرحبًا يا ${fullName} 👋`;
+  document.getElementById("academicSub").textContent = `${userTrack} • المسارات والمشاريع المفعلة`;
+  document.getElementById("userAvatar").textContent = fullName.trim().charAt(0);
+
+  document.getElementById("statEnrolled").textContent = enrolledCourses.length;
+
+  const quizScores = data.quizScores || {};
+  document.getElementById("statQuizzes").textContent = Object.keys(quizScores).length;
+
+  renderEnrolledCourses(enrolledCourses);
+  renderLabChallenges(enrolledCourses);
+  renderMCQBank(enrolledCourses);
+  renderPDFVault(enrolledCourses);
+  buildStudentGlossary(enrolledCourses);
+}
+
+function renderEnrolledCourses(enrolledCourses) {
+  const grid = document.getElementById("studentEnrolledCoursesGrid");
+  grid.innerHTML = enrolledCourses.map(cId => {
+    const crs = allCoursesMeta[cId] || { title: cId, icon: "💻", desc: "مسار تدريبي مفعل" };
+    return `
+      <div class="rounded-2xl border border-slate-800 bg-[#111827] p-5 flex flex-col justify-between shadow-lg card-hover">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl">${crs.icon}</span>
+            <span class="text-[10px] font-black px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">مفعل 🔓</span>
+          </div>
+          <h4 class="text-sm font-black text-white mt-2">${crs.title}</h4>
+          <p class="text-[11px] text-slate-400 leading-5">${crs.desc}</p>
+        </div>
+        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between">
+          <a href="index.html?openCourse=${cId}" class="w-full py-2.5 rounded-xl bg-brand hover:bg-indigo-700 text-white text-xs font-black text-center transition flex items-center justify-center gap-1.5 shadow-md">
+            <span>دخول المحاضرات والتطبيقات</span> <span>←</span>
+          </a>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function renderLabChallenges(enrolledCourses) {
+  const list = document.getElementById("labChallengesList");
+  let challenges = [];
+
+  enrolledCourses.forEach(cId => {
+    if (labDB[cId]) challenges = challenges.concat(labDB[cId]);
+  });
+
+  document.getElementById("statLab").textContent = challenges.length;
+
+  if (challenges.length === 0) {
+    list.innerHTML = `<div class="rounded-2xl border border-slate-800 bg-[#111827] p-8 text-center text-xs text-slate-400">لا تتوفر تحديات برمجية للمسارات المفعلة لديك حالياً.</div>`;
+    return;
+  }
+
+  list.innerHTML = challenges.map(ch => `
+    <div class="rounded-2xl border border-slate-800 bg-[#111827] p-5 space-y-3 shadow-md">
+      <div class="flex items-center justify-between">
+        <h4 class="text-xs sm:text-sm font-black text-white flex items-center gap-2"><span>⚡</span> ${ch.title}</h4>
+        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-cyan-400/20 text-cyan-300">${ch.time}</span>
+      </div>
+      <div class="space-y-1.5 pt-2 border-t border-slate-800">
+        <span class="text-[11px] font-bold text-slate-400">خطوات التنفيذ البرمجي:</span>
+        ${ch.steps.map((st, idx) => `
+          <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer p-1.5 rounded-lg hover:bg-slate-800/50 transition">
+            <input type="checkbox" class="accent-indigo-600 rounded" />
+            <span>${idx + 1}. ${st}</span>
+          </label>
+        `).join("")}
+      </div>
+    </div>
+  `).join("");
+}
+
+function renderMCQBank(enrolledCourses) {
+  const list = document.getElementById("mcqTestsList");
+  list.innerHTML = enrolledCourses.map(cId => {
+    const crs = allCoursesMeta[cId] || { title: cId };
+    return `
+      <div class="rounded-2xl border border-slate-800 bg-[#111827] p-4 flex items-center justify-between shadow-md">
+        <div>
+          <h4 class="text-xs sm:text-sm font-black text-white">📝 كويز تقييمي: ${crs.title}</h4>
+          <p class="text-[11px] text-slate-400 mt-0.5">بنك أسئلة تطبيقي لقياس جاهزيتك لسوق العمل</p>
+        </div>
+        <a href="index.html?openCourse=${cId}" class="px-3.5 py-1.5 rounded-xl bg-brand text-white font-black text-xs hover:bg-indigo-700 transition">بدء الكويز ⏱️</a>
+      </div>
+    `;
+  }).join("");
+}
+
+async function renderPDFVault(enrolledCourses) {
+  const grid = document.getElementById("pdfVaultGrid");
+  grid.innerHTML = enrolledCourses.map(cId => {
+    const crs = allCoursesMeta[cId] || { title: cId };
+    return `
+      <div class="rounded-2xl border border-slate-800 bg-[#111827] p-4 flex items-center justify-between shadow-md">
+        <div>
+          <span class="text-[10px] font-black px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800/30">ملف تدريبي</span>
+          <h4 class="text-xs font-black text-white mt-1">أكواد وتفريغات: ${crs.title}</h4>
+          <span class="text-[10px] text-slate-400 block mt-0.5">متاح للمشاهدة والتحميل</span>
+        </div>
+        <a href="index.html?openCourse=${cId}" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-brand text-white text-xs font-bold transition">معاينة 👁️</a>
+      </div>
+    `;
+  }).join("");
+
+  try {
+    let totalPdfs = 0;
+    for (const cId of enrolledCourses) {
+      const q = query(collection(db, "lectures"), where("courseId", "==", cId));
+      const snap = await getDocs(q);
+      snap.forEach(docSnap => {
+        if (docSnap.data().pdfUrl) totalPdfs++;
+      });
+    }
+    document.getElementById("statPdfs").textContent = totalPdfs;
+  } catch (err) {
+    document.getElementById("statPdfs").textContent = "—";
+  }
+}
+
+async function buildStudentGlossary(enrolledCourses) {
+  const container = document.getElementById("glossaryResults");
+  if (!container) return;
+
+  container.innerHTML = `<div class="col-span-2 text-center text-xs text-slate-400 py-6">جارٍ جلب القاموس التقني...</div>`;
+
+  try {
+    const snap = await getDocs(collection(db, "tech_terms"));
+    if (snap.empty) {
+      container.innerHTML = `<div class="col-span-2 text-center text-xs text-slate-400 py-6">لم يتم نشر مصطلحات في القاموس بعد.</div>`;
+      activeStudentGlossary = [];
+      return;
+    }
+
+    activeStudentGlossary = snap.docs.map(d => d.data());
+    renderGlossaryUI(activeStudentGlossary);
+  } catch (err) {
+    container.innerHTML = `<div class="col-span-2 text-center text-xs text-slate-400 py-6">تعذر جلب المصطلحات.</div>`;
+  }
+}
+
+function renderGlossaryUI(list) {
+  const container = document.getElementById("glossaryResults");
+  if (!container) return;
+
+  if (list.length === 0) {
+    container.innerHTML = `<div class="col-span-2 text-center text-xs text-slate-400 py-6">لا توجد مصطلحات مطابقة للبحث.</div>`;
+    return;
+  }
+
+  container.innerHTML = list.map(g => `
+    <div class="rounded-2xl border border-slate-800 bg-[#111827] p-4 space-y-1.5 shadow-md">
+      <div class="flex items-baseline justify-between">
+        <h4 class="text-xs font-black text-cyan-300 font-mono">${g.term || ""}</h4>
+        <span class="text-[10px] text-indigo-300 font-bold px-2 py-0.5 rounded bg-slate-800">${g.category || "تقنية"}</span>
+      </div>
+      <p class="text-[11px] text-slate-300 leading-5">${g.definition || g.desc || ""}</p>
+    </div>
+  `).join("");
+}
+
+window.filterGlossary = function() {
+  const input = document.getElementById("glossarySearchInput");
+  if (!input) return;
+  const q = input.value.toLowerCase().trim();
+  const filtered = activeStudentGlossary.filter(g => 
+    (g.term && g.term.toLowerCase().includes(q)) || 
+    (g.category && g.category.toLowerCase().includes(q)) || 
+    (g.definition && g.definition.toLowerCase().includes(q))
+  );
+  renderGlossaryUI(filtered);
+};
+
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.href = "index.html";
+  });
+}
+
+window.openAskModal = function() {
+  document.getElementById("askDrModal").classList.remove("hidden");
+};
+
+window.closeAskModal = function() {
+  document.getElementById("askDrModal").classList.add("hidden");
+};
+
+window.handleSendDoubt = function(e) {
+  e.preventDefault();
+  const user = auth.currentUser;
+  const studentName = user?.displayName || "متدرب أطلس";
+  const sub = document.getElementById("askSubject").value.trim();
+  const q = document.getElementById("askQuestion").value.trim();
+
+  const msg = encodeURIComponent(
+    `استفسار تقني جديد ❓\nمن المتدرب: ${studentName}\nالإيميل: ${user?.email}\nالمسار/المحاضرة: ${sub}\n\nنص الاستفسار:\n${q}`
+  );
+
+  window.open(`https://t.me/Atlas_Academy?text=${msg}`, "_blank");
+  closeAskModal();
+};
+
+// ============ POMODORO & NOTES ============
+let timerInterval = null;
+let timeLeft = 25 * 60;
+let isRunning = false;
+
+window.toggleTimer = function() {
+  const btn = document.getElementById("startTimerBtn");
+  const status = document.getElementById("timerStatus");
+  if (isRunning) {
+    clearInterval(timerInterval);
+    isRunning = false;
+    btn.textContent = "استئناف ▶";
+    status.textContent = "متوقف مؤقتاً";
+    status.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300";
+  } else {
+    isRunning = true;
+    btn.textContent = "إيقاف مؤقت ⏸";
+    status.textContent = "جلسة تركيز جارية 🔥";
+    status.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300";
+    timerInterval = setInterval(() => {
+      if (timeLeft > 0) {
+        timeLeft--;
+        const mins = Math.floor(timeLeft / 60);
+        const secs = timeLeft % 60;
+        document.getElementById("timerDisplay").textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      } else {
+        clearInterval(timerInterval);
+        isRunning = false;
+        alert("🎉 أحسنت! انتهت جلسة التركيز. خذ استراحة لمدة 5 دقائق.");
+        resetTimer();
+      }
+    }, 1000);
+  }
+};
+
+window.resetTimer = function() {
+  clearInterval(timerInterval);
+  isRunning = false;
+  timeLeft = 25 * 60;
+  document.getElementById("timerDisplay").textContent = "25:00";
+  document.getElementById("startTimerBtn").textContent = "بدء التركيز ▶";
+  document.getElementById("timerStatus").textContent = "جاهز للتعلم";
+  document.getElementById("timerStatus").className = "text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300";
+};
+
+window.saveQuickNotes = function() {
+  localStorage.setItem("atlas_quick_notes", document.getElementById("quickNotesArea").value);
+  const ind = document.getElementById("saveIndicator");
+  if (ind) {
+    ind.classList.remove("opacity-0");
+    setTimeout(() => ind.classList.add("opacity-0"), 1200);
+  }
+};
+
+window.clearQuickNotes = function() {
+  if (confirm("هل تريد مسح المسودة؟")) {
+    document.getElementById("quickNotesArea").value = "";
+    localStorage.removeItem("atlas_quick_notes");
+  }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const saved = localStorage.getItem("atlas_quick_notes");
+  if (saved && document.getElementById("quickNotesArea")) {
+    document.getElementById("quickNotesArea").value = saved;
+  }
+});
+</script>
+
+<!-- نافذة اسأل المشرف -->
+<div id="askDrModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 select-none">
+  <div class="bg-[#111827] border border-slate-700 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
+    <button onclick="closeAskModal()" class="absolute top-4 start-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center transition">✕</button>
+    
+    <div class="text-center space-y-1">
+      <span class="text-2xl">⚡</span>
+      <h3 class="text-base font-black text-white">اسأل مشرف مسار أطلس</h3>
+      <p class="text-xs text-slate-400">اكتب استفسارك التقني أو مشكلتك البرمجية وسيتم توجيهها للمشرف</p>
+    </div>
+
+    <form id="askDrForm" onsubmit="handleSendDoubt(event)" class="space-y-3">
+      <div>
+        <label class="block text-[11px] font-bold text-slate-300 mb-1">المسار أو المحاضرة المعنية:</label>
+        <input id="askSubject" type="text" placeholder="مثال: Frontend - مشكلة في React State" required class="w-full h-10 rounded-xl px-3 bg-[#0A0F1D] border border-slate-700 text-xs text-white focus:border-brand" />
+      </div>
+      <div>
+        <label class="block text-[11px] font-bold text-slate-300 mb-1">نص السؤال أو الكود المطلوب مراجعته:</label>
+        <textarea id="askQuestion" rows="3" placeholder="اكتب سؤالك بالتفصيل هنا..." required class="w-full rounded-xl p-3 bg-[#0A0F1D] border border-slate-700 text-xs text-white focus:border-brand"></textarea>
+      </div>
+      <button type="submit" class="w-full py-3 rounded-xl bg-brand hover:bg-indigo-700 text-white font-black text-xs shadow-lg transition">
+        إرسال الاستفسار للمشرف 🚀
+      </button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
