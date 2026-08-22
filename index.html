@@ -1909,94 +1909,38 @@ window.selectCourseLevel = function(courseId, levelId) {
 };
 
 // عرض محتويات المستوى بالتفصيل
+// عرض محتويات المستوى والمحاضرات بالتفصيل وبشكل آمن
 function renderLevelDetails(data) {
   if (!data) return;
 
-  // 1. عرض المحاضرات
   const lessonsContainer = document.getElementById("lessonsList");
-  const lecturesCount = document.getElementById("lecturesCountBadge");
-  if (lessonsContainer) {
-    lecturesCount.textContent = `${data.lectures.length} محاضرات`;
+  const countBadge = document.getElementById("firestoreLecturesCount");
+
+  // عرض المحاضرات والفيديوهات
+  if (lessonsContainer && data.lectures) {
+    if (countBadge) countBadge.textContent = `${data.lectures.length} LECTURES`;
+    
     lessonsContainer.innerHTML = data.lectures.map((lec, idx) => `
-      <div class="rounded-2xl border border-slate-800 bg-[#111827] p-4 flex items-center justify-between shadow-md">
+      <div class="p-3.5 rounded-xl border border-slate-800 bg-[#11131A] flex items-center justify-between flex-wrap gap-3 hover:border-slate-700 transition">
         <div class="flex items-center gap-3">
-          <span class="w-8 h-8 rounded-xl flex items-center justify-center font-black text-xs bg-brand text-white shrink-0">${idx + 1}</span>
+          <span class="w-6 h-6 rounded bg-[#181B24] border border-slate-700/60 text-slate-300 font-mono text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
           <div>
-            <h4 class="text-xs sm:text-sm font-black text-white">${lec.title}</h4>
-            <span class="text-[10px] text-slate-400 block mt-0.5">${lec.desc || ''}</span>
+            <h4 class="text-xs md:text-sm font-semibold text-slate-100">${lec.title}</h4>
+            <span class="text-[11px] text-slate-400 block mt-0.5">${lec.desc || lec.description || ''}</span>
           </div>
         </div>
         <div class="flex items-center gap-2">
           ${lec.videoUrl ? `
-            <button onclick="playLessonVideo('${lec.title}', '${lec.videoUrl}')" class="px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold transition cursor-pointer">
-              مشاهدة ▶
+            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}')" class="px-3.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">
+              مشاهدة المحاضرة
             </button>
           ` : ''}
           ${lec.quiz && lec.quiz.length > 0 ? `
-            <button onclick='startInteractiveQuiz(${JSON.stringify(lec.quiz)})' class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition cursor-pointer">
-              الكويز 📝
+            <button onclick='startInteractiveQuiz(${JSON.stringify(lec.quiz)})' class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition cursor-pointer">
+              الكويز
             </button>
           ` : ''}
         </div>
-      </div>
-    `).join("");
-  }
-
-  // 2. عرض الأفعال وتصريفاتها مع زر النطق الصوتي
-  const verbsContainer = document.getElementById("verbsCardsContainer");
-  if (verbsContainer) {
-    verbsContainer.innerHTML = data.verbs.map(v => `
-      <div class="p-4 rounded-2xl bg-[#111827] border border-slate-800 hover:border-cyan-500/40 transition flex flex-col justify-between space-y-2">
-        <div class="flex items-center justify-between">
-          <span class="text-sm font-black text-cyan-300 font-mono">${v.base}</span>
-          <button type="button" onclick="speakEnglish('${v.base}')" class="w-7 h-7 rounded-lg bg-cyan-950/60 border border-cyan-800/50 hover:bg-cyan-500 hover:text-slate-900 text-cyan-400 flex items-center justify-center text-xs transition cursor-pointer" title="استمع للنطق">
-            🔊
-          </button>
-        </div>
-        <div class="text-[11px] text-slate-400 space-y-1">
-          <p><strong class="text-slate-300">الماضي:</strong> <span class="font-mono text-cyan-200">${v.past}</span></p>
-          <p><strong class="text-slate-300">المعنى:</strong> ${v.ar}</p>
-        </div>
-        <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-emerald-300 font-mono">
-          <span>"${v.ex}"</span>
-          <button type="button" onclick="speakEnglish('${v.ex}')" class="text-slate-500 hover:text-emerald-400 transition cursor-pointer" title="نطق المثال">🔊</button>
-        </div>
-      </div>
-    `).join("");
-  }
-
-  // 3. عرض المفردات المصنفة
-  const vocabContainer = document.getElementById("vocabContainer");
-  if (vocabContainer) {
-    vocabContainer.innerHTML = data.vocab.map(item => `
-      <div class="p-3.5 rounded-2xl bg-[#111827] border border-slate-800 flex items-center justify-between">
-        <div>
-          <h4 class="text-xs font-black text-white font-mono">${item.en}</h4>
-          <span class="text-[10px] text-slate-400">${item.ar}</span>
-        </div>
-        <button type="button" onclick="speakEnglish('${item.en}')" class="w-7 h-7 rounded-lg bg-emerald-950/60 border border-emerald-800/50 hover:bg-emerald-500 hover:text-slate-900 text-emerald-400 flex items-center justify-center text-xs transition cursor-pointer" title="استمع">
-          🔊
-        </button>
-      </div>
-    `).join("");
-  }
-
-  // 4. عرض الجمل الحياتية مع الترجمة والنطق
-  const sentencesContainer = document.getElementById("sentencesContainer");
-  if (sentencesContainer) {
-    sentencesContainer.innerHTML = data.sentences.map((st, i) => `
-      <div class="p-4 rounded-2xl bg-[#111827] border border-slate-800 flex items-center justify-between flex-wrap gap-3 hover:border-indigo-500/40 transition">
-        <div class="flex items-center gap-3">
-          <span class="w-6 h-6 rounded-lg bg-amber-500/10 text-amber-400 font-bold text-xs flex items-center justify-center">${i + 1}</span>
-          <div>
-            <p class="text-xs sm:text-sm font-black text-white font-mono tracking-wide">${st.en}</p>
-            <p class="text-[11px] text-slate-400 mt-0.5">${st.ar}</p>
-          </div>
-        </div>
-        <button type="button" onclick="speakEnglish('${st.en}')" class="px-3 py-1.5 rounded-xl bg-amber-950/60 border border-amber-800/50 hover:bg-amber-500 hover:text-slate-900 text-amber-300 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
-          <span>🔊</span>
-          <span>استمع للجملة</span>
-        </button>
       </div>
     `).join("");
   }
