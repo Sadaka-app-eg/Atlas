@@ -1889,7 +1889,8 @@ window.loadFirestoreLectures = async function(courseOrLevelKey) {
     }
 
     container.innerHTML = lectures.map((lec, idx) => `
-      <div class="p-3.5 rounded-lg border border-slate-800 bg-[#11131A] flex items-center justify-between flex-wrap gap-3 hover:border-slate-700 transition">
+      <div id="lessonRow_${idx}" class="p-3.5 rounded-lg border border-slate-800 bg-[#11131A] flex items-center justify-between flex-wrap gap-3 hover:border-slate-700 transition">
+        
         <div class="flex items-center gap-3">
           <span class="w-6 h-6 rounded bg-[#181B24] border border-slate-700/60 text-slate-300 font-mono text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
           <div>
@@ -1899,7 +1900,8 @@ window.loadFirestoreLectures = async function(courseOrLevelKey) {
         </div>
         <div class="flex items-center gap-2">
           ${lec.videoUrl ? `
-            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}')" class="px-3 py-1.5 rounded-md bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">
+            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})" class="px-3 py-1.5 rounded-md bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">
+              
               تشغيل المحاضرة
             </button>
           ` : ''}
@@ -1988,7 +1990,8 @@ function renderLevelDetails(data) {
     if (countBadge) countBadge.textContent = `${data.lectures.length} محاضرة متاحة`;
     
     lessonsContainer.innerHTML = data.lectures.map((lec, idx) => `
-      <div class="p-3.5 rounded-xl border border-slate-800 bg-[#11131A] flex items-center justify-between flex-wrap gap-3 hover:border-slate-700 transition">
+      <div id="lessonRow_${idx}" class="p-3.5 rounded-xl border border-slate-800 bg-[#11131A] flex items-center justify-between flex-wrap gap-3 hover:border-slate-700 transition">
+
         <div class="flex items-center gap-3">
           <span class="w-7 h-7 rounded-lg bg-[#181B24] border border-slate-700/60 text-cyan-400 font-mono text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
           <div>
@@ -1998,8 +2001,8 @@ function renderLevelDetails(data) {
         </div>
         <div class="flex items-center gap-2">
           ${lec.videoUrl ? `
-            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}')" class="px-3.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">
-              مشاهدة المحاضرة
+            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})" class="px-3.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">
+                            مشاهدة المحاضرة
             </button>
           ` : ''}
           ${lec.quiz && lec.quiz.length > 0 ? `
@@ -2013,7 +2016,7 @@ function renderLevelDetails(data) {
   }
 }
 
-window.playLessonVideo = function(title, videoUrl) {
+window.playLessonVideo = function(title, videoUrl, rowIdx) {
   const wrapper = document.getElementById("videoContainerWrapper");
   const iframe = document.getElementById("videoIframe");
   const titleEl = document.getElementById("currentLessonTitle");
@@ -2023,9 +2026,14 @@ window.playLessonVideo = function(title, videoUrl) {
   if (titleEl) titleEl.textContent = title;
 
   wrapper.classList.remove("hidden");
-  
-  // نقل التركيز بصرياً للمشغل بدون إجبار الشاشة على القفز للأعلى
-  wrapper.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+  // نقل عنصر المشغل فعلياً ليظهر أسفل المحاضرة التي تم الضغط عليها
+  if (typeof rowIdx !== "undefined") {
+    const rowEl = document.getElementById(`lessonRow_${rowIdx}`);
+    if (rowEl) rowEl.insertAdjacentElement("afterend", wrapper);
+  }
+
+  wrapper.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
 window.closeVideoPlayer = function() {
