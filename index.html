@@ -1936,10 +1936,12 @@ container.innerHTML = `<div class="p-5 text-center text-slate-500 text-xs font-m
         </div>
         <div class="flex items-center gap-2">
           ${lec.videoUrl ? `
-onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})"              
+            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})" class="px-3 py-1.5 rounded-md bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">
               تشغيل المحاضرة
             </button>
           ` : ''}
+
+
           ${lec.quiz && lec.quiz.length > 0 ? `
             <button onclick='startInteractiveQuiz(${JSON.stringify(lec.quiz)})' class="px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition cursor-pointer">
               الاختبار
@@ -2036,10 +2038,12 @@ if (lessonsContainer && data.lectures) {
         </div>
         <div class="flex items-center gap-2">
           ${lec.videoUrl ? `
-onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})"
-                            مشاهدة المحاضرة
+            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})" class="px-3.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">
+              مشاهدة المحاضرة
             </button>
           ` : ''}
+
+
           ${lec.quiz && lec.quiz.length > 0 ? `
             <button onclick='startInteractiveQuiz(${JSON.stringify(lec.quiz)})' class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition cursor-pointer">
               الكويز التقييمي
