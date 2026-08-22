@@ -71,6 +71,28 @@
     z-index: 100;
     transition: width 0.1s ease-out;
   }
+  .skill-tab-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #94A3B8;
+    background: #0A0F1D;
+    border: 1px solid #1E293B;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .skill-tab-btn:hover {
+    color: #FFFFFF;
+    border-color: #06B6D4;
+  }
+  .skill-tab-btn.active {
+    background: #4F46E5;
+    color: #FFFFFF;
+    border-color: #4F46E5;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+  }
 .level-card-btn {
     background: #111827;
     border: 1px solid #1E293B;
@@ -676,20 +698,43 @@
         الاشتراك في هذا المقرر الآن 🚀
       </button>
     </div>
-<!-- شريط اختيار المستويات (Levels Navigation & Visual Cards) -->
-    <div id="courseLevelsSection" class="hidden space-y-4">
-      <div class="flex items-center justify-between">
-        <h3 class="text-sm font-black text-cyan-300 flex items-center gap-2">
-          <span>🎯</span> اختر مستواك الدراسي الحالي:
-        </h3>
-        <span id="activeLevelBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800/40">المستوى المختار: A1</span>
-      </div>
+<!-- شريط اختيار المستويات الرئيسية -->
+<div id="courseLevelsSection" class="hidden space-y-4">
+  <div class="flex items-center justify-between flex-wrap gap-2">
+    <h3 class="text-sm font-black text-cyan-300 flex items-center gap-2">
+      <span>🎯</span> اختر مستواك الدراسي:
+    </h3>
+    <span id="activeLevelBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800/40">Level A1</span>
+  </div>
 
-      <!-- كروت المستويات التفاعلية -->
-      <div id="levelsCardsGrid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
-        <!-- يتم توليد كروت المستويات ديناميكياً -->
-      </div>
-    </div>
+  <!-- كروت المستويات التفاعلية A1 -> C1 -->
+  <div id="levelsCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
+
+  <!-- شريط المحاور المهارية الفرعية داخل المستوى المختار -->
+  <div id="skillTracksBar" class="p-2 rounded-2xl bg-[#111827] border border-slate-800 flex items-center gap-2 overflow-x-auto select-none mt-4">
+    <button type="button" onclick="selectSkillTrack('all')" class="skill-tab-btn active" id="skill_all">
+      <span>📚 الكل</span>
+    </button>
+    <button type="button" onclick="selectSkillTrack('speaking')" class="skill-tab-btn" id="skill_speaking">
+      <span>🗣️ Speaking & Situations</span>
+    </button>
+    <button type="button" onclick="selectSkillTrack('listening')" class="skill-tab-btn" id="skill_listening">
+      <span>🎧 Listening & Phonics</span>
+    </button>
+    <button type="button" onclick="selectSkillTrack('vocab')" class="skill-tab-btn" id="skill_vocab">
+      <span>📖 Vocabulary & Verbs</span>
+    </button>
+    <button type="button" onclick="selectSkillTrack('grammar')" class="skill-tab-btn" id="skill_grammar">
+      <span>🧠 Grammar</span>
+    </button>
+    <button type="button" onclick="selectSkillTrack('writing')" class="skill-tab-btn" id="skill_writing">
+      <span>✍️ Writing</span>
+    </button>
+    <button type="button" onclick="selectSkillTrack('exam')" class="skill-tab-btn" id="skill_exam">
+      <span>🎓 Level Assessment</span>
+    </button>
+  </div>
+</div>
     <!-- مشغل الفيديو والفهرس -->
     <div class="space-y-6">
 
@@ -1222,42 +1267,120 @@ function closePackageDetails() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// إضافة مصفوفة المستويات للكورسات في catalogData
+// دالة تحويل وتضمين روابط YouTube و Facebook
+function formatEmbedUrl(url) {
+  if (!url) return "";
+  let formatted = url.trim();
+
+  // 1. روابط YouTube
+  if (formatted.includes("youtube.com/watch?v=")) {
+    formatted = formatted.replace("watch?v=", "embed/");
+  } else if (formatted.includes("youtu.be/")) {
+    formatted = formatted.replace("youtu.be/", "www.youtube.com/embed/");
+  } else if (formatted.includes("youtube.com/shorts/")) {
+    formatted = formatted.replace("shorts/", "embed/");
+  }
+
+  if (formatted.includes("youtube.com/embed/")) {
+    const sep = formatted.includes("?") ? "&" : "?";
+    return `${formatted}${sep}autoplay=1&rel=0`;
+  }
+
+  // 2. روابط Facebook Video
+  if (formatted.includes("facebook.com") || formatted.includes("fb.watch")) {
+    return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(formatted)}&show_text=0&autoplay=1`;
+  }
+
+  return formatted;
+}
+
+// قاعدة بيانات المستويات والمحاور المهارية الكاملة
 window.courseLevelsDB = {
-  c_deutsch_all: [
-    { id: "a1", name: "مستوى A1", sub: "المبتدئ التأسيسي", desc: "الحروف، النطق، الضمائر، وجمل التعارف" },
-    { id: "a2", name: "مستوى A2", sub: "فوق المبتدئ", desc: "المحادثة اليومية، أزمنة الماضي، والمواقف الحياتية" },
-    { id: "b1", name: "مستوى B1", sub: "المتوسط وتأهيل جوته", desc: "القواعد المتقدمة، التعبير عن الرأي، والمقالات" },
-    { id: "b2", name: "مستوى B2", sub: "فوق المتوسط والعمل", desc: "اللغة المهنية، النقاشات المعقدة، والطلاقة" }
-  ],
   c_english_all: [
-    { id: "a1", name: "Level A1", sub: "Starter & Phonics", desc: "تأسيس النطق الصحيح والقواعد التأسيسية" },
-    { id: "a2", name: "Level A2", sub: "Elementary Fluency", desc: "بناء الجمل ومحادثات الحياة اليومية" },
-    { id: "b1", name: "Level B1", sub: "Intermediate English", desc: "المحادثة بطلاقة وفهم المحادثات السريعة" },
-    { id: "b2", name: "Level B2", sub: "Upper-Intermediate", desc: "المناقشات المتقدمة والكتابة الأكاديمية" },
-    { id: "c1", name: "Level C1", sub: "Advanced & Business", desc: "الإنجليزية المهنية وإتقان مقابلات العمل" }
+    { id: "a1", name: "Level A1", sub: "Starter & Phonics" },
+    { id: "a2", name: "Level A2", sub: "Elementary Fluency" },
+    { id: "b1", name: "Level B1", sub: "Intermediate English" },
+    { id: "b2", name: "Level B2", sub: "Upper-Intermediate" },
+    { id: "c1", name: "Level C1", sub: "Advanced & Business" }
   ],
-  c_web_dev: [
-    { id: "lvl_basics", name: "المستوى 1", sub: "HTML & CSS", desc: "الهيكلة وتنسيقات الـ Responsive UI" },
-    { id: "lvl_js", name: "المستوى 2", sub: "Modern JavaScript", desc: "الـ DOM، الـ APIs، والبرمجة الوظيفية" },
-    { id: "lvl_react", name: "المستوى 3", sub: "React.js Framework", desc: "بناء واجهات تطبيقات الويب التفاعلية" },
-    { id: "lvl_backend", name: "المستوى 4", sub: "Node.js & MongoDB", desc: "تطوير السيرفرات وقواعد البيانات" }
+  c_deutsch_all: [
+    { id: "a1", name: "Niveau A1", sub: "المبتدئ التأسيسي" },
+    { id: "a2", name: "Niveau A2", sub: "فوق المبتدئ" },
+    { id: "b1", name: "Niveau B1", sub: "المتوسط وجوته" },
+    { id: "b2", name: "Niveau B2", sub: "المتقدم والأعمال" }
   ]
 };
 
-let currentSelectedLevelId = null;
+// بنك الدروس النموذجي لمنهج اللغة الإنجليزية
+window.englishCurriculumDB = {
+  a1: [
+    { 
+      title: "Pronunciation: Alphabet & Letter Sounds", 
+      skill: "listening", 
+      videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", 
+      pdfUrl: "", 
+      isFree: true,
+      desc: "Short & Long Vowels, Silent Letters, and Word Stress.",
+      quiz: [{ question: "اختر النطق السليم لصوت حرف (P):", options: ["صوت انفجاري به هواء", "صوت مجهور بدون هواء", "مثل حرف الفاء"], correctIndex: 0 }]
+    },
+    { 
+      title: "Core Verbs: Be, Have, Do & Action Verbs", 
+      skill: "vocab", 
+      videoUrl: "https://www.youtube.com/watch?v=d9V91zQkXh4", 
+      isFree: true,
+      desc: "تصريف أهم 25 فعل أساسي مع أمثلة وجمل شائعة.",
+      quiz: [{ question: "They ______ students.", options: ["are", "is", "am"], correctIndex: 0 }]
+    },
+    { 
+      title: "Grammar: Subject Pronouns & Present Simple", 
+      skill: "grammar", 
+      videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", 
+      isFree: false,
+      desc: "تكوين الجملة الإيجابية والنفي والأسئلة بـ Do / Does."
+    },
+    { 
+      title: "Daily Situations: Ordering Food & Asking Directions", 
+      skill: "speaking", 
+      videoUrl: "https://www.youtube.com/watch?v=d9V91zQkXh4", 
+      isFree: false,
+      desc: "محادثات واقعية في الكافيه والسوبرماركت وطلب المساعدة."
+    },
+    { 
+      title: "Writing: From Basic Sentence to Simple Paragraph", 
+      skill: "writing", 
+      videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", 
+      isFree: false,
+      desc: "قواعد الترقيم وعلامات الـ Capitalization وكتابة نبذة عن نفسك."
+    },
+    { 
+      title: "Level Assessment: A1 Final Certification Exam", 
+      skill: "exam", 
+      videoUrl: "", 
+      isFree: false,
+      desc: "اختبار شامل في الكلمات، القواعد، الاستماع، والمحادثة لاجتياز المستوى.",
+      quiz: [
+        { question: "Excuse me, ______ is the bank?", options: ["where", "what", "who"], correctIndex: 0 },
+        { question: "I ______ coffee every morning.", options: ["drink", "drinks", "drinking"], correctIndex: 0 }
+      ]
+    }
+  ]
+};
 
-// تحديث دالة فتح الكورس لدعم المستويات
+let currentSelectedCourseId = null;
+let currentSelectedLevelId = "a1";
+let currentSelectedSkill = "all";
+
+// فتح واجهة الكورس وتجهيز المستويات
 window.openCourseView = function(courseId) {
   const crs = window.catalogData[courseId];
   if (!crs) return;
   window.currentItemData = crs;
+  currentSelectedCourseId = courseId;
 
   document.getElementById("crsTitle").textContent = typeof crs.title === "object" ? crs.title[currentLang] : crs.title;
   document.getElementById("crsDesc").textContent = typeof crs.desc === "object" ? crs.desc[currentLang] : crs.desc;
   document.getElementById("crsPrice").textContent = `${crs.price} ج.م`;
 
-  // إخفاء الأقسام الرئيسية
   ["mainNavbar", "hero", "years", "courses", "features", "honors", "reviews", "instructor", "mainFooter"].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.add("hidden");
@@ -1267,7 +1390,6 @@ window.openCourseView = function(courseId) {
   const levelsGrid = document.getElementById("levelsCardsGrid");
   const courseLevels = window.courseLevelsDB[courseId];
 
-  // إذا كان الكورس يحتوي على مستويات مقسمة
   if (courseLevels && courseLevels.length > 0) {
     levelsSection.classList.remove("hidden");
     levelsGrid.innerHTML = courseLevels.map((lvl, index) => `
@@ -1277,41 +1399,142 @@ window.openCourseView = function(courseId) {
       </div>
     `).join("");
 
-    // اختيار المستوى الأول تلقائياً
     selectCourseLevel(courseId, courseLevels[0].id);
   } else {
     levelsSection.classList.add("hidden");
-    // تحميل المحاضرات العامة للكورس إن لم تكن مقسمة لمستويات
-    if (typeof window.loadFirestoreLectures === "function") {
-      window.loadFirestoreLectures(courseId);
-    }
+    loadAndRenderLectures(courseId);
   }
 
   document.getElementById("courseView").classList.remove("hidden");
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-// دالة التبديل بين المستويات وتحديث المحاضرات المعروضة
+// اختيار المستوى (A1 -> C1)
 window.selectCourseLevel = function(courseId, levelId) {
   currentSelectedLevelId = levelId;
   const courseLevels = window.courseLevelsDB[courseId] || [];
   const selectedLvl = courseLevels.find(l => l.id === levelId);
 
-  // تحديث حالة الأزرار
   document.querySelectorAll(".level-card-btn").forEach(btn => btn.classList.remove("active"));
   const activeBtn = document.getElementById(`levelCard_${levelId}`);
   if (activeBtn) activeBtn.classList.add("active");
 
-  // تحديث نص البادج
   if (selectedLvl) {
-    document.getElementById("activeLevelBadge").textContent = `المستوى المختار: ${selectedLvl.name} (${selectedLvl.sub})`;
+    document.getElementById("activeLevelBadge").textContent = `${selectedLvl.name} (${selectedLvl.sub})`;
   }
 
-  // فلترة أو جلب محاضرات المستوى المحدد من السحابة
-  const compositeLevelCourseId = `${courseId}_${levelId}`;
-  if (typeof window.loadFirestoreLectures === "function") {
-    window.loadFirestoreLectures(compositeLevelCourseId);
+  selectSkillTrack("all");
+};
+
+// تصفية المحاضرات حسب المحور المهاري
+window.selectSkillTrack = function(skillKey) {
+  currentSelectedSkill = skillKey;
+  document.querySelectorAll(".skill-tab-btn").forEach(btn => btn.classList.remove("active"));
+  const activeSkillBtn = document.getElementById(`skill_${skillKey}`);
+  if (activeSkillBtn) activeSkillBtn.classList.add("active");
+
+  loadAndRenderLectures(currentSelectedCourseId);
+};
+
+// جلب وعرض المحاضرات
+function loadAndRenderLectures(courseId) {
+  const container = document.getElementById("lessonsList");
+  if (!container) return;
+
+  let allLectures = window.englishCurriculumDB[currentSelectedLevelId] || [];
+
+  if (currentSelectedSkill !== "all") {
+    allLectures = allLectures.filter(l => l.skill === currentSelectedSkill);
   }
+
+  if (allLectures.length === 0) {
+    container.innerHTML = `<div class="p-8 text-center bg-[#111827] rounded-2xl border border-slate-800 text-slate-400 text-xs">لم يتم نشر وحدات لهذا القسم في هذا المستوى حتى الآن.</div>`;
+    return;
+  }
+
+  container.innerHTML = allLectures.map((lec, index) => `
+    <div class="rounded-2xl border border-slate-800 bg-[#111827] overflow-hidden shadow-md p-4 flex items-center justify-between flex-wrap gap-3">
+      <div class="flex items-center gap-3">
+        <span class="w-8 h-8 rounded-xl flex items-center justify-center font-black text-xs bg-brand text-white">${index + 1}</span>
+        <div>
+          <h4 class="text-xs sm:text-sm font-black text-white">${lec.title}</h4>
+          <span class="text-[10px] text-slate-400 block">${lec.desc || ''}</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        ${lec.videoUrl ? `
+          <button onclick="playLessonVideo('${lec.title}', '${lec.videoUrl}')" class="px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold transition">
+            مشاهدة ▶
+          </button>
+        ` : ''}
+        ${lec.quiz && lec.quiz.length > 0 ? `
+          <button onclick='startInteractiveQuiz(${JSON.stringify(lec.quiz)}, "quiz_${index}")' class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition">
+            الكويز 📝
+          </button>
+        ` : ''}
+      </div>
+    </div>
+  `).join("");
+}
+
+// دالة تشغيل الفيديو
+window.playLessonVideo = function(title, videoUrl) {
+  const wrapper = document.getElementById("videoContainerWrapper");
+  const iframe = document.getElementById("videoIframe");
+  const titleEl = document.getElementById("currentLessonTitle");
+  if (!wrapper || !iframe) return;
+
+  iframe.src = formatEmbedUrl(videoUrl);
+  if (titleEl) titleEl.textContent = title;
+
+  wrapper.classList.remove("hidden");
+  wrapper.scrollIntoView({ behavior: "smooth", block: "center" });
+};
+
+// دالة تشغيل الكويز التفاعلي
+window.startInteractiveQuiz = function(quizQuestions, quizId) {
+  const quizSection = document.getElementById("quizSection");
+  const quizList = document.getElementById("quizQuestionsList");
+  const scoreBadge = document.getElementById("quizScoreBadge");
+  const submitBtn = document.getElementById("submitQuizBtn");
+
+  if (!quizSection || !quizList) return;
+
+  if (scoreBadge) scoreBadge.classList.add("hidden");
+  if (submitBtn) submitBtn.disabled = false;
+
+  quizList.innerHTML = quizQuestions.map((q, idx) => `
+    <div class="p-4 rounded-2xl bg-[#0A0F1D] border border-slate-800 space-y-3">
+      <h4 class="text-xs font-black text-white leading-5">${idx + 1}. ${q.question}</h4>
+      <div class="space-y-2">
+        ${q.options.map((opt, optIdx) => `
+          <label class="flex items-center gap-2 p-2.5 rounded-xl bg-[#111827] hover:bg-slate-800 text-xs text-slate-300 cursor-pointer border border-transparent has-[:checked]:border-cyan-400 has-[:checked]:text-cyan-300 transition">
+            <input type="radio" name="q_${idx}" value="${optIdx}" required class="accent-indigo-600" />
+            <span>${opt}</span>
+          </label>
+        `).join("")}
+      </div>
+    </div>
+  `).join("");
+
+  quizSection.classList.remove("hidden");
+  quizSection.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  document.getElementById("studentQuizForm").onsubmit = function(e) {
+    e.preventDefault();
+    let score = 0;
+    quizQuestions.forEach((q, idx) => {
+      const sel = document.querySelector(`input[name="q_${idx}"]:checked`);
+      if (sel && parseInt(sel.value, 10) === q.correctIndex) {
+        score++;
+      }
+    });
+
+    scoreBadge.textContent = `نتيجتك: ${score} من ${quizQuestions.length}`;
+    scoreBadge.classList.remove("hidden");
+    submitBtn.disabled = true;
+    alert(`🎉 نتيجتك هي: ${score} من ${quizQuestions.length}`);
+  };
 };
 
 function closeCourseView() {
