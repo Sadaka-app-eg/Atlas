@@ -71,6 +71,46 @@
     z-index: 100;
     transition: width 0.1s ease-out;
   }
+.level-card-btn {
+    background: #111827;
+    border: 1px solid #1E293B;
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .level-card-btn:hover {
+    border-color: #06B6D4;
+    transform: translateY(-3px);
+    background: #162032;
+  }
+  .level-card-btn.active {
+    background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+    border-color: #06B6D4;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.25);
+  }
+  .level-tag-pill {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #38BDF8;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+.level-sub-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94A3B8;
+  }
+  .level-card-btn.active .level-sub-title {
+    color: #E2E8F0;
+  }
 
   .theme-toggle-pill {
     width: 54px;
@@ -227,13 +267,25 @@
 </header>
 
 <!-- ============ HERO SECTION ============ -->
-<section id="hero" class="w-full max-w-[1650px] mx-auto px-3 sm:px-6 md:px-8 pt-28 md:pt-24 pb-8">
-  <div class="relative overflow-hidden rounded-[2.5rem] hero-banner-bg min-h-[520px] md:min-h-[580px] lg:min-h-[640px] flex flex-col md:flex-row items-center justify-between px-6 sm:px-10 md:px-16 py-10 md:py-12 border border-white/10 shadow-2xl">
+<section id="hero" class="w-full px-4 sm:px-6 lg:px-10 pt-28 md:pt-24 pb-10">
+  <div class="relative overflow-hidden rounded-[2.5rem] hero-banner-bg border border-white/10 shadow-2xl p-6 sm:p-10 lg:p-14 flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
     
-    <!-- نصوص الهيرو -->
-    <div class="w-full md:w-7/12 text-center md:text-right text-white space-y-5 md:space-y-6 z-10 relative">
-      <span class="inline-block text-xs sm:text-sm md:text-base font-black text-cyan-300 tracking-wide" data-i18n="hero_eyebrow">
-        منصة أطلس الشاملة — طريقك لاحتراف البرمجة، الأمن السيبراني، اللغات الأجنبية، وحزم البرمجيات المكتبية
+    <!-- حاوية الصورة المتناسقة بأبعادها الكاملة -->
+    <div class="w-full lg:w-5/12 flex justify-center lg:justify-start items-center">
+      <div class="relative w-full max-w-[480px] lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-black/30">
+        <img 
+          src="atlas.png" 
+          alt="منصة أطلس" 
+          class="w-full h-auto max-h-[500px] lg:max-h-[560px] object-cover object-center transform hover:scale-105 transition-transform duration-500" 
+          onerror="this.src='atlas.jpg'" 
+        />
+      </div>
+    </div>
+
+    <!-- نصوص وقيم منصة أطلس -->
+    <div class="w-full lg:w-7/12 text-center lg:text-right text-white space-y-6">
+      <span class="inline-block text-xs sm:text-sm md:text-base font-black text-cyan-300 tracking-wide bg-white/10 px-4 py-1.5 rounded-full border border-white/10" data-i18n="hero_eyebrow">
+        منصة أطلس الشاملة — طريقك لاحتراف البرمجة، الأمن السيبراني واللغات
       </span>
 
       <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.25] tracking-tight" data-i18n="hero_title">
@@ -241,34 +293,30 @@
         تعلم عملي.. من الصفر لسوق العمل
       </h1>
 
-      <p class="text-xs sm:text-base md:text-lg font-semibold opacity-90 leading-6 md:leading-8 max-w-xl mx-auto md:mx-0 text-slate-200" data-i18n="hero_sub">
-        خرائط طريق تفاعلية، محاضرات فيديو منتقاة بعناية، وتطبيقات عملية على كل درس لتصل لأعلى درجات الإتقان.
+      <p class="text-xs sm:text-base md:text-lg font-semibold opacity-90 leading-7 md:leading-8 max-w-2xl mx-auto lg:mx-0 text-slate-200" data-i18n="hero_sub">
+        خرائط طريق تفاعلية، ومحاضرات فيديو منتقاة بعناية، وتطبيقات عملية على كل درس لتصل لأعلى درجات الإتقان.
       </p>
 
-      <!-- أزرار الهيرو -->
-      <div class="pt-2 flex justify-center md:justify-start">
+      <!-- زر الدعوة لاتخاذ إجراء -->
+      <div class="pt-2 flex justify-center lg:justify-start">
         <div id="heroGuestCta">
-          <button onclick="openAuthView('register')" class="inline-block bg-white text-[#312E81] font-black text-xs sm:text-sm md:text-base px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl shadow-2xl hover:bg-cyan-50 transition transform hover:scale-105 cursor-pointer" data-i18n="hero_cta1">
-            انضم وابدأ رحلتك الآن 🚀
+          <button onclick="openAuthView('register')" class="inline-flex items-center gap-2 bg-white text-[#312E81] font-black text-sm sm:text-base px-9 py-4 rounded-2xl shadow-2xl hover:bg-cyan-50 transition transform hover:scale-105 cursor-pointer" data-i18n="hero_cta1">
+            <span>انضم وابدأ رحلتك الآن</span>
+            <span>🚀</span>
           </button>
         </div>
 
         <div id="heroUserCta" class="hidden">
-          <div class="inline-flex items-center gap-2 bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-white/15 text-cyan-300 font-black text-xs sm:text-sm shadow-lg">
+          <div class="inline-flex items-center gap-2 bg-black/40 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/15 text-cyan-300 font-black text-sm shadow-lg">
             <span>👋</span>
             <span>أهلاً بك يا بطل <span id="heroUserName" class="text-white"></span></span>
           </div>
         </div>
       </div>
 
-      <div class="pt-4 border-t border-white/15 text-[11px] md:text-sm font-bold opacity-80 hidden md:block" data-i18n="hero_footer_note">
+      <div class="pt-4 border-t border-white/15 text-xs sm:text-sm font-bold opacity-80" data-i18n="hero_footer_note">
         أطلس: بيئة تعليمية ذكية وتطبيقية لكل مجالات المستقبل
       </div>
-    </div>
-
-    <!-- صورة المشرف الأساسية -->
-    <div class="absolute inset-0 md:static md:w-5/12 flex justify-center md:justify-end items-end pointer-events-none md:pointer-events-auto z-0 opacity-25 md:opacity-100">
-      <img src="atlas.png" alt="مشرف منصة أطلس" class="max-h-[480px] lg:max-h-[580px] w-auto object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.85)] scale-110 md:scale-105 transform translate-y-6 md:translate-y-0" onerror="this.src='atlas.png'" />
     </div>
 
   </div>
@@ -653,7 +701,20 @@
         الاشتراك في هذا المقرر الآن 🚀
       </button>
     </div>
+<!-- شريط اختيار المستويات (Levels Navigation & Visual Cards) -->
+    <div id="courseLevelsSection" class="hidden space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-black text-cyan-300 flex items-center gap-2">
+          <span>🎯</span> اختر مستواك الدراسي الحالي:
+        </h3>
+        <span id="activeLevelBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800/40">المستوى المختار: A1</span>
+      </div>
 
+      <!-- كروت المستويات التفاعلية -->
+      <div id="levelsCardsGrid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
+        <!-- يتم توليد كروت المستويات ديناميكياً -->
+      </div>
+    </div>
     <!-- مشغل الفيديو والفهرس -->
     <div class="space-y-6">
 
@@ -1117,12 +1178,11 @@ function renderCatalog() {
     const descText = isPkg ? item.sub[lang] : item.desc[lang];
     const badgeText = item.badge ? item.badge[lang] : "";
     const priceText = `${item.price} ${isEn ? 'EGP' : 'ج.م'}`;
-
-    return `
+return `
       <article class="min-w-[300px] md:min-w-[370px] snap-start card-hover rounded-3xl overflow-hidden border ${isPkg ? "border-brand shadow-indigo-900/20" : "border-slate-800"} bg-[#111827] p-3.5 flex flex-col justify-between">
-        <div class="rounded-2xl overflow-hidden relative aspect-[4/3] bg-[#0A0F1D]">
+        <div onclick="openImageLightbox('${item.img}')" class="rounded-2xl overflow-hidden relative aspect-[4/3] bg-[#0A0F1D] cursor-pointer group" title="اضغط لتكبير الصورة 🔍">
           ${badgeText ? `<span class="absolute top-2.5 start-2.5 z-10 text-[10px] font-black bg-cyan-400 text-slate-900 px-2.5 py-1 rounded-md shadow-md">${badgeText}</span>` : ""}
-          <img src="${item.img}" class="w-full h-full object-cover hover:scale-105 transition duration-300" onerror="this.style.display='none'" />
+          <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.style.display='none'" />
         </div>
         <div class="p-3 flex-1 flex flex-col space-y-4">
           <div class="flex items-start gap-2.5">
@@ -1202,24 +1262,97 @@ function closePackageDetails() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function openCourseView(courseId) {
+// إضافة مصفوفة المستويات للكورسات في catalogData
+window.courseLevelsDB = {
+  c_deutsch_all: [
+    { id: "a1", name: "مستوى A1", sub: "المبتدئ التأسيسي", desc: "الحروف، النطق، الضمائر، وجمل التعارف" },
+    { id: "a2", name: "مستوى A2", sub: "فوق المبتدئ", desc: "المحادثة اليومية، أزمنة الماضي، والمواقف الحياتية" },
+    { id: "b1", name: "مستوى B1", sub: "المتوسط وتأهيل جوته", desc: "القواعد المتقدمة، التعبير عن الرأي، والمقالات" },
+    { id: "b2", name: "مستوى B2", sub: "فوق المتوسط والعمل", desc: "اللغة المهنية، النقاشات المعقدة، والطلاقة" }
+  ],
+  c_english_all: [
+    { id: "a1", name: "Level A1", sub: "Starter & Phonics", desc: "تأسيس النطق الصحيح والقواعد التأسيسية" },
+    { id: "a2", name: "Level A2", sub: "Elementary Fluency", desc: "بناء الجمل ومحادثات الحياة اليومية" },
+    { id: "b1", name: "Level B1", sub: "Intermediate English", desc: "المحادثة بطلاقة وفهم المحادثات السريعة" },
+    { id: "b2", name: "Level B2", sub: "Upper-Intermediate", desc: "المناقشات المتقدمة والكتابة الأكاديمية" },
+    { id: "c1", name: "Level C1", sub: "Advanced & Business", desc: "الإنجليزية المهنية وإتقان مقابلات العمل" }
+  ],
+  c_web_dev: [
+    { id: "lvl_basics", name: "المستوى 1", sub: "HTML & CSS", desc: "الهيكلة وتنسيقات الـ Responsive UI" },
+    { id: "lvl_js", name: "المستوى 2", sub: "Modern JavaScript", desc: "الـ DOM، الـ APIs، والبرمجة الوظيفية" },
+    { id: "lvl_react", name: "المستوى 3", sub: "React.js Framework", desc: "بناء واجهات تطبيقات الويب التفاعلية" },
+    { id: "lvl_backend", name: "المستوى 4", sub: "Node.js & MongoDB", desc: "تطوير السيرفرات وقواعد البيانات" }
+  ]
+};
+
+let currentSelectedLevelId = null;
+
+// تحديث دالة فتح الكورس لدعم المستويات
+window.openCourseView = function(courseId) {
   const crs = window.catalogData[courseId];
   if (!crs) return;
   window.currentItemData = crs;
+
   document.getElementById("crsTitle").textContent = typeof crs.title === "object" ? crs.title[currentLang] : crs.title;
   document.getElementById("crsDesc").textContent = typeof crs.desc === "object" ? crs.desc[currentLang] : crs.desc;
   document.getElementById("crsPrice").textContent = `${crs.price} ج.م`;
 
+  // إخفاء الأقسام الرئيسية
   ["mainNavbar", "hero", "years", "courses", "features", "honors", "reviews", "instructor", "mainFooter"].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.add("hidden");
   });
+
+  const levelsSection = document.getElementById("courseLevelsSection");
+  const levelsGrid = document.getElementById("levelsCardsGrid");
+  const courseLevels = window.courseLevelsDB[courseId];
+
+  // إذا كان الكورس يحتوي على مستويات مقسمة
+  if (courseLevels && courseLevels.length > 0) {
+    levelsSection.classList.remove("hidden");
+    levelsGrid.innerHTML = courseLevels.map((lvl, index) => `
+      <div onclick="selectCourseLevel('${courseId}', '${lvl.id}')" id="levelCard_${lvl.id}" class="level-card-btn ${index === 0 ? 'active' : ''}">
+        <span class="level-tag-pill">${lvl.name}</span>
+        <span class="level-sub-title">${lvl.sub}</span>
+      </div>
+    `).join("");
+
+    // اختيار المستوى الأول تلقائياً
+    selectCourseLevel(courseId, courseLevels[0].id);
+  } else {
+    levelsSection.classList.add("hidden");
+    // تحميل المحاضرات العامة للكورس إن لم تكن مقسمة لمستويات
+    if (typeof window.loadFirestoreLectures === "function") {
+      window.loadFirestoreLectures(courseId);
+    }
+  }
+
   document.getElementById("courseView").classList.remove("hidden");
   window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
-  // عرض المحاضرات الافتراضية
-  window.renderDynamicLessonsAccordion(crs.lessons || []);
-}
+// دالة التبديل بين المستويات وتحديث المحاضرات المعروضة
+window.selectCourseLevel = function(courseId, levelId) {
+  currentSelectedLevelId = levelId;
+  const courseLevels = window.courseLevelsDB[courseId] || [];
+  const selectedLvl = courseLevels.find(l => l.id === levelId);
+
+  // تحديث حالة الأزرار
+  document.querySelectorAll(".level-card-btn").forEach(btn => btn.classList.remove("active"));
+  const activeBtn = document.getElementById(`levelCard_${levelId}`);
+  if (activeBtn) activeBtn.classList.add("active");
+
+  // تحديث نص البادج
+  if (selectedLvl) {
+    document.getElementById("activeLevelBadge").textContent = `المستوى المختار: ${selectedLvl.name} (${selectedLvl.sub})`;
+  }
+
+  // فلترة أو جلب محاضرات المستوى المحدد من السحابة
+  const compositeLevelCourseId = `${courseId}_${levelId}`;
+  if (typeof window.loadFirestoreLectures === "function") {
+    window.loadFirestoreLectures(compositeLevelCourseId);
+  }
+};
 
 function closeCourseView() {
   document.getElementById("courseView").classList.add("hidden");
@@ -1253,6 +1386,21 @@ document.getElementById("sendProofBtn").onclick = function() {
   const message = encodeURIComponent("مرحباً فريق أطلس 👋\nأرغب في تفعيل اشتراكي وإرسال إيصال التحويل.");
   window.open(`https://t.me/Atlas_Academy?text=${message}`, "_blank");
   closePaymentModal();
+};
+// فتح نافذة تكبير الصورة
+window.openImageLightbox = function(imgSrc) {
+  const modal = document.getElementById("imageLightboxModal");
+  const img = document.getElementById("lightboxImg");
+  if (modal && img) {
+    img.src = imgSrc;
+    modal.classList.remove("hidden");
+  }
+};
+
+// إغلاق نافذة التكبير
+window.closeImageLightbox = function() {
+  const modal = document.getElementById("imageLightboxModal");
+  if (modal) modal.classList.add("hidden");
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1422,10 +1570,11 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <!-- نافذة تكبير بوستر الكورس (Image Lightbox Modal) -->
-<div id="imageLightboxModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 select-none">
+<div id="imageLightboxModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 select-none" onclick="if(event.target === this) closeImageLightbox();">
   <div class="relative max-w-4xl max-h-[90vh] flex flex-col items-center">
-    <button type="button" onclick="document.getElementById('imageLightboxModal').classList.add('hidden')" class="absolute -top-12 end-0 text-white bg-slate-800/80 hover:bg-rose-600 rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold transition shadow-lg z-50">✕</button>
+    <button type="button" onclick="closeImageLightbox()" class="absolute -top-12 end-0 text-white bg-slate-800/80 hover:bg-rose-600 rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold transition shadow-lg z-50 cursor-pointer">✕</button>
     <img id="lightboxImg" src="" alt="بوستر الكورس" class="max-w-full max-h-[80vh] rounded-3xl object-contain shadow-2xl border border-white/20" />
+    <span class="text-xs text-slate-300 font-bold mt-3 bg-black/60 px-4 py-1.5 rounded-full border border-white/10">🔍 اضغط في أي مكان خارج الصورة للإغلاق</span>
   </div>
 </div>
 
