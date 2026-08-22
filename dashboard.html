@@ -362,11 +362,11 @@ onAuthStateChanged(auth, async (user) => {
     const data = snap.data();
     const enrolledCourses = data.enrolledCourses || [];
 
-    if (enrolledCourses.length === 0) {
+/*if (enrolledCourses.length === 0) {
       alert("🔒 لا يمكنك الدخول للوحة الطالب حتى تقوم بتفعيل اشتراكك في مسار تدريبي واحد على الأقل.");
       window.location.href = "index.html#courses";
       return;
-    }
+    }*/
 
     renderStudentDashboard(user, data, enrolledCourses);
   } catch (err) {
