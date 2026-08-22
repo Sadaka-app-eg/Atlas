@@ -1310,20 +1310,23 @@ function closePackageDetails() {
   });
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
-// محرك النطق الصوتي الإنجليزي (Web Speech API)
-window.speakEnglish = function(text) {
-  if (!('speechSynthesis' in window)) {
-    alert("متصفحك لا يدعم خاصية تحويل النص إلى صوت.");
-    return;
-  }
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'en-US';
-  utterance.rate = 0.85; // سرعة هادئة وواضحة للتعلم
-  utterance.pitch = 1;
-  window.speechSynthesis.speak(utterance);
+// تعريف المستويات الأساسية للكورسات
+window.courseLevelsDB = {
+  c_english_all: [
+    { id: "a1", name: "Level A1", sub: "Starter & Phonics" },
+    { id: "a2", name: "Level A2", sub: "Elementary Fluency" },
+    { id: "b1", name: "Level B1", sub: "Intermediate English" },
+    { id: "b2", name: "Level B2", sub: "Upper-Intermediate" },
+    { id: "c1", name: "Level C1", sub: "Advanced & Business" }
+  ],
+  c_deutsch_all: [
+    { id: "a1", name: "Niveau A1", sub: "المبتدئ التأسيسي" },
+    { id: "a2", name: "Niveau A2", sub: "فوق المبتدئ" },
+    { id: "b1", name: "Niveau B1", sub: "المتوسط وجوته" },
+    { id: "b2", name: "Niveau B2", sub: "المتقدم والأعمال" }
+  ]
 };
+
 
 // دالة تحويل وتضمين روابط YouTube و Facebook
 function formatEmbedUrl(url) {
