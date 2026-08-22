@@ -13,210 +13,92 @@
 
 <style>
   :root {
-    --brand-primary: #4F46E5;   /* النيلي والبنفسجي الاحترافي لأطلس */
-    --brand-dark:    #3730A3;
-    --brand-accent:  #06B6D4;
-    --ink:           #0E1726;
-    --mist:          #0A0F1D;
-    --mist-line:     #1E293B;
-    --dark-bg:       #0A0F1D;
-    --dark-card:     #111827;
-    --dark-line:     #1E293B;
+    --bg-base: #090A0F;
+    --bg-surface: #11131A;
+    --bg-elevated: #181B24;
+    --border-subtle: #232734;
+    --border-hover: #374151;
+    --brand-primary: #2563EB;
+    --brand-hover: #1D4ED8;
+    --text-main: #F9FAFB;
+    --text-muted: #9CA3AF;
   }
 
-  html {
-    font-size: 108%;
-  }
-
-  @media (min-width: 768px) {
-    html {
-      font-size: 145%;
-    }
-  }
-  html[lang="ar"] body, html[lang="ar"] * { font-family: 'Tajawal', 'IBM Plex Sans Arabic', sans-serif; }
+  html { font-size: 100%; }
+  @media (min-width: 768px) { html { font-size: 110%; } }
+  
+  html[lang="ar"] body, html[lang="ar"] * { font-family: 'IBM Plex Sans Arabic', 'Tajawal', sans-serif; }
   html[lang="en"] body, html[lang="en"] * { font-family: 'Plus Jakarta Sans', sans-serif; }
-  .num-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .num-font { font-family: 'Plus Jakarta Sans', monospace, sans-serif; }
 
-  body { background-color: var(--dark-bg); color: #F8FAFC; transition: background-color 0.3s ease, color 0.3s ease; }
-  body.light { background-color: #F8FAFC; color: #0F172A; }
+  body { background-color: var(--bg-base); color: var(--text-main); }
+  body.light { --bg-base: #F8FAFC; --bg-surface: #FFFFFF; --bg-elevated: #F1F5F9; --border-subtle: #E2E8F0; --text-main: #0F172A; --text-muted: #64748B; }
 
-  .hero-banner-bg {
-    background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 45%, #312E81 100%);
-    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7);
-  }
-  body.light .hero-banner-bg {
-    background: linear-gradient(135deg, #4338CA 0%, #4F46E5 50%, #6366F1 100%) !important;
-    box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.25);
-  }
-  .bg-card-theme { background-color: var(--dark-card); border-color: var(--dark-line); color: #F8FAFC; }
-  body.light .bg-card-theme { background-color: #FFFFFF !important; border-color: #E2E8F0 !important; color: #0F172A !important; }
-  
-  .text-theme-main { color: #F8FAFC; }
-  body.light .text-theme-main { color: #0F172A !important; }
-  
-  .text-theme-sub { color: #94A3B8; }
-  body.light .text-theme-sub { color: #64748B !important; }
+  .bg-surface { background-color: var(--bg-surface); border-color: var(--border-subtle); }
+  .bg-elevated { background-color: var(--bg-elevated); border-color: var(--border-subtle); }
+  .border-theme { border-color: var(--border-subtle); }
+  .text-main { color: var(--text-main); }
+  .text-muted { color: var(--text-muted); }
 
-  .bg-brand { background-color: var(--brand-primary); }
-  .text-brand { color: var(--brand-primary); }
-  .border-brand { border-color: var(--brand-primary); }
-
-  #scrollProgress {
-    position: fixed;
-    top: 64px;
-    right: 0;
-    height: 3px;
-    background-color: #06B6D4;
-    width: 0%;
-    z-index: 100;
-    transition: width 0.1s ease-out;
-  }
-  .skill-tab-btn {
-    padding: 0.5rem 1rem;
-    border-radius: 0.75rem;
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: #94A3B8;
-    background: #0A0F1D;
-    border: 1px solid #1E293B;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .skill-tab-btn:hover {
-    color: #FFFFFF;
-    border-color: #06B6D4;
-  }
-  .skill-tab-btn.active {
-    background: #4F46E5;
-    color: #FFFFFF;
-    border-color: #4F46E5;
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
-  }
-/* شريط كبسولات المستويات العصري */
+  /* كبسولات المستويات */
   .level-capsule-btn {
-    background: #0D1424;
-    border: 1px solid #1E293B;
-    border-radius: 1.25rem;
-    padding: 0.85rem 1.25rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.875rem;
+    padding: 0.75rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.75rem;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
+    transition: all 0.15s ease;
   }
-  .level-capsule-btn:hover {
-    border-color: #38BDF8;
-    background: #131E32;
-    transform: translateY(-2px);
-  }
+  .level-capsule-btn:hover { border-color: var(--border-hover); background: var(--bg-elevated); }
   .level-capsule-btn.active {
-    background: #0284C7;
+    background: #1E293B;
     border-color: #38BDF8;
-    box-shadow: 0 0 25px rgba(2, 132, 199, 0.35);
-  }
-  .level-capsule-btn.active .lvl-title {
-    color: #FFFFFF;
-  }
-  .level-capsule-btn.active .lvl-sub {
-    color: #E0F2FE;
+    box-shadow: 0 0 0 1px #38BDF8;
   }
 
-  /* بطاقات بوابات المهارات المتطورة */
+  /* بوابات المهارات */
   .resource-portal-card {
-    background: linear-gradient(180deg, #111C30 0%, #0B1322 100%);
-    border: 1px solid #1E2D4A;
-    border-radius: 1.5rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 1.25rem;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.25s ease;
-    position: relative;
-    overflow: hidden;
+    transition: border-color 0.2s ease;
   }
-  .resource-portal-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: transparent;
-    transition: background 0.25s ease;
-  }
-  .resource-portal-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
-  }
-  .resource-portal-card.card-verbs:hover { border-color: #06B6D4; }
-  .resource-portal-card.card-verbs:hover::before { background: #06B6D4; }
-  .resource-portal-card.card-vocab:hover { border-color: #10B981; }
-  .resource-portal-card.card-vocab:hover::before { background: #10B981; }
-  .resource-portal-card.card-sentences:hover { border-color: #F59E0B; }
-  .resource-portal-card.card-sentences:hover::before { background: #F59E0B; }
+  .resource-portal-card:hover { border-color: var(--border-hover); }
 
   .theme-toggle-pill {
-    width: 54px;
-    height: 28px;
+    width: 48px;
+    height: 26px;
     border-radius: 9999px;
-    background-color: var(--brand-primary);
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     position: relative;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 5px;
+    padding: 0 6px;
   }
-  body.light .theme-toggle-pill { background-color: #334155; }
   .theme-toggle-thumb {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     background-color: #FFFFFF;
     position: absolute;
     top: 3px;
     inset-inline-start: 3px;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
   }
-  body.light .theme-toggle-thumb {
-    transform: translateX(26px);
-  }
-  html[dir="rtl"] body.light .theme-toggle-thumb {
-    transform: translateX(-26px);
-  }
+  body.light .theme-toggle-thumb { transform: translateX(22px); background-color: #0F172A; }
+  html[dir="rtl"] body.light .theme-toggle-thumb { transform: translateX(-22px); }
 
-  .card-hover { transition: transform .25s ease, box-shadow .25s ease; }
-  .card-hover:hover { transform: translateY(-5px); box-shadow: 0 16px 35px -10px rgba(79, 70, 229, 0.35); }
-
-.fade-up { opacity: 1; transform: translateY(0); }
-
-  [dir="rtl"] .rtl-flip { transform: scaleX(-1); }
-  ::selection { background: var(--brand-primary); color: #fff; }
-
-  .auth-nav-bg { background-color: #1E293B; }
-  body.light .auth-nav-bg { background-color: #E2E8F0 !important; }
-
-  .auth-tab { color: #94A3B8; font-weight: 800; transition: all 0.2s ease; }
-  .auth-tab.active { background-color: var(--dark-card); color: #38BDF8; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-  
-  body.light .auth-tab { color: #475569 !important; }
-  body.light .auth-tab.active { background-color: #FFFFFF !important; color: var(--brand-primary) !important; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-
-  div[id^="videoContainer_"]:fullscreen {
-    width: 100vw !important;
-    height: 100vh !important;
-    max-width: none !important;
-    border-radius: 0 !important;
-  }
-  div[id^="videoContainer_"]:fullscreen div[id^="watermark_"] {
-    font-size: 1.35rem !important;
-    z-index: 99999 !important;
-  }
+  .auth-tab.active { background-color: var(--bg-surface); color: #38BDF8; }
 </style>
 </head>
 
@@ -311,99 +193,76 @@
 </header>
 
 <!-- ============ HERO SECTION ============ -->
-<section id="hero" class="w-full px-4 sm:px-6 lg:px-10 pt-28 md:pt-24 pb-10">
-  <div class="relative overflow-hidden rounded-[2.5rem] hero-banner-bg border border-white/10 shadow-2xl p-6 sm:p-10 lg:p-14 flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
+<section id="hero" class="w-full px-4 sm:px-6 lg:px-10 pt-28 pb-12">
+  <div class="w-full rounded-2xl bg-surface border border-theme p-8 lg:p-12 flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
     
-    <!-- حاوية الصورة المتناسقة بأبعادها الكاملة -->
-    <div class="w-full lg:w-5/12 flex justify-center lg:justify-start items-center">
-      <div class="relative w-full max-w-[480px] lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-black/30">
-        <img 
-          src="atlas.png" 
-          alt="منصة أطلس" 
-          class="w-full h-auto max-h-[500px] lg:max-h-[560px] object-cover object-center transform hover:scale-105 transition-transform duration-500" 
-          onerror="this.src='atlas.jpg'" 
-        />
+    <div class="w-full lg:w-5/12 flex justify-center lg:justify-start">
+      <div class="w-full max-w-[460px] rounded-xl overflow-hidden border border-theme bg-black/40">
+        <img src="atlas.png" alt="منصة أطلس" class="w-full h-auto object-cover" onerror="this.src='atlas.jpg'" />
       </div>
     </div>
 
-    <!-- نصوص وقيم منصة أطلس -->
-    <div class="w-full lg:w-7/12 text-center lg:text-right text-white space-y-6">
-      <span class="inline-block text-xs sm:text-sm md:text-base font-black text-cyan-300 tracking-wide bg-white/10 px-4 py-1.5 rounded-full border border-white/10" data-i18n="hero_eyebrow">
-        منصة أطلس الشاملة — طريقك لاحتراف البرمجة، الأمن السيبراني واللغات
-      </span>
-
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.25] tracking-tight" data-i18n="hero_title">
-        طريقك للاحتراف مع <span class="text-cyan-300">أطـلـس</span><br/>
-        تعلم عملي.. من الصفر لسوق العمل
-      </h1>
-
-      <p class="text-xs sm:text-base md:text-lg font-semibold opacity-90 leading-7 md:leading-8 max-w-2xl mx-auto lg:mx-0 text-slate-200" data-i18n="hero_sub">
-        خرائط طريق تفاعلية، ومحاضرات فيديو منتقاة بعناية، وتطبيقات عملية على كل درس لتصل لأعلى درجات الإتقان.
-      </p>
-
-      <!-- زر الدعوة لاتخاذ إجراء -->
-      <div class="pt-2 flex justify-center lg:justify-start">
-        <div id="heroGuestCta">
-          <button onclick="openAuthView('register')" class="inline-flex items-center gap-2 bg-white text-[#312E81] font-black text-sm sm:text-base px-9 py-4 rounded-2xl shadow-2xl hover:bg-cyan-50 transition transform hover:scale-105 cursor-pointer" data-i18n="hero_cta1">
-            <span>انضم وابدأ رحلتك الآن</span>
-            <span>🚀</span>
-          </button>
-        </div>
-
-        <div id="heroUserCta" class="hidden">
-          <div class="inline-flex items-center gap-2 bg-black/40 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/15 text-cyan-300 font-black text-sm shadow-lg">
-            <span>👋</span>
-            <span>أهلاً بك يا بطل <span id="heroUserName" class="text-white"></span></span>
-          </div>
-        </div>
+    <div class="w-full lg:w-7/12 text-center lg:text-right space-y-5">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-800/80 border border-slate-700 text-xs text-cyan-400 font-semibold">
+        <span>مسارات تطبيقية مؤهلة لسوق العمل</span>
       </div>
 
-      <div class="pt-4 border-t border-white/15 text-xs sm:text-sm font-bold opacity-80" data-i18n="hero_footer_note">
-        أطلس: بيئة تعليمية ذكية وتطبيقية لكل مجالات المستقبل
+      <h1 class="text-3xl sm:text-5xl font-black text-main leading-tight">
+        التدريب العملي الشامل في <span class="text-cyan-400">البرمجة واللغات</span>
+      </h1>
+
+      <p class="text-sm sm:text-base text-muted font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+        مناهج مهيكلة، مشاريع حقيقية خطوة بخطوة، وبنوك مصطلحات واختبارات تقييمية تضمن لك الجاهزية المهنية.
+      </p>
+
+      <div class="pt-2 flex justify-center lg:justify-start">
+        <div id="heroGuestCta">
+          <button onclick="openAuthView('register')" class="px-8 py-3.5 rounded-xl bg-brand hover:bg-blue-700 text-white font-bold text-xs sm:text-sm transition cursor-pointer">
+            ابدأ التعلم الآن
+          </button>
+        </div>
+        <div id="heroUserCta" class="hidden">
+          <div class="px-5 py-2.5 rounded-xl bg-elevated border border-theme text-cyan-400 font-bold text-xs">
+            أهلاً بك <span id="heroUserName" class="text-white"></span>
+          </div>
+        </div>
       </div>
     </div>
 
   </div>
 </section>
+
 <!-- ============ TRACKS & FIELDS SECTION ============ -->
-<section id="years" class="w-full px-4 sm:px-6 lg:px-10 py-12 border-b border-slate-800">
+<section id="years" class="w-full px-4 sm:px-6 lg:px-10 py-12 border-b border-theme">
   <div class="w-full grid lg:grid-cols-12 gap-8 items-center">
     
-    <div class="lg:col-span-5 text-center lg:text-right space-y-4">
-      <span class="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-cyan-400">المسارات المعتمدة</span>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-theme-main leading-tight">المجالات والمسارات</h2>
-      <p class="text-sm sm:text-base font-semibold text-theme-sub leading-relaxed">
-        اختر مجالك وابدأ التعلم العملي من الأساسيات إلى الاحتراف على هاتفك، التابلت، أو حاسوبك الشخصي.
+    <div class="lg:col-span-4 text-center lg:text-right space-y-3">
+      <h2 class="text-2xl sm:text-3xl font-black text-main">المسارات التعليمية</h2>
+      <p class="text-xs sm:text-sm text-muted leading-relaxed">
+        اختر التخصص المطلوب للبدء في دراسة المراحل المعتمدة من التأسيس إلى المستويات المتقدمة.
       </p>
-      <div class="pt-2">
-        <button type="button" onclick="openAuthView('register')" class="inline-block bg-brand hover:bg-indigo-700 text-white font-black text-sm px-8 py-3.5 rounded-2xl shadow-xl transition cursor-pointer">
-          انشئ حسابك الآن مجاناً 🚀
-        </button>
-      </div>
     </div>
 
-    <div class="lg:col-span-7 grid sm:grid-cols-2 gap-5">
-      <!-- مسار البرمجة والتقنية -->
-      <div class="card-hover rounded-3xl p-6 border border-slate-800 bg-card-theme flex flex-col justify-between shadow-xl">
+    <div class="lg:col-span-8 grid sm:grid-cols-2 gap-4">
+      <div class="p-6 rounded-2xl bg-surface border border-theme flex flex-col justify-between space-y-4">
         <div>
-          <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl mb-3 bg-brand text-white shadow-lg">💻</div>
-          <h3 class="text-lg font-black text-theme-main">البرمجة والتقنية</h3>
-          <p class="text-xs text-theme-sub font-semibold mt-2 leading-relaxed">تطوير الويب المتكامل، الأمن السيبراني، بايثون، الذكاء الاصطناعي، وتحليل البيانات الشامل.</p>
+          <span class="text-xs font-bold text-cyan-400 font-mono">01 / TECH & SECURITY</span>
+          <h3 class="text-base font-bold text-main mt-1">البرمجة والأمن السيبراني</h3>
+          <p class="text-xs text-muted mt-1.5 leading-relaxed">تطوير الويب المتكامل، بايثون، الذكاء الاصطناعي، وتحليل البيانات الشامل.</p>
         </div>
-        <button onclick="filterCourses('tech')" class="mt-5 inline-flex items-center text-xs font-black text-cyan-400 hover:underline">
-          استكشف المسارات التقنية ←
+        <button onclick="filterCourses('tech')" class="text-xs font-bold text-cyan-400 hover:underline text-start cursor-pointer">
+          استعراض المقررات التقنية ←
         </button>
       </div>
 
-      <!-- مسار اللغات والبرمجيات -->
-      <div class="card-hover rounded-3xl p-6 border border-slate-800 bg-card-theme flex flex-col justify-between shadow-xl">
+      <div class="p-6 rounded-2xl bg-surface border border-theme flex flex-col justify-between space-y-4">
         <div>
-          <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl mb-3 bg-cyan-600 text-white shadow-lg">🌐</div>
-          <h3 class="text-lg font-black text-theme-main">اللغات والبرمجيات</h3>
-          <p class="text-xs text-theme-sub font-semibold mt-2 leading-relaxed">احتراف اللغة الإنجليزية والألمانية من A1 إلى B2/C1، وحزمة برمجيات Microsoft Office المتقدمة.</p>
+          <span class="text-xs font-bold text-emerald-400 font-mono">02 / LANGUAGES & SUITE</span>
+          <h3 class="text-base font-bold text-main mt-1">اللغات الأجنبية وحزم Office</h3>
+          <p class="text-xs text-muted mt-1.5 leading-relaxed">الإنجليزية والألمانية من A1 إلى C1، وحزمة برمجيات Microsoft Office المتقدمة.</p>
         </div>
-        <button onclick="filterCourses('lang_office')" class="mt-5 inline-flex items-center text-xs font-black text-cyan-400 hover:underline">
-          استكشف مسارات اللغات ←
+        <button onclick="filterCourses('lang_office')" class="text-xs font-bold text-emerald-400 hover:underline text-start cursor-pointer">
+          استعراض مسارات اللغات ←
         </button>
       </div>
     </div>
@@ -1238,25 +1097,22 @@ function renderCatalog() {
     const badgeText = item.badge ? item.badge[lang] : "";
     const priceText = `${item.price} ${isEn ? 'EGP' : 'ج.م'}`;
 return `
-      <article class="min-w-[300px] md:min-w-[370px] snap-start card-hover rounded-3xl overflow-hidden border ${isPkg ? "border-brand shadow-indigo-900/20" : "border-slate-800"} bg-[#111827] p-3.5 flex flex-col justify-between">
-        <div onclick="openImageLightbox('${item.img}')" class="rounded-2xl overflow-hidden relative aspect-[4/3] bg-[#0A0F1D] cursor-pointer group" title="اضغط لتكبير الصورة 🔍">
-          ${badgeText ? `<span class="absolute top-2.5 start-2.5 z-10 text-[10px] font-black bg-cyan-400 text-slate-900 px-2.5 py-1 rounded-md shadow-md">${badgeText}</span>` : ""}
-          <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.style.display='none'" />
+      <article class="min-w-[290px] md:min-w-[340px] snap-start rounded-2xl border border-theme bg-surface p-3 flex flex-col justify-between transition hover:border-slate-600">
+        <div onclick="openImageLightbox('${item.img}')" class="rounded-xl overflow-hidden relative aspect-[4/3] bg-black cursor-pointer" title="معاينة البوستر">
+          ${badgeText ? `<span class="absolute top-2.5 start-2.5 z-10 text-[10px] font-bold bg-slate-900/90 text-slate-200 border border-slate-700 px-2 py-0.5 rounded">${badgeText}</span>` : ""}
+          <img src="${item.img}" class="w-full h-full object-cover transition duration-200 hover:scale-105" onerror="this.style.display='none'" />
         </div>
-        <div class="p-3 flex-1 flex flex-col space-y-4">
-          <div class="flex items-start gap-2.5">
-            <span class="w-6 h-6 rounded-lg ${isPkg ? "bg-cyan-400 text-slate-900" : "bg-brand/30 border border-brand text-cyan-300"} font-black text-xs flex items-center justify-center shrink-0 mt-0.5">${codeBadge}</span>
-            <h3 class="font-black text-sm md:text-base text-slate-100">${titleText}</h3>
-          </div>
-          <div class="mt-3 flex items-baseline justify-between">
-            <div class="flex items-baseline gap-2">
-              <span class="text-lg md:text-xl font-black ${isPkg ? "text-cyan-400" : "text-brand"} num-font">${priceText}</span>
+        <div class="p-2.5 flex-1 flex flex-col justify-between space-y-3 mt-2">
+          <div>
+            <div class="flex items-center justify-between text-[11px] text-muted">
+              <span>${categoryText}</span>
+              <span class="font-bold text-main font-mono">${priceText}</span>
             </div>
-            <span class="text-[10px] font-bold text-slate-400">${categoryText}</span>
+            <h3 class="font-bold text-sm text-main mt-1">${titleText}</h3>
+            <p class="text-xs text-muted line-clamp-2 mt-1">${descText}</p>
           </div>
-          <p class="font-semibold text-slate-400 text-[11px] line-clamp-2">${descText}</p>
-          <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-brand hover:bg-indigo-700 text-white font-black text-xs shadow-lg transition mt-auto">
-            ${isEn ? 'View Content 🚀' : 'استكشف المحتوى 🚀'}
+          <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-elevated hover:bg-slate-700 border border-theme text-xs font-bold text-main transition cursor-pointer">
+            ${isEn ? 'View Syllabus' : 'استعراض المحتوى'}
           </button>
         </div>
       </article>
