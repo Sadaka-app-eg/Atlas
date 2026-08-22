@@ -600,7 +600,23 @@
 
     <!-- المحتوى الداخلي الشامل -->
     <div id="levelDetailedContent" class="space-y-6">
-
+<!-- كارت النبذة النظرية والتطبيقية المباشرة (يظهر تلقائياً لمسارات الأوفيس) -->
+      <div id="officeOverviewCard" class="hidden p-6 rounded-xl bg-[#11131A] border border-slate-800 space-y-4">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-mono font-bold uppercase text-blue-400 tracking-wider">Module Overview</span>
+            <span class="text-xs font-mono text-slate-500 font-bold">Office Core 2026</span>
+          </div>
+          <h3 id="officeProgramTitle" class="text-base md:text-lg font-bold text-white"></h3>
+          <p id="officeProgramDesc" class="text-xs md:text-sm text-slate-300 font-normal leading-relaxed"></p>
+        </div>
+        
+        <!-- المهارات العملية المستهدفة -->
+        <div class="pt-3 border-t border-slate-800/80">
+          <span class="text-[11px] font-bold text-slate-400 block mb-2">المهارات التطبيقية المكتسبة:</span>
+          <div id="officeSkillsList" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
       <!-- مشغل المحاضرات -->
       <div id="videoContainerWrapper" class="hidden space-y-3">
         <div id="videoPlayerContainer" class="rounded-xl overflow-hidden bg-black border border-slate-800 aspect-video relative flex items-center justify-center">
@@ -1186,10 +1202,102 @@ window.courseLevelsDB = {
     { id: "a2", name: "Niveau A2", sub: "فوق المبتدئ" },
     { id: "b1", name: "Niveau B1", sub: "المتوسط وجوته" },
     { id: "b2", name: "Niveau B2", sub: "المتقدم والأعمال" }
+  ],
+  // مسار الأوفيس مقسم إلى 3 برامج أساسية
+  c_office_suite: [
+    { id: "word", name: "Microsoft Word", sub: "معالجة النصوص والأبحاث" },
+    { id: "excel", name: "Microsoft Excel", sub: "الجداول والتحليل المالي" },
+    { id: "powerpoint", name: "PowerPoint", sub: "العروض التقديمية التفاعلية" }
   ]
 };
 
-
+window.officeCurriculumDB = {
+  word: {
+    title: "Microsoft Word Specialist",
+    overview: "برنامج معالجة النصوص الأقوى عالمياً. يركز هذا المسار على التنسيق المتقدم للتقارير والأبحاث، إدارة الجداول وفهارس المحتويات الآلية، دمج المراسلات (Mail Merge)، واستخراج المستندات الرسمية بصيغ الطباعة المعتمدة.",
+    keySkills: ["تنسيق الأبحاث والرسائل العلمية", "إنشاء الفهارس التلقائية", "دمج المراسلات Mail Merge", "حماية المستندات والعلامات المائية"],
+    lectures: [
+      {
+        title: "01. أساسيات التنسيق وإعداد الصفحات والقوالب",
+        videoUrl: "https://www.youtube.com/watch?v=S-nHYzK-BVg",
+        desc: "ضبط الهوامش، الخطوط القياسية للعمل، الرأس والتذييل، وترقيم الصفحات المتقدم.",
+        quiz: [
+          { question: "ما الاختصار المستخدم لإنشاء صفحة جديدة مباشرة في Word؟", options: ["Ctrl + Enter", "Ctrl + Shift", "Alt + Enter"], correctIndex: 0 }
+        ]
+      },
+      {
+        title: "02. الجداول، الأشكال، وفهرس المحتويات التلقائي (Table of Contents)",
+        videoUrl: "https://www.youtube.com/watch?v=fUkh3yOm3CU",
+        desc: "استخدام العناوين (Heading 1, 2) لإنشاء فهرس قابل للتحديث التلقائي بنقرة واحدة.",
+        quiz: [
+          { question: "لتوليد جدول محتويات تلقائي، يجب تطبيق أي من الأنماط على العناوين؟", options: ["Styles (Heading 1/2)", "Bold فقط", "Underline"], correctIndex: 0 }
+        ]
+      },
+      {
+        title: "03. دمج المراسلات (Mail Merge) وإخراج الشهادات والخطابات",
+        videoUrl: "https://www.youtube.com/watch?v=2k_PswH79m8",
+        desc: "ربط مستند Word بقاعدة بيانات Excel لتوليد مئات الخطابات والشهادات المخصصة تلقائياً.",
+        quiz: [
+          { question: "خاصية Mail Merge تستخدم لـ:", options: ["إصدار خطابات مخصصة لعدة مستلمين آلياً", "حساب المعادلات الرياضية", "تصميم لوحات تحكم"], correctIndex: 0 }
+        ]
+      }
+    ]
+  },
+  excel: {
+    title: "Microsoft Excel & Data Analysis",
+    overview: "أداة التحليل المالي والبياني الأولى في الشركات. يشمل هذا المسار بناء الجداول الديناميكية، إتقان الدوال المنطقية والبحثية المتقدمة (XLOOKUP, VLOOKUP, INDEX/MATCH, IF)، وتحليل البيانات الضخمة بواسطة Pivot Tables وتصميم لوحات التحكم التفاعلية (Dashboards).",
+    keySkills: ["الدوال المتقدمة (XLOOKUP / IF / SUMIFS)", "الجداول المحورية Pivot Tables", "التحقق من صحة البيانات Data Validation", "الرسوم البيانية التفاعلية"],
+    lectures: [
+      {
+        title: "01. الأساسيات وبناء الجداول وتنسيق الخلايا الشرطي (Conditional Formatting)",
+        videoUrl: "https://www.youtube.com/watch?v=k1VUZEVuDJ8",
+        desc: "إدخال البيانات، التثبيت والتجميد (Freeze Panes)، وتطبيق قواعد التلوين التلقائي للخلايا.",
+        quiz: [
+          { question: "لتثبيت الصف الأول أثناء التمرير لأسفل نستخدم أمر:", options: ["Freeze Top Row", "Split View", "Hide Rows"], correctIndex: 0 }
+        ]
+      },
+      {
+        title: "02. أهم الدوال المحاسبية والبحثية: VLOOKUP & XLOOKUP & SUMIFS",
+        videoUrl: "https://www.youtube.com/watch?v=d3MYvT2W6aM",
+        desc: "جلب البيانات بين الجداول المختلفة ومعالجة الشروط المتعددة بكفاءة عالية.",
+        quiz: [
+          { question: "تتميز دالة XLOOKUP عن VLOOKUP بأنها:", options: ["تبحث يميناً ويساراً بدون ترتيب الأعمدة", "تعمل فقط على النصوص", "تحسب المتوسطات فقط"], correctIndex: 0 }
+        ]
+      },
+      {
+        title: "03. الجداول المحورية (Pivot Tables) والداشبورد التفاعلي",
+        videoUrl: "https://www.youtube.com/watch?v=m0wI61ahfLc",
+        desc: "تلخيص آلاف صفوف البيانات وعرض التقارير الشهرية ومؤشرات الأداء (KPIs).",
+        quiz: [
+          { question: "ما الوظيفة الأساسية لـ Pivot Table؟", options: ["تلخيص وتحليل كميات ضخمة من البيانات بمرونة", "كتابة المقالات", "إرسال الإيميلات"], correctIndex: 0 }
+        ]
+      }
+    ]
+  },
+  powerpoint: {
+    title: "Microsoft PowerPoint Presentation Mastery",
+    overview: "منصة تصميم العروض التقديمية القيادية والتسويقية. يغطي المسار قواعد توزيع العناصر البصرية، تحريك المخططات بانسيابية، استخدام ميزة التحول التدريجي (Morph Transition)، وتصدير العروض كفيديوهات عالية الدقة.",
+    keySkills: ["خاصية Morph Transition المتقدمة", "تصميم الـ Master Slide", "عرض البيانات والمخططات الحركية", "إعداد العروض التقديمية التنفيذية"],
+    lectures: [
+      {
+        title: "01. مبادئ التصميم الاحترافي وتنسيق الـ Master Slide",
+        videoUrl: "https://www.youtube.com/watch?v=XF34-Wu6qWU",
+        desc: "توحيد الهوية البصرية، الخطوط والألوان في جميع الشرائح بنقرة واحدة.",
+        quiz: [
+          { question: "استخدام Slide Master يفيد في:", options: ["تطبيق تصميم وهوية موحدة على كافة الشرائح تلقائياً", "حساب العمليات الرياضية", "طباعة الفواتير"], correctIndex: 0 }
+        ]
+      },
+      {
+        title: "02. الانتقالات الاحترافية وميزة التحول التدريجي (Morph Transition)",
+        videoUrl: "https://www.youtube.com/watch?v=YwXkm_V8y0g",
+        desc: "تحويل العرض التقليدي إلى تجربة سينمائية متحركة تشد انتباه الجمهور والمستثمرين.",
+        quiz: [
+          { question: "خاصية Morph Transition تعمل على:", options: ["تحريك وتغيير حجم العناصر بين الشرائح بسلاسة سينمائية", "مسح النصوص", "إيقاف العرض"], correctIndex: 0 }
+        ]
+      }
+    ]
+  }
+};
 // دالة تحويل وتضمين روابط YouTube و Facebook
 function formatEmbedUrl(url) {
   if (!url) return "";
@@ -1762,19 +1870,42 @@ window.loadFirestoreLectures = async function(courseOrLevelKey) {
 // تبديل المستوى وجلب محاضراته الحقيقية
 window.selectCourseLevel = function(courseId, levelId) {
   currentSelectedLevelId = levelId;
-  document.querySelectorAll(".level-card-btn").forEach(btn => btn.classList.remove("active"));
+  document.querySelectorAll(".level-capsule-btn").forEach(btn => btn.classList.remove("active"));
   const activeBtn = document.getElementById(`levelCard_${levelId}`);
   if (activeBtn) activeBtn.classList.add("active");
 
   const courseLevels = window.courseLevelsDB[courseId] || [];
   const selectedLvl = courseLevels.find(l => l.id === levelId);
   if (selectedLvl) {
-    document.getElementById("activeLevelBadge").textContent = `المستوى المختار: ${selectedLvl.name} (${selectedLvl.sub})`;
+    document.getElementById("activeLevelBadge").textContent = `${selectedLvl.name}`;
   }
 
-  // المعرف المركب للمستوى في قاعدة البيانات (مثل: c_english_all_a1)
-  const compositeKey = `${courseId}_${levelId}`;
-  window.loadFirestoreLectures(compositeKey);
+  const officeCard = document.getElementById("officeOverviewCard");
+  const languagePortals = document.getElementById("languageSkillsPortals");
+
+  // إذا كان المقرر هو مسار الـ Office
+  if (courseId === "c_office_suite") {
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeData = window.officeCurriculumDB ? window.officeCurriculumDB[levelId] : null;
+    
+    if (officeData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = officeData.title;
+      document.getElementById("officeProgramDesc").textContent = officeData.overview;
+      document.getElementById("officeSkillsList").innerHTML = officeData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-slate-300">${sk}</span>
+      `).join("");
+      
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(officeData);
+    }
+  } else {
+    // لمسارات اللغات
+    if (officeCard) officeCard.classList.add("hidden");
+    const levelData = window.englishMasterCurriculum ? window.englishMasterCurriculum[levelId] : null;
+    if (levelData) {
+      renderLevelDetails(levelData);
+    }
+  }
 };
 
 // عرض محتويات المستوى بالتفصيل
