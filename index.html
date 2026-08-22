@@ -1363,99 +1363,290 @@ window.speakEnglish = function(text) {
 // بنك البيانات المفتوح للأفعال والمفردات والجمل (يمكنك ملؤه بمئات العناصر كما تشاء)
 window.courseResourcesMaster = {
   a1: {
-    verbs: [
-      { base: "be (am/is/are)", past: "was / were", ar: "يكون", ex: "I am a software engineer." },
-      { base: "have / has", past: "had", ar: "يملك / يتناول", ex: "She has three laptops." },
-      { base: "do / does", past: "did", ar: "يفعل / ينجز", ex: "We do our assignments daily." },
+verbs: [
+      { base: "be (am/is/are)", past: "was / were", ar: "يكون", ex: "I am a developer." },
+      { base: "have / has", past: "had", ar: "يملك / يتناول", ex: "She has a laptop." },
+      { base: "do / does", past: "did", ar: "يفعل / ينجز", ex: "We do our homework." },
+      { base: "say", past: "said", ar: "يقول", ex: "He said the truth." },
       { base: "go", past: "went", ar: "يذهب", ex: "I go to work by train." },
-      { base: "get", past: "got", ar: "يحصل على / يصبح", ex: "I get up at 7 AM." },
-      { base: "make", past: "made", ar: "يصنع / يجعل", ex: "She makes delicious coffee." },
-      { base: "take", past: "took", ar: "يأخذ", ex: "Take this notebook with you." },
-      { base: "want", past: "wanted", ar: "يريد", ex: "I want to speak fluent English." },
-      { base: "speak", past: "spoke", ar: "يتحدث", ex: "He speaks three languages." },
-      { base: "listen", past: "listened", ar: "يستمع", ex: "Listen carefully to the teacher." },
-      { base: "read", past: "read", ar: "يقرأ", ex: "I read technical books." },
-      { base: "write", past: "wrote", ar: "يكتب", ex: "Write your full name here." }
+      { base: "get", past: "got", ar: "يحصل على / يصل", ex: "I get up early." },
+      { base: "make", past: "made", ar: "يصنع / يجعل", ex: "She makes delicious meals." },
+      { base: "know", past: "knew", ar: "يعرف / يعلم", ex: "I know the answer." },
+      { base: "think", past: "thought", ar: "يفكر / يعتقد", ex: "I think it is good." },
+      { base: "take", past: "took", ar: "يأخذ", ex: "Take this book with you." },
+      { base: "see", past: "saw", ar: "يرى / يشاهد", ex: "I see what you mean." },
+      { base: "come", past: "came", ar: "يأتي", ex: "Come here quickly." },
+      { base: "want", past: "wanted", ar: "يريد", ex: "I want to learn English." },
+      { base: "look", past: "looked", ar: "ينظر / يبدو", ex: "Look at this picture." },
+      { base: "use", past: "used", ar: "يستخدم", ex: "We use modern tools." },
+      { base: "find", past: "found", ar: "يجد / يعثر على", ex: "I found my phone." },
+      { base: "give", past: "gave", ar: "يعطي / يمنح", ex: "Give me your hand." },
+      { base: "tell", past: "told", ar: "يخبر / يحكي", ex: "Tell me the story." },
+      { base: "work", past: "worked", ar: "يعمل", ex: "He works at a tech firm." },
+      { base: "call", past: "called", ar: "يتصل / ينادي", ex: "Call me tomorrow." },
+      { base: "try", past: "tried", ar: "يحاول / يجرب", ex: "Try to solve this problem." },
+      { base: "ask", past: "asked", ar: "يسأل / يطلب", ex: "Ask the instructor." },
+      { base: "need", past: "needed", ar: "يحتاج", ex: "I need some help." },
+      { base: "feel", past: "felt", ar: "يشعر / يحس", ex: "I feel great today." },
+      { base: "become", past: "became", ar: "يصبح / يتحول", ex: "He became an expert." },
+      { base: "leave", past: "left", ar: "يغادر / يترك", ex: "The train leaves at 5." },
+      { base: "put", past: "put", ar: "يضع", ex: "Put the files here." },
+      { base: "mean", past: "meant", ar: "يعني / يقصد", ex: "What does this word mean?" },
+      { base: "keep", past: "kept", ar: "يحتفظ / يستمر", ex: "Keep up the good work." },
+      { base: "let", past: "let", ar: "يدع / يسمح", ex: "Let me explain this." },
+      { base: "begin", past: "began", ar: "يبدأ", ex: "The class begins now." },
+      { base: "seem", past: "seemed", ar: "يبدو / يظهر", ex: "You seem happy today." },
+      { base: "help", past: "helped", ar: "يساعد / يعين", ex: "Help your teammates." },
+      { base: "talk", past: "talked", ar: "يتحدث / يناقش", ex: "We need to talk." },
+      { base: "turn", past: "turned", ar: "يستدير / يحول", ex: "Turn on the light." },
+      { base: "start", past: "started", ar: "يبدأ / يشرع", ex: "Start your study journey." },
+      { base: "show", past: "showed", ar: "يُظهر / يعرض", ex: "Show me the project code." },
+      { base: "hear", past: "heard", ar: "يسمع", ex: "Can you hear my voice?" },
+      { base: "play", past: "played", ar: "يلعب / يعزف", ex: "Children play outside." },
+      { base: "run", past: "ran", ar: "يركض / يدير", ex: "He runs a tech startup." },
+      { base: "move", past: "moved", ar: "يتحرك / ينتقل", ex: "Move to the next lesson." },
+      { base: "like", past: "liked", ar: "يحب / يعجب بـ", ex: "I like clean UI design." },
+      { base: "live", past: "lived", ar: "يعيش / يسكن", ex: "They live in Cairo." },
+      { base: "believe", past: "believed", ar: "يؤمن / يصدق", ex: "Believe in yourself." },
+      { base: "hold", past: "held", ar: "يمسك / يعقد", ex: "Hold the line please." },
+      { base: "bring", past: "brought", ar: "يجلب / يحضر", ex: "Bring your laptop tomorrow." },
+      { base: "happen", past: "happened", ar: "يحدث / يقع", ex: "Mistakes happen to everyone." },
+      { base: "write", past: "wrote", ar: "يكتب", ex: "Write clean code." },
+      { base: "provide", past: "provided", ar: "يقدم / يزود", ex: "Atlas provides full tracks." },
+      { base: "sit", past: "sat", ar: "يجلس", ex: "Sit down comfortably." },
+      { base: "stand", past: "stood", ar: "يقف", ex: "Stand up straight." },
+      { base: "lose", past: "lost", ar: "يفقد / يخسر", ex: "Don't lose focus." },
+      { base: "pay", past: "paid", ar: "يدفع", ex: "You can pay via InstaPay." },
+      { base: "meet", past: "met", ar: "يقابل / يلتقي", ex: "Nice to meet you." },
+      { base: "include", past: "included", ar: "يشمل / يتضمن", ex: "The course includes exams." },
+      { base: "continue", past: "continued", ar: "يستمر / يواصل", ex: "Continue practicing daily." },
+      { base: "set", past: "set", ar: "يضبط / يحدد", ex: "Set your study goals." },
+      { base: "learn", past: "learned", ar: "يتعلم", ex: "Learn something new." },
+      { base: "change", past: "changed", ar: "يغير / يبدل", ex: "Change your habits." },
+      { base: "lead", past: "led", ar: "يقود / يوجه", ex: "Leaders guide the team." },
+      { base: "understand", past: "understood", ar: "يفهم / يستوعب", ex: "I understand the syntax." },
+      { base: "watch", past: "watched", ar: "يشاهد / يراقب", ex: "Watch the tutorial video." },
+      { base: "follow", past: "followed", ar: "يتبع / يتابع", ex: "Follow the steps carefully." },
+      { base: "stop", past: "stopped", ar: "يتوقف / ينهي", ex: "Never stop practicing." },
+      { base: "create", past: "created", ar: "ينشئ / يبتكر", ex: "Create a new project." },
+      { base: "speak", past: "spoke", ar: "يتكلم / ينطق", ex: "He speaks English fluently." },
+      { base: "read", past: "read", ar: "يقرأ", ex: "Read the documentation." },
+      { base: "allow", past: "allowed", ar: "يسمح / يتيح", ex: "Security rules allow access." },
+      { base: "add", past: "added", ar: "يضيف / يجمع", ex: "Add new words to list." },
+      { base: "spend", past: "spent", ar: "يقضي / ينفق", ex: "Spend time wisely." },
+      { base: "grow", past: "grew", ar: "ينمو / يكبر", ex: "Your skills will grow fast." },
+      { base: "open", past: "opened", ar: "يفتح", ex: "Open the terminal." },
+      { base: "walk", past: "walked", ar: "يمشي / يسير", ex: "Walk around every hour." },
+      { base: "win", past: "won", ar: "يفوز / ينتصر", ex: "You will win this challenge." },
+      { base: "offer", past: "offered", ar: "يقدم / يعرض", ex: "We offer master tracks." },
+      { base: "remember", past: "remembered", ar: "يتذكر", ex: "Remember the grammar rule." },
+      { base: "love", past: "loved", ar: "يحب بشدة", ex: "I love coding." },
+      { base: "consider", past: "considered", ar: "يعتبر / يتأمل", ex: "Consider this option." },
+      { base: "appear", past: "appeared", ar: "يظهر", ex: "The result appeared on screen." },
+      { base: "buy", past: "bought", ar: "يشتري", ex: "Buy the course bundle." },
+      { base: "wait", past: "waited", ar: "ينتظر", ex: "Wait for the download." },
+      { base: "serve", past: "served", ar: "يخدم / يقدم", ex: "Servers serve requests." },
+      { base: "die", past: "died", ar: "يموت / ينتهي", ex: "The battery died." },
+      { base: "send", past: "sent", ar: "يرسل", ex: "Send the proof image." },
+      { base: "expect", past: "expected", ar: "يتوقع / يرجو", ex: "We expect fast progress." },
+      { base: "build", past: "built", ar: "يبني / يشيد", ex: "Build responsive web apps." },
+      { base: "stay", past: "stayed", ar: "يبقى / يمكث", ex: "Stay focused on goals." },
+      { base: "fall", past: "fell", ar: "يسقط / يقع", ex: "Prices fell down." },
+      { base: "cut", past: "cut", ar: "يقطع / يقص", ex: "Cut the extra text." },
+      { base: "reach", past: "reached", ar: "يصل إلى / يبلغ", ex: "Reach the advanced level." },
+      { base: "kill", past: "killed", ar: "يقضي على", ex: "Kill the broken process." },
+      { base: "remain", past: "remained", ar: "يظل / يبقى", ex: "Only two units remained." },
+      { base: "suggest", past: "suggested", ar: "يقترح", ex: "I suggest another way." },
+      { base: "raise", past: "raised", ar: "يرفع / يزيد", ex: "Raise your overall score." },
+      { base: "pass", past: "passed", ar: "يمر / يجتاز", ex: "He passed the exam easily." },
+      { base: "sell", past: "sold", ar: "يبيع", ex: "Stores sell tech products." },
+      { base: "require", past: "required", ar: "يتطلب / يستلزم", ex: "This task requires effort." },
+      { base: "report", past: "reported", ar: "يبلغ / يقرر", ex: "Report any bugs to admin." },
+      { base: "decide", past: "decided", ar: "يقرر", ex: "Decide your career path." },
+      { base: "explain", past: "explained", ar: "يشرح", ex: "Explain the code clearly." }
     ],
-    vocab: [
-      { en: "Greetings & Introductions", ar: "التحيات والتعارف والشخصيات" },
-      { en: "Numbers, Dates & Time", ar: "الأرقام والتواريخ والوقت" },
-      { en: "Colors, Clothes & Style", ar: "الألوان والملابس والمظهر" },
-      { en: "Family & Relationships", ar: "أفراد العائلة والعلاقات" },
-      { en: "Jobs & Workplaces", ar: "الوظائف والمهن وأماكن العمل" },
-      { en: "Food, Drinks & Cooking", ar: "المأكولات والمشروبات والطبخ" },
-      { en: "Places, City & Directions", ar: "الأماكن في المدينة والاتجاهات" },
-      { en: "Weather, Seasons & Climate", ar: "الطقس وفصول السنة والمناخ" }
+vocab: [
+      { en: "Hello", ar: "مرحباً" }, { en: "Welcome", ar: "أهلاً بك" }, { en: "Good morning", ar: "صباح الخير" }, { en: "Good night", ar: "تصبح على خير" }, { en: "Please", ar: "من فضلك" }, { en: "Thank you", ar: "شكراً لك" }, { en: "Excuse me", ar: "معذرة" }, { en: "Sorry", ar: "آسف" }, { en: "Name", ar: "اسم" }, { en: "Friend", ar: "صديق" }, { en: "Family", ar: "عائلة" }, { en: "Father", ar: "أب" }, { en: "Mother", ar: "أم" }, { en: "Brother", ar: "أخ" }, { en: "Sister", ar: "أخت" }, { en: "Son", ar: "ابن" }, { en: "Daughter", ar: "ابنة" }, { en: "Husband", ar: "زوج" }, { en: "Wife", ar: "زوجة" }, { en: "Boy", ar: "ولد" }, { en: "Girl", ar: "بنت" }, { en: "Child", ar: "طفل" }, { en: "Man", ar: "رجل" }, { en: "Woman", ar: "امرأة" }, { en: "People", ar: "ناس" },
+      { en: "One", ar: "واحد" }, { en: "Two", ar: "اثنان" }, { en: "Three", ar: "ثلاثة" }, { en: "Four", ar: "أربعة" }, { en: "Five", ar: "خمسة" }, { en: "Six", ar: "ستة" }, { en: "Seven", ar: "سبعة" }, { en: "Eight", ar: "ثمانية" }, { en: "Nine", ar: "تسعة" }, { en: "Ten", ar: "عشرة" }, { en: "Twenty", ar: "عشرون" }, { en: "Hundred", ar: "مائة" }, { en: "Thousand", ar: "ألف" }, { en: "First", ar: "الأول" }, { en: "Second", ar: "الثاني" }, { en: "Time", ar: "وقت / زمن" }, { en: "Day", ar: "يوم" }, { en: "Week", ar: "أسبوع" }, { en: "Month", ar: "شهر" }, { en: "Year", ar: "سنة" }, { en: "Today", ar: "اليوم" }, { en: "Tomorrow", ar: "غداً" }, { en: "Yesterday", ar: "أمس" }, { en: "Hour", ar: "ساعة" }, { en: "Minute", ar: "دقيقة" },
+      { en: "Red", ar: "أحمر" }, { en: "Blue", ar: "أزرق" }, { en: "Green", ar: "أخضر" }, { en: "Yellow", ar: "أصفر" }, { en: "Black", ar: "أسود" }, { en: "White", ar: "أبيض" }, { en: "Orange", ar: "برتقالي" }, { en: "Brown", ar: "بني" }, { en: "Shirt", ar: "قميص" }, { en: "Pants", ar: "بنطال" }, { en: "Dress", ar: "فستان" }, { en: "Shoes", ar: "حذاء" }, { en: "Coat", ar: "معطف" }, { en: "Bag", ar: "حقيبة" }, { en: "Hat", ar: "قبعة" }, { en: "Watch", ar: "ساعة يد" }, { en: "Glasses", ar: "نظارة" }, { en: "House", ar: "منزل" }, { en: "Room", ar: "غرفة" }, { en: "Door", ar: "باب" }, { en: "Window", ar: "نافذة" }, { en: "Table", ar: "طاولة" }, { en: "Chair", ar: "كرسي" }, { en: "Bed", ar: "سرير" }, { en: "Kitchen", ar: "مطبخ" },
+      { en: "Water", ar: "ماء" }, { en: "Bread", ar: "خبز" }, { en: "Milk", ar: "حليب" }, { en: "Coffee", ar: "قهوة" }, { en: "Tea", ar: "شاي" }, { en: "Juice", ar: "عصير" }, { en: "Apple", ar: "تفاحة" }, { en: "Egg", ar: "بيضة" }, { en: "Cheese", ar: "جبن" }, { en: "Meat", ar: "لحم" }, { en: "Fish", ar: "سمك" }, { en: "Rice", ar: "أرز" }, { en: "Salt", ar: "ملح" }, { en: "Sugar", ar: "سكر" }, { en: "Breakfast", ar: "إفطار" }, { en: "Lunch", ar: "غداء" }, { en: "Dinner", ar: "عشاء" }, { en: "Restaurant", ar: "مطعم" }, { en: "Cafe", ar: "مقهى" }, { en: "Menu", ar: "قائمة طعام" }, { en: "Bill", ar: "فاتورة" }, { en: "Money", ar: "نقود" }, { en: "Price", ar: "سعر" }, { en: "Market", ar: "سوق" }, { en: "Store", ar: "متجر" },
+      { en: "School", ar: "مدرسة" }, { en: "University", ar: "جامعة" }, { en: "Teacher", ar: "معلم" }, { en: "Student", ar: "طالب" }, { en: "Book", ar: "كتاب" }, { en: "Pen", ar: "قلم" }, { en: "Paper", ar: "ورقة" }, { en: "Lesson", ar: "درس" }, { en: "Question", ar: "سؤال" }, { en: "Answer", ar: "إجابة" }, { en: "Language", ar: "لغة" }, { en: "English", ar: "الإنجليزية" }, { en: "Word", ar: "كلمة" }, { en: "Sentence", ar: "جملة" }, { en: "Page", ar: "صفحة" }, { en: "Computer", ar: "حاسوب" }, { en: "Phone", ar: "هاتف" }, { en: "Internet", ar: "إنترنت" }, { en: "Email", ar: "بريد إلكتروني" }, { en: "App", ar: "تطبيق" }, { en: "Doctor", ar: "طبيب" }, { en: "Engineer", ar: "مهندس" }, { en: "Driver", ar: "سائق" }, { en: "Manager", ar: "مدير" }, { en: "Police", ar: "شرطة" },
+      { en: "City", ar: "مدينة" }, { en: "Street", ar: "شارع" }, { en: "Country", ar: "دولة" }, { en: "Airport", ar: "مطار" }, { en: "Station", ar: "محطة" }, { en: "Hotel", ar: "فندق" }, { en: "Bank", ar: "بنك" }, { en: "Hospital", ar: "مستشفى" }, { en: "Office", ar: "مكتب" }, { en: "Park", ar: "حديقة" }, { en: "Car", ar: "سيارة" }, { en: "Bus", ar: "حافلة" }, { en: "Train", ar: "قطار" }, { en: "Plane", ar: "طائرة" }, { en: "Taxi", ar: "تاكسي" }, { en: "Road", ar: "طريق" }, { en: "Left", ar: "يسار" }, { en: "Right", ar: "يمين" }, { en: "North", ar: "شمال" }, { en: "South", ar: "جنوب" }, { en: "Sun", ar: "شمس" }, { en: "Moon", ar: "قمر" }, { en: "Rain", ar: "مطر" }, { en: "Wind", ar: "رياح" }, { en: "Hot", ar: "حار" },
+      { en: "Cold", ar: "بارد" }, { en: "Good", ar: "جيد" }, { en: "Bad", ar: "سيء" }, { en: "Big", ar: "كبير" }, { en: "Small", ar: "صغير" }, { en: "Fast", ar: "سريع" }, { en: "Slow", ar: "بطيء" }, { en: "New", ar: "جديد" }, { en: "Old", ar: "قديم" }, { en: "Easy", ar: "سهل" }, { en: "Hard", ar: "صعب" }, { en: "Happy", ar: "سعيد" }, { en: "Sad", ar: "حزين" }, { en: "Tired", ar: "تعبان" }, { en: "Hungry", ar: "جائع" }, { en: "Thirsty", ar: "عطشان" }, { en: "Clean", ar: "نظيف" }, { en: "Dirty", ar: "متسخ" }, { en: "Early", ar: "مبكراً" }, { en: "Late", ar: "متأخراً" }, { en: "Near", ar: "قريب" }, { en: "Far", ar: "بعيد" }, { en: "Open", ar: "مفتوح" }, { en: "Closed", ar: "مغلق" }, { en: "Correct", ar: "صحيح" },
+      { en: "Head", ar: "رأس" }, { en: "Eye", ar: "عين" }, { en: "Ear", ar: "أذن" }, { en: "Nose", ar: "أنف" }, { en: "Mouth", ar: "فم" }, { en: "Hand", ar: "يد" }, { en: "Foot", ar: "قدم" }, { en: "Heart", ar: "قلب" }, { en: "Body", ar: "جسم" }, { en: "Health", ar: "صحة" }, { en: "Job", ar: "وظيفة" }, { en: "Company", ar: "شركة" }, { en: "Problem", ar: "مشكلة" }, { en: "Idea", ar: "فكرة" }, { en: "Number", ar: "رقم" }, { en: "Photo", ar: "صورة" }, { en: "Message", ar: "رسالة" }, { en: "News", ar: "أخبار" }, { en: "World", ar: "العالم" }, { en: "Life", ar: "حياة" }, { en: "Work", ar: "عمل" }, { en: "Home", ar: "وطن / بيت" }, { en: "Start", ar: "بداية" }, { en: "End", ar: "نهاية" }, { en: "Music", ar: "موسيقى" }
     ],
-    sentences: [
-      { en: "Hello! Nice to meet you. My name is Ahmed.", ar: "مرحباً! سررت بلقائك. اسمي أحمد." },
-      { en: "Can I have a cup of coffee, please?", ar: "هل يمكنني الحصول على كوب قهوة من فضلك؟" },
-      { en: "Excuse me, where is the nearest bank?", ar: "معذرة، أين أقرب بنك من هنا؟" },
-      { en: "Please speak slowly, I am still learning.", ar: "تحدث ببطء من فضلك، أنا ما زلت أتعلم." },
-      { en: "How much does this product cost?", ar: "كم تكلفة هذا المنتج؟" },
-      { en: "I don't understand, could you repeat that?", ar: "أنا لا أفهم، هل يمكنك إعادة ذلك؟" },
-      { en: "What do you do for a living?", ar: "ماذا تعمل لكسب عيشك؟" },
-      { en: "See you tomorrow at the meeting.", ar: "أراك غداً في الاجتماع." }
-    ]
+sentences: [
+      { category: "👋 التعارف وتقديم النفس", en: "Hello! Nice to meet you. My name is Ahmed.", ar: "مرحباً! سررت بلقائك. اسمي أحمد." }, { category: "👋 التعارف وتقديم النفس", en: "How are you doing today?", ar: "كيف حالك اليوم؟" }, { category: "👋 التعارف وتقديم النفس", en: "I am fine, thank you very much.", ar: "أنا بخير، شكراً جزيلاً لك." }, { category: "👋 التعارف وتقديم النفس", en: "Where are you from originally?", ar: "من أين أنت في الأصل؟" }, { category: "👋 التعارف وتقديم النفس", en: "I am from Egypt and I live in Cairo.", ar: "أنا من مصر وأعيش في القاهرة." }, { category: "👋 التعارف وتقديم النفس", en: "What is your phone number?", ar: "ما هو رقم هاتفك؟" }, { category: "👋 التعارف وتقديم النفس", en: "I am twenty-two years old.", ar: "عمري اثنان وعشرون عاماً." }, { category: "👋 التعارف وتقديم النفس", en: "This is my close friend, Omar.", ar: "هذا صديقي المقرب، عمر." },
+
+      { category: "☕ الكافيه والمطعم والطلبات", en: "Can I have a cup of black coffee, please?", ar: "هل يمكنني طلب كوب قهوة سادة من فضلك؟" }, { category: "☕ الكافيه والمطعم والطلبات", en: "I would like a bottle of mineral water.", ar: "أود الحصول على زجاجة مياه معدنية." }, { category: "☕ الكافيه والمطعم والطلبات", en: "Can I see the food menu, please?", ar: "هل يمكنني رؤية قائمة الطعام من فضلك؟" }, { category: "☕ الكافيه والمطعم والطلبات", en: "What do you recommend for a quick lunch?", ar: "ماذا تقترح لوجبة غداء سريعة؟" }, { category: "☕ الكافيه والمطعم والطلبات", en: "Can we have the bill, please?", ar: "هل يمكننا الحصول على الفاتورة من فضلك؟" }, { category: "☕ الكافيه والمطعم والطلبات", en: "I would like a cheese sandwich with fries.", ar: "أريد شطيرة جبن مع بطاطس مقلية." }, { category: "☕ الكافيه والمطعم والطلبات", en: "Is this table free or reserved?", ar: "هل هذه الطاولة شاغرة أم محجوزة؟" }, { category: "☕ الكافيه والمطعم والطلبات", en: "Without sugar, please.", ar: "بدون سكر، من فضلك." },
+
+      { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "Excuse me, where is the nearest bank?", ar: "معذرة، أين أقرب بنك من هنا؟" }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "Turn left at the traffic light.", ar: "انعطف يساراً عند إشارة المرور." }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "Go straight ahead for two blocks.", ar: "امشِ للأمام مباشرة لمسافة مبنيين." }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "It is right next to the big supermarket.", ar: "إنه بجوار السوبرماركت الكبير تماماً." }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "How do I get to the metro station?", ar: "كيف أصل إلى محطة المترو؟" }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "Is it far to walk from here?", ar: "هل المكان بعيد للسير على الأقدام؟" }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "Take the second right turn.", ar: "ادخل في ثاني منعطف على اليمين." },
+
+      { category: "🛍️ التسوق والأسعار والدفع", en: "How much does this white shirt cost?", ar: "كم سعر هذا القميص الأبيض؟" }, { category: "🛍️ التسوق والأسعار والدفع", en: "Do you accept credit cards here?", ar: "هل تقبلون الدفع بالبطاقات الائتمانية هنا؟" }, { category: "🛍️ التسوق والأسعار والدفع", en: "Can I pay in cash, please?", ar: "هل يمكنني الدفع نقداً من فضلك؟" }, { category: "🛍️ التسوق والأسعار والدفع", en: "Do you have this in a medium size?", ar: "هل يتوفر هذا بمقاس متوسط؟" }, { category: "🛍️ التسوق والأسعار والدفع", en: "I am just looking around, thank you.", ar: "أنا فقط ألقي نظرة، شكراً لك." }, { category: "🛍️ التسوق والأسعار والدفع", en: "It is too expensive for me.", ar: "إنه غالٍ جداً بالنسبة لي." }, { category: "🛍️ التسوق والأسعار والدفع", en: "Where can I find the fitting room?", ar: "أين يمكنني أن أجد غرفة قياس الملابس؟" },
+
+      { category: "⏰ الوقت والمواعيد والروتين", en: "What time is it right now?", ar: "كم الساعة الآن؟" }, { category: "⏰ الوقت والمواعيد والروتين", en: "The lesson starts at nine sharp.", ar: "يبدأ الدرس في التاسعة تماماً." }, { category: "⏰ الوقت والمواعيد والروتين", en: "I wake up at six every single morning.", ar: "أستيقظ في السادسة كل صباح." }, { category: "⏰ الوقت والمواعيد والروتين", en: "I go to work by bus every day.", ar: "أذهب إلى العمل بالحافلة كل يوم." }, { category: "⏰ الوقت والمواعيد والروتين", en: "I study English for two hours daily.", ar: "أدرس الإنجليزية لمدة ساعتين يومياً." }, { category: "⏰ الوقت والمواعيد والروتين", en: "See you tomorrow at three PM.", ar: "أراك غداً في تمام الساعة الثالثة عصراً." },
+
+      { category: "💬 طلب المساعدة والفهم", en: "Can you help me with this, please?", ar: "هل يمكنك مساعدتي في هذا من فضلك؟" }, { category: "💬 طلب المساعدة والفهم", en: "I don't understand, please speak slowly.", ar: "أنا لا أفهم، تحدث ببطء من فضلك." }, { category: "💬 طلب المساعدة والفهم", en: "Could you repeat that one more time?", ar: "هل يمكنك تكرار ذلك مرة أخرى؟" }, { category: "💬 طلب المساعدة والفهم", en: "How do you say this in English?", ar: "كيف تقول هذا باللغة الإنجليزية؟" }, { category: "💬 طلب المساعدة والفهم", en: "What does this English word mean?", ar: "ماذا تعني هذه الكلمة الإنجليزية؟" }
+    ],
   },
-  a2: {
+a2: {
+    badgeName: "Level A2 (Elementary Fluency)",
+
     verbs: [
-      { base: "arrive", past: "arrived", ar: "يصل", ex: "The flight arrived on schedule." },
-      { base: "travel", past: "traveled", ar: "يسافر", ex: "I travel abroad every year." },
-      { base: "explain", past: "explained", ar: "يشرح / يفسر", ex: "Can you explain this syntax?" },
-      { base: "decide", past: "decided", ar: "يقرر", ex: "We decided to launch the app." }
+      { base: "arrive", past: "arrived", ar: "يصل", ex: "The flight arrived on schedule." }, { base: "leave", past: "left", ar: "يغادر / يترك", ex: "We left early morning." }, { base: "travel", past: "traveled", ar: "يسافر", ex: "I travel abroad every year." }, { base: "visit", past: "visited", ar: "يزور", ex: "They visited Alexandria yesterday." }, { base: "stay", past: "stayed", ar: "يقيم / يمكث", ex: "We stayed at a quiet hotel." }, { base: "book", past: "booked", ar: "يحجز", ex: "I booked two tickets online." }, { base: "cancel", past: "canceled", ar: "يلغي", ex: "He canceled the meeting." }, { base: "check in", past: "checked in", ar: "يسجل وصولاً", ex: "Check in starts at 2 PM." }, { base: "check out", past: "checked out", ar: "يسجل مغادرة", ex: "We checked out at noon." }, { base: "pack", past: "packed", ar: "يحزم الأمتعة", ex: "Pack your suitcase tonight." },
+      { base: "remember", past: "remembered", ar: "يتذكر", ex: "I remember your advice." }, { base: "forget", past: "forgot", ar: "ينسى", ex: "Don't forget your password." }, { base: "explain", past: "explained", ar: "يشرح / يوضح", ex: "Can you explain this syntax?" }, { base: "decide", past: "decided", ar: "يقرر", ex: "We decided to launch the app." }, { base: "choose", past: "chose", ar: "يختار", ex: "Choose your favorite track." }, { base: "receive", past: "received", ar: "يستلم / يتلقى", ex: "I received your email." }, { base: "send", past: "sent", ar: "يرسل", ex: "Send the updated code." }, { base: "bring", past: "brought", ar: "يحضر / يجلب", ex: "Bring the report tomorrow." }, { base: "borrow", past: "borrowed", ar: "يستعير", ex: "Can I borrow your charger?" }, { base: "lend", past: "lent", ar: "يقرض / يسلف", ex: "He lent me his laptop." },
+      { base: "happen", past: "happened", ar: "يحدث / يقع", ex: "What happened to the server?" }, { base: "change", past: "changed", ar: "يغير / يتبدل", ex: "Technology changes fast." }, { base: "improve", past: "improved", ar: "يتحسن / يطور", ex: "My speaking improved a lot." }, { base: "prefer", past: "preferred", ar: "يفضل", ex: "I prefer working remotely." }, { base: "spend", past: "spent", ar: "ينفق / يقضي", ex: "I spent hours debugging." }, { base: "save", past: "saved", ar: "يوفر / يحفظ", ex: "Save your work regularly." }, { base: "earn", past: "earned", ar: "يكسب مالاً", ex: "He earns a good salary." }, { base: "cost", past: "cost", ar: "يكلف / ثمنه", ex: "The course costs 150 EGP." }, { base: "afford", past: "afforded", ar: "يتحمل تكلفة", ex: "I can afford this tool." }, { base: "rent", past: "rented", ar: "يستأجر", ex: "They rented a new office." },
+      { base: "order", past: "ordered", ar: "يطلب", ex: "I ordered food online." }, { base: "serve", past: "served", ar: "يقدم / يخدم", ex: "They serve fresh juice." }, { base: "taste", past: "tasted", ar: "يتذوق", ex: "This soup tastes great." }, { base: "cook", past: "cooked", ar: "يطبخ", ex: "She cooked dinner for us." }, { base: "invite", past: "invited", ar: "يدعو", ex: "We invited our team." }, { base: "join", past: "joined", ar: "ينضم / يلتحق", ex: "Join our study channel." }, { base: "agree", past: "agreed", ar: "يوافق", ex: "I agree with your idea." }, { base: "disagree", past: "disagreed", ar: "يعارض / لا يوافق", ex: "We disagree on pricing." }, { base: "refuse", past: "refused", ar: "يرفض", ex: "He refused the offer." }, { base: "accept", past: "accepted", ar: "يقبل", ex: "They accepted my application." },
+      { base: "download", past: "downloaded", ar: "يحمل ملفاً", ex: "Download the PDF sheet." }, { base: "upload", past: "uploaded", ar: "يرفع ملفاً", ex: "Upload the project to GitHub." }, { base: "install", past: "installed", ar: "يثبت برنامجاً", ex: "Install the latest version." }, { base: "update", past: "updated", ar: "يحدث", ex: "Update your operating system." }, { base: "delete", past: "deleted", ar: "يحذف", ex: "Delete unnecessary files." }, { base: "click", past: "clicked", ar: "ينقر بالماوس", ex: "Click the blue button." }, { base: "press", past: "pressed", ar: "يضغط زر", ex: "Press enter to submit." }, { base: "connect", past: "connected", ar: "يتصل بشبكة", ex: "Connect to the Wi-Fi." }, { base: "disconnect", past: "disconnected", ar: "ينقطع الاتصال", ex: "The internet disconnected." }, { base: "search", past: "searched", ar: "يبحث", ex: "Search for documentation." }
     ],
     vocab: [
-      { en: "Airports & Flight Booking", ar: "المطارات وحجوزات الطيران" },
-      { en: "Hotels & Accommodation", ar: "الفنادق والإقامة السياحية" },
-      { en: "Health, Symptoms & Clinic", ar: "الصحة والأعراض والعيادات" }
+      { en: "Airport", ar: "مطار" }, { en: "Flight", ar: "رحلة طيران" }, { en: "Passport", ar: "جواز سفر" }, { en: "Luggage", ar: "أمتعة / حقائب" }, { en: "Suitcase", ar: "حقيبة سفر" }, { en: "Boarding pass", ar: "بطاقة صعود الطائرة" }, { en: "Gate", ar: "بوابة" }, { en: "Delay", ar: "تأخير" }, { en: "Terminal", ar: "صالة المطار" }, { en: "Customs", ar: "الجمارك" }, { en: "Reservation", ar: "حجز مسبق" }, { en: "Reception", ar: "الاستقبال" }, { en: "Single room", ar: "غرفة فردية" }, { en: "Double room", ar: "غرفة مزدوجة" }, { en: "Elevator", ar: "مصعد" }, { en: "Key card", ar: "بطاقة المفتاح" }, { en: "Service", ar: "خدمة" }, { en: "Tourist", ar: "سائح" }, { en: "Guide", ar: "مرشد" }, { en: "Map", ar: "خريطة" }, { en: "Destination", ar: "الوجهة" }, { en: "Journey", ar: "رحلة" }, { en: "Ticket", ar: "تذكرة" }, { en: "Platform", ar: "رصيف القطار" }, { en: "Metro", ar: "مترو الأنفاق" },
+      { en: "Headache", ar: "صداع" }, { en: "Fever", ar: "حمى / سخونية" }, { en: "Stomachache", ar: "ألم بالمعدة" }, { en: "Cough", ar: "سعال / كحة" }, { en: "Flu", ar: "إنفلونزا" }, { en: "Medicine", ar: "دواء" }, { en: "Pharmacy", ar: "صيدلية" }, { en: "Prescription", ar: "روشتة علاج" }, { en: "Dentist", ar: "طبيب أسنان" }, { en: "Appointment", ar: "موعد محدد" }, { en: "Emergency", ar: "طوارئ" }, { en: "Patient", ar: "مريض" }, { en: "Rest", ar: "راحة" }, { en: "Healthy", ar: "صحي" }, { en: "Diet", ar: "نظام غذائي" }, { en: "Pain", ar: "ألم" }, { en: "Injury", ar: "إصابة" }, { en: "Blood", ar: "دم" }, { en: "Nurse", ar: "ممرض / ممرضة" }, { en: "Clinic", ar: "عيادة" }, { en: "Checkup", ar: "فحص طبي" }, { en: "Treatment", ar: "علاج" }, { en: "Exercise", ar: "تمرين بدني" }, { en: "Gym", ar: "صالة رياضية" }, { en: "Energy", ar: "طاقة" },
+      { en: "Colleague", ar: "زميل عمل" }, { en: "Employee", ar: "موظف" }, { en: "Employer", ar: "صاحب العمل" }, { en: "Meeting", ar: "اجتماع" }, { en: "Project", ar: "مشروع" }, { en: "Deadline", ar: "الموعد النهائي" }, { en: "Task", ar: "مهمة" }, { en: "Report", ar: "تقرير" }, { en: "Presentation", ar: "عرض تقديمي" }, { en: "Salary", ar: "راتب شهري" }, { en: "Contract", ar: "عقد عمل" }, { en: "Experience", ar: "خبرة" }, { en: "Interview", ar: "مقابلة شخصية" }, { en: "Resume", ar: "سيرة ذاتية" }, { en: "Department", ar: "قسم بالشركة" }, { en: "Client", ar: "عميل" }, { en: "Customer", ar: "زبون" }, { en: "Product", ar: "منتج" }, { en: "Feedback", ar: "تقييم / ملاحظات" }, { en: "Teamwork", ar: "عمل جماعي" }, { en: "Office", ar: "مكتب" }, { en: "Schedule", ar: "جدول مواعيد" }, { en: "Success", ar: "نجاح" }, { en: "Career", ar: "مسار مهني" }, { en: "Opportunity", ar: "فرصة" },
+      { en: "Screen", ar: "شاشة" }, { en: "Keyboard", ar: "لوحة مفاتيح" }, { en: "Mouse", ar: "فأرة" }, { en: "Charger", ar: "شاحن" }, { en: "Battery", ar: "بطارية" }, { en: "Cable", ar: "كابل" }, { en: "Memory", ar: "ذاكرة" }, { en: "Folder", ar: "مجلد" }, { en: "File", ar: "ملف" }, { en: "Document", ar: "مستند" }, { en: "Password", ar: "كلمة مرور" }, { en: "Username", ar: "اسم المستخدم" }, { en: "Website", ar: "موقع إلكتروني" }, { en: "Network", ar: "شبكة" }, { en: "Database", ar: "قاعدة بيانات" }, { en: "Software", ar: "برمجيات" }, { en: "Hardware", ar: "عتاد الحاسوب" }, { en: "Error", ar: "خطأ برمجي" }, { en: "Bug", ar: "ثغرة / علة" }, { en: "Code", ar: "كود برمجي" }, { en: "Update", ar: "تحديث" }, { en: "Backup", ar: "نسخة احتياطية" }, { en: "Cloud", ar: "سحابة تخزين" }, { en: "Settings", ar: "إعدادات" }, { en: "Notification", ar: "إشعار" },
+      { en: "Discount", ar: "خصم" }, { en: "Receipt", ar: "إيصال دفع" }, { en: "Credit card", ar: "بطاقة ائتمانية" }, { en: "Cash", ar: "كاش / نقدي" }, { en: "Wallet", ar: "محفظة" }, { en: "Shopping mall", ar: "مركز تجاري" }, { en: "Fitting room", ar: "غرفة قياس" }, { en: "Size", ar: "مقاس / حجم" }, { en: "Refund", ar: "استرداد أموال" }, { en: "Exchange", ar: "استبدال" }, { en: "Delivery", ar: "توصيل" }, { en: "Package", ar: "طرد / شحنة" }, { en: "Brand", ar: "علامة تجارية" }, { en: "Quality", ar: "جودة" }, { en: "Warranty", ar: "ضمان" }, { en: "Offer", ar: "عرض خاص" }, { en: "Expensive", ar: "غالٍ" }, { en: "Cheap", ar: "رخيص" }, { en: "Comfortable", ar: "مريح" }, { en: "Crowded", ar: "مزدحم" }, { en: "Modern", ar: "حديث" }, { en: "Traditional", ar: "تقليدي" }, { en: "Delicious", ar: "لذيذ" }, { en: "Terrible", ar: "فظيع / سيء" }, { en: "Fantastic", ar: "رائع جداً" }
     ],
-    sentences: [
-      { en: "I would like to check in, I have a reservation.", ar: "أريد تسجيل الدخول، لدي حجز مسبق." },
-      { en: "I have a headache and I don't feel well today.", ar: "لدي صداع ولا أشعر بأنني بخير اليوم." }
-    ]
+sentences: [
+      { category: "✈️ المطار وحجوزات السفر", en: "I would like to check in, I have a reservation under the name Ahmed.", ar: "أود تسجيل الدخول، لدي حجز باسم أحمد." }, { category: "✈️ المطار وحجوزات السفر", en: "Where is the boarding gate for flight 402?", ar: "أين بوابة الصعود الخاصة بالرحلة رقم 402؟" }, { category: "✈️ المطار وحجوزات السفر", en: "How long does the direct flight take?", ar: "كم تستغرق رحلة الطيران المباشرة؟" }, { category: "✈️ المطار وحجوزات السفر", en: "My luggage has not arrived on the carousel yet.", ar: "أمتعتي لم تصل على سير الحقائب بعد." }, { category: "✈️ المطار وحجوزات السفر", en: "I need to change my flight date to next Friday.", ar: "أحتاج إلى تغيير موعد رحلتي إلى الجمعة القادمة." }, { category: "✈️ المطار وحجوزات السفر", en: "Can I take this small bag as hand luggage?", ar: "هل يمكنني أخذ هذه الحقيبة الصغيرة كحقيبة يد؟" },
+
+      { category: "🏨 الفندق وخدمات الإقامة", en: "Is breakfast included in the room price?", ar: "هل وجبة الإفطار مشمولة في سعر الغرفة؟" }, { category: "🏨 الفندق وخدمات الإقامة", en: "Could you please call a taxi for me to the center?", ar: "هل يمكنك طلب سيارة أجرة لي إلى وسط المدينة؟" }, { category: "🏨 الفندق وخدمات الإقامة", en: "The air conditioning in room 305 is not working.", ar: "مكيف الهواء في الغرفة رقم 305 لا يعمل." }, { category: "🏨 الفندق وخدمات الإقامة", en: "What is the checkout time tomorrow morning?", ar: "ما هو موعد تسجيل المغادرة صباح الغد؟" }, { category: "🏨 الفندق وخدمات الإقامة", en: "Can we have two extra clean towels, please?", ar: "هل يمكننا الحصول على منشفتين نظيفتين إضافيتين؟" },
+
+      { category: "🩺 العيادة والصحة والمواقف الطارئة", en: "I have had a terrible headache since yesterday morning.", ar: "لدي صداع فظيع منذ صباح الأمس." }, { category: "🩺 العيادة والصحة والمواقف الطارئة", en: "You should drink warm fluids and take some rest.", ar: "ينبغي عليك شرب سوائل دافئة وأخذ قسط من الراحة." }, { category: "🩺 العيادة والصحة والمواقف الطارئة", en: "I would like to make an appointment with the doctor.", ar: "أود حجز موعد مع الطبيب المعالج." }, { category: "🩺 العيادة والصحة والمواقف الطارئة", en: "How many times a day should I take this medicine?", ar: "كم مرة في اليوم يجب أن أتناول هذا الدواء؟" }, { category: "🩺 العيادة والصحة والمواقف الطارئة", en: "I feel much better today after taking the pill.", ar: "أشعر بتحسن كبير اليوم بعد تناول القرص." }, { category: "🩺 العيادة والصحة والمواقف الطارئة", en: "I cannot come to work today because I feel sick.", ar: "لا يمكنني الحضور للعمل اليوم لأنني أشعر بالمرض." },
+
+      { category: "💼 العمل والمراسلات اليومية", en: "I received your email and will review the files today.", ar: "استلمت بريدك الإلكتروني وسأراجع الملفات اليوم." }, { category: "💼 العمل والمراسلات اليومية", en: "The project deadline is next Monday at five PM.", ar: "الموعد النهائي لتسليم المشروع هو الإثنين القادم الساعة 5 مساءً." }, { category: "💼 العمل والمراسلات اليومية", en: "We need to schedule a team meeting to discuss tasks.", ar: "نحتاج إلى جدولة اجتماع للفريق لمناقشة المهام." }, { category: "💼 العمل والمراسلات اليومية", en: "I will send you the updated report before noon.", ar: "سأرسل لك التقرير المحدث قبل الظهر." }, { category: "💼 العمل والمراسلات اليومية", en: "Can you explain how this new feature functions?", ar: "هل يمكنك شرح كيف تعمل هذه الميزة الجديدة؟" }, { category: "💼 العمل والمراسلات اليومية", en: "He has three years of solid development experience.", ar: "لديه ثلاث سنوات من الخبرة التطويرية القوية." },
+
+      { category: "💻 التكنولوجيا والحاسوب والإنترنت", en: "I forgot my password, how can I reset it safely?", ar: "نسيت كلمة المرور، كيف يمكنني إعادة تعيينها بأمان؟" }, { category: "💻 التكنولوجيا والحاسوب والإنترنت", en: "The internet connection keeps disconnecting today.", ar: "اتصال الإنترنت يستمر في الانقطاع اليوم." }, { category: "💻 التكنولوجيا والحاسوب والإنترنت", en: "Please download the application from the official site.", ar: "يرجى تحميل التطبيق من الموقع الرسمي." }, { category: "💻 التكنولوجيا والحاسوب والإنترنت", en: "Make sure you save a backup of all source files.", ar: "تأكد من حفظ نسخة احتياطية من جميع الملفات المصدرية." }, { category: "💻 التكنولوجيا والحاسوب والإنترنت", en: "Click on the verification link sent to your email.", ar: "انقر على رابط التأكيد المرسل إلى بريدك الإلكتروني." }
+    ],
   },
-  b1: {
+b1: {
+    badgeName: "Level B1 (Intermediate English)",
+
     verbs: [
-      { base: "achieve", past: "achieved", ar: "يحقق / ينجز", ex: "You will achieve great results." },
-      { base: "improve", past: "improved", ar: "يطور / يحسن", ex: "Practice helps improve your skills." },
-      { base: "manage", past: "managed", ar: "يدير / يسيطر", ex: "He managed the development team." }
+      { base: "achieve", past: "achieved", ar: "يحقق / ينجز", ex: "You will achieve great success." }, { base: "improve", past: "improved", ar: "يطور / يحسن", ex: "Practice helps improve your speech." }, { base: "develop", past: "developed", ar: "ينشئ / يطور", ex: "We developed a scalable backend." }, { base: "manage", past: "managed", ar: "يدير / يتمكن من", ex: "He managed the deployment team." }, { base: "suggest", past: "suggested", ar: "يقترح", ex: "I suggest adopting TypeScript." }, { base: "recommend", past: "recommended", ar: "يوصي / يرشح", ex: "I recommend this architecture." }, { base: "increase", past: "increased", ar: "يزيد / يرفع", ex: "User engagement increased fast." }, { base: "reduce", past: "reduced", ar: "يقلل / يخفض", ex: "We reduced cloud hosting costs." }, { base: "consider", past: "considered", ar: "يعتبر / يتأمل", ex: "Consider alternative frameworks." }, { base: "avoid", past: "avoided", ar: "يتجنب / يتحاشى", ex: "Avoid memory leaks in code." },
+      { base: "require", past: "required", ar: "يتطلب / يستلزم", ex: "This task requires deep focus." }, { base: "provide", past: "provided", ar: "يوفر / يقدم", ex: "Atlas provides comprehensive tracks." }, { base: "expect", past: "expected", ar: "يتوقع", ex: "We expect a major update." }, { base: "depend", past: "depended", ar: "يعتمد على", ex: "Results depend on your consistency." }, { base: "realize", past: "realized", ar: "يدرك / يفطن", ex: "I realized the issue immediately." }, { base: "solve", past: "solved", ar: "يحل مشكلة", ex: "We solved the routing glitch." }, { base: "maintain", past: "maintained", ar: "يحافظ على / يصون", ex: "Maintain clean, readable code." }, { base: "compare", past: "compared", ar: "يقارن بين", ex: "Compare SQL and NoSQL engines." }, { base: "describe", past: "described", ar: "يصف", ex: "Describe your project workflow." }, { base: "discuss", past: "discussed", ar: "يناقش / يبحث", ex: "We discussed database indexing." },
+      { base: "participate", past: "participated", ar: "يشارك", ex: "Participate in developer meetups." }, { base: "collaborate", past: "collaborated", ar: "يتعاون مع", ex: "We collaborated on Github." }, { base: "organize", past: "organized", ar: "ينظم / يرتب", ex: "Organize files into modules." }, { base: "schedule", past: "scheduled", ar: "يجدول موعداً", ex: "Schedule the technical review." }, { base: "confirm", past: "confirmed", ar: "يؤكد / يثبت", ex: "Please confirm your attendance." }, { base: "deliver", past: "delivered", ar: "يسلم منتجاً", ex: "We delivered the project on time." }, { base: "handle", past: "handled", ar: "يتعامل مع / يدير", ex: "Handle network errors gracefully." }, { base: "investigate", past: "investigated", ar: "يحقق / يفحص", ex: "Investigate the security breach." }, { base: "encourage", past: "encouraged", ar: "يشجع", ex: "Tutors encourage daily practice." }, { base: "convince", past: "convinced", ar: "يقنع", ex: "He convinced the stakeholder." },
+      { base: "refuse", past: "refused", ar: "يرفض", ex: "The server refused the request." }, { base: "accept", past: "accepted", ar: "يقبل", ex: "Accept incoming pull requests." }, { base: "remind", past: "reminded", ar: "يذكّر", ex: "Remind me before the deadline." }, { base: "warn", past: "warned", ar: "يحذر", ex: "Logs warned about high memory." }, { base: "inform", past: "informed", ar: "يبلغ / يعلم", ex: "Inform users of maintenance." }, { base: "evaluate", past: "evaluated", ar: "يقيم", ex: "Evaluate code execution time." }, { base: "identify", past: "identified", ar: "يحدد / يتعرف على", ex: "Identify vulnerable endpoints." }, { base: "protect", past: "protected", ar: "يحمي / يؤمن", ex: "Protect user sensitive tokens." }, { base: "optimize", past: "optimized", ar: "يحسن كفاءة", ex: "Optimize frontend rendering." }, { base: "monitor", past: "monitored", ar: "يراقب", ex: "Monitor server traffic logs." }
     ],
     vocab: [
-      { en: "Job Interviews & HR", ar: "المقابلات الشخصية وإدارة الموارد" },
-      { en: "Problem Solving & Tech", ar: "حل المشكلات التقنية والهندسية" }
+      { en: "Requirement", ar: "متطلب أساسي" }, { en: "Efficiency", ar: "كفاءة" }, { en: "Productivity", ar: "إنتاجية" }, { en: "Environment", ar: "بيئة عمل" }, { en: "Development", ar: "تطوير" }, { en: "Architecture", ar: "معمارية برمجية" }, { en: "Framework", ar: "إطار عمل" }, { en: "Repository", ar: "مستودع كود" }, { en: "Integration", ar: "تكامل الأنظمة" }, { en: "Performance", ar: "مستوى الأداء" }, { en: "Scalability", ar: "قابلية التوسع" }, { en: "Reliability", ar: "اعتمادية وموثوقية" }, { en: "Deployment", ar: "نشر المشروع" }, { en: "Authentication", ar: "مصادقة الهوية" }, { en: "Authorization", ar: "تصريح الصلاحيات" }, { en: "Encryption", ar: "تشفير البيانات" }, { en: "Configuration", ar: "ضبط الإعدادات" }, { en: "Maintenance", ar: "صيانة دورية" }, { en: "Optimization", ar: "تحسين الأداء" }, { en: "Troubleshooting", ar: "استكشاف الأخطاء" },
+      { en: "Qualification", ar: "مؤهل علمي" }, { en: "Strength", ar: "نقطة قوة" }, { en: "Weakness", ar: "نقطة ضعف" }, { en: "Achievement", ar: "إنجاز" }, { en: "Responsibility", ar: "مسؤولية" }, { en: "Negotiation", ar: "تفاوض" }, { en: "Contract", ar: "عقد اتفاق" }, { en: "Promotion", ar: "ترقية وظيفية" }, { en: "Collaboration", ar: "تعاون مشترك" }, { en: "Perspective", ar: "وجهة نظر" }, { en: "Initiative", ar: "مبادرة" }, { en: "Leadership", ar: "قيادة" }, { en: "Communication", ar: "تواصل فعال" }, { en: "Professionalism", ar: "احترافية" }, { en: "Strategy", ar: "خطة واستراتيجية" }, { en: "Milestone", ar: "مرحلة بارزة" }, { en: "Workload", ar: "حجم أعباء العمل" }, { en: "Satisfaction", ar: "رضا العملاء" }, { en: "Objective", ar: "هدف وغاية" }, { en: "Innovation", ar: "ابتكار وتجديد" },
+      { en: "Ingredient", ar: "مكون طعام" }, { en: "Recipe", ar: "وصفة طبخ" }, { en: "Beverage", ar: "مشروب" }, { en: "Reservation", ar: "حجز مسبق" }, { en: "Specialty", ar: "طبق مميز" }, { en: "Appetizer", ar: "مقبلات" }, { en: "Main course", ar: "الطبق الرئيسي" }, { en: "Dessert", ar: "حلويات" }, { en: "Utensil", ar: "أدوات مائدة" }, { en: "Dietary", ar: "حمية غذائية" }, { en: "Vegetarian", ar: "نباتي" }, { en: "Nutritious", ar: "مغذٍ ومفيد" }, { en: "Hygiene", ar: "نظافة صحية" }, { en: "Flavor", ar: "نكهة ومذاق" }, { en: "Cuisine", ar: "طراز المطبخ" }, { en: "Cutlery", ar: "أدوات تقطيع" }, { en: "Napkin", ar: "منديل مائدة" }, { en: "Atmosphere", ar: "أجواء المكان" }, { en: "Seafood", ar: "مأكولات بحرية" }, { en: "Organic", ar: "طبيعي عضوي" },
+      { en: "Connection", ar: "رحلة ترانزيت" }, { en: "Customs", ar: "تخليص جمركي" }, { en: "Immigration", ar: "الجوازات والهجرة" }, { en: "Baggage claim", ar: "استلام الأمتعة" }, { en: "Departure", ar: "مغادرة الرحلة" }, { en: "Arrival", ar: "وصول الرحلة" }, { en: "Currency", ar: "عملة نقدية" }, { en: "Exchange rate", ar: "سعر الصرف" }, { en: "Accommodation", ar: "محل الإقامة" }, { en: "Excursion", ar: "جولة سياحية" }, { en: "Insurance", ar: "تأمين سفر" }, { en: "Emergency", ar: "حالة طارئة" }, { en: "Compensation", ar: "تعويض مالي" }, { en: "Regulations", ar: "لوائح وقوانين" }, { en: "Destination", ar: "محطة الوصول" }, { en: "Conveyor", ar: "سير الحقائب" }, { en: "Shuttle", ar: "حافلة نقل" }, { en: "Itinerary", ar: "برنامج الرحلة" }, { en: "Embassy", ar: "سفارة" }, { en: "Consulate", ar: "قنصلية" }
     ],
     sentences: [
-      { en: "Tell me about your technical background and experience.", ar: "حدثني عن خلفيتك التقنية وخبراتك السابقة." },
-      { en: "In my opinion, this approach is more scalable.", ar: "في رأيي، هذا الأسلوب أكثر قابلية للتوسع." }
+      { category: "💼 مقابلات العمل والتوظيف", en: "Tell me about your technical background and key projects.", ar: "حدثني عن خلفيتك التقنية وأهم مشاريعك السابقة." },
+      { category: "💼 مقابلات العمل والتوظيف", en: "Why are you interested in joining our development team?", ar: "لماذا تهتم بالانضمام إلى فريق التطوير لدينا؟" },
+      { category: "💼 مقابلات العمل والتوظيف", en: "My greatest strength is solving complex algorithmic problems.", ar: "أعظم نقاط قوتي هي حل المشكلات الخوارزمية المعقدة." },
+      { category: "💼 مقابلات العمل والتوظيف", en: "Where do you see your engineering career in five years?", ar: "أين ترى مسارك الهندسي بعد خمس سنوات من الآن؟" },
+      { category: "💼 مقابلات العمل والتوظيف", en: "I have experience working with agile teams and daily standups.", ar: "لدي خبرة في العمل مع فرق Agile والاجتماعات اليومية." },
+
+      { category: "👥 الاجتماعات وإبداء الرأي", en: "In my opinion, this approach is more scalable and cost-effective.", ar: "في رأيي، هذا الأسلوب أكثر قابلية للتوسع وموفر للتكاليف." },
+      { category: "👥 الاجتماعات وإبداء الرأي", en: "I completely agree with the points mentioned in the presentation.", ar: "أنا متفق تماماً مع النقاط المذكورة في العرض التقديمي." },
+      { category: "👥 الاجتماعات وإبداء الرأي", en: "I see your point, but we need to consider the timeline constraints.", ar: "أتفهم وجهة نظرك، لكن علينا مراعاة قيود الجدول الزمني." },
+      { category: "👥 الاجتماعات وإبداء الرأي", en: "Could we clarify the main objectives before taking a final vote?", ar: "هل يمكننا توضيح الأهداف الرئيسية قبل التصويت النهائي؟" },
+      { category: "👥 الاجتماعات وإبداء الرأي", en: "Let us schedule a follow-up meeting next Thursday at 3 PM.", ar: "دعونا نحدد اجتماع متابعة يوم الخميس القادم في الثالثة عصراً." },
+
+      { category: "💻 الدعم والتقنية وحل المشكلات", en: "We identified a performance bottleneck in the database queries.", ar: "حددنا عنق زجاجة يؤثر على أداء استعلامات قاعدة البيانات." },
+      { category: "💻 الدعم والتقنية وحل المشكلات", en: "The server encountered an unexpected error during peak traffic.", ar: "واجه السيرفر خطأ غير متوقع أثناء ذروة الزيارات." },
+      { category: "💻 الدعم والتقنية وحل المشكلات", en: "Make sure you encrypt user credentials before storing them.", ar: "تأكد من تشفير بيانات اعتماد المستخدمين قبل تخزينها." },
+      { category: "💻 الدعم والتقنية وحل المشكلات", en: "We need to roll back the latest deployment to fix the bug.", ar: "نحتاج إلى التراجع عن آخر تحديث لإصلاح الخلل." },
+      { category: "💻 الدعم والتقنية وحل المشكلات", en: "I have submitted a detailed pull request for code review.", ar: "لقد قمت بإرسال طلب سحب (PR) مفصل لمراجعة الكود." },
+
+      { category: "🍽️ المطاعم والمطبخ والضيافة", en: "Could you tell us what ingredients are used in this special dish?", ar: "هل يمكنك إخبارنا ما هي المكونات المستخدمة في هذا الطبق؟" },
+      { category: "🍽️ المطاعم والمطبخ والضيافة", en: "I have a severe allergy to nuts, does this sauce contain any?", ar: "لدي حساسية شديدة من المكسرات، هل تحتوي هذه الصلصة عليها؟" },
+      { category: "🍽️ المطاعم والمطبخ والضيافة", en: "We would like to reserve a table for four near the terrace.", ar: "نود حجز طاولة لأربعة أفراد بالقرب من الشرفة." },
+      { category: "🍽️ المطاعم والمطبخ والضيافة", en: "Could you bring the dessert menu and separate checks, please?", ar: "هل يمكنك إحضار قائمة الحلويات وفصل الفواتير من فضلك؟" },
+      { category: "🍽️ المطاعم والمطبخ والضيافة", en: "The steak was cooked to perfection, compliments to the chef.", ar: "شريحة اللحم طُهيت بإتقان تام، تحياتي للشيف." },
+
+      { category: "✈️ المطار والسفر الدولي والمواقف الطارئة", en: "My connecting flight was canceled, what are my rebooking options?", ar: "تم إلغاء رحلة الترانزيت الخاصة بي، ما هي خيارات إعادة الحجز؟" },
+      { category: "✈️ المطار والسفر الدولي والمواقف الطارئة", en: "Could you tell me which carousel has the baggage from Cairo?", ar: "هل يمكنك إخباري أي سير يحمل أمتعة رحلة القاهرة؟" },
+      { category: "✈️ المطار والسفر الدولي والمواقف الطارئة", en: "I need to declare these electronics at the customs checkpoint.", ar: "أحتاج إلى الإفصاح عن هذه الأجهزة الإلكترونية لدى الجمارك." },
+      { category: "✈️ المطار والسفر الدولي والمواقف الطارئة", en: "Is travel health insurance mandatory for entering this country?", ar: "هل التأمين الصحي للسفر إلزامي لدخول هذه الدولة؟" },
+      { category: "✈️ المطار والسفر الدولي والمواقف الطارئة", en: "How much compensation am I entitled to for a 6-hour delay?", ar: "ما مقدار التعويض الذي يحق لي الحصول عليه لتأخير 6 ساعات؟" }
     ]
   },
   b2: {
+    badgeName: "Level B2 (Upper-Intermediate Fluency)",
+
     verbs: [
-      { base: "negotiate", past: "negotiated", ar: "يتفاوض", ex: "We negotiated contract terms." },
-      { base: "implement", past: "implemented", ar: "ينفذ / يطبق", ex: "They implemented secure protocols." }
+      { base: "negotiate", past: "negotiated", ar: "يتفاوض على", ex: "We negotiated contract terms." }, { base: "implement", past: "implemented", ar: "يطبق / ينفذ", ex: "They implemented secure protocols." }, { base: "evaluate", past: "evaluated", ar: "يقيم / يحلل", ex: "Evaluate system performance." }, { base: "establish", past: "established", ar: "يؤسس / يرسخ", ex: "Establish clear design guidelines." }, { base: "demonstrate", past: "demonstrated", ar: "يبرهن / يوضح عملياً", ex: "Demonstrate product capability." }, { base: "maintain", past: "maintained", ar: "يصون / يحافظ على", ex: "Maintain zero server downtime." }, { base: "contribute", past: "contributed", ar: "يساهم / يشارك", ex: "Contribute to open-source repos." }, { base: "influence", past: "influenced", ar: "يؤثر في", ex: "User feedback influenced the UI." }, { base: "anticipate", past: "anticipated", ar: "يتوقع مسبقاً", ex: "Anticipate market fluctuations." }, { base: "formulate", past: "formulated", ar: "يصيغ استراتيجية", ex: "Formulate long-term growth plans." },
+      { base: "clarify", past: "clarified", ar: "يوضح بدقة", ex: "Clarify the deployment steps." }, { base: "justify", past: "justified", ar: "يبرر / يعلل", ex: "Justify the architectural choice." }, { base: "investigate", past: "investigated", ar: "يفحص / يحقق", ex: "Investigate database latency." }, { base: "overcome", past: "overcame", ar: "يتغلب على", ex: "Overcome scaling challenges." }, { base: "accelerate", past: "accelerated", ar: "يسرع وتيرة", ex: "Accelerate software delivery." }, { base: "enhance", past: "enhanced", ar: "يعزز / يحسن", ex: "Enhance user experience." }, { base: "distinguish", past: "distinguished", ar: "يميز بين", ex: "Distinguish core requirements." }, { base: "collaborate", past: "collaborated", ar: "يتعاون تقنياً", ex: "Collaborate across cross-teams." }, { base: "allocate", past: "allocated", ar: "يخصص موارد", ex: "Allocate cloud compute nodes." }, { base: "streamline", past: "streamlined", ar: "يبسط الإجراءات", ex: "Streamline continuous integration." },
+      { base: "coordinate", past: "coordinated", ar: "ينسق جهود", ex: "Coordinate project milestones." }, { base: "execute", past: "executed", ar: "ينفذ خطة / كود", ex: "Execute automated test suites." }, { base: "generate", past: "generated", ar: "يولد / ينشئ", ex: "Generate financial audit reports." }, { base: "prioritize", past: "prioritized", ar: "يرتب حسب الأولوية", ex: "Prioritize critical bug fixes." }, { base: "delegate", past: "delegated", ar: "يفوض مهام", ex: "Delegate frontend tasks." }, { base: "resolve", past: "resolved", ar: "يحل جذرياً", ex: "Resolve branch merge conflicts." }, { base: "specialize", past: "specialized", ar: "يتخصص في", ex: "Specialize in cyber security." }, { base: "validate", past: "validated", ar: "يتحقق من صحة", ex: "Validate user input schemas." }, { base: "integrate", past: "integrated", ar: "يدمج أنظمة", ex: "Integrate payment gateway APIs." }, { base: "modernize", past: "modernized", ar: "يحدث / يطور عتاداً", ex: "Modernize legacy codebase." }
     ],
     vocab: [
-      { en: "Finance & Market Analysis", ar: "المالية وتحليل الأسواق" },
-      { en: "Executive Leadership", ar: "القيادة التنفيذية والإدارة" }
+      { en: "Infrastructure", ar: "بنية تحتية" }, { en: "Scalability", ar: "قابلية التوسع" }, { en: "Vulnerability", ar: "ثغرة أمنية" }, { en: "Architecture", ar: "معمارية برمجية" }, { en: "Optimization", ar: "تحسين الأداء" }, { en: "Redundancy", ar: "تكرار احتياطي" }, { en: "Latency", ar: "زمن استجابة الشبكة" }, { en: "Bandwidth", ar: "سعة نقل البيانات" }, { en: "Throughput", ar: "معدل تدفق البيانات" }, { en: "Virtualization", ar: "الأنظمة الافتراضية" }, { en: "Microservices", ar: "الخدمات المصغرة" }, { en: "Containerization", ar: "حاويات التطبيقات" }, { en: "Concurrency", ar: "التنفيذ المتزامن" }, { en: "Asynchronous", ar: "غير متزامن" }, { en: "Middleware", ar: "البرمجيات الوسيطة" }, { en: "Refactoring", ar: "إعادة هيكلة الكود" }, { en: "Deprecation", ar: "إيقاف الاعتمادية" }, { en: "Compliance", ar: "الامتثال للمعايير" }, { en: "Specification", ar: "المواصفات الفنية" }, { en: "Benchmark", ar: "معيار قياس الأداء" },
+      { en: "Stakeholder", ar: "صاحب مصلحة / معني" }, { en: "Methodology", ar: "منهجية عمل" }, { en: "Deliverable", ar: "مخرج عمل نهائي" }, { en: "Feasibility", ar: "جدوى المشروع" }, { en: "Contingency", ar: "خطة طوارئ بديلة" }, { en: "Disruption", ar: "إحداث تغيير جذري" }, { en: "Governance", ar: "حوكمة وإدارة" }, { en: "Procurement", ar: "مشتريات وتوريد" }, { en: "Acquisition", ar: "استحواذ واندماج" }, { en: "ROI (Return on Investment)", ar: "العائد على الاستثمار" }, { en: "KPI (Key Performance Indicator)", ar: "مؤشر أداء رئيسي" }, { en: "Sustainability", ar: "الاستدامة المؤسسية" }, { en: "Diversification", ar: "تنويع الاستثمارات" }, { en: "Market share", ar: "حصة سوقية" }, { en: "Asset", ar: "أصل استثماري" }, { en: "Liability", ar: "التزام مالي" }, { en: "Revenue", ar: "إيرادات إجمالية" }, { en: "Profitability", ar: "معدل الربحية" }, { en: "Liquidity", ar: "السيولة المالية" }, { en: "Inflation", ar: "التضخم الاقتصادي" },
+      { en: "Persuasion", ar: "إقناع وتأثير" }, { en: "Assertion", ar: "توكيد وجزم" }, { en: "Consensus", ar: "إجماع بالآراء" }, { en: "Implication", ar: "دلالة ومغزى" }, { en: "Presumption", ar: "افتراض مسبق" }, { en: "Prerequisite", ar: "متطلب تمهيدي" }, { en: "Discrepancy", ar: "تفاوت واختلاف" }, { en: "Correlation", ar: "علاقة ارتباطية" }, { en: "Hypothesis", ar: "فرضية علمية" }, { en: "Empirical", ar: "تجريبي واقعي" }, { en: "Comprehensive", ar: "شامل وتفصيلي" }, { en: "Substantial", ar: "جوهري وملموس" }, { en: "Quantitative", ar: "كمي وإحصائي" }, { en: "Qualitative", ar: "نوعي وكيفي" }, { en: "Viable", ar: "قابل للتطبيق" }, { en: "Crucial", ar: "حاسم ومحوري" }, { en: "Inevitable", ar: "حتمي وضروري" }, { en: "Robust", ar: "قوي ورصين" }, { en: "Cohesive", ar: "متماسك ومترابط" }, { en: "Versatile", ar: "متعدد الاستخدامات" }
     ],
-    sentences: [
-      { en: "From my perspective, we must reconsider our current strategy.", ar: "من وجهة نظري، يجب أن نعيد النظر في استراتيجيتنا الحالية." }
-    ]
-  },
+sentences: [
+      { category: "💼 اجتماعات الشركات والمناقشات الرسمية", en: "I believe we should reconsider our current technical roadmap.", ar: "أعتقد أنه ينبغي علينا إعادة النظر في خارطة طريقنا التقنية الحالية." },
+      { category: "💼 اجتماعات الشركات والمناقشات الرسمية", en: "From my perspective, this solution offers higher operational efficiency.", ar: "من وجهة نظري، يقدم هذا الحل كفاءة تشغيلية أعلى بكثير." },
+      { category: "💼 اجتماعات الشركات والمناقشات الرسمية", en: "Let us review the key deliverables before finalizing the quarterly report.", ar: "دعونا نراجع المخرجات الرئيسية قبل اعتماد التقرير الربع سنوي." },
+      { category: "💼 اجتماعات الشركات والمناقشات الرسمية", en: "I see your point, but we have to take budget constraints into account.", ar: "أتفهم وجهة نظرك، لكن يتعين علينا مراعاة قيود الميزانية المحددة." },
+      { category: "💼 اجتماعات الشركات والمناقشات الرسمية", en: "Could you elaborate on the potential risks of this architectural shift?", ar: "هل يمكنك التوسع في شرح المخاطر المحتملة لهذا التحول المعماري؟" },
+      { category: "💼 اجتماعات الشركات والمناقشات الرسمية", en: "The data suggests that user engagement dropped after the last update.", ar: "تشير البيانات إلى أن تفاعل المستخدمين انخفض بعد التحديث الأخير." },
+
+      { category: "🤝 التفاوض وإبرام العقود والصفقات", en: "Is there any room for flexibility regarding the licensing fees?", ar: "هل هناك أي مجال للمرونة بخصوص رسوم التراخيص البرمجية؟" },
+      { category: "🤝 التفاوض وإبرام العقود والصفقات", en: "We are willing to offer a discount if you commit to an annual tier.", ar: "نحن على استعداد لتقديم خصم إذا التزمتم بالاشتراك السنوي." },
+      { category: "🤝 التفاوض وإبرام العقود والصفقات", en: "Under these terms, both parties can establish a win-win partnership.", ar: "بموجب هذه البنود، يمكن للطرفين تأسيس شراكة رابحة للجميع." },
+      { category: "🤝 التفاوض وإبرام العقود والصفقات", en: "We need to ensure that the SLA guarantees 99.9% uptime availability.", ar: "نحتاج للتأكد من أن اتفاقية الخدمة تضمن جاهزية بنسبة 99.9%." },
+      { category: "🤝 التفاوض وإبرام العقود والصفقات", en: "I am afraid we cannot compromise on our core security requirements.", ar: "أخشى أننا لا نستطيع التنازل عن متطلباتنا الأمنية الجوهرية." },
+
+      { category: "📊 العروض التقديمية والخطابة الاحترافية", en: "Today, I would like to focus on three major engineering breakthroughs.", ar: "اليوم، أود التركيز على ثلاثة إنجازات هندسية رئيسية." },
+      { category: "📊 العروض التقديمية والخطابة الاحترافية", en: "As you can see on this chart, our server latency decreased by 40%.", ar: "كما ترون في هذا المخطط، انخفض زمن استجابة السيرفر بنسبة 40%." },
+      { category: "📊 العروض التقديمية والخطابة الاحترافية", en: "To illustrate this concept, let us look at a real-world case study.", ar: "لتوضيح هذا المفهوم، دعونا نلقي نظرة على دراسة حالة واقعية." },
+      { category: "📊 العروض التقديمية والخطابة الاحترافية", en: "Turning our attention to scalability, our cloud infrastructure is robust.", ar: "بالانتقال إلى مسألة التوسع، فإن بنيتنا السحابية قوية ورصينة." },
+      { category: "📊 العروض التقديمية والخطابة الاحترافية", en: "In conclusion, adopting modern PWAs will maximize user retention.", ar: "ختاماً، إن تبني تطبيقات الويب المتقدمة سيعزز بقاء المستخدمين." },
+
+      { category: "🛠️ استكشاف الأعطال وإدارة الأزمات التقنية", en: "The root cause of the outage was an unhandled promise rejection.", ar: "السبب الجذري لانقطاع الخدمة كان خطأ برمجياً غير معالج." },
+      { category: "🛠️ استكشاف الأعطال وإدارة الأزمات التقنية", en: "We must implement automated failover systems to prevent data loss.", ar: "يجب أن نطبق أنظمة تبديل تلقائي لتجنب أي فقدان للبيانات." },
+      { category: "🛠️ استكشاف الأعطال وإدارة الأزمات التقنية", en: "Security auditing revealed several critical vulnerabilities in the API.", ar: "كشف التدقيق الأمني عن عدة ثغرات حرجة في واجهة البرمجة." },
+      { category: "🛠️ استكشاف الأعطال وإدارة الأزمات التقنية", en: "All production database replicas have been restored successfully.", ar: "تم استرجاع جميع النسخ المتطابقة لقواعد البيانات بنجاح." },
+      { category: "🛠️ استكشاف الأعطال وإدارة الأزمات التقنية", en: "We are monitoring network throughput to ensure uninterrupted service.", ar: "نحن نراقب معدل تدفق الشبكة لضمان استمرارية الخدمة بلا انقطاع." },
+
+      { category: "🧠 التحليل الاستراتيجي واتخاذ القرار", en: "We need to conduct a thorough cost-benefit analysis first.", ar: "نحتاج إلى إجراء تحليل شامل للتكلفة والجدوى أولاً." },
+      { category: "🧠 التحليل الاستراتيجي واتخاذ القرار", en: "This decision will have a substantial impact on our market position.", ar: "سيكون لهذا القرار تأثير جوهري على مكانتنا في السوق." },
+      { category: "🧠 التحليل الاستراتيجي واتخاذ القرار", en: "Unless we adapt to emerging AI technologies, we will fall behind.", ar: "ما لم نتكيف مع تقنيات الذكاء الاصطناعي الناشئة، سنتخلف عن الركب." },
+      { category: "🧠 التحليل الاستراتيجي واتخاذ القرار", en: "Taking everything into consideration, migrating to TypeScript is vital.", ar: "مع أخذ كل شيء في الاعتبار، فإن الانتقال إلى TypeScript أمر حيوي." }
+    ]  },
+
   c1: {
+    badgeName: "Level C1 (Advanced & Business Mastery)",
+
     verbs: [
-      { base: "facilitate", past: "facilitated", ar: "ييسر / يسهل", ex: "Cloud systems facilitate collaboration." },
-      { base: "optimize", past: "optimized", ar: "يحسن لأعلى كفاءة", ex: "We optimized database queries." }
+      { base: "facilitate", past: "facilitated", ar: "ييسر / يذلل الصعاب", ex: "Cloud systems facilitate integration." }, { base: "optimize", past: "optimized", ar: "يحسن لأقصى كفاءة", ex: "We optimized multi-threaded execution." }, { base: "synthesize", past: "synthesized", ar: "يركب / يدمج البيانات", ex: "Synthesize findings into one deck." }, { base: "consolidate", past: "consolidated", ar: "يدمج / يوطد", ex: "Consolidate server instances." }, { base: "scrutinize", past: "scrutinized", ar: "يدقق ويمحص", ex: "Scrutinize code for vulnerabilities." }, { base: "leverage", past: "leveraged", ar: "يستثمر / يستغل بأفضل وجه", ex: "Leverage machine learning APIs." }, { base: "orchestrate", past: "orchestrated", ar: "يقود وينسق عملاً ضخماً", ex: "Orchestrate microservices fleets." }, { base: "extrapolate", past: "extrapolated", ar: "يستنتج ويتنبأ بالبيانات", ex: "Extrapolate quarterly revenue trends." }, { base: "articulate", past: "articulated", ar: "يعبر بفصاحة وإبانة", ex: "Articulate complex architectures." }, { base: "substantiate", past: "substantiated", ar: "يعزز بالأدلة والبراهين", ex: "Substantiate arguments with metrics." },
+      { base: "conceptualize", past: "conceptualized", ar: "يصوغ المفاهيم النظرية", ex: "Conceptualize new SaaS solutions." }, { base: "differentiate", past: "differentiated", ar: "يمايز ويوضح الفارق", ex: "Differentiate our platform value." }, { base: "standardize", past: "standardized", ar: "يوحد المعايير والمقاييس", ex: "Standardize backend API contracts." }, { base: "reinforce", past: "reinforced", ar: "يقوي ويدعم", ex: "Reinforce zero-trust architecture." }, { base: "alleviate", past: "alleviated", ar: "يخفف العبء والضغط", ex: "Alleviate database read bottlenecks." }, { base: "disseminate", past: "disseminated", ar: "ينشر المعرفة والمعلومات", ex: "Disseminate technical whitepapers." }, { base: "reconcile", past: "reconciled", ar: "يطابق ويسوي التباين", ex: "Reconcile transaction ledgers." }, { base: "culminate", past: "culminated", ar: "يتوج في النهاية بـ", ex: "Efforts culminated in market launch." }, { base: "supersede", past: "superseded", ar: "يحل محل / يبطل ما قبله", ex: "New protocols supersede old ones." }, { base: "exemplify", past: "exemplified", ar: "يجسد مثالاً يحتذى به", ex: "Clean code exemplifies mastery." }
     ],
     vocab: [
-      { en: "Strategic Management", ar: "الإدارة الاستراتيجية والتوسع" },
-      { en: "Academic Research & Law", ar: "البحث الأكاديمي والتشريعات" }
+      { en: "Paradigm", ar: "نموذج فكري وإدراكي" }, { en: "Cognitive", ar: "معرفي وإدراكي" }, { en: "Dichotomy", ar: "انقسام وازدواجية" }, { en: "Efficacy", ar: "فاعلية وجدوى قاطعة" }, { en: "Sovereignty", ar: "سيادة استقلالية" }, { en: "Jurisdiction", ar: "نطاق الاختصاص القضائي" }, { en: "Autonomous", ar: "ذاتي التحكم ومستقل" }, { en: "Neural Network", ar: "شبكة عصبية اصطناعية" }, { en: "Deep Learning", ar: "التعلم العميق" }, { en: "Hyperparameter", ar: "معامل الضبط الفائق" }, { en: "Cryptocurrency", ar: "عملة مشفرة" }, { en: "Blockchain", ar: "سلسلة الكتل غير القابلة للتغيير" }, { en: "Monopoly", ar: "احتكار تجاري" }, { en: "Oligopoly", ar: "احتكار القلة" }, { en: "Fiscal Policy", ar: "السياسة المالية والنقدية" }, { en: "Capitalization", ar: "القيمة السوقية الإجمالية" }, { en: "Arbitrage", ar: "الموازنة والمراجحة المالية" }, { en: "Derivative", ar: "مشتق مالي" }, { en: "Equity", ar: "حقوق الملكية وصافي الأصول" }, { en: "Venture Capital", ar: "رأس المال الجريء الاستثماري" },
+      { en: "Unprecedented", ar: "غير مسبوق تاريخياً" }, { en: "Ubiquitous", ar: "واسع الانتشار في كل مكان" }, { en: "Pragmatic", ar: "واقعي وعملي" }, { en: "Empirical", ar: "مستند لتجارب واقعية" }, { en: "Meticulous", ar: "شديد الدقة والإتقان" }, { en: "Resilient", ar: "مرن ومقاوم للصدمات" }, { en: "Pivotal", ar: "محوري وفارق" }, { en: "Lucrative", ar: "مربح ومجدٍ مالياً" }, { en: "Intricate", ar: "معقد ومتقن التركيب" }, { en: "Syntactic", ar: "تركيبي ونحوي برمجي" }, { en: "Semantic", ar: "دلالي ومعنوي" }, { en: "Monolithic", ar: "أحادي المعمارية" }, { en: "Decentralized", ar: "لامركزي التوزيع" }, { en: "Immutable", ar: "ثابت غير قابل للتعديل" }, { en: "Synchronous", ar: "متزامن اللحظة" }, { en: "Deterministic", ar: "حتمي النتيجة" }, { en: "Stochastic", ar: "احتمالي وعشوائي" }, { en: "Heuristic", ar: "استكشافي تقريبي" }, { en: "Extensible", ar: "قابل للتمديد والتطوير" }, { en: "Comprehensive", ar: "شامل ومستوعب لكافة الأوجه" }
     ],
-    sentences: [
-      { en: "If we examine this from a broader perspective, we will discover sustainable solutions.", ar: "إذا تفحصنا هذا من منظور أوسع، سنكتشف حلولاً مستدامة." }
+sentences: [
+      { category: "👑 القيادة التنفيذية واستراتيجيات الإدارة العليا", en: "I would like to draw your attention to the substantial paradigm shift in our enterprise architecture.", ar: "أود أن ألفت انتباهكم إلى التحول النموذجي الجوهري في معمارية مؤسستنا." },
+      { category: "👑 القيادة التنفيذية واستراتيجيات الإدارة العليا", en: "If we examine this from a macro perspective, we will discover far more sustainable and resilient solutions.", ar: "إذا فحصنا هذا الأمر من منظور كلي شامل، فسنكتشف حلولاً أكثر استدامة ومرونة." },
+      { category: "👑 القيادة التنفيذية واستراتيجيات الإدارة العليا", en: "It is paramount that we align our technical deliverables with overarching corporate governance mandates.", ar: "من الأهمية بمكان أن نوائم مخرجاتنا التقنية مع تفويضات الحوكمة المؤسسية الشاملة." },
+      { category: "👑 القيادة التنفيذية واستراتيجيات الإدارة العليا", en: "The empirical evidence suggests that legacy infrastructure impedes our capacity for rapid market disruption.", ar: "تشير الأدلة التجريبية الواقعية إلى أن البنية التحتية القديمة تعيق قدرتنا على إحداث تحول جذري في السوق." },
+      { category: "👑 القيادة التنفيذية واستراتيجيات الإدارة العليا", en: "We must allocate capital towards autonomous microservices to mitigate prospective systemic bottlenecks.", ar: "يتعين علينا تخصيص رأس المال نحو الخدمات المصغرة ذاتية الإدارة للتخفيف من الاختناقات الهيكلية المحتملة." },
+
+      { category: "⚖️ التفاوض المتقدم والنزاعات والاتفاقيات الدولية", en: "I understand your reservations; however, our position is backed by rigorous empirical benchmark data.", ar: "أتفهم تحفظاتكم؛ ومع ذلك، فإن موقفنا مدعوم ببيانات معيارية تجريبية دقيقة." },
+      { category: "⚖️ التفاوض المتقدم والنزاعات والاتفاقيات الدولية", en: "There is a compelling argument to suggest that cross-jurisdictional compliance requires standardized encryption protocols.", ar: "هناك حجة مقنعة ومؤكدة تشير إلى أن الامتثال عبر النطاقات القضائية المختلفة يتطلب بروتوكولات تشفير موحدة." },
+      { category: "⚖️ التفاوض المتقدم والنزاعات والاتفاقيات الدولية", en: "Under no circumstances can the executive board compromise on statutory regulatory compliance frameworks.", ar: "لا يمكن لمجلس الإدارة التنفيذي بأي حال من الأحوال التهاون بشأن أطر الامتثال التنظيمي المنصوص عليها قانوناً." },
+      { category: "⚖️ التفاوض المتقدم والنزاعات والاتفاقيات الدولية", en: "We are prepared to concede on licensing thresholds provided that long-term intellectual property rights remain immutable.", ar: "نحن على استعداد لتقديم تنازلات بشأن حدود التراخيص شريطة أن تظل حقوق الملكية الفكرية طويلة الأجل ثابتة وغير قابلة للمساس." },
+      { category: "⚖️ التفاوض المتقدم والنزاعات والاتفاقيات الدولية", en: "Let us reconcile the contractual discrepancies before seeking formal ratification from legal counsel.", ar: "دعونا نسوي التباينات والاختلافات التعاقدية قبل السعي للحصول على المصادقة الرسمية من المستشار القانوني." },
+
+      { category: "🎓 الخطابة الأكاديمية والمناظرات والنقد الفكري", en: "Taking everything into consideration, the dichotomy between monolithic and distributed architectures is overstated.", ar: "مع أخذ جميع المعطيات في الحسبان، فإن الانقسام والازدواجية بين المعماريات الأحادية والموزعة مبالغ فيه." },
+      { category: "🎓 الخطابة الأكاديمية والمناظرات والنقد الفكري", en: "It is worth mentioning that algorithmic efficacy is fundamentally constrained by the quality of training datasets.", ar: "يجدر بالذكر أن الفاعلية الخوارزمية مقيدة ومحكومة بشكل أساسي بجودة مجموعات البيانات التدريبية." },
+      { category: "🎓 الخطابة الأكاديمية والمناظرات والنقد الفكري", en: "I wouldn't necessarily subscribe to the notion that automated heuristics supersede rigorous mathematical proofs.", ar: "لا أتفق بالضرورة مع الفرضية القائلة بأن الحلول الاستكشافية التقريبية تبطل البراهين الرياضية الصارمة." },
+      { category: "🎓 الخطابة الأكاديمية والمناظرات والنقد الفكري", en: "To articulate this succinctly, deterministic systems yield predictable outputs whereas stochastic models account for variance.", ar: "للتعبير عن ذلك بإيجاز وفصاحة، تنتج الأنظمة الحتمية مخرجات متوقعة بينما تستوعب النماذج العشوائية التباين." },
+      { category: "🎓 الخطابة الأكاديمية والمناظرات والنقد الفكري", en: "The researcher meticulously scrutinized the cryptographic ledger to establish the authenticity of the transaction records.", ar: "قام الباحث بتدقيق وفحص السجل التشفيري بعناية فائقة لإثبات صحة وموثوقية سجلات المعاملات." },
+
+      { category: "🧠 استشراف المستقبل والذكاء الاصطناعي والأمن الشامل", en: "Leveraging decentralized zero-trust frameworks is an indispensable prerequisite for enterprise defense.", ar: "يعد الاستثمار الفعال لأطر العمل اللامركزية القائمة على انعدام الثقة شرطاً مسبقاً لا غنى عنه للدفاع السيبراني للمؤسسة." },
+      { category: "🧠 استشراف المستقبل والذكاء الاصطناعي والأمن الشامل", en: "We must anticipate the ethical and socioeconomic ramifications of deploying autonomous neural networks at scale.", ar: "يتعين علينا أن نستشرف التداعيات الأخلاقية والاجتماعية والاقتصادية لنشر الشبكات العصبية ذاتية الإدارة على نطاق واسع." },
+      { category: "🧠 استشراف المستقبل والذكاء الاصطناعي والأمن الشامل", en: "The culmination of our research efforts will substantiate the feasibility of quantum-resistant cryptographic systems.", ar: "سيتوج نتاج جهودنا البحثية بإثبات الجدوى التطبيقية لأنظمة التشفير المقاومة للحوسبة الكمية." },
+      { category: "🧠 استشراف المستقبل والذكاء الاصطناعي والأمن الشامل", en: "Unless we consolidate our telemetry pipelines, diagnosing high-concurrency race conditions will remain intractable.", ar: "ما لم نوحد وندمج قنوات القياس والمراقبة عن بُعد، سيظل تشخيص حالات التسابق البرمجية المتزامنة أمراً مستعصياً." },
+      { category: "🧠 استشراف المستقبل والذكاء الاصطناعي والأمن الشامل", en: "The proposed optimization metrics will enhance execution speed without jeopardizing data integrity or confidentiality.", ar: "ستعزز معايير التحسين المقترحة سرعة التنفيذ دون المساس بسلامة البيانات أو سريتها التامة." }
     ]
-  }
+    }
 };
 
 let currentModalResourceType = null;
@@ -1560,17 +1751,18 @@ function renderModalList(dataList) {
         </button>
       </div>
     `).join("");
-  } else if (currentModalResourceType === "sentences") {
+} else if (currentModalResourceType === "sentences") {
     container.innerHTML = dataList.map((st, i) => `
-      <div class="p-4 rounded-2xl bg-[#0A0F1D] border border-slate-800 flex items-center justify-between flex-wrap gap-3">
-        <div class="flex items-center gap-3">
-          <span class="w-7 h-7 rounded-xl bg-amber-950 text-amber-400 font-bold text-xs flex items-center justify-center">${i + 1}</span>
+      <div class="p-4 rounded-2xl bg-[#0A0F1D] border border-slate-800 flex items-center justify-between flex-wrap gap-3 hover:border-amber-500/40 transition">
+        <div class="flex items-start gap-3">
+          <span class="w-7 h-7 rounded-xl bg-amber-950 text-amber-400 font-bold text-xs flex items-center justify-center shrink-0 mt-1">${i + 1}</span>
           <div>
+            ${st.category ? `<span class="inline-block text-[10px] font-bold px-2 py-0.5 rounded-md bg-amber-400/10 text-amber-300 border border-amber-400/20 mb-1">${st.category}</span>` : ''}
             <p class="text-xs sm:text-sm font-black text-white font-mono leading-relaxed">${st.en}</p>
             <p class="text-[11px] text-slate-400 mt-1">${st.ar}</p>
           </div>
         </div>
-        <button type="button" onclick="speakEnglish('${st.en}')" class="px-3.5 py-1.5 rounded-xl bg-amber-950/80 border border-amber-800/50 hover:bg-amber-600 hover:text-white text-amber-300 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+        <button type="button" onclick="speakEnglish('${st.en.replace(/'/g, "\\'")}')" class="px-3.5 py-1.5 rounded-xl bg-amber-950/80 border border-amber-800/50 hover:bg-amber-600 hover:text-white text-amber-300 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
           <span>🔊</span> استمع للجملة
         </button>
       </div>
