@@ -1247,7 +1247,7 @@ word: {
       { title: "أهم 20 اختصار لاحتراف الوورد", videoUrl: "https://www.youtube.com/watch?v=m2vP2ZkLqE", desc: "رفع سرعة العمل بـ 10 أضعاف." },
       {
         title: "34. خلاصة الوورد في أقل من ساعة (ملخص شامل)",
-        videoUrl: "https://www.youtube.com/watch?v=xFKGAyou5jo",
+        videoUrl: "https://youtu.be/kCZVLE4GPdA?si=elloruVXQkErWQgI",
         desc: "فيديو ملخص يجمع أهم مهارات الوورد في أقل من ساعة للمراجعة النهائية والتطبيق السريع.",
        
       }
@@ -1325,7 +1325,8 @@ excel: {
       { title: "64. معادلة Xlookup في الاكسل - الحلقة 64", videoUrl: "https://www.youtube.com/watch?v=u08swSivQrM", desc: "التطبيق الشامل لمعادلة Xlookup العصرية." },
       { title: "65. رسم بياني مش هتصدقه في الاكسل هيغير تفكيرك - الحلقة 65", videoUrl: "https://www.youtube.com/watch?v=8rl4cscgKEw", desc: "أفكار رسوم بيانية غير تقليدية." },
       { title: "66. اهم 3 معادلات تصيبه في الاكسل هتخسر كتير لو مش عارفهم - الحلقة 66", videoUrl: "https://www.youtube.com/watch?v=xZztgHEXmGk", desc: "معادلات إنقاذ للموظفين والمحاسبين." },
-      { title: "67. عبر من بياناتك بشكل مميز بالـ Area Chart في الاكسل - الحلقة 67", videoUrl: "https://www.youtube.com/watch?v=xZztgHEXmGk", desc: "احتراف المخططات المساحية وعرض الاتجاهات." }
+      { title: "67. عبر من بياناتك بشكل مميز بالـ Area Chart في الاكسل - الحلقة 67", videoUrl: "https://www.youtube.com/watch?v=xZztgHEXmGk", desc: "احتراف المخططات المساحية وعرض الاتجاهات." },
+      { title: "68. ملخص واحتراف إكسيل بالكامل في 5 ساعات (الملخص الشامل)", videoUrl: "https://www.youtube.com/watch?v=lcStF5zE3KQ", desc: "دورة مكثفة تجمع خلاصة الإكسيل لتكون مرجعك النهائي." }
     ]
   },
   
@@ -2012,7 +2013,6 @@ function renderLevelDetails(data) {
   }
 }
 
-// دالة تشغيل الفيديو
 window.playLessonVideo = function(title, videoUrl) {
   const wrapper = document.getElementById("videoContainerWrapper");
   const iframe = document.getElementById("videoIframe");
@@ -2023,7 +2023,9 @@ window.playLessonVideo = function(title, videoUrl) {
   if (titleEl) titleEl.textContent = title;
 
   wrapper.classList.remove("hidden");
-  wrapper.scrollIntoView({ behavior: "smooth", block: "center" });
+  
+  // نقل التركيز بصرياً للمشغل بدون إجبار الشاشة على القفز للأعلى
+  wrapper.scrollIntoView({ behavior: "smooth", block: "nearest" });
 };
 
 window.closeVideoPlayer = function() {
