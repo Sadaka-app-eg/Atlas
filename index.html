@@ -1213,69 +1213,122 @@ window.courseLevelsDB = {
 };
 
 window.officeCurriculumDB = {
-  word: {
-    title: "برنامج مايكروسوفت وورد (Microsoft Word)",
-    overview: "البرنامج القياسي لمعالجة النصوص وإعداد المستندات والوثائق. يركز هذا المسار على إتقان تنسيق الأبحاث والكتب، بناء الجداول المتقدمة، إنشاء الفهارس الآلية، دمج المراسلات لإصدار مئات الشهادات والخطابات بضغطة زر، واستخراج ملفات الطباعة الاحترافية.",
-    keySkills: ["تنسيق الأبحاث والرسائل العلمية", "الفهرس الآلي التلقائي", "دمج المراسلات Mail Merge", "تأمين المستندات والعلامة المائية"],
+word: {
+    title: "Microsoft Word Specialist",
+    overview: "البرنامج القياسي العالمي لمعالجة النصوص. هذا المسار يغطي القائمة الكاملة لاحتراف الوورد من الصفر حتى كتابة الأبحاث الأكاديمية والتقارير الاحترافية.",
+    keySkills: ["تنسيق النصوص والفقرات", "الأنماط والفهارس الآلية", "دمج المراسلات", "إدارة الترويسة والتذييل"],
     lectures: [
+      { title: "تعلم برنامج الوورد بكل سهولة للمبتدئين", videoUrl: "https://www.youtube.com/watch?v=xFKGAyou5jo", desc: "مدخل شامل لأساسيات واجهة البرنامج." },
+      { title: "تنسيق الكتابة بطريقة احترافية", videoUrl: "https://www.youtube.com/watch?v=wXWk0j5_Wf8", desc: "احتراف أدوات التنسيق الأساسية للنصوص." },
+      { title: "تنسيق الفقرات بطريقة احترافية", videoUrl: "https://www.youtube.com/watch?v=7uK6rG4mP-Q", desc: "ضبط المسافات، المحاذاة، والتباعد بين الفقرات." },
+      { title: "الكتابة بالصوت في برنامج الوورد", videoUrl: "https://www.youtube.com/watch?v=7-qZ60yP4j4", desc: "طريقة ذكية للكتابة السريعة عبر الإملاء الصوتي." },
+      { title: "طريقة استخدام الأنماط (Styles) بسهولة", videoUrl: "https://www.youtube.com/watch?v=1F_d_P8gH5A", desc: "الأنماط هي سر الاحتراف وتنسيق المستندات الكبيرة." },
+      { title: "إنشاء جدول المحتويات (الفهرس) تلقائياً", videoUrl: "https://www.youtube.com/watch?v=n5LwW9L_k3k", desc: "إنشاء فهرس ديناميكي يتحدث تلقائياً مع التغييرات." },
+      { title: "إنشاء الجداول وتنسيقها باحترافية", videoUrl: "https://www.youtube.com/watch?v=p4vK-uYgWk4", desc: "كل ما يخص الجداول، التنسيق، والعمليات الحسابية البسيطة داخلها." },
+      { title: "تصحيح الأخطاء الإملائية واللغوية سحرياً", videoUrl: "https://www.youtube.com/watch?v=uK8M7t_q1lA", desc: "أدوات التدقيق اللغوي للغة العربية والإنجليزية." },
+      { title: "تعلم الرسم البياني في الوورد", videoUrl: "https://www.youtube.com/watch?v=9oZ8a5j3pXk", desc: "إدراج الرسوم البيانية وتخصيصها لعرض البيانات." },
+      { title: "إدراج الصور والجداول والفهارس", videoUrl: "https://www.youtube.com/watch?v=iF2oUjG8aW0", desc: "التعامل مع الوسائط المتعددة والمراجع في المستند." },
+      { title: "إضافة الصور والتعديل عليها باحترافية", videoUrl: "https://www.youtube.com/watch?v=1ZlV9w4L0O8", desc: "التحكم في القص، الإطارات، وتنسيق الصور." },
+      { title: "إضافة الرأس والتذييل (Header & Footer)", videoUrl: "https://www.youtube.com/watch?v=i9_oP2ZkLqE", desc: "إضافة شعارات الشركات أو ترقيم الصفحات في الأعلى والأسفل." },
+      { title: "عمل رأس وتذييل مختلف لكل صفحة", videoUrl: "https://www.youtube.com/watch?v=0kH8sP0pXqA", desc: "التعامل مع فواصل المقاطع (Section Breaks) للتحكم المتقدم." },
+      { title: "إضافة الترقيم التلقائي للصفحات", videoUrl: "https://www.youtube.com/watch?v=vV9oP2ZkLqE", desc: "طرق ترقيم المستندات بشكل احترافي." },
+      { title: "بدء الترقيم من صفحة معينة", videoUrl: "https://www.youtube.com/watch?v=xZ9oP2ZkLqE", desc: "كيفية تخطي صفحة الغلاف في الترقيم." },
+      { title: "عمل حدود وإطارات مميزة للمستند", videoUrl: "https://www.youtube.com/watch?v=b1uP2ZkLqE", desc: "إضافة إطارات جذابة لشهادات التقدير والتقارير." },
+      { title: "أسهل طريقة لعمل حدود وإطارات مميزة", videoUrl: "https://www.youtube.com/watch?v=c2vP2ZkLqE", desc: "إطارات مخصصة وبسيطة." },
+      { title: "حفظ الملف كـ PDF", videoUrl: "https://www.youtube.com/watch?v=d3vP2ZkLqE", desc: "تحويل المستندات لملفات PDF جاهزة للمشاركة." },
+      { title: "تحويل ملف Word إلى PDF", videoUrl: "https://www.youtube.com/watch?v=e4vP2ZkLqE", desc: "طرق متعددة واحترافية للتحويل." },
+      { title: "إضافة الأشكال والرسومات", videoUrl: "https://www.youtube.com/watch?v=f5vP2ZkLqE", desc: "استخدام SmartArt والأشكال الهندسية." },
+      { title: "حذف الصفحات الفارغة", videoUrl: "https://www.youtube.com/watch?v=g6vP2ZkLqE", desc: "تنظيف الملف من الصفحات الزائدة." },
+      { title: "دمج المراسلات (Mail Merge) خطوة بخطوة", videoUrl: "https://www.youtube.com/watch?v=h7vP2ZkLqE", desc: "إرسال مئات الخطابات المخصصة بضغطة زر." },
+      { title: "عمل إستمارة أو نموذج قابل للتعديل", videoUrl: "https://www.youtube.com/watch?v=i8vP2ZkLqE", desc: "إنشاء نماذج (Forms) للمدخلات." },
+      { title: "إضافة القوائم المسدلة", videoUrl: "https://www.youtube.com/watch?v=j9vP2ZkLqE", desc: "تحويل المستند إلى نموذج تفاعلي." },
+      { title: "إضافة المعادلات الرياضية", videoUrl: "https://www.youtube.com/watch?v=k0vP2ZkLqE", desc: "إدراج رموز ومعادلات رياضية معقدة." },
+      { title: "إضافة الاقتباس والمراجع", videoUrl: "https://www.youtube.com/watch?v=l1vP2ZkLqE", desc: "التوثيق العلمي للمراجع والمصادر." },
+      { title: "أهم 20 اختصار لاحتراف الوورد", videoUrl: "https://www.youtube.com/watch?v=m2vP2ZkLqE", desc: "رفع سرعة العمل بـ 10 أضعاف." },
       {
-        title: "01. كورس وورد كامل في فيديو واحد - من الصفر حتى الاحتراف",
-        videoUrl: "https://www.youtube.com/watch?v=kYJmC5a7Nl0",
-        desc: "شرح شامل باللغة العربية لواجهة البرنامج، ضبط الهوامش، إعداد الصفحات والفقرات، وتنسيق الخطوط القياسية.",
-        quiz: [
-          { question: "ما الاختصار المستخدم لإدراج فاصل صفحات جديد في برنامج Word؟", options: ["Ctrl + Enter", "Ctrl + Shift", "Alt + Enter"], correctIndex: 0 }
-        ]
-      },
-      {
-        title: "02. الجداول، الأشكال، وفهرس المحتويات التلقائي (Table of Contents)",
-        videoUrl: "https://www.youtube.com/watch?v=aGZ89XbJk9U",
-        desc: "استخدام الأنماط (Styles) لتوليد وتحديث فهرس الأبحاث والكتب تلقائياً بنقرة واحدة.",
-        quiz: [
-          { question: "لتوليد جدول محتويات آلي، يجب تنسيق العناوين باستخدام:", options: ["أنماط العناوين (Heading 1 / Heading 2)", "الخط العريض فقط (Bold)", "المحاذاة للوسط"], correctIndex: 0 }
-        ]
-      },
-      {
-        title: "03. دمج المراسلات (Mail Merge) وإصدار الشهادات والخطابات آلياً",
-        videoUrl: "https://www.youtube.com/watch?v=0h9iW2a7X8A",
-        desc: "ربط مستند Word ببيانات Excel لطباعة وتصدير مئات الشهادات والخطابات المخصصة تلقائياً.",
-        quiz: [
-          { question: "تُستخدم ميزة دمج المراسلات (Mail Merge) لـ:", options: ["إصدار مستندات مخصصة لعدة أشخاص آلياً", "رسم الدوال الرياضية", "تصميم قواعد البيانات"], correctIndex: 0 }
-        ]
+        title: "34. خلاصة الوورد في أقل من ساعة (ملخص شامل)",
+        videoUrl: "https://www.youtube.com/watch?v=xFKGAyou5jo",
+        desc: "فيديو ملخص يجمع أهم مهارات الوورد في أقل من ساعة للمراجعة النهائية والتطبيق السريع.",
+       
       }
     ]
   },
 
-  excel: {
+excel: {
     title: "برنامج مايكروسوفت إكسيل (Microsoft Excel)",
-    overview: "الأداة الأولى عالمياً في الشركات لإدارة الحسابات والتحليل المالي والبياني. يغطي هذا المسار بناء الجداول الديناميكية، إتقان الدوال الشرطية والبحثية المتقدمة (XLOOKUP, VLOOKUP, INDEX/MATCH, SUMIFS)، تحليل البيانات بالجداول المحورية (Pivot Tables)، وتصميم لوحات التحكم التفاعلية (Dashboards).",
-    keySkills: ["الدوال المتقدمة (XLOOKUP / IF / SUMIFS)", "الجداول المحورية Pivot Tables", "التحقق من صحة البيانات Data Validation", "الداشبورد التفاعلي والرسوم البيانية"],
+    overview: "الكورس الكامل لاحتراف إكسيل (67 حلقة) للمهندس محمد العسال. يغطي هذا المسار التأسيس الاحترافي، دوال البحث المتقدمة، الجداول المحورية Pivot Tables، بناء الـ Dashboards، وأتمتة العمليات بـ Macros.",
+    keySkills: ["التأسيس من الصفر", "الدوال والمعادلات", "التحليل والتقارير", "الداشبورد المتقدمة"],
     lectures: [
-      {
-        title: "01. كورس إكسيل كامل للمبتدئين من الصفر - شرح عربي مبسط",
-        videoUrl: "https://www.youtube.com/watch?v=rjpN3tkgb14",
-        desc: "إدخال وتنسيق البيانات، تجميد الصفوف والأعمدة (Freeze Panes)، وتطبيق قواعد تلوين الخلايا الآلية.",
-        quiz: [
-          { question: "لتثبيت الصف العلوي ليظل ثابتاً أثناء التمرير لأسفل نختار:", options: ["Freeze Top Row", "Split Panes", "AutoFit"], correctIndex: 0 }
-        ]
-      },
-      {
-        title: "02. أهم دوال الإكسيل المحاسبية والبحثية: XLOOKUP و VLOOKUP و IF",
-        videoUrl: "https://www.youtube.com/watch?v=eYkLqW6qNlE",
-        desc: "ربط واستدعاء البيانات بين الجداول المختلفة وحساب المعادلات المركبة متعددة الشروط.",
-        quiz: [
-          { question: "تتميز دالة XLOOKUP الحديثة عن VLOOKUP بأنها:", options: ["تبحث يميناً ويساراً بدون اشتراط ترتيب الأعمدة", "تعمل فقط مع النصوص", "تحسب المتوسطات فقط"], correctIndex: 0 }
-        ]
-      },
-      {
-        title: "03. الجداول المحورية (Pivot Tables) وتصميم الداشبورد ومؤشرات الأداء",
-        videoUrl: "https://www.youtube.com/watch?v=3n5Kq7Z9y1w",
-        desc: "تلخيص آلاف صفوف البيانات بمرونة وعرض التقارير الشهرية والرسوم البيانية التفاعلية.",
-        quiz: [
-          { question: "الوظيفة الأساسية للجداول المحورية (Pivot Tables) هي:", options: ["تلخيص وتحليل كميات ضخمة من البيانات بمرونة", "تنسيق النصوص", "إرسال الإيميلات"], correctIndex: 0 }
-        ]
-      }
+      { title: "01. اتعلم اكسل من الصفر للمبتدئين - الحلقة 1", videoUrl: "https://www.youtube.com/watch?v=uRs8_EJqTFo", desc: "تأسيس واجهة البرنامج وإدخال البيانات الأساسية." },
+      { title: "02. التعامل مع التاريخ واستخدام معادلات أساسية - الحلقة 2", videoUrl: "https://www.youtube.com/watch?v=XcuXLqLNJCY", desc: "كيفية تنسيق وإدارة التواريخ ومعادلاتها." },
+      { title: "03. اتعلم اكسل من الصفر - معادلة Sumifs - الحلقة 3", videoUrl: "https://www.youtube.com/watch?v=-fQ0dblhHUM", desc: "استخدام معادلة الجمع الشرطي المتعدد." },
+      { title: "04. Excel for Beginners - عمليات حسابية أساسية - الحلقة 4", videoUrl: "https://www.youtube.com/watch?v=KoE-9Ux0AXw", desc: "العمليات الحسابية والنسب المئوية." },
+      { title: "05. استخدام التقنية Filters - الحلقة 5", videoUrl: "https://www.youtube.com/watch?v=tVa-KQhcSWA", desc: "تصفية البيانات وعرض المطلوب بذكاء." },
+      { title: "06. نسخ بيانات بدون تكرار (Remove Duplicates) - الحلقة 6", videoUrl: "https://www.youtube.com/watch?v=tVa-KQhcSWA", desc: "تنظيف الجداول من البيانات المكررة." },
+      { title: "07. الرسوم البيانية Excel Charts - الحلقة 7", videoUrl: "https://www.youtube.com/watch?v=DHcdXd-phx8", desc: "تحويل الأرقام إلى رسوم بيانية احترافية." },
+      { title: "08. اتعلم اكسل معادله Vlookup - الحلقة 8", videoUrl: "https://www.youtube.com/watch?v=4tMORHaUbZA", desc: "معادلة البحث الأشهر في سوق العمل." },
+      { title: "09. معادلة Subtotal - كشف مختصر لأي حاجة - الحلقة 9", videoUrl: "https://www.youtube.com/watch?v=cvleNKP29ww", desc: "استخراج مجاميع مرنة أثناء الفلترة." },
+      { title: "10. معادلة IF الشرطية - الحلقة 10", videoUrl: "https://www.youtube.com/watch?v=LS02GT5fvro", desc: "اتخاذ القرارات التلقائية بناءً على الشروط." },
+      { title: "11. تنسيق الجداول Conditional Formatting - الحلقة 11", videoUrl: "https://www.youtube.com/watch?v=b5rD0-KSoR0", desc: "التلوين الشرطي التلقائي للخلايا." },
+      { title: "12. احتراف الـ Pivot Tables (الجزء 1) - الحلقة 12", videoUrl: "https://www.youtube.com/watch?v=IM666zAXFtc", desc: "البداية الاحترافية للجداول المحورية." },
+      { title: "13. احتراف الـ Pivot Tables (الجزء 2) - الحلقة 13", videoUrl: "https://www.youtube.com/watch?v=qQqv277aA5E", desc: "التحمّل الكامل وتحليل التقارير الضخمة." },
+      { title: "14. عمل لوحة تحكم احترافية Excel Dashboard - الحلقة 14", videoUrl: "https://www.youtube.com/watch?v=qQqv277aA5E", desc: "تصميم داشبورد تفاعلي يبهر الإدارة." },
+      { title: "15. الجمع والطرح من التاريخ في الاكسل - الحلقة 15", videoUrl: "https://www.youtube.com/watch?v=-E7DxYwek_8", desc: "حساب فرق الأيام والتواريخ بسهولة." },
+      { title: "16. تعلم تعمل قائمة منسدلة Drop Down List - الحلقة 16", videoUrl: "https://www.youtube.com/watch?v=yurUrEuVmVs", desc: "تسهيل إدخال البيانات بالقوائم المنسدلة." },
+      { title: "17. الترتيب في الاكسل Excel Sorting - الحلقة 17", videoUrl: "https://www.youtube.com/watch?v=esVS2Gz4B90", desc: "فرز وترتيب البيانات تصاعدياً وتنازلياً." },
+      { title: "18. تحدي رمضان مع الاكسل - الحلقة 18", videoUrl: "https://www.youtube.com/watch?v=esVS2Gz4B90", desc: "تطبيق عملي موسع ومراجعة مهارات." },
+      { title: "19. 7 مهارات احترافية متتحفهمش في الـ Pivot Tables - الحلقة 19", videoUrl: "https://www.youtube.com/watch?v=lK_qJAhZpms", desc: "أسرار خفية في الجداول المحورية." },
+      { title: "20. معادلة INDEX AND MATCH - الحلقة 20", videoUrl: "https://www.youtube.com/watch?v=MSODrdO4YQk", desc: "البديل الأقوى والأكثر مرونة لمعادلة Vlookup." },
+      { title: "21. حل مشاكل الجمع باستخدام معادلة Aggregate - الحلقة 21", videoUrl: "https://www.youtube.com/watch?v=v1-fPm6BbvU", desc: "التعامل مع الأخطاء والبيانات المخفية." },
+      { title: "22. نموذج ادخال بيانات في اكسل بسهولة - الحلقة 22", videoUrl: "https://www.youtube.com/watch?v=RxqZ1_PEBKA", desc: "إدخال بيانات احترافي بدون أخطاء." },
+      { title: "23. استخدام الـ Combo Box في الاكسل - الحلقة 23", videoUrl: "https://www.youtube.com/watch?v=LAv9SAL_T8U", desc: "قوائم منسدلة تفاعلية ومتقدمة." },
+      { title: "24. أهم اختصارات الاكسل اللي هتتعب حياتك - الحلقة 24", videoUrl: "https://www.youtube.com/watch?v=5p3Fsl4Zijs", desc: "مضاعفة سرعة العمل بالاختصارات." },
+      { title: "25. ازاي تفتح شيت اكسل نسيت الباسورد بتاعته - الحلقة 25", videoUrl: "https://www.youtube.com/watch?v=Owzx_t4onCQ", desc: "طريقة فك حماية ورقة العمل المحمية." },
+      { title: "26. ازاي تحول قائمة الدخل الي رسم بياني - الحلقة 26", videoUrl: "https://www.youtube.com/watch?v=lV8Tt1SPYq4", desc: "عرض القوائم المالية ببيانات بصرية." },
+      { title: "27. حل مشاكل الطباعة في الاكسل - الحلقة 27", videoUrl: "https://www.youtube.com/watch?v=dN6tH5ubWeI", desc: "ضبط صفحات الشيت للطباعة بشكل سليم." },
+      { title: "28. عمل تقرير محترف Progress Tracking Bar - الحلقة 28", videoUrl: "https://www.youtube.com/watch?v=FZGXOrPzGi4", desc: "مؤشرات إنجاز المهام بصرياً." },
+      { title: "29. استخدام Advanced Filters لتوفير الوقت - الحلقة 29", videoUrl: "https://www.youtube.com/watch?v=4kZhdCNYNZM", desc: "الفلترة المتقدمة والشروط المعقدة." },
+      { title: "30. نظم بياناتك صح باستخدام الـ Check Box - الحلقة 30", videoUrl: "https://www.youtube.com/watch?v=bbjTdoSwHvE", desc: "إدراج مربعات الاختيار التفاعلية." },
+      { title: "31. ازاي تشيل التكرار بـ 3 طرق مختلفة - الحلقة 31", videoUrl: "https://www.youtube.com/watch?v=hPzMl-DUujQ", desc: "حذف البيانات المكررة باحترافية." },
+      { title: "32. ازاي تحسب عدد الايام بين التاريخ - الحلقة 32", videoUrl: "https://www.youtube.com/watch?v=Znl_KTK_3YY", desc: "معادلات حساب الفترات الزمنية بدقة." },
+      { title: "33. استخدام خاصية الـ Filters الأفضل في الاكسل - الحلقة 33", videoUrl: "https://www.youtube.com/watch?v=EApBXl4oUAo", desc: "أسرار الفلاتر الحديثة." },
+      { title: "34. الجداول الديناميكية في الاكسل هتغير حياتك - الحلقة 34", videoUrl: "https://www.youtube.com/watch?v=xZ1-Hvo68Ak", desc: "تحويل الجداول لنطاقات تتمدد تلقائياً (Tables)." },
+      { title: "35. ازاي تستخدم الـ Macros للأعمال التكرارية - الحلقة 35", videoUrl: "https://www.youtube.com/watch?v=J3CpzPTFihA", desc: "تسجيل وتخطيط الماكرو لتوفير الوقت." },
+      { title: "36. ازاي تربط النص بالارقام وتعمل عليهم معادلات - الحلقة 36", videoUrl: "https://www.youtube.com/watch?v=WrWP1ZOWEzY", desc: "دمج النصوص والقيم الحسابية معاَ." },
+      { title: "37. 3 خواص في الاكسل مش متكررة - الحلقة 37", videoUrl: "https://www.youtube.com/watch?v=qUGlSYbB2mM", desc: "خصائص خفية ومفيدة جداً." },
+      { title: "38. طريقة الجمع بناء علي فترة تاريخ - الحلقة 38", videoUrl: "https://www.youtube.com/watch?v=TasKTAsfj28", desc: "حساب المجاميع خلال شهور أو أعوام محددة." },
+      { title: "39. ازاي تعمل خريطة رسم بياني بالامل - الحلقة 39", videoUrl: "https://www.youtube.com/watch?v=4YcMKkbFwH4", desc: "إبهار الإدارة بالخرائط الجغرافية والبيانية." },
+      { title: "40. ازاي تقارن بين ورقتين في الاكسل - الحلقة 40", videoUrl: "https://www.youtube.com/watch?v=4MIfCqf_Y8k", desc: "مقارنة البيانات واكتشاف الاختلافات." },
+      { title: "41. ازاي تربط الاكسل بالورد بـ 3 طرق مختلفة - الحلقة 41", videoUrl: "https://www.youtube.com/watch?v=bpv_WleDLyc", desc: "التكامل بين برامج الأوفيس." },
+      { title: "42. دمج اكثر من صفحه او ملف في الاكسل - الحلقة 42", videoUrl: "https://www.youtube.com/watch?v=OnKG1EYBcLw", desc: "تجميع البيانات المشتتة في ملف واحد." },
+      { title: "43. من اقوي معادلات الاكسل التي لا تصدق - الحلقة 43", videoUrl: "https://www.youtube.com/watch?v=27vzz4g8nbo", desc: "معادلات متقدمة لحل المعضلات." },
+      { title: "44. خاصية تبؤ البيانات في الاكسل - الحلقة 44", videoUrl: "https://www.youtube.com/watch?v=hhY8I0UQo5Y", desc: "استشراف المستقبل وتحليل الحالات (What-If)." },
+      { title: "45. ملخص وحلقات متقدمة لإدارة الجداول - الحلقة 45", videoUrl: "https://www.youtube.com/watch?v=hZ8ekXd6h0A", desc: "تطبيقات وتدريبات عملية إضافية." },
+      { title: "46. مراجعة شاملة وأدوات متقدمة للتحليل - الحلقة 46", videoUrl: "https://www.youtube.com/watch?v=W0h-omHHzNg", desc: "إتقان أدوات المراجعة والتدقيق." },
+      { title: "47. كيفية التعامل مع الأخطاء وإصلاحها - الحلقة 47", videoUrl: "https://www.youtube.com/watch?v=ShHr6DtI6bY", desc: "معالجة رسائل الخطأ (#N/A, #VALUE)." },
+      { title: "48. تقرير محترف برسم بياني داخل الخلية - الحلقة 48", videoUrl: "https://www.youtube.com/watch?v=3dv3Jfssqc8", desc: "مهارات Sparklines المصغرة." },
+      { title: "49. المعادلة السحرية في الاكسل لاستخراج البيانات - الحلقة 49", videoUrl: "https://www.youtube.com/watch?v=DhK1Hi_IRAE", desc: "استخراج البيانات المعقدة بسهولة." },
+      { title: "50. معادلة العد الغير تكراري في الاكسل - الحلقة 50", videoUrl: "https://www.youtube.com/watch?v=ik8AJXH8lNU", desc: "حساب القيم الفريدة بدون تكرار (Count Unique)." },
+      { title: "51. المعادلة الاقوى في تاريخ الاكسل للعد الغير تكراري - الحلقة 51", videoUrl: "https://www.youtube.com/watch?v=WuHKsUnd83M", desc: "طرق متقدمة واحترافية للعد." },
+      { title: "52. معادلة Offset في الاكسل - الحلقة 52", videoUrl: "https://www.youtube.com/watch?v=CtnA8BD21pI", desc: "بناء النطاقات الديناميكية المتغيرة." },
+      { title: "53. احمي بياناتك بالخاصية الرهيبة دي في الاكسل - الحلقة 53", videoUrl: "https://www.youtube.com/watch?v=DsfCbDxjXJs", desc: "حماية الخلايا وأوراق العمل من التعديل." },
+      { title: "54. ازاي تعمل تقرير مختصر بناء علي التاريخ بشكل احترافي - الحلقة 54", videoUrl: "https://www.youtube.com/watch?v=XgnBlrMrVzw", desc: "تقارير الفترات الزمنية المخصصة." },
+      { title: "55. اعرف 3 معادلات مهمه للأستخدام اليومي في الاكسل - الحلقة 55", videoUrl: "https://www.youtube.com/watch?v=dT_Jv-ra9PQ", desc: "معادلات ترفع كفاءة العمل المكتبي." },
+      { title: "56. أشهر 3 معادلات مهمه لو عايز تتعلم تحليل بيانات - الحلقة 56", videoUrl: "https://www.youtube.com/watch?v=_9peUgeHvmQ", desc: "ركائز تحليل البيانات الحديث." },
+      { title: "57. اهم 9 اختصارات تبقى عارفهم في الاكسل - الحلقة 57", videoUrl: "https://www.youtube.com/watch?v=_9peUgeHvmQ", desc: "اختصارات حاسمة لإنجاز المهام سريعاً." },
+      { title: "58. رسم بياني في الاكسل مهم جدا ومش عارفه - الحلقة 58", videoUrl: "https://www.youtube.com/watch?v=PYgZ3b1Q8s4", desc: "أشكال رسومية متقدمة." },
+      { title: "59. عير حياتك ونظرتك للبيانات بالرسم البياني - الحلقة 59", videoUrl: "https://www.youtube.com/watch?v=vdaYgkWbQog", desc: "القصص البصرية المستمدة من الأرقام." },
+      { title: "60. عير حياتك بالتنسيق الشرطي بالـ Icon Sets - الحلقة 60", videoUrl: "https://www.youtube.com/watch?v=aklqlx4x0N0", desc: "وضع أيقونات تفاعلية تعبر عن حالة الأرقام." },
+      { title: "61. ازاي تستخدم الـ Pivot Tables صح في الاكسل - الحلقة 61", videoUrl: "https://www.youtube.com/watch?v=3NwavxFjTuk", desc: "الممارسات الاحترافية للجداول المحورية." },
+      { title: "62. معادلة Hlookup كما لم تراها من قبل - الحلقة 62", videoUrl: "https://www.youtube.com/watch?v=3NwavxFjTuk", desc: "البحث الأفقي المتقدم." },
+      { title: "63. سر استخدام معادلة Index & Match بشكل صحيح - الحلقة 63", videoUrl: "https://www.youtube.com/watch?v=cjrVB2ChELs", desc: "إتقان ثنائي البحث الأقوى." },
+      { title: "64. معادلة Xlookup في الاكسل - الحلقة 64", videoUrl: "https://www.youtube.com/watch?v=u08swSivQrM", desc: "التطبيق الشامل لمعادلة Xlookup العصرية." },
+      { title: "65. رسم بياني مش هتصدقه في الاكسل هيغير تفكيرك - الحلقة 65", videoUrl: "https://www.youtube.com/watch?v=8rl4cscgKEw", desc: "أفكار رسوم بيانية غير تقليدية." },
+      { title: "66. اهم 3 معادلات تصيبه في الاكسل هتخسر كتير لو مش عارفهم - الحلقة 66", videoUrl: "https://www.youtube.com/watch?v=xZztgHEXmGk", desc: "معادلات إنقاذ للموظفين والمحاسبين." },
+      { title: "67. عبر من بياناتك بشكل مميز بالـ Area Chart في الاكسل - الحلقة 67", videoUrl: "https://www.youtube.com/watch?v=xZztgHEXmGk", desc: "احتراف المخططات المساحية وعرض الاتجاهات." }
     ]
   },
+  
 
   powerpoint: {
     title: "برنامج مايكروسوفت باوربوينت (Microsoft PowerPoint)",
