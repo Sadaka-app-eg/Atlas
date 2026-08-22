@@ -944,45 +944,147 @@ window.toggleDrawer = function() {
   drawer.classList.toggle("hidden");
 };
 
-// ============ ATLAS CATALOG DATA ============
+// ============ ATLAS CORE 8 MASTER TRACKS ============
 window.catalogData = {
-  pkg_fullstack: {
-    id: "pkg_fullstack", type: "package", year: "tech",
-    code: { ar: "شامل", en: "Pro" }, category: { ar: "برمجة • مسار كامل", en: "Programming • Full Track" },
-    title: { ar: "باقة مطور الويب الشامل (Full-Stack)", en: "Full-Stack Web Developer Bundle" },
-    sub: { ar: "تشمل HTML, CSS, JS, React, Node.js وقواعد البيانات مع بناء 5 مشاريع حقيقية.", en: "Includes HTML, CSS, JS, React, Node.js with 5 Real Projects." },
-    badge: { ar: "الأكثر طلباً 🔥", en: "Most Popular 🔥" },
-    price: "1,200", oldPrice: "1,800", img: "image/pkg_fullstack.png",
-    courses: [
-      { name: "تطوير الواجهات (Frontend)", desc: "HTML, CSS, JavaScript & React", id: "c_frontend" },
-      { name: "تطوير الخلفية (Backend)", desc: "Node.js, Express & MongoDB", id: "c_backend" }
-    ]
+  // 1. مسار تطوير الويب المتكامل
+  c_web_dev: {
+    id: "c_web_dev",
+    type: "single",
+    year: "tech",
+    code: { ar: "ويب", en: "Web" },
+    category: { ar: "تطوير الويب • مسار شامل", en: "Full-Stack Web Development" },
+    title: { ar: "مسار تطوير الويب المتكامل (Frontend & Backend)", en: "Full-Stack Web Development Track" },
+    desc: { ar: "من الصفر: HTML, CSS, JavaScript، إطار العمل React، بيئة Node.js وقواعد البيانات.", en: "From Zero to Pro: HTML, CSS, Modern JS, React, Node.js & Databases." },
+    badge: { ar: "شامل المسار 🔥", en: "Full Track 🔥" },
+    price: "150",
+    oldPrice: "250",
+    img: "image/web_dev.png",
+    lessons: []
   },
-  pkg_cyber: {
-    id: "pkg_cyber", type: "package", year: "tech",
-    code: { ar: "أمن", en: "Sec" }, category: { ar: "شبكات وحماية", en: "Networking & Security" },
-    title: { ar: "باقة الأمن السيبراني الشاملة", en: "Cyber Security Pro Bundle" },
-    sub: { ar: "تعلم Linux, الشبكات، واختبار الاختراق الأخلاقي (Ethical Hacking).", en: "Learn Linux, Networking, and Ethical Hacking." },
-    badge: { ar: "مطلوب جداً 🛡️", en: "High Demand 🛡️" },
-    price: "1,500", oldPrice: "2,000", img: "image/pkg_cyber.png",
-    courses: [
-      { name: "أساسيات Linux والشبكات", desc: "Command line, Permissions & Protocols", id: "c_linux" },
-      { name: "اختبار الاختراق (Pen Testing)", desc: "Vulnerability analysis & Exploitation", id: "c_pentest" }
-    ]
+
+  // 2. مسار الأمن السيبراني واختبار الاختراق
+  c_cyber_sec: {
+    id: "c_cyber_sec",
+    type: "single",
+    year: "tech",
+    code: { ar: "أمن", en: "Sec" },
+    category: { ar: "الأمن السيبراني • شامل", en: "Cyber Security & Pentesting" },
+    title: { ar: "مسار الأمن السيبراني واختبار الاختراق (Cyber Security)", en: "Cyber Security & Ethical Hacking" },
+    desc: { ar: "التأسيس في شبكات الحاسب، نظام Linux، اكتشاف وتحليل الثغرات واختبار الاختراق العملي.", en: "Computer Networks, Linux Administration, Vulnerability Assessment & Ethical Hacking." },
+    badge: { ar: "الأكثر طلباً 🛡️", en: "Top Security 🛡️" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/cyber.png",
+    lessons: []
   },
-  c_deutsch: {
-    id: "c_deutsch", type: "single", year: "lang_office",
-    code: { ar: "لغات", en: "Lang" }, category: { ar: "لغات أجنبية", en: "Foreign Languages" },
-    title: { ar: "احتراف اللغة الألمانية (A1 - B2)", en: "Master German Language (A1-B2)" },
-    desc: { ar: "كورس شامل من الصفر حتى اجتياز اختبارات معهد جوته والمحادثة بطلاقة.", en: "Comprehensive German course from scratch to Goethe exam readiness." },
-    price: "600", oldPrice: "900", img: "image/deutsch.png", lessons: []
+c_data_analysis: {
+    id: "c_data_analysis",
+    type: "single",
+    year: "tech",
+    code: { ar: "بيانات", en: "Data" },
+    category: { ar: "تحليل البيانات • من الصفر للاحتراف", en: "Data Analysis Track" },
+    title: { ar: "مسار تحليل البيانات الشامل (Data Analysis Mastery)", en: "Complete Data Analysis Track" },
+    desc: { ar: "من الصفر: Advanced Excel، قواعد بيانات SQL، لغة Python للتحليل، وبناء لوحات التحكم التفاعلية بـ Power BI.", en: "From Zero: Advanced Excel, SQL Databases, Python (Pandas), and Interactive Power BI Dashboards." },
+    badge: { ar: "مسار مطلوب 📈", en: "High Demand 📈" },
+    price: "650",
+    oldPrice: "950",
+    img: "image/data_analysis.png",
+    lessons: []
   },
-  c_office: {
-    id: "c_office", type: "single", year: "lang_office",
-    code: { ar: "أوفيس", en: "Office" }, category: { ar: "برمجيات مكتبية", en: "Office Suite" },
-    title: { ar: "حزمة الـ Office الاحترافية", en: "Professional Office Suite" },
-    desc: { ar: "تعلم Word, Excel, PowerPoint باحترافية لتجهيز السير الذاتية وإدارة البيانات.", en: "Master Word, Excel, and PowerPoint for professional data management." },
-    price: "400", oldPrice: "650", img: "image/office_master.png", lessons: []
+  // 3. مسار بايثون والذكاء الاصطناعي
+  c_python_ai: {
+    id: "c_python_ai",
+    type: "single",
+    year: "tech",
+    code: { ar: "ذكاء", en: "AI" },
+    category: { ar: "بايثون والذكاء الاصطناعي", en: "Python, Data & AI" },
+    title: { ar: "مسار Python وتحليل البيانات والذكاء الاصطناعي", en: "Python, Data Science & AI Mastery" },
+    desc: { ar: "أساسيات لغة Python، مكتبات Pandas لتحليل البيانات، وبناء نماذج الـ Machine Learning.", en: "Core Python, Pandas Data Analysis, Visualization & Machine Learning Models." },
+    badge: { ar: "مسار المستقبل 🤖", en: "AI Track 🤖" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/python_ai.png",
+    lessons: []
+  },
+
+  // 4. مسار تطبيقات الموبايل
+  c_mobile_app: {
+    id: "c_mobile_app",
+    type: "single",
+    year: "tech",
+    code: { ar: "تطبيقات", en: "App" },
+    category: { ar: "تطوير تطبيقات الموبايل", en: "Mobile App Development" },
+    title: { ar: "مسار تطوير تطبيقات الهاتف (Flutter & Cross-Platform)", en: "Cross-Platform Mobile App Development" },
+    desc: { ar: "بناء تطبيقات احترافية لنظامي Android و iOS باستخدام Flutter و Dart مع ربط السيرفرات.", en: "Build production-ready Android & iOS apps using Flutter, Dart & Cloud APIs." },
+    badge: { ar: "تطبيقي وعملي 📱", en: "Hands-on 📱" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/mobile_app.png",
+    lessons: []
+  },
+
+  // 5. مسار اللغة الإنجليزية الشامل
+  c_english_all: {
+    id: "c_english_all",
+    type: "single",
+    year: "lang_office",
+    code: { ar: "إنجليزي", en: "EN" },
+    category: { ar: "اللغة الإنجليزية • A1 إلى C1", en: "English Language (A1-C1)" },
+    title: { ar: "مسار احتراف اللغة الإنجليزية الشامل (A1 -> C1)", en: "Comprehensive English Language (A1 to C1)" },
+    desc: { ar: "تأسيس النطق والقواعد من الصفر، المحادثة اليومية، طلاقة الاستماع، والإنجليزية المهنية للأعمال.", en: "From A1 to C1: Phonetics, Grammar, Daily Conversations, Fluency & Business English." },
+    badge: { ar: "من الصفر للطلاقة 🗣️", en: "All Levels 🗣️" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/english.png",
+    lessons: []
+  },
+
+  // 6. مسار اللغة الألمانية الشامل
+  c_deutsch_all: {
+    id: "c_deutsch_all",
+    type: "single",
+    year: "lang_office",
+    code: { ar: "ألماني", en: "DE" },
+    category: { ar: "اللغة الألمانية • A1 إلى B2", en: "German Language (A1-B2)" },
+    title: { ar: "مسار احتراف اللغة الألمانية الشامل (Deutsch A1 -> B2)", en: "Complete German Mastery (A1 to B2)" },
+    desc: { ar: "تغطية كاملة من الحروف والمحادثات المبتدئة A1 وحتى اجتياز امتحانات معهد جوته B2 المعتمدة.", en: "Complete German: Pronunciation, Grammatik, Sprechen, Hören & Goethe Exam Prep." },
+    badge: { ar: "تجهيز جوته 🇩🇪", en: "Goethe Ready 🇩🇪" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/deutsch.png",
+    lessons: []
+  },
+
+  // 7. مسار حزمة البرمجيات المكتبية
+  c_office_suite: {
+    id: "c_office_suite",
+    type: "single",
+    year: "lang_office",
+    code: { ar: "أوفيس", en: "Office" },
+    category: { ar: "برمجيات الأعمال والمكاتب", en: "Microsoft Office Suite" },
+    title: { ar: "مسار حزمة الـ Office الاحترافية (Word, Excel, PowerPoint)", en: "Advanced Microsoft Office Specialist" },
+    desc: { ar: "إتقان دوال Excel المتقدمة وتحليل الجداول، تنسيق أبحاث Word، وتصميم عروض PowerPoint.", en: "Advanced Excel Formulas, Pivot Tables, Data Analytics, Word Reports & PowerPoint Decks." },
+    badge: { ar: "أساسي للعمل 📊", en: "Essential 📊" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/office.png",
+    lessons: []
+  },
+
+  // 8. مسار تصميم واجهات وتجربة المستخدم
+  c_ui_ux: {
+    id: "c_ui_ux",
+    type: "single",
+    year: "tech",
+    code: { ar: "تصميم", en: "UI/UX" },
+    category: { ar: "تصميم الواجهات وتجربة المستخدم", en: "UI/UX Design & Figma" },
+    title: { ar: "مسار تصميم الواجهات وتجربة المستخدم (UI/UX Design & Figma)", en: "UI/UX Design & Figma Systems" },
+    desc: { ar: "دراسة سلوك المستخدم، رسم Wireframes، تصميم واجهات الموبايل والويب، وبناء Design Systems.", en: "User Experience Research, Wireframing, Web/Mobile Interface Design & Figma Systems." },
+    badge: { ar: "إبداعي وعملي 🎨", en: "Design 🎨" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/ui_ux.png",
+    lessons: []
   }
 };
 
