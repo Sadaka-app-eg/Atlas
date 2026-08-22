@@ -556,130 +556,126 @@
 </div>
 
 <!-- ============ COURSE DETAILS & LESSONS VIEW ============ -->
-<div id="courseView" class="hidden min-h-screen bg-[#0A0F1D] text-slate-100 py-6 px-4 md:px-8 transition-all">
+<div id="courseView" class="hidden min-h-screen bg-[#090A0F] text-slate-100 py-8 px-4 md:px-8 transition-all">
   <div class="max-w-5xl mx-auto space-y-6">
     
-    <!-- شريط العودة واسم الكورس -->
-    <div class="flex items-center justify-between pb-3 border-b border-slate-800">
-      <button type="button" onclick="closeCourseView()" class="inline-flex items-center justify-center p-2.5 rounded-2xl bg-[#111827] border border-slate-800 hover:border-brand transition shadow-lg group cursor-pointer" title="العودة للصفحة الرئيسية">
-        <img src="logo.png" alt="العودة للرئيسية" class="h-8 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='logo.png'" />
+    <!-- شريط المسار والرجوع الهادئ -->
+    <div class="flex items-center justify-between pb-4 border-b border-slate-800/80">
+      <button type="button" onclick="closeCourseView()" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#11131A] border border-slate-800 hover:border-slate-700 text-xs font-semibold text-slate-300 transition cursor-pointer">
+        <svg class="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        <span>العودة للرئيسية</span>
       </button>
-      <div class="text-start">
-        <span id="crsCategory" class="text-[10px] font-black px-2.5 py-1 rounded-full bg-cyan-400/20 text-cyan-300 border border-cyan-400/30">مقرر تدريبي</span>
-        <h2 id="crsTitle" class="text-base sm:text-lg font-black text-white mt-1">اسم الكورس</h2>
+
+      <div class="flex items-center gap-2">
+        <span id="crsCategory" class="text-[11px] font-mono font-medium px-2.5 py-1 rounded bg-slate-800/60 border border-slate-700/60 text-slate-400">TRACK SPEC</span>
       </div>
     </div>
 
-<!-- بانر الكورس الاحترافي الحديث -->
-    <div id="courseGuestBanner" class="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden">
-      <div class="space-y-2 text-start z-10">
-        <div class="flex items-center gap-2">
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-black bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">مسار شامل</span>
-          <span class="text-xs text-slate-400 font-semibold">تحديثات مستمرة لعام 2026</span>
+    <!-- بطاقة رأس المسار (Dashboard Header) -->
+    <div class="rounded-xl bg-[#11131A] border border-slate-800 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="space-y-2 max-w-2xl">
+        <h1 id="crsTitle" class="text-xl md:text-2xl font-bold text-white tracking-tight">اسم المسار التدريبي</h1>
+        <p id="crsDesc" class="text-xs md:text-sm text-slate-400 font-normal leading-relaxed"></p>
+      </div>
+
+      <div class="flex sm:flex-col items-center sm:items-end justify-between w-full md:w-auto gap-3 pt-4 sm:pt-0 border-t sm:border-t-0 border-slate-800/60">
+        <div class="text-start sm:text-end">
+          <span class="text-[10px] text-slate-500 block uppercase font-mono tracking-wider">Tuition Fee</span>
+          <span id="crsPrice" class="text-2xl md:text-3xl font-black text-white font-mono">0 ج.م</span>
         </div>
-        <h3 id="crsPrice" class="text-3xl sm:text-4xl font-black text-white num-font tracking-tight">0 ج.م</h3>
-        <p id="crsDesc" class="text-xs text-slate-400 max-w-xl leading-relaxed"></p>
+        <button id="crsActionBtn" onclick="toggleCourseEnrollment()" class="px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition cursor-pointer whitespace-nowrap">
+          تأكيد الاشتراك في المسار
+        </button>
       </div>
-      <button id="crsActionBtn" onclick="toggleCourseEnrollment()" class="w-full md:w-auto px-8 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs transition active:scale-95 shadow-lg shadow-cyan-500/20 cursor-pointer z-10">
-        الاشتراك في هذا المقرر 🚀
-      </button>
     </div>
 
-    <!-- شريط اختيار المستويات الحديث -->
+    <!-- شريط المستويات (يظهر فقط لمسارات اللغات) -->
     <div id="courseLevelsSection" class="hidden space-y-3">
-      <div class="flex items-center justify-between">
-        <span class="text-xs font-bold text-slate-400 flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-cyan-400"></span> المستوى الدراسي المحدد:
-        </span>
-        <span id="activeLevelBadge" class="text-xs font-black text-cyan-300">Level A1</span>
+      <div class="flex items-center justify-between text-xs">
+        <span class="text-slate-400 font-medium">اختر المرحلة الدراسية:</span>
+        <span id="activeLevelBadge" class="text-cyan-400 font-mono font-bold">Level A1</span>
       </div>
-
-      <div id="levelsCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
+      <div id="levelsCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5"></div>
     </div>
 
-    <!-- المحتوى التدريبي الشامل -->
-    <div id="levelDetailedContent" class="space-y-8 mt-6">
+    <!-- المحتوى الداخلي الشامل -->
+    <div id="levelDetailedContent" class="space-y-6">
 
-      <!-- مشغل الفيديو -->
+      <!-- مشغل المحاضرات -->
       <div id="videoContainerWrapper" class="hidden space-y-3">
-        <div id="videoPlayerContainer" class="rounded-3xl overflow-hidden bg-black border border-slate-800 aspect-video relative flex items-center justify-center shadow-2xl">
+        <div id="videoPlayerContainer" class="rounded-xl overflow-hidden bg-black border border-slate-800 aspect-video relative flex items-center justify-center">
           <iframe id="videoIframe" class="w-full h-full border-0" src="" allowfullscreen></iframe>
         </div>
-        <div class="flex items-center justify-between p-3 rounded-2xl bg-[#0D1424] border border-slate-800">
-          <span id="currentLessonTitle" class="font-black text-xs text-cyan-300"></span>
-          <button onclick="closeVideoPlayer()" class="text-xs text-slate-400 hover:text-white px-3 py-1 rounded-lg bg-slate-800 transition">إغلاق ✕</button>
+        <div class="flex items-center justify-between p-3 rounded-lg bg-[#11131A] border border-slate-800">
+          <span id="currentLessonTitle" class="font-bold text-xs text-slate-200"></span>
+          <button onclick="closeVideoPlayer()" class="text-xs text-slate-400 hover:text-white px-3 py-1 rounded bg-slate-800 border border-slate-700 transition">إغلاق</button>
         </div>
       </div>
 
-      <!-- بوابات بنك المهارات المنظم -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- بوابات المهارات (تظهر فقط في مسارات اللغات) -->
+      <div id="languageSkillsPortals" class="hidden grid-cols-1 md:grid-cols-3 gap-3.5">
         
-        <div class="resource-portal-card card-verbs">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-black text-cyan-400 font-mono tracking-wider">VERBS HUB</span>
-              <span class="text-lg">⚡</span>
+        <div class="p-5 rounded-xl bg-[#11131A] border border-slate-800 flex flex-col justify-between space-y-4 hover:border-slate-700 transition">
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-slate-500">
+              <span class="text-[10px] font-mono font-bold tracking-wider uppercase text-cyan-400">Verbs & Tenses</span>
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
-            <div>
-              <h4 class="text-sm font-black text-white">بنك الأفعال وتصريفاتها</h4>
-              <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">أهم أفعال المستوى مع التصريفات والأمثلة والنطق الصوتي.</p>
-            </div>
+            <h3 class="text-sm font-bold text-white">الأفعال وتصريفاتها</h3>
+            <p class="text-xs text-slate-400 font-normal leading-relaxed">قائمة الأفعال الأكثر استخداماً وتصريف الماضي مع الأمثلة والنطق الصوتي.</p>
           </div>
-          <button onclick="openResourceModal('verbs')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-cyan-500 hover:text-slate-950 text-slate-200 text-xs font-black transition flex items-center justify-center gap-2 cursor-pointer">
-            <span>تصفح الأفعال</span>
-            <span>←</span>
+          <button onclick="openResourceModal('verbs')" class="w-full py-2 rounded-lg bg-[#181B24] hover:bg-slate-800 border border-slate-700/80 text-xs font-semibold text-slate-200 transition cursor-pointer">
+            تصفح الأفعال ←
           </button>
         </div>
 
-        <div class="resource-portal-card card-vocab">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-black text-emerald-400 font-mono tracking-wider">TOPICS & VOCAB</span>
-              <span class="text-lg">📚</span>
+        <div class="p-5 rounded-xl bg-[#11131A] border border-slate-800 flex flex-col justify-between space-y-4 hover:border-slate-700 transition">
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-slate-500">
+              <span class="text-[10px] font-mono font-bold tracking-wider uppercase text-emerald-400">Terminology</span>
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
             </div>
-            <div>
-              <h4 class="text-sm font-black text-white">المفردات والمصطلحات</h4>
-              <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">مفردات مصنفة ومقسمة حسب موضوعات المحادثة والحياة اليومية.</p>
-            </div>
+            <h3 class="text-sm font-bold text-white">المفردات والمصطلحات</h3>
+            <p class="text-xs text-slate-400 font-normal leading-relaxed">قوائم المفردات مصنفة ومقسمة حسب موضوعات العمل والمواقف الميدانية.</p>
           </div>
-          <button onclick="openResourceModal('vocab')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-black transition flex items-center justify-center gap-2 cursor-pointer">
-            <span>تصفح المفردات</span>
-            <span>←</span>
+          <button onclick="openResourceModal('vocab')" class="w-full py-2 rounded-lg bg-[#181B24] hover:bg-slate-800 border border-slate-700/80 text-xs font-semibold text-slate-200 transition cursor-pointer">
+            تصفح المفردات ←
           </button>
         </div>
 
-        <div class="resource-portal-card card-sentences">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-black text-amber-400 font-mono tracking-wider">REAL DIALOGUES</span>
-              <span class="text-lg">🗣️</span>
+        <div class="p-5 rounded-xl bg-[#11131A] border border-slate-800 flex flex-col justify-between space-y-4 hover:border-slate-700 transition">
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-slate-500">
+              <span class="text-[10px] font-mono font-bold tracking-wider uppercase text-amber-400">Dialogues</span>
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
             </div>
-            <div>
-              <h4 class="text-sm font-black text-white">المحادثات والجمل الواقعية</h4>
-              <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">جمل الاستخدام اليومي في العمل والسفر والمواقف العامة.</p>
-            </div>
+            <h3 class="text-sm font-bold text-white">الجمل والمحادثات</h3>
+            <p class="text-xs text-slate-400 font-normal leading-relaxed">جمل محادثة وسياقات واقعية للاستخدام المباشر في العمل والمقابلات مع النطق.</p>
           </div>
-          <button onclick="openResourceModal('sentences')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-amber-500 hover:text-slate-950 text-slate-200 text-xs font-black transition flex items-center justify-center gap-2 cursor-pointer">
-            <span>تصفح الجمل</span>
-            <span>←</span>
+          <button onclick="openResourceModal('sentences')" class="w-full py-2 rounded-lg bg-[#181B24] hover:bg-slate-800 border border-slate-700/80 text-xs font-semibold text-slate-200 transition cursor-pointer">
+            تصفح المحادثات ←
           </button>
         </div>
 
       </div>
 
-      <!-- محاضرات المستوى المنشورة -->
+      <!-- قائمة المنهج والمحاضرات -->
       <div class="space-y-3 pt-2">
         <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
-          <h4 class="font-black text-sm text-slate-200 flex items-center gap-2">
-            <span>🎥</span> المحاضرات والشروحات المعتمدة
-          </h4>
-          <span id="firestoreLecturesCount" class="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-slate-800 text-cyan-400">0 محاضرات</span>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+            <h3 class="font-bold text-xs md:text-sm text-slate-200">المنهج والمحاضرات المتاحة</h3>
+          </div>
+          <span id="firestoreLecturesCount" class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-400">0 LECTURES</span>
         </div>
         
-        <div id="lessonsList" class="space-y-2.5"></div>
+        <div id="lessonsList" class="space-y-2"></div>
       </div>
 
     </div>
+
+  </div>
+</div>
 
 <!-- ============ MODAL استعراض البنوك الكاملة (أفعال، كلمات، جمل مع محرك بحث ونطق صوتي) ============ -->
 <div id="resourceFullModal" class="hidden fixed inset-0 z-[500] flex items-center justify-center bg-black/85 backdrop-blur-md p-4">
@@ -1639,68 +1635,9 @@ function renderModalList(dataList) {
   }
 }
 
-// دالة جلب المحاضرات الحقيقية من Firebase Firestore (التي ينشرها المشرف)
-window.loadFirestoreLectures = async function(courseOrLevelKey) {
-  const container = document.getElementById("lessonsList");
-  const countBadge = document.getElementById("firestoreLecturesCount");
-  if (!container) return;
 
-  container.innerHTML = `<div class="p-6 text-center text-slate-500 text-xs">جاري تحميل المحاضرات...</div>`;
 
-  try {
-    const { collection, getDocs, query, where, orderBy } = await import("https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js");
-    const q = query(
-      collection(window.firestoreDBInstance, "lectures"),
-      where("courseId", "==", courseOrLevelKey)
-    );
-
-    const snapshot = await getDocs(q);
-    const lectures = [];
-    snapshot.forEach(doc => lectures.push({ id: doc.id, ...doc.data() }));
-
-    if (countBadge) countBadge.textContent = `${lectures.length} محاضرات منشورة`;
-
-    if (lectures.length === 0) {
-      container.innerHTML = `
-        <div class="p-8 text-center bg-[#111827] rounded-3xl border border-slate-800 text-slate-400 text-xs space-y-2">
-          <p>لم يتم نشر محاضرات لهذا المستوى بعد من لوحة المشرف.</p>
-          <span class="text-[10px] text-slate-500 font-mono">المعرف في قاعدة البيانات: ${courseOrLevelKey}</span>
-        </div>
-      `;
-      return;
-    }
-
-    container.innerHTML = lectures.map((lec, idx) => `
-      <div class="rounded-2xl border border-slate-800 bg-[#111827] p-4 flex items-center justify-between flex-wrap gap-3 hover:border-slate-700 transition">
-        <div class="flex items-center gap-3">
-          <span class="w-9 h-9 rounded-xl flex items-center justify-center font-black text-xs bg-brand text-white shrink-0">${idx + 1}</span>
-          <div>
-            <h4 class="text-xs sm:text-sm font-black text-white">${lec.title}</h4>
-            <span class="text-[11px] text-slate-400 block mt-0.5">${lec.description || ''}</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-2">
-          ${lec.videoUrl ? `
-            <button onclick="playLessonVideo('${lec.title}', '${lec.videoUrl}')" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold transition flex items-center gap-1 cursor-pointer">
-              <span>▶</span> مشاهدة المحاضرة
-            </button>
-          ` : ''}
-          ${lec.quiz && lec.quiz.length > 0 ? `
-            <button onclick='startInteractiveQuiz(${JSON.stringify(lec.quiz)})' class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center gap-1 cursor-pointer">
-              <span>📝</span> الكويز
-            </button>
-          ` : ''}
-        </div>
-      </div>
-    `).join("");
-
-  } catch (err) {
-    console.error("Firestore Lectures Error:", err);
-    container.innerHTML = `<div class="p-6 text-center text-rose-400 text-xs">تعذر الاتصال بقاعدة البيانات لجلب المحاضرات.</div>`;
-  }
-};
-
-// فتح واجهة الكورس
+// فتح واجهة الكورس وتحديد ما إذا كان مسار لغات أم برمجة
 window.openCourseView = function(courseId) {
   const crs = window.catalogData[courseId];
   if (!crs) return;
@@ -1710,6 +1647,7 @@ window.openCourseView = function(courseId) {
   document.getElementById("crsTitle").textContent = typeof crs.title === "object" ? crs.title[currentLang] : crs.title;
   document.getElementById("crsDesc").textContent = typeof crs.desc === "object" ? crs.desc[currentLang] : crs.desc;
   document.getElementById("crsPrice").textContent = `${crs.price} ج.م`;
+  document.getElementById("crsCategory").textContent = (crs.year === 'tech' ? 'TECH & CYBER' : 'LANGUAGE TRACK');
 
   ["mainNavbar", "hero", "years", "courses", "features", "honors", "reviews", "instructor", "mainFooter"].forEach(id => {
     const el = document.getElementById(id);
@@ -1717,29 +1655,108 @@ window.openCourseView = function(courseId) {
   });
 
   const levelsSection = document.getElementById("courseLevelsSection");
+  const languagePortals = document.getElementById("languageSkillsPortals");
   const levelsGrid = document.getElementById("levelsCardsGrid");
-  const courseLevels = window.courseLevelsDB[courseId];
+  const courseLevels = window.courseLevelsDB ? window.courseLevelsDB[courseId] : null;
 
+  // إذا كان الكورس يحتوي على مستويات (مثل الإنجليزي والألماني)
   if (courseLevels && courseLevels.length > 0) {
-    levelsSection.classList.remove("hidden");
-levelsGrid.innerHTML = courseLevels.map((lvl, index) => `
+    if (levelsSection) levelsSection.classList.remove("hidden");
+    if (languagePortals) {
+      languagePortals.classList.remove("hidden");
+      languagePortals.classList.add("grid");
+    }
+
+    levelsGrid.innerHTML = courseLevels.map((lvl, index) => `
       <div onclick="selectCourseLevel('${courseId}', '${lvl.id}')" id="levelCard_${lvl.id}" class="level-capsule-btn ${index === 0 ? 'active' : ''}">
-        <div class="text-start">
-          <span class="lvl-title block text-xs font-black text-slate-200 font-mono">${lvl.name}</span>
-          <span class="lvl-sub block text-[10px] text-slate-400 font-bold">${lvl.sub}</span>
+        <div>
+          <span class="block text-xs font-bold text-white font-mono">${lvl.name}</span>
+          <span class="block text-[10px] text-slate-400">${lvl.sub}</span>
         </div>
-        <span class="text-xs opacity-60">→</span>
       </div>
     `).join("");
 
     selectCourseLevel(courseId, courseLevels[0].id);
   } else {
-    levelsSection.classList.add("hidden");
+    // كورسات البرمجة والتقنية (بدون مستويات لغوية)
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) {
+      languagePortals.classList.remove("grid");
+      languagePortals.classList.add("hidden");
+    }
     window.loadFirestoreLectures(courseId);
   }
 
   document.getElementById("courseView").classList.remove("hidden");
   window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+// دالة جلب المحاضرات المنشورة مع معالجة احترافية لحالة عدم وجود محاضرات
+window.loadFirestoreLectures = async function(courseOrLevelKey) {
+  const container = document.getElementById("lessonsList");
+  const countBadge = document.getElementById("firestoreLecturesCount");
+  if (!container) return;
+
+  container.innerHTML = `<div class="p-5 text-center text-slate-500 text-xs font-mono">LOADING CURRICULUM DATA...</div>`;
+
+  try {
+    let lectures = [];
+    if (window.firestoreDBInstance) {
+      const { collection, getDocs, query, where } = await import("https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js");
+      const q = query(
+        collection(window.firestoreDBInstance, "lectures"),
+        where("courseId", "==", courseOrLevelKey)
+      );
+      const snapshot = await getDocs(q);
+      snapshot.forEach(doc => lectures.push({ id: doc.id, ...doc.data() }));
+    }
+
+    if (countBadge) countBadge.textContent = `${lectures.length} LECTURES`;
+
+    if (lectures.length === 0) {
+      container.innerHTML = `
+        <div class="p-6 text-center rounded-lg border border-dashed border-slate-800 bg-[#11131A] text-slate-400 space-y-1">
+          <p class="text-xs font-medium">لم يتم نشر محاضرات لهذا المقرر حتى الآن.</p>
+          <span class="text-[10px] text-slate-500 font-mono">Channel ID: ${courseOrLevelKey}</span>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = lectures.map((lec, idx) => `
+      <div class="p-3.5 rounded-lg border border-slate-800 bg-[#11131A] flex items-center justify-between flex-wrap gap-3 hover:border-slate-700 transition">
+        <div class="flex items-center gap-3">
+          <span class="w-6 h-6 rounded bg-[#181B24] border border-slate-700/60 text-slate-300 font-mono text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
+          <div>
+            <h4 class="text-xs md:text-sm font-semibold text-slate-100">${lec.title}</h4>
+            <span class="text-[11px] text-slate-400 block mt-0.5">${lec.description || ''}</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          ${lec.videoUrl ? `
+            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}')" class="px-3 py-1.5 rounded-md bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">
+              تشغيل المحاضرة
+            </button>
+          ` : ''}
+          ${lec.quiz && lec.quiz.length > 0 ? `
+            <button onclick='startInteractiveQuiz(${JSON.stringify(lec.quiz)})' class="px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition cursor-pointer">
+              الاختبار
+            </button>
+          ` : ''}
+        </div>
+      </div>
+    `).join("");
+
+  } catch (err) {
+    console.error("Curriculum Fetch Error:", err);
+    if (countBadge) countBadge.textContent = "0 LECTURES";
+    container.innerHTML = `
+      <div class="p-6 text-center rounded-lg border border-dashed border-slate-800 bg-[#11131A] text-slate-400 space-y-1">
+        <p class="text-xs font-medium">المحتوى قيد المراجعة والاعتماد من الإدارة.</p>
+        <span class="text-[10px] text-slate-500 font-mono">Reference: ${courseOrLevelKey}</span>
+      </div>
+    `;
+  }
 };
 
 // تبديل المستوى وجلب محاضراته الحقيقية
