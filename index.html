@@ -93,46 +93,70 @@
     border-color: #4F46E5;
     box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
   }
-.level-card-btn {
-    background: #111827;
+/* شريط كبسولات المستويات العصري */
+  .level-capsule-btn {
+    background: #0D1424;
     border: 1px solid #1E293B;
-    border-radius: 1rem;
-    padding: 1rem;
+    border-radius: 1.25rem;
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  .level-capsule-btn:hover {
+    border-color: #38BDF8;
+    background: #131E32;
+    transform: translateY(-2px);
+  }
+  .level-capsule-btn.active {
+    background: #0284C7;
+    border-color: #38BDF8;
+    box-shadow: 0 0 25px rgba(2, 132, 199, 0.35);
+  }
+  .level-capsule-btn.active .lvl-title {
+    color: #FFFFFF;
+  }
+  .level-capsule-btn.active .lvl-sub {
+    color: #E0F2FE;
+  }
+
+  /* بطاقات بوابات المهارات المتطورة */
+  .resource-portal-card {
+    background: linear-gradient(180deg, #111C30 0%, #0B1322 100%);
+    border: 1px solid #1E2D4A;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    cursor: pointer;
+    justify-content: space-between;
     transition: all 0.25s ease;
-    text-align: center;
     position: relative;
     overflow: hidden;
   }
-  .level-card-btn:hover {
-    border-color: #06B6D4;
-    transform: translateY(-3px);
-    background: #162032;
+  .resource-portal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: transparent;
+    transition: background 0.25s ease;
   }
-  .level-card-btn.active {
-    background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
-    border-color: #06B6D4;
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.25);
+  .resource-portal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
   }
-  .level-tag-pill {
-    font-size: 1.25rem;
-    font-weight: 900;
-    color: #38BDF8;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
-.level-sub-title {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #94A3B8;
-  }
-  .level-card-btn.active .level-sub-title {
-    color: #E2E8F0;
-  }
+  .resource-portal-card.card-verbs:hover { border-color: #06B6D4; }
+  .resource-portal-card.card-verbs:hover::before { background: #06B6D4; }
+  .resource-portal-card.card-vocab:hover { border-color: #10B981; }
+  .resource-portal-card.card-vocab:hover::before { background: #10B981; }
+  .resource-portal-card.card-sentences:hover { border-color: #F59E0B; }
+  .resource-portal-card.card-sentences:hover::before { background: #F59E0B; }
 
   .theme-toggle-pill {
     width: 54px;
@@ -687,130 +711,116 @@
       </div>
     </div>
 
-    <!-- بانر الاشتراك -->
-    <div id="courseGuestBanner" class="rounded-3xl bg-gradient-to-l from-[#1E1B4B] via-[#312E81] to-[#0F172A] p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 border border-white/10">
-      <div class="space-y-2 text-center sm:text-start">
-        <span class="text-xs font-bold text-cyan-200">سعر الاشتراك بالمقرر كاملاً:</span>
-        <div id="crsPrice" class="text-3xl sm:text-4xl font-black text-cyan-300 num-font tracking-wide">0 ج.م</div>
-        <p id="crsDesc" class="text-xs opacity-85 max-w-xl leading-5 text-slate-200"></p>
+<!-- بانر الكورس الاحترافي الحديث -->
+    <div id="courseGuestBanner" class="rounded-3xl bg-[#0F172A] border border-slate-800 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden">
+      <div class="space-y-2 text-start z-10">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-black bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">مسار شامل</span>
+          <span class="text-xs text-slate-400 font-semibold">تحديثات مستمرة لعام 2026</span>
+        </div>
+        <h3 id="crsPrice" class="text-3xl sm:text-4xl font-black text-white num-font tracking-tight">0 ج.م</h3>
+        <p id="crsDesc" class="text-xs text-slate-400 max-w-xl leading-relaxed"></p>
       </div>
-      <button id="crsActionBtn" onclick="toggleCourseEnrollment()" class="w-full sm:w-auto bg-white text-[#312E81] font-black text-xs md:text-sm px-8 py-3.5 rounded-2xl shadow-xl hover:bg-cyan-50 transition transform active:scale-95 cursor-pointer">
-        الاشتراك في هذا المقرر الآن 🚀
+      <button id="crsActionBtn" onclick="toggleCourseEnrollment()" class="w-full md:w-auto px-8 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs transition active:scale-95 shadow-lg shadow-cyan-500/20 cursor-pointer z-10">
+        الاشتراك في هذا المقرر 🚀
       </button>
     </div>
-<!-- شريط اختيار المستويات الرئيسية (كروت علوية متناسقة) -->
-    <div id="courseLevelsSection" class="hidden space-y-4">
-      <div class="flex items-center justify-between flex-wrap gap-2">
-        <h3 class="text-sm font-black text-cyan-300 flex items-center gap-2">
-          <span>🎯</span> اختر مستواك الدراسي الحالي:
-        </h3>
-        <span id="activeLevelBadge" class="text-xs font-bold px-3.5 py-1.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800/40">المستوى المختار: Level A1</span>
+
+    <!-- شريط اختيار المستويات الحديث -->
+    <div id="courseLevelsSection" class="hidden space-y-3">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-400 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-cyan-400"></span> المستوى الدراسي المحدد:
+        </span>
+        <span id="activeLevelBadge" class="text-xs font-black text-cyan-300">Level A1</span>
       </div>
 
-      <!-- كروت المستويات التفاعلية A1 -> C1 -->
       <div id="levelsCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
     </div>
-<!-- المحتوى التدريبي الشامل للمستوى المختار -->
-    <div id="levelDetailedContent" class="space-y-10 mt-6">
 
-      <!-- مشغل الفيديو الخارجي -->
+    <!-- المحتوى التدريبي الشامل -->
+    <div id="levelDetailedContent" class="space-y-8 mt-6">
+
+      <!-- مشغل الفيديو -->
       <div id="videoContainerWrapper" class="hidden space-y-3">
-        <div id="videoPlayerContainer" class="rounded-3xl overflow-hidden bg-[#111827] border border-slate-800 aspect-video relative flex items-center justify-center shadow-2xl select-none">
-          <div id="videoWatermark" class="hidden absolute z-30 pointer-events-none text-slate-300/40 font-bold text-xs md:text-sm tracking-wide select-none">
-            <span id="wmStudentData"></span>
-          </div>
-          <button type="button" onclick="toggleCustomFullscreen('videoPlayerContainer')" class="absolute bottom-3 end-3 z-40 bg-black/60 hover:bg-black/90 text-white p-2 rounded-xl border border-white/20 text-xs font-bold transition flex items-center gap-1 cursor-pointer">
-            <span>⛶</span>
-            <span class="hidden sm:inline text-[10px]">ملء الشاشة</span>
-          </button>
-          <iframe id="videoIframe" class="w-full h-full border-0" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div id="videoPlayerContainer" class="rounded-3xl overflow-hidden bg-black border border-slate-800 aspect-video relative flex items-center justify-center shadow-2xl">
+          <iframe id="videoIframe" class="w-full h-full border-0" src="" allowfullscreen></iframe>
         </div>
-        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-[#111827] border border-slate-800">
-          <div>
-            <h3 id="currentLessonTitle" class="font-black text-sm text-cyan-300">جارٍ التشغيل...</h3>
-            <p id="currentLessonDesc" class="text-xs text-slate-400 mt-0.5"></p>
-          </div>
-          <button onclick="closeVideoPlayer()" class="text-xs text-rose-400 hover:text-white px-3 py-1.5 rounded-xl bg-slate-800 transition cursor-pointer">إغلاق الفيديو ✕</button>
+        <div class="flex items-center justify-between p-3 rounded-2xl bg-[#0D1424] border border-slate-800">
+          <span id="currentLessonTitle" class="font-black text-xs text-cyan-300"></span>
+          <button onclick="closeVideoPlayer()" class="text-xs text-slate-400 hover:text-white px-3 py-1 rounded-lg bg-slate-800 transition">إغلاق ✕</button>
         </div>
       </div>
 
-      <!-- نافذة الكويز التفاعلي -->
-      <div id="quizSection" class="hidden rounded-3xl bg-[#111827] border border-slate-800 p-6 space-y-4">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-          <h3 class="text-sm font-black text-cyan-300 flex items-center gap-2"><span>📝</span> اختبار تقييمي على المحاضرة</h3>
-          <span id="quizScoreBadge" class="hidden text-xs font-black px-3 py-1 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-800/40"></span>
-        </div>
-        <form id="studentQuizForm" class="space-y-4">
-          <div id="quizQuestionsList" class="space-y-4"></div>
-          <button type="submit" id="submitQuizBtn" class="w-full py-3 rounded-xl bg-brand hover:bg-indigo-700 text-white font-black text-xs shadow-xl transition cursor-pointer">تسليم الإجابات واعتماد النتيجة ✨</button>
-        </form>
-      </div>
-
-      <!-- 1. بوابات بنك المهارات المصنف (أفعال، كلمات، جمل) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <!-- بوابات بنك المهارات المنظم -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         
-        <!-- بطاقة الأفعال وتصريفاتها -->
-        <div class="p-6 rounded-3xl bg-[#111827] border border-slate-800 flex flex-col justify-between space-y-4 hover:border-cyan-500/50 shadow-xl transition">
-          <div class="space-y-2">
-            <div class="w-12 h-12 rounded-2xl bg-cyan-950/60 text-cyan-400 text-2xl flex items-center justify-center font-black">⚡</div>
-            <h4 class="text-base font-black text-white">بنك الأفعال وتصريفاتها</h4>
-            <p class="text-xs text-slate-400 font-semibold leading-relaxed">أهم أفعال المستوى، تصريف الماضي، أمثلة استخدام، والنطق الصوتي الفوري.</p>
+        <div class="resource-portal-card card-verbs">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-cyan-400 font-mono tracking-wider">VERBS HUB</span>
+              <span class="text-lg">⚡</span>
+            </div>
+            <div>
+              <h4 class="text-sm font-black text-white">بنك الأفعال وتصريفاتها</h4>
+              <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">أهم أفعال المستوى مع التصريفات والأمثلة والنطق الصوتي.</p>
+            </div>
           </div>
-          <button onclick="openResourceModal('verbs')" class="w-full py-3 rounded-xl bg-cyan-600/20 hover:bg-cyan-600 text-cyan-300 hover:text-white border border-cyan-500/30 font-black text-xs transition cursor-pointer flex items-center justify-center gap-2">
-            <span>استعراض كل الأفعال</span>
+          <button onclick="openResourceModal('verbs')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-cyan-500 hover:text-slate-950 text-slate-200 text-xs font-black transition flex items-center justify-center gap-2 cursor-pointer">
+            <span>تصفح الأفعال</span>
             <span>←</span>
           </button>
         </div>
 
-        <!-- بطاقة المفردات والمصطلحات -->
-        <div class="p-6 rounded-3xl bg-[#111827] border border-slate-800 flex flex-col justify-between space-y-4 hover:border-emerald-500/50 shadow-xl transition">
-          <div class="space-y-2">
-            <div class="w-12 h-12 rounded-2xl bg-emerald-950/60 text-emerald-400 text-2xl flex items-center justify-center font-black">📚</div>
-            <h4 class="text-base font-black text-white">المفردات والمواضيع الشاملة</h4>
-            <p class="text-xs text-slate-400 font-semibold leading-relaxed">قوائم الكلمات المنظمة حسب المواضيع (سفر، عمل، تكنولوجيا، حياة يومية).</p>
+        <div class="resource-portal-card card-vocab">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-emerald-400 font-mono tracking-wider">TOPICS & VOCAB</span>
+              <span class="text-lg">📚</span>
+            </div>
+            <div>
+              <h4 class="text-sm font-black text-white">المفردات والمصطلحات</h4>
+              <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">مفردات مصنفة ومقسمة حسب موضوعات المحادثة والحياة اليومية.</p>
+            </div>
           </div>
-          <button onclick="openResourceModal('vocab')" class="w-full py-3 rounded-xl bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/30 font-black text-xs transition cursor-pointer flex items-center justify-center gap-2">
-            <span>استعراض كل المفردات</span>
+          <button onclick="openResourceModal('vocab')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-black transition flex items-center justify-center gap-2 cursor-pointer">
+            <span>تصفح المفردات</span>
             <span>←</span>
           </button>
         </div>
 
-        <!-- بطاقة الجمل والمحادثات الحياتية -->
-        <div class="p-6 rounded-3xl bg-[#111827] border border-slate-800 flex flex-col justify-between space-y-4 hover:border-amber-500/50 shadow-xl transition">
-          <div class="space-y-2">
-            <div class="w-12 h-12 rounded-2xl bg-amber-950/60 text-amber-400 text-2xl flex items-center justify-center font-black">🗣️</div>
-            <h4 class="text-base font-black text-white">الجمل والمحادثات الواقعية</h4>
-            <p class="text-xs text-slate-400 font-semibold leading-relaxed">جمل الاستخدام اليومي في المطاعم، المقابلات، والتفاوض مع النطق.</p>
+        <div class="resource-portal-card card-sentences">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-amber-400 font-mono tracking-wider">REAL DIALOGUES</span>
+              <span class="text-lg">🗣️</span>
+            </div>
+            <div>
+              <h4 class="text-sm font-black text-white">المحادثات والجمل الواقعية</h4>
+              <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">جمل الاستخدام اليومي في العمل والسفر والمواقف العامة.</p>
+            </div>
           </div>
-          <button onclick="openResourceModal('sentences')" class="w-full py-3 rounded-xl bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white border border-amber-500/30 font-black text-xs transition cursor-pointer flex items-center justify-center gap-2">
-            <span>استعراض كل الجمل</span>
+          <button onclick="openResourceModal('sentences')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-amber-500 hover:text-slate-950 text-slate-200 text-xs font-black transition flex items-center justify-center gap-2 cursor-pointer">
+            <span>تصفح الجمل</span>
             <span>←</span>
           </button>
         </div>
 
       </div>
 
-      <!-- 2. محاضرات وشروحات المستوى بعرض الشاشة الكامل (تأتي من لوحة المشرف) -->
-      <div class="space-y-4 pt-4">
-        <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
-          <h3 class="font-black text-lg text-slate-100 flex items-center gap-2">
-            <span>🎥</span> محاضرات وشروحات المستوى المعتمدة
-          </h3>
-          <span id="firestoreLecturesCount" class="text-xs font-bold px-3 py-1 rounded-full bg-[#111827] border border-slate-800 text-cyan-400">0 محاضرات</span>
+      <!-- محاضرات المستوى المنشورة -->
+      <div class="space-y-3 pt-2">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+          <h4 class="font-black text-sm text-slate-200 flex items-center gap-2">
+            <span>🎥</span> المحاضرات والشروحات المعتمدة
+          </h4>
+          <span id="firestoreLecturesCount" class="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-slate-800 text-cyan-400">0 محاضرات</span>
         </div>
         
-        <!-- قائمة المحاضرات الأفقية الشاملة -->
-        <div id="lessonsList" class="space-y-3">
-          <div class="p-8 text-center bg-[#111827] rounded-3xl border border-slate-800 text-slate-400 text-xs">
-            جاري تحميل المحاضرات المنشورة من المشرف...
-          </div>
-        </div>
+        <div id="lessonsList" class="space-y-2.5"></div>
       </div>
 
     </div>
-
-  </div>
-</div>
 
 <!-- ============ MODAL استعراض البنوك الكاملة (أفعال، كلمات، جمل مع محرك بحث ونطق صوتي) ============ -->
 <div id="resourceFullModal" class="hidden fixed inset-0 z-[500] flex items-center justify-center bg-black/85 backdrop-blur-md p-4">
@@ -1856,10 +1866,13 @@ window.openCourseView = function(courseId) {
 
   if (courseLevels && courseLevels.length > 0) {
     levelsSection.classList.remove("hidden");
-    levelsGrid.innerHTML = courseLevels.map((lvl, index) => `
-      <div onclick="selectCourseLevel('${courseId}', '${lvl.id}')" id="levelCard_${lvl.id}" class="level-card-btn ${index === 0 ? 'active' : ''}">
-        <span class="level-tag-pill">${lvl.name}</span>
-        <span class="level-sub-title">${lvl.sub}</span>
+levelsGrid.innerHTML = courseLevels.map((lvl, index) => `
+      <div onclick="selectCourseLevel('${courseId}', '${lvl.id}')" id="levelCard_${lvl.id}" class="level-capsule-btn ${index === 0 ? 'active' : ''}">
+        <div class="text-start">
+          <span class="lvl-title block text-xs font-black text-slate-200 font-mono">${lvl.name}</span>
+          <span class="lvl-sub block text-[10px] text-slate-400 font-bold">${lvl.sub}</span>
+        </div>
+        <span class="text-xs opacity-60">→</span>
       </div>
     `).join("");
 
