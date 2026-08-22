@@ -698,45 +698,21 @@
         الاشتراك في هذا المقرر الآن 🚀
       </button>
     </div>
-<!-- شريط اختيار المستويات الرئيسية -->
-<div id="courseLevelsSection" class="hidden space-y-4">
-  <div class="flex items-center justify-between flex-wrap gap-2">
-    <h3 class="text-sm font-black text-cyan-300 flex items-center gap-2">
-      <span>🎯</span> اختر مستواك الدراسي:
-    </h3>
-    <span id="activeLevelBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800/40">Level A1</span>
-  </div>
+<!-- شريط اختيار المستويات الرئيسية (كروت علوية متناسقة) -->
+    <div id="courseLevelsSection" class="hidden space-y-4">
+      <div class="flex items-center justify-between flex-wrap gap-2">
+        <h3 class="text-sm font-black text-cyan-300 flex items-center gap-2">
+          <span>🎯</span> اختر مستواك الدراسي الحالي:
+        </h3>
+        <span id="activeLevelBadge" class="text-xs font-bold px-3.5 py-1.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800/40">المستوى المختار: Level A1</span>
+      </div>
 
-  <!-- كروت المستويات التفاعلية A1 -> C1 -->
-  <div id="levelsCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
+      <!-- كروت المستويات التفاعلية A1 -> C1 -->
+      <div id="levelsCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
+    </div>
 
-  <!-- شريط المحاور المهارية الفرعية داخل المستوى المختار -->
-  <div id="skillTracksBar" class="p-2 rounded-2xl bg-[#111827] border border-slate-800 flex items-center gap-2 overflow-x-auto select-none mt-4">
-    <button type="button" onclick="selectSkillTrack('all')" class="skill-tab-btn active" id="skill_all">
-      <span>📚 الكل</span>
-    </button>
-    <button type="button" onclick="selectSkillTrack('speaking')" class="skill-tab-btn" id="skill_speaking">
-      <span>🗣️ Speaking & Situations</span>
-    </button>
-    <button type="button" onclick="selectSkillTrack('listening')" class="skill-tab-btn" id="skill_listening">
-      <span>🎧 Listening & Phonics</span>
-    </button>
-    <button type="button" onclick="selectSkillTrack('vocab')" class="skill-tab-btn" id="skill_vocab">
-      <span>📖 Vocabulary & Verbs</span>
-    </button>
-    <button type="button" onclick="selectSkillTrack('grammar')" class="skill-tab-btn" id="skill_grammar">
-      <span>🧠 Grammar</span>
-    </button>
-    <button type="button" onclick="selectSkillTrack('writing')" class="skill-tab-btn" id="skill_writing">
-      <span>✍️ Writing</span>
-    </button>
-    <button type="button" onclick="selectSkillTrack('exam')" class="skill-tab-btn" id="skill_exam">
-      <span>🎓 Level Assessment</span>
-    </button>
-  </div>
-</div>
-    <!-- مشغل الفيديو والفهرس -->
-    <div class="space-y-6">
+    <!-- المحتوى التدريبي الشامل للمستوى المختار -->
+    <div id="levelDetailedContent" class="space-y-8 mt-6">
 
       <!-- مشغل الفيديو الخارجي -->
       <div id="videoContainerWrapper" class="hidden space-y-3">
@@ -755,38 +731,62 @@
             <h3 id="currentLessonTitle" class="font-black text-sm text-cyan-300">جارٍ التشغيل...</h3>
             <p id="currentLessonDesc" class="text-xs text-slate-400 mt-0.5"></p>
           </div>
-          <button onclick="closeVideoPlayer()" class="text-xs text-rose-400 hover:text-white px-3 py-1.5 rounded-xl bg-slate-800 transition">إغلاق الفيديو ✕</button>
+          <button onclick="closeVideoPlayer()" class="text-xs text-rose-400 hover:text-white px-3 py-1.5 rounded-xl bg-slate-800 transition cursor-pointer">إغلاق الفيديو ✕</button>
         </div>
       </div>
 
-      <!-- عارض الـ PDF -->
-      <div id="pdfViewerContainer" class="hidden rounded-3xl overflow-hidden bg-[#111827] border border-slate-800 p-3 space-y-2">
-        <div class="flex justify-between items-center px-2">
-          <span class="text-xs font-black text-cyan-300">📑 معاينة المذكرات والأكواد</span>
-          <button onclick="document.getElementById('pdfViewerContainer').classList.add('hidden')" class="text-xs text-rose-400 hover:text-white px-3 py-1 rounded-lg bg-slate-800 transition">إغلاق ✕</button>
-        </div>
-        <iframe id="pdfIframe" class="w-full h-[600px] rounded-2xl border-0" src=""></iframe>
-      </div>
-
-      <!-- نافذة الكويز -->
+      <!-- نافذة الكويز التفاعلي -->
       <div id="quizSection" class="hidden rounded-3xl bg-[#111827] border border-slate-800 p-6 space-y-4">
         <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-          <h3 class="text-sm font-black text-cyan-300 flex items-center gap-2"><span>📝</span> اختبار تقييمي على الدرس</h3>
+          <h3 class="text-sm font-black text-cyan-300 flex items-center gap-2"><span>📝</span> اختبار تقييمي على المحتوى</h3>
           <span id="quizScoreBadge" class="hidden text-xs font-black px-3 py-1 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-800/40"></span>
         </div>
         <form id="studentQuizForm" class="space-y-4">
           <div id="quizQuestionsList" class="space-y-4"></div>
-          <button type="submit" id="submitQuizBtn" class="w-full py-3 rounded-xl bg-brand hover:bg-indigo-700 text-white font-black text-xs shadow-xl transition">تسليم الإجابات واعتماد النتيجة ✨</button>
+          <button type="submit" id="submitQuizBtn" class="w-full py-3 rounded-xl bg-brand hover:bg-indigo-700 text-white font-black text-xs shadow-xl transition cursor-pointer">تسليم الإجابات واعتماد النتيجة ✨</button>
         </form>
       </div>
 
-      <!-- فهرس الدروس والمحاضرات -->
+      <!-- 1. المحاضرات المرئية والشروحات الأساسية -->
       <div class="space-y-4">
-        <div class="flex items-center justify-between">
-          <h3 class="font-black text-sm sm:text-base text-slate-200">فهرس المحاضرات والسكاشن المتاحة</h3>
-          <span id="unlockedCountBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-[#111827] border border-slate-800 text-cyan-400"></span>
+        <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+          <h3 class="font-black text-base text-slate-100 flex items-center gap-2">
+            <span>🎥</span> محاضرات وشروحات المستوى
+          </h3>
+          <span id="lecturesCountBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-[#111827] border border-slate-800 text-cyan-400"></span>
         </div>
-        <div id="lessonsList" class="space-y-3"></div>
+        <div id="lessonsList" class="grid sm:grid-cols-2 gap-3.5"></div>
+      </div>
+
+      <!-- 2. قسم أهم الأفعال وتصريفاتها وجملها (مع النطق الصوتي) -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+          <h3 class="font-black text-base text-cyan-300 flex items-center gap-2">
+            <span>⚡</span> بنك الأفعال الأساسية وتصريفاتها (Core Action Verbs)
+          </h3>
+          <span class="text-[11px] font-bold text-slate-400">اضغط 🔊 للاستماع للنطق</span>
+        </div>
+        <div id="verbsCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5"></div>
+      </div>
+
+      <!-- 3. قسم الكلمات والمفردات المصنفة (Vocabulary) -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+          <h3 class="font-black text-base text-emerald-400 flex items-center gap-2">
+            <span>📚</span> المفردات والمصطلحات الأساسية (Vocabulary & Topics)
+          </h3>
+        </div>
+        <div id="vocabContainer" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"></div>
+      </div>
+
+      <!-- 4. قسم المحادثات والجمل الحياتية اليومية (Daily Sentences & Dialogues) -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+          <h3 class="font-black text-base text-amber-400 flex items-center gap-2">
+            <span>🗣️</span> الجمل الحياتية والمحادثات الواقعية (Real-Life Dialogues)
+          </h3>
+        </div>
+        <div id="sentencesContainer" class="space-y-3"></div>
       </div>
 
     </div>
@@ -1267,12 +1267,25 @@ function closePackageDetails() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+// محرك النطق الصوتي الإنجليزي (Web Speech API)
+window.speakEnglish = function(text) {
+  if (!('speechSynthesis' in window)) {
+    alert("متصفحك لا يدعم خاصية تحويل النص إلى صوت.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.85; // سرعة هادئة وواضحة للتعلم
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
+};
+
 // دالة تحويل وتضمين روابط YouTube و Facebook
 function formatEmbedUrl(url) {
   if (!url) return "";
   let formatted = url.trim();
 
-  // 1. روابط YouTube
   if (formatted.includes("youtube.com/watch?v=")) {
     formatted = formatted.replace("watch?v=", "embed/");
   } else if (formatted.includes("youtu.be/")) {
@@ -1286,7 +1299,6 @@ function formatEmbedUrl(url) {
     return `${formatted}${sep}autoplay=1&rel=0`;
   }
 
-  // 2. روابط Facebook Video
   if (formatted.includes("facebook.com") || formatted.includes("fb.watch")) {
     return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(formatted)}&show_text=0&autoplay=1`;
   }
@@ -1294,7 +1306,7 @@ function formatEmbedUrl(url) {
   return formatted;
 }
 
-// قاعدة بيانات المستويات والمحاور المهارية الكاملة
+// تعريف المستويات الأساسية
 window.courseLevelsDB = {
   c_english_all: [
     { id: "a1", name: "Level A1", sub: "Starter & Phonics" },
@@ -1311,64 +1323,168 @@ window.courseLevelsDB = {
   ]
 };
 
-// بنك الدروس النموذجي لمنهج اللغة الإنجليزية
-window.englishCurriculumDB = {
-  a1: [
-    { 
-      title: "Pronunciation: Alphabet & Letter Sounds", 
-      skill: "listening", 
-      videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", 
-      pdfUrl: "", 
-      isFree: true,
-      desc: "Short & Long Vowels, Silent Letters, and Word Stress.",
-      quiz: [{ question: "اختر النطق السليم لصوت حرف (P):", options: ["صوت انفجاري به هواء", "صوت مجهور بدون هواء", "مثل حرف الفاء"], correctIndex: 0 }]
-    },
-    { 
-      title: "Core Verbs: Be, Have, Do & Action Verbs", 
-      skill: "vocab", 
-      videoUrl: "https://www.youtube.com/watch?v=d9V91zQkXh4", 
-      isFree: true,
-      desc: "تصريف أهم 25 فعل أساسي مع أمثلة وجمل شائعة.",
-      quiz: [{ question: "They ______ students.", options: ["are", "is", "am"], correctIndex: 0 }]
-    },
-    { 
-      title: "Grammar: Subject Pronouns & Present Simple", 
-      skill: "grammar", 
-      videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", 
-      isFree: false,
-      desc: "تكوين الجملة الإيجابية والنفي والأسئلة بـ Do / Does."
-    },
-    { 
-      title: "Daily Situations: Ordering Food & Asking Directions", 
-      skill: "speaking", 
-      videoUrl: "https://www.youtube.com/watch?v=d9V91zQkXh4", 
-      isFree: false,
-      desc: "محادثات واقعية في الكافيه والسوبرماركت وطلب المساعدة."
-    },
-    { 
-      title: "Writing: From Basic Sentence to Simple Paragraph", 
-      skill: "writing", 
-      videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", 
-      isFree: false,
-      desc: "قواعد الترقيم وعلامات الـ Capitalization وكتابة نبذة عن نفسك."
-    },
-    { 
-      title: "Level Assessment: A1 Final Certification Exam", 
-      skill: "exam", 
-      videoUrl: "", 
-      isFree: false,
-      desc: "اختبار شامل في الكلمات، القواعد، الاستماع، والمحادثة لاجتياز المستوى.",
-      quiz: [
-        { question: "Excuse me, ______ is the bank?", options: ["where", "what", "who"], correctIndex: 0 },
-        { question: "I ______ coffee every morning.", options: ["drink", "drinks", "drinking"], correctIndex: 0 }
-      ]
-    }
-  ]
+// بنك البيانات المنهجي الشامل لكل مستوى (أفعال، كلمات، جمل، محاضرات، كويزات)
+window.englishMasterCurriculum = {
+  a1: {
+    badgeName: "Level A1 (Starter & Phonics)",
+    lectures: [
+      { 
+        title: "Pronunciation & Phonics: Letters & Vowels", 
+        videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", // 👈 ضع رابط الفيديو هنا
+        desc: "نطق الحروف، الأصوات المتحركة، والفرق بين P/B و F/V و TH.",
+        quiz: [{ question: "اختر النطق السليم لصوت (P):", options: ["صوت انفجاري به هواء", "صوت مجهور بدون هواء"], correctIndex: 0 }]
+      },
+      { 
+        title: "Basic Grammar: Subject Pronouns & Verb To Be", 
+        videoUrl: "https://www.youtube.com/watch?v=d9V91zQkXh4", 
+        desc: "ضمائر الفاعل وقاعدة am, is, are في الإثبات والنفي.",
+        quiz: [{ question: "They ______ students.", options: ["are", "is", "am"], correctIndex: 0 }]
+      },
+      { 
+        title: "Present Simple Tense: Daily Routine", 
+        videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", 
+        desc: "زمن المضارع البسيط واستخدامه في الحديث عن الروتين اليومي والأسئلة بـ Do/Does."
+      },
+      { 
+        title: "A1 Level Final Comprehensive Exam", 
+        videoUrl: "", 
+        desc: "اختبار تقييمي شامل لتحديد اجتياز متطلبات المستوى التأسيسي A1.",
+        quiz: [
+          { question: "Where ______ you live?", options: ["do", "does", "are"], correctIndex: 0 },
+          { question: "She ______ coffee every morning.", options: ["drinks", "drink", "drinking"], correctIndex: 0 }
+        ]
+      }
+    ],
+    verbs: [
+      { base: "be (am/is/are)", past: "was / were", ar: "يكون", ex: "I am a programmer." },
+      { base: "have / has", past: "had", ar: "يملك / يتناول", ex: "She has a nice laptop." },
+      { base: "do / does", past: "did", ar: "يفعل / يقوم بـ", ex: "We do our homework." },
+      { base: "go", past: "went", ar: "يذهب", ex: "I go to work by bus." },
+      { base: "want", past: "wanted", ar: "يريد", ex: "I want to learn English." },
+      { base: "speak", past: "spoke", ar: "يتحدث", ex: "He speaks English fluently." }
+    ],
+    vocab: [
+      { en: "Greetings & Hello", ar: "التحيات والترحيب" },
+      { en: "Numbers & Dates", ar: "الأرقام والتواريخ" },
+      { en: "Colors & Clothes", ar: "الألوان والملابس" },
+      { en: "Family Members", ar: "أفراد العائلة" },
+      { en: "Jobs & Careers", ar: "الوظائف والمهن" },
+      { en: "Food & Drinks", ar: "المأكولات والمشروبات" },
+      { en: "Places in City", ar: "الأماكن في المدينة" },
+      { en: "Weather & Time", ar: "الطقس والوقت" }
+    ],
+    sentences: [
+      { en: "Hello! Nice to meet you. My name is Ahmed.", ar: "مرحباً! سررت بلقائك. اسمي أحمد." },
+      { en: "Can I have a cup of coffee, please?", ar: "هل يمكنني الحصول على كوب قهوة من فضلك؟" },
+      { en: "Excuse me, where is the nearest bank?", ar: "معذرة، أين أقرب بنك من هنا؟" },
+      { en: "Please speak slowly, I'm still learning.", ar: "تحدث ببطء من فضلك، أنا ما زلت أتعلم." },
+      { en: "How much does this cost?", ar: "كم ثمن هذا؟" }
+    ]
+  },
+
+  a2: {
+    badgeName: "Level A2 (Elementary Fluency)",
+    lectures: [
+      { 
+        title: "Past Simple Tense: Regular & Irregular Verbs", 
+        videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", 
+        desc: "زمن الماضي البسيط وكيفية سرد أحداث وتجارب سابقة." 
+      },
+      { 
+        title: "Future Forms: Will vs Going To", 
+        videoUrl: "https://www.youtube.com/watch?v=d9V91zQkXh4", 
+        desc: "الفرق بين اتخاذ القرارات السريعة والخطط المستقبلية." 
+      }
+    ],
+    verbs: [
+      { base: "arrive", past: "arrived", ar: "يصل", ex: "The train arrived on time." },
+      { base: "travel", past: "traveled", ar: "يسافر", ex: "I travel every summer." },
+      { base: "explain", past: "explained", ar: "يشرح / يوضح", ex: "Can you explain this rule?" },
+      { base: "decide", past: "decided", ar: "يقرر", ex: "We decided to stay here." }
+    ],
+    vocab: [
+      { en: "Airports & Travel", ar: "المطارات والسفر" },
+      { en: "Hotels & Booking", ar: "الفنادق والحجوزات" },
+      { en: "Health & Doctor", ar: "الصحة وزيارة الطبيب" },
+      { en: "Hobbies & Sports", ar: "الهوايات والرياضة" }
+    ],
+    sentences: [
+      { en: "I'd like to check in, I have a reservation.", ar: "أريد تسجيل الدخول للفندق، لدي حجز مسبق." },
+      { en: "I have a terrible headache and I don't feel well.", ar: "لدي صداع فظيع ولا أشعر أنني بخير." },
+      { en: "Please send me the document as soon as possible.", ar: "يرجى إرسال المستند لي في أقرب وقت ممكن." }
+    ]
+  },
+
+  b1: {
+    badgeName: "Level B1 (Intermediate English)",
+    lectures: [
+      { title: "Present Perfect vs Past Simple", videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", desc: "المضارع التام والربط بين الماضي والحاضر." },
+      { title: "Conditionals: First & Second If", videoUrl: "https://www.youtube.com/watch?v=d9V91zQkXh4", desc: "الجمل الشرطية والافتراضات." }
+    ],
+    verbs: [
+      { base: "achieve", past: "achieved", ar: "يحقق / ينجز", ex: "You can achieve your goals." },
+      { base: "improve", past: "improved", ar: "يطور / يحسن", ex: "I want to improve my speaking." },
+      { base: "manage", past: "managed", ar: "يدير / يتمكن", ex: "He managed the project well." }
+    ],
+    vocab: [
+      { en: "Job Interviews", ar: "المقابلات الوظيفية" },
+      { en: "Business & Career", ar: "الأعمال والمسار المهني" },
+      { en: "Problem Solving", ar: "حل المشكلات التقنية" },
+      { en: "Personal Growth", ar: "التطوير الذاتي" }
+    ],
+    sentences: [
+      { en: "Tell me about yourself and your previous work experience.", ar: "حدثني عن نفسك وعن خبرتك العملية السابقة." },
+      { en: "In my opinion, this solution has both pros and cons.", ar: "في رأيي، هذا الحل له إيجابيات وسلبيات." },
+      { en: "I've been working on this project for three weeks.", ar: "أنا أعمل على هذا المشروع منذ ثلاثة أسابيع." }
+    ]
+  },
+
+  b2: {
+    badgeName: "Level B2 (Upper-Intermediate)",
+    lectures: [
+      { title: "Advanced Passive & Reported Speech", videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", desc: "المبني للمجهول المتقدم ونقل الكلام في التقارير." },
+      { title: "Business Negotiation & Presentation Skills", videoUrl: "https://www.youtube.com/watch?v=d9V91zQkXh4", desc: "أساليب التفاوض وتقديم العروض التقديمية الاحترافية." }
+    ],
+    verbs: [
+      { base: "negotiate", past: "negotiated", ar: "يتفاوض", ex: "We negotiated a better price." },
+      { base: "implement", past: "implemented", ar: "يطبق / ينفذ", ex: "They implemented a new strategy." },
+      { base: "evaluate", past: "evaluated", ar: "يقيم / يحلل", ex: "We need to evaluate the results." }
+    ],
+    vocab: [
+      { en: "Finance & Economy", ar: "المالية والاقتصاد" },
+      { en: "Leadership Skills", ar: "مهارات القيادة والإدارة" },
+      { en: "Marketing & Strategy", ar: "التسويق والاستراتيجية" },
+      { en: "Tech & Artificial Intelligence", ar: "التكنولوجيا والذكاء الاصطناعي" }
+    ],
+    sentences: [
+      { en: "From my perspective, we should reconsider our current strategy.", ar: "من وجهة نظري، يجب أن نعيد النظر في استراتيجيتنا الحالية." },
+      { en: "There are several factors we need to take into consideration.", ar: "هناك عدة عوامل نحتاج إلى أخذها في عين الاعتبار." }
+    ]
+  },
+
+  c1: {
+    badgeName: "Level C1 (Advanced & Business Mastery)",
+    lectures: [
+      { title: "Nuances, Inversion & Academic Writing", videoUrl: "https://www.youtube.com/watch?v=b10gMv3BqE4", desc: "الفروق الدقيقة في المعنى، التقديم والتأخير، والصياغة الأكاديمية." }
+    ],
+    verbs: [
+      { base: "facilitate", past: "facilitated", ar: "ييسر / يسهل", ex: "Technology facilitates global communication." },
+      { base: "optimize", past: "optimized", ar: "يحسن لأعلى كفاءة", ex: "We optimized the application performance." }
+    ],
+    vocab: [
+      { en: "Executive Communication", ar: "التواصل القيادي والتنفيذي" },
+      { en: "Public Speaking & Debates", ar: "الخطابة والمناظرات" },
+      { en: "Entrepreneurship & Law", ar: "ريادة الأعمال والقوانين" }
+    ],
+    sentences: [
+      { en: "If we look at the situation from a broader perspective, we may find a more sustainable solution.", ar: "إذا نظرنا إلى الموقف من منظور أوسع، قد نجد حلاً أكثر استدامة." },
+      { en: "I'd like to draw your attention to the significant growth in our recent metrics.", ar: "أود أن ألفت انتباهكم إلى النمو الملحوظ في مؤشراتنا الأخيرة." }
+    ]
+  }
 };
 
 let currentSelectedCourseId = null;
 let currentSelectedLevelId = "a1";
-let currentSelectedSkill = "all";
 
 // فتح واجهة الكورس وتجهيز المستويات
 window.openCourseView = function(courseId) {
@@ -1402,79 +1518,120 @@ window.openCourseView = function(courseId) {
     selectCourseLevel(courseId, courseLevels[0].id);
   } else {
     levelsSection.classList.add("hidden");
-    loadAndRenderLectures(courseId);
+    renderLevelDetails(null);
   }
 
   document.getElementById("courseView").classList.remove("hidden");
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-// اختيار المستوى (A1 -> C1)
+// اختيار المستوى وتبديل محتواه التفاعلي
 window.selectCourseLevel = function(courseId, levelId) {
   currentSelectedLevelId = levelId;
-  const courseLevels = window.courseLevelsDB[courseId] || [];
-  const selectedLvl = courseLevels.find(l => l.id === levelId);
-
   document.querySelectorAll(".level-card-btn").forEach(btn => btn.classList.remove("active"));
   const activeBtn = document.getElementById(`levelCard_${levelId}`);
   if (activeBtn) activeBtn.classList.add("active");
 
-  if (selectedLvl) {
-    document.getElementById("activeLevelBadge").textContent = `${selectedLvl.name} (${selectedLvl.sub})`;
+  const levelData = window.englishMasterCurriculum[levelId] || null;
+  if (levelData) {
+    document.getElementById("activeLevelBadge").textContent = `المستوى المختار: ${levelData.badgeName}`;
   }
 
-  selectSkillTrack("all");
+  renderLevelDetails(levelData);
 };
 
-// تصفية المحاضرات حسب المحور المهاري
-window.selectSkillTrack = function(skillKey) {
-  currentSelectedSkill = skillKey;
-  document.querySelectorAll(".skill-tab-btn").forEach(btn => btn.classList.remove("active"));
-  const activeSkillBtn = document.getElementById(`skill_${skillKey}`);
-  if (activeSkillBtn) activeSkillBtn.classList.add("active");
+// عرض محتويات المستوى بالتفصيل
+function renderLevelDetails(data) {
+  if (!data) return;
 
-  loadAndRenderLectures(currentSelectedCourseId);
-};
-
-// جلب وعرض المحاضرات
-function loadAndRenderLectures(courseId) {
-  const container = document.getElementById("lessonsList");
-  if (!container) return;
-
-  let allLectures = window.englishCurriculumDB[currentSelectedLevelId] || [];
-
-  if (currentSelectedSkill !== "all") {
-    allLectures = allLectures.filter(l => l.skill === currentSelectedSkill);
-  }
-
-  if (allLectures.length === 0) {
-    container.innerHTML = `<div class="p-8 text-center bg-[#111827] rounded-2xl border border-slate-800 text-slate-400 text-xs">لم يتم نشر وحدات لهذا القسم في هذا المستوى حتى الآن.</div>`;
-    return;
-  }
-
-  container.innerHTML = allLectures.map((lec, index) => `
-    <div class="rounded-2xl border border-slate-800 bg-[#111827] overflow-hidden shadow-md p-4 flex items-center justify-between flex-wrap gap-3">
-      <div class="flex items-center gap-3">
-        <span class="w-8 h-8 rounded-xl flex items-center justify-center font-black text-xs bg-brand text-white">${index + 1}</span>
-        <div>
-          <h4 class="text-xs sm:text-sm font-black text-white">${lec.title}</h4>
-          <span class="text-[10px] text-slate-400 block">${lec.desc || ''}</span>
+  // 1. عرض المحاضرات
+  const lessonsContainer = document.getElementById("lessonsList");
+  const lecturesCount = document.getElementById("lecturesCountBadge");
+  if (lessonsContainer) {
+    lecturesCount.textContent = `${data.lectures.length} محاضرات`;
+    lessonsContainer.innerHTML = data.lectures.map((lec, idx) => `
+      <div class="rounded-2xl border border-slate-800 bg-[#111827] p-4 flex items-center justify-between shadow-md">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl flex items-center justify-center font-black text-xs bg-brand text-white shrink-0">${idx + 1}</span>
+          <div>
+            <h4 class="text-xs sm:text-sm font-black text-white">${lec.title}</h4>
+            <span class="text-[10px] text-slate-400 block mt-0.5">${lec.desc || ''}</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          ${lec.videoUrl ? `
+            <button onclick="playLessonVideo('${lec.title}', '${lec.videoUrl}')" class="px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold transition cursor-pointer">
+              مشاهدة ▶
+            </button>
+          ` : ''}
+          ${lec.quiz && lec.quiz.length > 0 ? `
+            <button onclick='startInteractiveQuiz(${JSON.stringify(lec.quiz)})' class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition cursor-pointer">
+              الكويز 📝
+            </button>
+          ` : ''}
         </div>
       </div>
-      <div class="flex items-center gap-2">
-        ${lec.videoUrl ? `
-          <button onclick="playLessonVideo('${lec.title}', '${lec.videoUrl}')" class="px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold transition">
-            مشاهدة ▶
+    `).join("");
+  }
+
+  // 2. عرض الأفعال وتصريفاتها مع زر النطق الصوتي
+  const verbsContainer = document.getElementById("verbsCardsContainer");
+  if (verbsContainer) {
+    verbsContainer.innerHTML = data.verbs.map(v => `
+      <div class="p-4 rounded-2xl bg-[#111827] border border-slate-800 hover:border-cyan-500/40 transition flex flex-col justify-between space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-black text-cyan-300 font-mono">${v.base}</span>
+          <button type="button" onclick="speakEnglish('${v.base}')" class="w-7 h-7 rounded-lg bg-cyan-950/60 border border-cyan-800/50 hover:bg-cyan-500 hover:text-slate-900 text-cyan-400 flex items-center justify-center text-xs transition cursor-pointer" title="استمع للنطق">
+            🔊
           </button>
-        ` : ''}
-        ${lec.quiz && lec.quiz.length > 0 ? `
-          <button onclick='startInteractiveQuiz(${JSON.stringify(lec.quiz)}, "quiz_${index}")' class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition">
-            الكويز 📝
-          </button>
-        ` : ''}
+        </div>
+        <div class="text-[11px] text-slate-400 space-y-1">
+          <p><strong class="text-slate-300">الماضي:</strong> <span class="font-mono text-cyan-200">${v.past}</span></p>
+          <p><strong class="text-slate-300">المعنى:</strong> ${v.ar}</p>
+        </div>
+        <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-emerald-300 font-mono">
+          <span>"${v.ex}"</span>
+          <button type="button" onclick="speakEnglish('${v.ex}')" class="text-slate-500 hover:text-emerald-400 transition cursor-pointer" title="نطق المثال">🔊</button>
+        </div>
       </div>
-    </div>
-  `).join("");
+    `).join("");
+  }
+
+  // 3. عرض المفردات المصنفة
+  const vocabContainer = document.getElementById("vocabContainer");
+  if (vocabContainer) {
+    vocabContainer.innerHTML = data.vocab.map(item => `
+      <div class="p-3.5 rounded-2xl bg-[#111827] border border-slate-800 flex items-center justify-between">
+        <div>
+          <h4 class="text-xs font-black text-white font-mono">${item.en}</h4>
+          <span class="text-[10px] text-slate-400">${item.ar}</span>
+        </div>
+        <button type="button" onclick="speakEnglish('${item.en}')" class="w-7 h-7 rounded-lg bg-emerald-950/60 border border-emerald-800/50 hover:bg-emerald-500 hover:text-slate-900 text-emerald-400 flex items-center justify-center text-xs transition cursor-pointer" title="استمع">
+          🔊
+        </button>
+      </div>
+    `).join("");
+  }
+
+  // 4. عرض الجمل الحياتية مع الترجمة والنطق
+  const sentencesContainer = document.getElementById("sentencesContainer");
+  if (sentencesContainer) {
+    sentencesContainer.innerHTML = data.sentences.map((st, i) => `
+      <div class="p-4 rounded-2xl bg-[#111827] border border-slate-800 flex items-center justify-between flex-wrap gap-3 hover:border-indigo-500/40 transition">
+        <div class="flex items-center gap-3">
+          <span class="w-6 h-6 rounded-lg bg-amber-500/10 text-amber-400 font-bold text-xs flex items-center justify-center">${i + 1}</span>
+          <div>
+            <p class="text-xs sm:text-sm font-black text-white font-mono tracking-wide">${st.en}</p>
+            <p class="text-[11px] text-slate-400 mt-0.5">${st.ar}</p>
+          </div>
+        </div>
+        <button type="button" onclick="speakEnglish('${st.en}')" class="px-3 py-1.5 rounded-xl bg-amber-950/60 border border-amber-800/50 hover:bg-amber-500 hover:text-slate-900 text-amber-300 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+          <span>🔊</span>
+          <span>استمع للجملة</span>
+        </button>
+      </div>
+    `).join("");
+  }
 }
 
 // دالة تشغيل الفيديو
@@ -1491,8 +1648,17 @@ window.playLessonVideo = function(title, videoUrl) {
   wrapper.scrollIntoView({ behavior: "smooth", block: "center" });
 };
 
+window.closeVideoPlayer = function() {
+  const wrapper = document.getElementById("videoContainerWrapper");
+  const iframe = document.getElementById("videoIframe");
+  if (wrapper && iframe) {
+    iframe.src = "";
+    wrapper.classList.add("hidden");
+  }
+};
+
 // دالة تشغيل الكويز التفاعلي
-window.startInteractiveQuiz = function(quizQuestions, quizId) {
+window.startInteractiveQuiz = function(quizQuestions) {
   const quizSection = document.getElementById("quizSection");
   const quizList = document.getElementById("quizQuestionsList");
   const scoreBadge = document.getElementById("quizScoreBadge");
