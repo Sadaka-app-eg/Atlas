@@ -645,51 +645,148 @@
         </div>
       </div>
 
-      <!-- بوابات المهارات (تظهر فقط في مسارات اللغات) -->
-      <div id="languageSkillsPortals" class="hidden grid-cols-1 md:grid-cols-3 gap-3.5">
+<!-- بوابات المهارات العشر الشاملة (Language Mastery Hub) -->
+      <div id="languageSkillsPortals" class="hidden space-y-4">
         
-        <div class="p-5 rounded-xl bg-[#11131A] border border-slate-800 flex flex-col justify-between space-y-4 hover:border-slate-700 transition">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-slate-500">
-              <span class="text-[10px] font-mono font-bold tracking-wider uppercase text-cyan-400">Verbs & Tenses</span>
-              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            </div>
-            <h3 class="text-sm font-bold text-white">الأفعال وتصريفاتها</h3>
-            <p class="text-xs text-slate-400 font-normal leading-relaxed">قائمة الأفعال الأكثر استخداماً وتصريف الماضي مع الأمثلة والنطق الصوتي.</p>
-          </div>
-          <button onclick="openResourceModal('verbs')" class="w-full py-2 rounded-lg bg-[#181B24] hover:bg-slate-800 border border-slate-700/80 text-xs font-semibold text-slate-200 transition cursor-pointer">
-            تصفح الأفعال ←
-          </button>
+        <!-- حقل البحث السريع داخل مهارات المستوى -->
+        <div class="relative">
+          <input id="langSkillsSearchInput" oninput="filterLangCardsLive()" type="text" placeholder="🔎 ابحث عن فعل، كلمة، صفة، قاعدة، محادثة..." class="w-full h-12 rounded-2xl px-5 border border-slate-700 bg-[#0A0F1D] text-xs text-white placeholder:text-slate-500 focus:border-cyan-400 outline-none transition" />
         </div>
 
-        <div class="p-5 rounded-xl bg-[#11131A] border border-slate-800 flex flex-col justify-between space-y-4 hover:border-slate-700 transition">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-slate-500">
-              <span class="text-[10px] font-mono font-bold tracking-wider uppercase text-emerald-400">Terminology</span>
-              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        <!-- شبكة الكروت الـ 10 -->
+        <div class="skill-grid-hub" id="langCardsGrid">
+          
+          <!-- 1. الأفعال -->
+          <article class="skill-card-modern" style="--glow:#27cfff;--progress:35%" onclick="openResourceModal('verbs')">
+            <div>
+              <div class="skill-icon-badge">⚡</div>
+              <h3 class="font-bold text-base text-white">الأفعال — Verbs</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">أهم الأفعال الأساسية وأفعال الحياة اليومية مع التصريف والأمثلة.</p>
             </div>
-            <h3 class="text-sm font-bold text-white">المفردات والمصطلحات</h3>
-            <p class="text-xs text-slate-400 font-normal leading-relaxed">قوائم المفردات مصنفة ومقسمة حسب موضوعات العمل والمواقف الميدانية.</p>
-          </div>
-          <button onclick="openResourceModal('vocab')" class="w-full py-2 rounded-lg bg-[#181B24] hover:bg-slate-800 border border-slate-700/80 text-xs font-semibold text-slate-200 transition cursor-pointer">
-            تصفح المفردات ←
-          </button>
-        </div>
-
-        <div class="p-5 rounded-xl bg-[#11131A] border border-slate-800 flex flex-col justify-between space-y-4 hover:border-slate-700 transition">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-slate-500">
-              <span class="text-[10px] font-mono font-bold tracking-wider uppercase text-amber-400">Dialogues</span>
-              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+            <div>
+              <div class="text-[11px] font-bold text-cyan-400 font-mono mt-3">120+ Verb • 35% مكتمل</div>
+              <div class="mini-progress-bar" style="--progress:35%"><span></span></div>
             </div>
-            <h3 class="text-sm font-bold text-white">الجمل والمحادثات</h3>
-            <p class="text-xs text-slate-400 font-normal leading-relaxed">جمل محادثة وسياقات واقعية للاستخدام المباشر في العمل والمقابلات مع النطق.</p>
-          </div>
-          <button onclick="openResourceModal('sentences')" class="w-full py-2 rounded-lg bg-[#181B24] hover:bg-slate-800 border border-slate-700/80 text-xs font-semibold text-slate-200 transition cursor-pointer">
-            تصفح المحادثات ←
-          </button>
-        </div>
+          </article>
 
+          <!-- 2. الأسماء والمفردات -->
+          <article class="skill-card-modern" style="--glow:#6d5cff;--progress:28%" onclick="openResourceModal('nouns')">
+            <div>
+              <div class="skill-icon-badge">📚</div>
+              <h3 class="font-bold text-base text-white">الأسماء — Nouns</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">مفردات مصنفة حسب العائلة، المنزل، الطعام، والأماكن العامة.</p>
+            </div>
+            <div>
+              <div class="text-[11px] font-bold text-indigo-400 font-mono mt-3">250+ Word • 28% مكتمل</div>
+              <div class="mini-progress-bar" style="--progress:28%"><span></span></div>
+            </div>
+          </article>
+
+          <!-- 3. الصفات والأضداد -->
+          <article class="skill-card-modern" style="--glow:#ff4fc8;--progress:20%" onclick="openResourceModal('adjectives')">
+            <div>
+              <div class="skill-icon-badge">🎨</div>
+              <h3 class="font-bold text-base text-white">الصفات — Adjectives</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">صفات الأشخاص، المشاعر، الأحجام، والألوان مع أمثلة تطبيقية.</p>
+            </div>
+            <div>
+              <div class="text-[11px] font-bold text-pink-400 font-mono mt-3">100+ Adjective • 20% مكتمل</div>
+              <div class="mini-progress-bar" style="--progress:20%"><span></span></div>
+            </div>
+          </article>
+
+          <!-- 4. الجمل اليومية -->
+          <article class="skill-card-modern" style="--glow:#35e6a0;--progress:42%" onclick="openResourceModal('sentences')">
+            <div>
+              <div class="skill-icon-badge">💬</div>
+              <h3 class="font-bold text-base text-white">الجمل اليومية — Sentences</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">تعبيرات التحية، طلب المساعدة، التسوق والمواقف السريعة.</p>
+            </div>
+            <div>
+              <div class="text-[11px] font-bold text-emerald-400 font-mono mt-3">200+ Sentence • 42% مكتمل</div>
+              <div class="mini-progress-bar" style="--progress:42%"><span></span></div>
+            </div>
+          </article>
+
+          <!-- 5. المحادثات الواقعية -->
+          <article class="skill-card-modern" style="--glow:#ffb52e;--progress:18%" onclick="openResourceModal('conversations')">
+            <div>
+              <div class="skill-icon-badge">🗣️</div>
+              <h3 class="font-bold text-base text-white">المحادثات — Conversations</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">حوارات كاملة في التعارف، المطاعم، التسوق، والسؤال عن الأماكن.</p>
+            </div>
+            <div>
+              <div class="text-[11px] font-bold text-amber-400 font-mono mt-3">30+ Dialogue • 18% مكتمل</div>
+              <div class="mini-progress-bar" style="--progress:18%"><span></span></div>
+            </div>
+          </article>
+
+          <!-- 6. القواعد Grammar -->
+          <article class="skill-card-modern" style="--glow:#8c6cff;--progress:31%" onclick="openResourceModal('grammar')">
+            <div>
+              <div class="skill-icon-badge">🧠</div>
+              <h3 class="font-bold text-base text-white">القواعد — Grammar</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">تكوين الجملة، الأزمنة البسيطة، ضمائر الفاعل، والأسئلة الشائعة.</p>
+            </div>
+            <div>
+              <div class="text-[11px] font-bold text-purple-400 font-mono mt-3">20+ Rules • 31% مكتمل</div>
+              <div class="mini-progress-bar" style="--progress:31%"><span></span></div>
+            </div>
+          </article>
+
+          <!-- 7. الاستماع Listening -->
+          <article class="skill-card-modern" style="--glow:#00d9ff;--progress:15%" onclick="openResourceModal('listening')">
+            <div>
+              <div class="skill-icon-badge">🎧</div>
+              <h3 class="font-bold text-base text-white">الاستماع — Listening</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">تدريبات سمعية متدرجة تبدأ من الكلمات حتى نصوص الحوار الكاملة.</p>
+            </div>
+            <div>
+              <div class="text-[11px] font-bold text-cyan-300 font-mono mt-3">25+ Lesson • 15% مكتمل</div>
+              <div class="mini-progress-bar" style="--progress:15%"><span></span></div>
+            </div>
+          </article>
+
+          <!-- 8. الكتابة Writing -->
+          <article class="skill-card-modern" style="--glow:#ff6b8a;--progress:12%" onclick="openResourceModal('writing')">
+            <div>
+              <div class="skill-icon-badge">✍️</div>
+              <h3 class="font-bold text-base text-white">الكتابة — Writing</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">كتابة فقرات التقديم الشخصي، وصف العائلة واليوميات والرسائل.</p>
+            </div>
+            <div>
+              <div class="text-[11px] font-bold text-rose-400 font-mono mt-3">15+ Template • 12% مكتمل</div>
+              <div class="mini-progress-bar" style="--progress:12%"><span></span></div>
+            </div>
+          </article>
+
+          <!-- 9. النطق والصوتيات Pronunciation -->
+          <article class="skill-card-modern" style="--glow:#44f0c0;--progress:25%" onclick="openResourceModal('pronunciation')">
+            <div>
+              <div class="skill-icon-badge">🔊</div>
+              <h3 class="font-bold text-base text-white">النطق — Pronunciation</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">مخارج الحروف، الحروف المركبة، وتدريب التمييز الصوتي (P vs B).</p>
+            </div>
+            <div>
+              <div class="text-[11px] font-bold text-teal-400 font-mono mt-3">18+ Rules • 25% مكتمل</div>
+              <div class="mini-progress-bar" style="--progress:25%"><span></span></div>
+            </div>
+          </article>
+
+          <!-- 10. التعبيرات الشائعة Expressions -->
+          <article class="skill-card-modern" style="--glow:#ff8a3d;--progress:22%" onclick="openResourceModal('expressions')">
+            <div>
+              <div class="skill-icon-badge">🔥</div>
+              <h3 class="font-bold text-base text-white">التعبيرات — Expressions</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">مصطلحات وردود فورية جاهزة للاستخدام اللحظي في المحادثة.</p>
+            </div>
+            <div>
+              <div class="text-[11px] font-bold text-orange-400 font-mono mt-3">150+ Expression • 22% مكتمل</div>
+              <div class="mini-progress-bar" style="--progress:22%"><span></span></div>
+            </div>
+          </article>
+
+        </div>
       </div>
 
       <!-- قائمة المنهج والمحاضرات -->
@@ -1329,6 +1426,110 @@ powerpoint: {
     ]
   }
 };
+
+window.deutschMasterCurriculum = {
+  a1: {
+    badgeName: "Niveau A1 (المبتدئ التأسيسي)",
+    lectures: [
+      {
+        title: "01. الأبجدية الألمانية والنطق الصوتي وقواعد الحروف (Alphabet & Aussprache)",
+        videoUrl: "https://www.youtube.com/watch?v=WP1blVh1Z2Q",
+        desc: "مخارج الحروف، الحروف الصوتية المركبة (ei, eu, ie)، والحروف الخاصة (Ä, Ö, Ü, ß).",
+        quiz: [
+          { question: "كيف يُنطق المقطع الصوتي (ei) في الألمانية؟", options: ["مثل كلمة 'Eye' بالإنجليزية", "مثل حرف الياء الممدودة", "ينطق واو"], correctIndex: 0 }
+        ]
+      },
+      {
+        title: "02. الضمائر وتصريف الأفعال الأساسية: sein و haben في الحاضر",
+        videoUrl: "https://www.youtube.com/watch?v=dtkwt_aEey8",
+        desc: "ضمائر الفاعل وقواعد تصريف أفعال الكينونة والملك وتكوين أول جملة صحيحة.",
+        quiz: [
+          { question: "اختر التصريف الصحيح: Wir ______ Deutsch.", options: ["lernen", "lernt", "lerne"], correctIndex: 0 }
+        ]
+      },
+      {
+        title: "03. أدوات التعريف والتنكير وحالة الرفع (Der, Die, Das & Nominativ)",
+        videoUrl: "https://www.youtube.com/watch?v=L9AWrJnhsRI",
+        desc: "أدوات المذكر والمؤنث والمحايد، الجمع، وقاعدة النفي بـ Nicht و Kein.",
+        quiz: [
+          { question: "أداة التعريف الصحيحة لكلمة Buch (كتاب) هي:", options: ["das", "der", "die"], correctIndex: 0 }
+        ]
+      },
+      {
+        title: "04. المحادثات اليومية والتعارف وطلب الطعام في المطعم (Sprechen A1)",
+        videoUrl: "https://www.youtube.com/watch?v=0lh_UR6pU7w",
+        desc: "التحيات، التعريف بالنفس، السؤال عن الاتجاهات، والتعامل في السوبرماركت.",
+        quiz: [
+          { question: "الرد المناسب عند قول شخص لك 'Wie geht es Ihnen?':", options: ["Gut, danke!", "Ich bin zwanzig", "Auf Wiedersehen"], correctIndex: 0 }
+        ]
+      }
+    ],
+    verbs: [
+      { base: "sein", past: "war", ar: "يكون", ex: "Ich bin Student." },
+      { base: "haben", past: "hatte", ar: "يملك / عنده", ex: "Wir haben ein Auto." },
+      { base: "lernen", past: "lernte", ar: "يتعلم", ex: "Er lernt Deutsch." },
+      { base: "sprechen", past: "sprach", ar: "يتحدث", ex: "Sprechen Sie Arabisch?" },
+      { base: "kommen", past: "kam", ar: "يأتي / ينحدر من", ex: "Ich komme aus Ägypten." },
+      { base: "wohnen", past: "wohnte", ar: "يسكن / يقيم", ex: "Sie wohnt in Kairo." },
+      { base: "machen", past: "machte", ar: "يفعل / يصنع", ex: "Was machst du heute?" },
+      { base: "gehen", past: "ging", ar: "يذهب / يمشي", ex: "Ich gehe zur Arbeit." }
+    ],
+    vocab: [
+      { en: "Hallo", ar: "مرحباً" },
+      { en: "Guten Morgen", ar: "صباح الخير" },
+      { en: "Auf Wiedersehen", ar: "مع السلامة" },
+      { en: "Bitte", ar: "من فضلك / عفواً" },
+      { en: "Danke schön", ar: "شكراً جزيلاً" },
+      { en: "Entschuldigung", ar: "معذرة / آسف" },
+      { en: "Der Mann", ar: "الرجل" },
+      { en: "Die Frau", ar: "المرأة" },
+      { en: "Das Kind", ar: "الطفل" },
+      { en: "Die Arbeit", ar: "العمل" }
+    ],
+    sentences: [
+      { category: "👋 التعارف والتحية", en: "Hallo! Mein Name ist Ahmed.", ar: "مرحباً! اسمي أحمد." },
+      { category: "👋 التعارف والتحية", en: "Wie geht es Ihnen?", ar: "كيف حال حضرتك؟" },
+      { category: "🗺️ السكن والمدينة", en: "Ich komme aus Ägypten und wohne in Kairo.", ar: "أنا من مصر وأسكن في القاهرة." },
+      { category: "☕ المطعم والطلبات", en: "Ich möchte einen Kaffee, bitte.", ar: "أود الحصول على كوب قهوة من فضلك." }
+    ]
+  },
+  a2: {
+    badgeName: "Niveau A2 (فوق المبتدئ)",
+    lectures: [
+      { title: "01. حالة النصب والمفعول به (Akkusativ) والضمائر الشخصية", videoUrl: "https://www.youtube.com/watch?v=WP1blVh1Z2Q", desc: "تحول der إلى den وتصريف أدوات النفي والتنكير في المفعول به." },
+      { title: "02. الماضي التام (Perfekt) واستخدام haben و sein", videoUrl: "https://www.youtube.com/watch?v=dtkwt_aEey8", desc: "قواعد تصريف اسم المفعول Partizip II وسرد الأحداث اليومية." }
+    ],
+    verbs: [
+      { base: "sehen", past: "sah", ar: "يرى / يشاهد", ex: "Ich habe den Film gesehen." },
+      { base: "kaufen", past: "kaufte", ar: "يشتري", ex: "Er kauft ein Ticket." }
+    ],
+    vocab: [
+      { en: "Der Bahnhof", ar: "محطة القطار" },
+      { en: "Das Hotel", ar: "الفندق" }
+    ],
+    sentences: [
+      { category: "✈️ السفر والمواصلات", en: "Wo ist der Hauptbahnhof?", ar: "أين تقع محطة القطارات المركزية؟" }
+    ]
+  },
+  b1: {
+    badgeName: "Niveau B1 (المتوسط واختبار جوته)",
+    lectures: [
+      { title: "01. حالة المجرور (Dativ) وحروف الجر المشتركة (Wechselpräpositionen)", videoUrl: "https://www.youtube.com/watch?v=WP1blVh1Z2Q", desc: "الفرق بين السكون والحركة وتغير أدوات التعريف مع Dativ." }
+    ],
+    verbs: [{ base: "helfen", past: "half", ar: "يساعد (+ Dativ)", ex: "Ich helfe dir gerne." }],
+    vocab: [{ en: "Die Bewerbung", ar: "طلب التقدم لوظيفة" }],
+    sentences: [{ category: "💼 العمل والمقابلات", en: "Ich habe mich um die Stelle beworben.", ar: "لقد تقدمت بطلب لهذه الوظيفة." }]
+  },
+  b2: {
+    badgeName: "Niveau B2 (المتقدم والأعمال)",
+    lectures: [
+      { title: "01. أدوات الربط المتقدمة وقواعد المبني للمجهول (Passiv & Konjunktiv II)", videoUrl: "https://www.youtube.com/watch?v=WP1blVh1Z2Q", desc: "الصياغة الاحترافية للتقارير والأماني والاقتراحات في بيئة العمل الألمانية." }
+    ],
+    verbs: [{ base: "verhandeln", past: "verhandelte", ar: "يتفاوض", ex: "Wir verhandeln über den Vertrag." }],
+    vocab: [{ en: "Die Vereinbarung", ar: "الاتفاقية / العقد" }],
+    sentences: [{ category: "🤝 التفاوض والشركات", en: "Wir müssen die Bedingungen genau prüfen.", ar: "علينا فحص الشروط بدقة." }]
+  }
+};
 // دالة تحويل وتضمين روابط YouTube و Facebook
 function formatEmbedUrl(url) {
   if (!url) return "";
@@ -1359,139 +1560,330 @@ window.speakEnglish = function(text) {
   if (!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'en-US';
+  // تبديل لغة الصوت حسب المسار المفتوح
+  if (window.currentSelectedCourseId === "c_deutsch_all") {
+    utterance.lang = 'de-DE';
+  } else {
+    utterance.lang = 'en-US';
+  }
   utterance.rate = 0.85;
   window.speechSynthesis.speak(utterance);
 };
 
 // بنك البيانات المفتوح للأفعال والمفردات والجمل (يمكنك ملؤه بمئات العناصر كما تشاء)
 window.courseResourcesMaster = {
-  a1: {
-verbs: [
-      { base: "be (am/is/are)", past: "was / were", ar: "يكون", ex: "I am a developer." },
-      { base: "have / has", past: "had", ar: "يملك / يتناول", ex: "She has a laptop." },
-      { base: "do / does", past: "did", ar: "يفعل / ينجز", ex: "We do our homework." },
-      { base: "say", past: "said", ar: "يقول", ex: "He said the truth." },
-      { base: "go", past: "went", ar: "يذهب", ex: "I go to work by train." },
-      { base: "get", past: "got", ar: "يحصل على / يصل", ex: "I get up early." },
-      { base: "make", past: "made", ar: "يصنع / يجعل", ex: "She makes delicious meals." },
-      { base: "know", past: "knew", ar: "يعرف / يعلم", ex: "I know the answer." },
-      { base: "think", past: "thought", ar: "يفكر / يعتقد", ex: "I think it is good." },
-      { base: "take", past: "took", ar: "يأخذ", ex: "Take this book with you." },
-      { base: "see", past: "saw", ar: "يرى / يشاهد", ex: "I see what you mean." },
-      { base: "come", past: "came", ar: "يأتي", ex: "Come here quickly." },
-      { base: "want", past: "wanted", ar: "يريد", ex: "I want to learn English." },
-      { base: "look", past: "looked", ar: "ينظر / يبدو", ex: "Look at this picture." },
-      { base: "use", past: "used", ar: "يستخدم", ex: "We use modern tools." },
-      { base: "find", past: "found", ar: "يجد / يعثر على", ex: "I found my phone." },
-      { base: "give", past: "gave", ar: "يعطي / يمنح", ex: "Give me your hand." },
-      { base: "tell", past: "told", ar: "يخبر / يحكي", ex: "Tell me the story." },
-      { base: "work", past: "worked", ar: "يعمل", ex: "He works at a tech firm." },
-      { base: "call", past: "called", ar: "يتصل / ينادي", ex: "Call me tomorrow." },
-      { base: "try", past: "tried", ar: "يحاول / يجرب", ex: "Try to solve this problem." },
-      { base: "ask", past: "asked", ar: "يسأل / يطلب", ex: "Ask the instructor." },
-      { base: "need", past: "needed", ar: "يحتاج", ex: "I need some help." },
-      { base: "feel", past: "felt", ar: "يشعر / يحس", ex: "I feel great today." },
-      { base: "become", past: "became", ar: "يصبح / يتحول", ex: "He became an expert." },
-      { base: "leave", past: "left", ar: "يغادر / يترك", ex: "The train leaves at 5." },
-      { base: "put", past: "put", ar: "يضع", ex: "Put the files here." },
-      { base: "mean", past: "meant", ar: "يعني / يقصد", ex: "What does this word mean?" },
-      { base: "keep", past: "kept", ar: "يحتفظ / يستمر", ex: "Keep up the good work." },
-      { base: "let", past: "let", ar: "يدع / يسمح", ex: "Let me explain this." },
-      { base: "begin", past: "began", ar: "يبدأ", ex: "The class begins now." },
-      { base: "seem", past: "seemed", ar: "يبدو / يظهر", ex: "You seem happy today." },
-      { base: "help", past: "helped", ar: "يساعد / يعين", ex: "Help your teammates." },
-      { base: "talk", past: "talked", ar: "يتحدث / يناقش", ex: "We need to talk." },
-      { base: "turn", past: "turned", ar: "يستدير / يحول", ex: "Turn on the light." },
-      { base: "start", past: "started", ar: "يبدأ / يشرع", ex: "Start your study journey." },
-      { base: "show", past: "showed", ar: "يُظهر / يعرض", ex: "Show me the project code." },
-      { base: "hear", past: "heard", ar: "يسمع", ex: "Can you hear my voice?" },
-      { base: "play", past: "played", ar: "يلعب / يعزف", ex: "Children play outside." },
-      { base: "run", past: "ran", ar: "يركض / يدير", ex: "He runs a tech startup." },
-      { base: "move", past: "moved", ar: "يتحرك / ينتقل", ex: "Move to the next lesson." },
-      { base: "like", past: "liked", ar: "يحب / يعجب بـ", ex: "I like clean UI design." },
-      { base: "live", past: "lived", ar: "يعيش / يسكن", ex: "They live in Cairo." },
-      { base: "believe", past: "believed", ar: "يؤمن / يصدق", ex: "Believe in yourself." },
-      { base: "hold", past: "held", ar: "يمسك / يعقد", ex: "Hold the line please." },
-      { base: "bring", past: "brought", ar: "يجلب / يحضر", ex: "Bring your laptop tomorrow." },
-      { base: "happen", past: "happened", ar: "يحدث / يقع", ex: "Mistakes happen to everyone." },
-      { base: "write", past: "wrote", ar: "يكتب", ex: "Write clean code." },
-      { base: "provide", past: "provided", ar: "يقدم / يزود", ex: "Atlas provides full tracks." },
-      { base: "sit", past: "sat", ar: "يجلس", ex: "Sit down comfortably." },
-      { base: "stand", past: "stood", ar: "يقف", ex: "Stand up straight." },
-      { base: "lose", past: "lost", ar: "يفقد / يخسر", ex: "Don't lose focus." },
-      { base: "pay", past: "paid", ar: "يدفع", ex: "You can pay via InstaPay." },
-      { base: "meet", past: "met", ar: "يقابل / يلتقي", ex: "Nice to meet you." },
-      { base: "include", past: "included", ar: "يشمل / يتضمن", ex: "The course includes exams." },
-      { base: "continue", past: "continued", ar: "يستمر / يواصل", ex: "Continue practicing daily." },
-      { base: "set", past: "set", ar: "يضبط / يحدد", ex: "Set your study goals." },
-      { base: "learn", past: "learned", ar: "يتعلم", ex: "Learn something new." },
-      { base: "change", past: "changed", ar: "يغير / يبدل", ex: "Change your habits." },
-      { base: "lead", past: "led", ar: "يقود / يوجه", ex: "Leaders guide the team." },
-      { base: "understand", past: "understood", ar: "يفهم / يستوعب", ex: "I understand the syntax." },
-      { base: "watch", past: "watched", ar: "يشاهد / يراقب", ex: "Watch the tutorial video." },
-      { base: "follow", past: "followed", ar: "يتبع / يتابع", ex: "Follow the steps carefully." },
-      { base: "stop", past: "stopped", ar: "يتوقف / ينهي", ex: "Never stop practicing." },
-      { base: "create", past: "created", ar: "ينشئ / يبتكر", ex: "Create a new project." },
-      { base: "speak", past: "spoke", ar: "يتكلم / ينطق", ex: "He speaks English fluently." },
-      { base: "read", past: "read", ar: "يقرأ", ex: "Read the documentation." },
-      { base: "allow", past: "allowed", ar: "يسمح / يتيح", ex: "Security rules allow access." },
-      { base: "add", past: "added", ar: "يضيف / يجمع", ex: "Add new words to list." },
-      { base: "spend", past: "spent", ar: "يقضي / ينفق", ex: "Spend time wisely." },
-      { base: "grow", past: "grew", ar: "ينمو / يكبر", ex: "Your skills will grow fast." },
-      { base: "open", past: "opened", ar: "يفتح", ex: "Open the terminal." },
-      { base: "walk", past: "walked", ar: "يمشي / يسير", ex: "Walk around every hour." },
-      { base: "win", past: "won", ar: "يفوز / ينتصر", ex: "You will win this challenge." },
-      { base: "offer", past: "offered", ar: "يقدم / يعرض", ex: "We offer master tracks." },
-      { base: "remember", past: "remembered", ar: "يتذكر", ex: "Remember the grammar rule." },
-      { base: "love", past: "loved", ar: "يحب بشدة", ex: "I love coding." },
-      { base: "consider", past: "considered", ar: "يعتبر / يتأمل", ex: "Consider this option." },
-      { base: "appear", past: "appeared", ar: "يظهر", ex: "The result appeared on screen." },
-      { base: "buy", past: "bought", ar: "يشتري", ex: "Buy the course bundle." },
-      { base: "wait", past: "waited", ar: "ينتظر", ex: "Wait for the download." },
-      { base: "serve", past: "served", ar: "يخدم / يقدم", ex: "Servers serve requests." },
-      { base: "die", past: "died", ar: "يموت / ينتهي", ex: "The battery died." },
-      { base: "send", past: "sent", ar: "يرسل", ex: "Send the proof image." },
-      { base: "expect", past: "expected", ar: "يتوقع / يرجو", ex: "We expect fast progress." },
-      { base: "build", past: "built", ar: "يبني / يشيد", ex: "Build responsive web apps." },
-      { base: "stay", past: "stayed", ar: "يبقى / يمكث", ex: "Stay focused on goals." },
-      { base: "fall", past: "fell", ar: "يسقط / يقع", ex: "Prices fell down." },
-      { base: "cut", past: "cut", ar: "يقطع / يقص", ex: "Cut the extra text." },
-      { base: "reach", past: "reached", ar: "يصل إلى / يبلغ", ex: "Reach the advanced level." },
-      { base: "kill", past: "killed", ar: "يقضي على", ex: "Kill the broken process." },
-      { base: "remain", past: "remained", ar: "يظل / يبقى", ex: "Only two units remained." },
-      { base: "suggest", past: "suggested", ar: "يقترح", ex: "I suggest another way." },
-      { base: "raise", past: "raised", ar: "يرفع / يزيد", ex: "Raise your overall score." },
-      { base: "pass", past: "passed", ar: "يمر / يجتاز", ex: "He passed the exam easily." },
-      { base: "sell", past: "sold", ar: "يبيع", ex: "Stores sell tech products." },
-      { base: "require", past: "required", ar: "يتطلب / يستلزم", ex: "This task requires effort." },
-      { base: "report", past: "reported", ar: "يبلغ / يقرر", ex: "Report any bugs to admin." },
-      { base: "decide", past: "decided", ar: "يقرر", ex: "Decide your career path." },
-      { base: "explain", past: "explained", ar: "يشرح", ex: "Explain the code clearly." }
-    ],
-vocab: [
-      { en: "Hello", ar: "مرحباً" }, { en: "Welcome", ar: "أهلاً بك" }, { en: "Good morning", ar: "صباح الخير" }, { en: "Good night", ar: "تصبح على خير" }, { en: "Please", ar: "من فضلك" }, { en: "Thank you", ar: "شكراً لك" }, { en: "Excuse me", ar: "معذرة" }, { en: "Sorry", ar: "آسف" }, { en: "Name", ar: "اسم" }, { en: "Friend", ar: "صديق" }, { en: "Family", ar: "عائلة" }, { en: "Father", ar: "أب" }, { en: "Mother", ar: "أم" }, { en: "Brother", ar: "أخ" }, { en: "Sister", ar: "أخت" }, { en: "Son", ar: "ابن" }, { en: "Daughter", ar: "ابنة" }, { en: "Husband", ar: "زوج" }, { en: "Wife", ar: "زوجة" }, { en: "Boy", ar: "ولد" }, { en: "Girl", ar: "بنت" }, { en: "Child", ar: "طفل" }, { en: "Man", ar: "رجل" }, { en: "Woman", ar: "امرأة" }, { en: "People", ar: "ناس" },
-      { en: "One", ar: "واحد" }, { en: "Two", ar: "اثنان" }, { en: "Three", ar: "ثلاثة" }, { en: "Four", ar: "أربعة" }, { en: "Five", ar: "خمسة" }, { en: "Six", ar: "ستة" }, { en: "Seven", ar: "سبعة" }, { en: "Eight", ar: "ثمانية" }, { en: "Nine", ar: "تسعة" }, { en: "Ten", ar: "عشرة" }, { en: "Twenty", ar: "عشرون" }, { en: "Hundred", ar: "مائة" }, { en: "Thousand", ar: "ألف" }, { en: "First", ar: "الأول" }, { en: "Second", ar: "الثاني" }, { en: "Time", ar: "وقت / زمن" }, { en: "Day", ar: "يوم" }, { en: "Week", ar: "أسبوع" }, { en: "Month", ar: "شهر" }, { en: "Year", ar: "سنة" }, { en: "Today", ar: "اليوم" }, { en: "Tomorrow", ar: "غداً" }, { en: "Yesterday", ar: "أمس" }, { en: "Hour", ar: "ساعة" }, { en: "Minute", ar: "دقيقة" },
-      { en: "Red", ar: "أحمر" }, { en: "Blue", ar: "أزرق" }, { en: "Green", ar: "أخضر" }, { en: "Yellow", ar: "أصفر" }, { en: "Black", ar: "أسود" }, { en: "White", ar: "أبيض" }, { en: "Orange", ar: "برتقالي" }, { en: "Brown", ar: "بني" }, { en: "Shirt", ar: "قميص" }, { en: "Pants", ar: "بنطال" }, { en: "Dress", ar: "فستان" }, { en: "Shoes", ar: "حذاء" }, { en: "Coat", ar: "معطف" }, { en: "Bag", ar: "حقيبة" }, { en: "Hat", ar: "قبعة" }, { en: "Watch", ar: "ساعة يد" }, { en: "Glasses", ar: "نظارة" }, { en: "House", ar: "منزل" }, { en: "Room", ar: "غرفة" }, { en: "Door", ar: "باب" }, { en: "Window", ar: "نافذة" }, { en: "Table", ar: "طاولة" }, { en: "Chair", ar: "كرسي" }, { en: "Bed", ar: "سرير" }, { en: "Kitchen", ar: "مطبخ" },
-      { en: "Water", ar: "ماء" }, { en: "Bread", ar: "خبز" }, { en: "Milk", ar: "حليب" }, { en: "Coffee", ar: "قهوة" }, { en: "Tea", ar: "شاي" }, { en: "Juice", ar: "عصير" }, { en: "Apple", ar: "تفاحة" }, { en: "Egg", ar: "بيضة" }, { en: "Cheese", ar: "جبن" }, { en: "Meat", ar: "لحم" }, { en: "Fish", ar: "سمك" }, { en: "Rice", ar: "أرز" }, { en: "Salt", ar: "ملح" }, { en: "Sugar", ar: "سكر" }, { en: "Breakfast", ar: "إفطار" }, { en: "Lunch", ar: "غداء" }, { en: "Dinner", ar: "عشاء" }, { en: "Restaurant", ar: "مطعم" }, { en: "Cafe", ar: "مقهى" }, { en: "Menu", ar: "قائمة طعام" }, { en: "Bill", ar: "فاتورة" }, { en: "Money", ar: "نقود" }, { en: "Price", ar: "سعر" }, { en: "Market", ar: "سوق" }, { en: "Store", ar: "متجر" },
-      { en: "School", ar: "مدرسة" }, { en: "University", ar: "جامعة" }, { en: "Teacher", ar: "معلم" }, { en: "Student", ar: "طالب" }, { en: "Book", ar: "كتاب" }, { en: "Pen", ar: "قلم" }, { en: "Paper", ar: "ورقة" }, { en: "Lesson", ar: "درس" }, { en: "Question", ar: "سؤال" }, { en: "Answer", ar: "إجابة" }, { en: "Language", ar: "لغة" }, { en: "English", ar: "الإنجليزية" }, { en: "Word", ar: "كلمة" }, { en: "Sentence", ar: "جملة" }, { en: "Page", ar: "صفحة" }, { en: "Computer", ar: "حاسوب" }, { en: "Phone", ar: "هاتف" }, { en: "Internet", ar: "إنترنت" }, { en: "Email", ar: "بريد إلكتروني" }, { en: "App", ar: "تطبيق" }, { en: "Doctor", ar: "طبيب" }, { en: "Engineer", ar: "مهندس" }, { en: "Driver", ar: "سائق" }, { en: "Manager", ar: "مدير" }, { en: "Police", ar: "شرطة" },
-      { en: "City", ar: "مدينة" }, { en: "Street", ar: "شارع" }, { en: "Country", ar: "دولة" }, { en: "Airport", ar: "مطار" }, { en: "Station", ar: "محطة" }, { en: "Hotel", ar: "فندق" }, { en: "Bank", ar: "بنك" }, { en: "Hospital", ar: "مستشفى" }, { en: "Office", ar: "مكتب" }, { en: "Park", ar: "حديقة" }, { en: "Car", ar: "سيارة" }, { en: "Bus", ar: "حافلة" }, { en: "Train", ar: "قطار" }, { en: "Plane", ar: "طائرة" }, { en: "Taxi", ar: "تاكسي" }, { en: "Road", ar: "طريق" }, { en: "Left", ar: "يسار" }, { en: "Right", ar: "يمين" }, { en: "North", ar: "شمال" }, { en: "South", ar: "جنوب" }, { en: "Sun", ar: "شمس" }, { en: "Moon", ar: "قمر" }, { en: "Rain", ar: "مطر" }, { en: "Wind", ar: "رياح" }, { en: "Hot", ar: "حار" },
-      { en: "Cold", ar: "بارد" }, { en: "Good", ar: "جيد" }, { en: "Bad", ar: "سيء" }, { en: "Big", ar: "كبير" }, { en: "Small", ar: "صغير" }, { en: "Fast", ar: "سريع" }, { en: "Slow", ar: "بطيء" }, { en: "New", ar: "جديد" }, { en: "Old", ar: "قديم" }, { en: "Easy", ar: "سهل" }, { en: "Hard", ar: "صعب" }, { en: "Happy", ar: "سعيد" }, { en: "Sad", ar: "حزين" }, { en: "Tired", ar: "تعبان" }, { en: "Hungry", ar: "جائع" }, { en: "Thirsty", ar: "عطشان" }, { en: "Clean", ar: "نظيف" }, { en: "Dirty", ar: "متسخ" }, { en: "Early", ar: "مبكراً" }, { en: "Late", ar: "متأخراً" }, { en: "Near", ar: "قريب" }, { en: "Far", ar: "بعيد" }, { en: "Open", ar: "مفتوح" }, { en: "Closed", ar: "مغلق" }, { en: "Correct", ar: "صحيح" },
-      { en: "Head", ar: "رأس" }, { en: "Eye", ar: "عين" }, { en: "Ear", ar: "أذن" }, { en: "Nose", ar: "أنف" }, { en: "Mouth", ar: "فم" }, { en: "Hand", ar: "يد" }, { en: "Foot", ar: "قدم" }, { en: "Heart", ar: "قلب" }, { en: "Body", ar: "جسم" }, { en: "Health", ar: "صحة" }, { en: "Job", ar: "وظيفة" }, { en: "Company", ar: "شركة" }, { en: "Problem", ar: "مشكلة" }, { en: "Idea", ar: "فكرة" }, { en: "Number", ar: "رقم" }, { en: "Photo", ar: "صورة" }, { en: "Message", ar: "رسالة" }, { en: "News", ar: "أخبار" }, { en: "World", ar: "العالم" }, { en: "Life", ar: "حياة" }, { en: "Work", ar: "عمل" }, { en: "Home", ar: "وطن / بيت" }, { en: "Start", ar: "بداية" }, { en: "End", ar: "نهاية" }, { en: "Music", ar: "موسيقى" }
-    ],
-sentences: [
-      { category: "👋 التعارف وتقديم النفس", en: "Hello! Nice to meet you. My name is Ahmed.", ar: "مرحباً! سررت بلقائك. اسمي أحمد." }, { category: "👋 التعارف وتقديم النفس", en: "How are you doing today?", ar: "كيف حالك اليوم؟" }, { category: "👋 التعارف وتقديم النفس", en: "I am fine, thank you very much.", ar: "أنا بخير، شكراً جزيلاً لك." }, { category: "👋 التعارف وتقديم النفس", en: "Where are you from originally?", ar: "من أين أنت في الأصل؟" }, { category: "👋 التعارف وتقديم النفس", en: "I am from Egypt and I live in Cairo.", ar: "أنا من مصر وأعيش في القاهرة." }, { category: "👋 التعارف وتقديم النفس", en: "What is your phone number?", ar: "ما هو رقم هاتفك؟" }, { category: "👋 التعارف وتقديم النفس", en: "I am twenty-two years old.", ar: "عمري اثنان وعشرون عاماً." }, { category: "👋 التعارف وتقديم النفس", en: "This is my close friend, Omar.", ar: "هذا صديقي المقرب، عمر." },
+a1: {
+    verbs: {
+      title: "⚡ الأفعال — Verbs",
+      description: "تعلم الأفعال الأساسية واستخدمها في جمل حقيقية مع الترجمة والنطق الصوتي.",
+      topics: [
+        {
+          title: "الأفعال الأساسية والشائعة (Essential Core Verbs)",
+          items: [
+            { en: "be (am / is / are)", ar: "يكون", ex: "I am a student.", exAr: "أنا أكون طالب." },
+            { en: "have / has", ar: "يملك / لديه", ex: "She has a laptop.", exAr: "هي لديها لابتوب." },
+            { en: "do / does", ar: "يفعل / ينجز", ex: "We do our homework.", exAr: "نحن نقوم بواجبنا." },
+            { en: "go", ar: "يذهب", ex: "I go to work by train.", exAr: "أنا أذهب للعمل بالقطار." },
+            { en: "come", ar: "يأتي", ex: "Come here quickly.", exAr: "تعال إلى هنا بسرعة." },
+            { en: "get", ar: "يحصل على / يستيقظ", ex: "I get up early.", exAr: "أنا أستيقظ مبكراً." },
+            { en: "make", ar: "يصنع / يجعل", ex: "She makes breakfast.", exAr: "هي تصنع وجبة الإفطار." },
+            { en: "take", ar: "يأخذ", ex: "Take this book.", exAr: "خذ هذا الكتاب معك." },
+            { en: "give", ar: "يعطي", ex: "Give me your pen.", exAr: "أعطني قلمك." },
+            { en: "see", ar: "يرى / يشاهد", ex: "I see my friend.", exAr: "أنا أرى صديقي." },
+            { en: "know", ar: "يعرف / يعلم", ex: "I know the answer.", exAr: "أنا أعرف الإجابة." },
+            { en: "think", ar: "يفكر / يعتقد", ex: "I think it is good.", exAr: "أنا أعتقد أنه جيد." },
+            { en: "want", ar: "يريد", ex: "I want to learn English.", exAr: "أنا أريد أن أتعلم الإنجليزية." },
+            { en: "need", ar: "يحتاج", ex: "I need some help.", exAr: "أنا أحتاج بعض المساعدة." }
+          ]
+        },
+        {
+          title: "أفعال الروتين اليومي (Daily Routine Verbs)",
+          items: [
+            { en: "wake up", ar: "يستيقظ من النوم", ex: "I wake up at seven.", exAr: "أنا أستيقظ في السابعة." },
+            { en: "wash", ar: "يغسل", ex: "I wash my face.", exAr: "أنا أغسل وجهي." },
+            { en: "brush", ar: "ينظف بالفرشاة", ex: "I brush my teeth.", exAr: "أنا أنظف أسناني بالفرشاة." },
+            { en: "eat", ar: "يأكل", ex: "They eat fresh food.", exAr: "هم يأكلون طعاماً طازجاً." },
+            { en: "drink", ar: "يشرب", ex: "Drink plenty of water.", exAr: "اشرب الكثير من الماء." },
+            { en: "sleep", ar: "ينام", ex: "I sleep eight hours.", exAr: "أنا أنام 8 ساعات." },
+            { en: "work", ar: "يعمل", ex: "He works in an office.", exAr: "هو يعمل في مكتب." },
+            { en: "study", ar: "يدرس / يذاكر", ex: "We study English daily.", exAr: "نحن ندرس الإنجليزية يومياً." },
+            { en: "read", ar: "يقرأ", ex: "Read this short story.", exAr: "اقرأ هذه القصة القصيرة." },
+            { en: "write", ar: "يكتب", ex: "Write your full name.", exAr: "اكتب اسمك بالكامل." },
+            { en: "watch", ar: "يشاهد", ex: "I watch the lesson.", exAr: "أنا أشاهد الدرس." },
+            { en: "listen", ar: "يستمع", ex: "Listen to the teacher.", exAr: "استمع إلى المعلم." },
+            { en: "speak", ar: "يتكلم", ex: "He speaks English.", exAr: "هو يتحدث الإنجليزية." },
+            { en: "cook", ar: "يطبخ", ex: "She cooks dinner.", exAr: "هي تطبخ العشاء." }
+          ]
+        },
+        {
+          title: "أفعال الحركة والتنقل (Movement & Action Verbs)",
+          items: [
+            { en: "walk", ar: "يمشي", ex: "I walk to school.", exAr: "أنا أمشي إلى المدرسة." },
+            { en: "run", ar: "يركض / يجري", ex: "He runs in the morning.", exAr: "هو يجري في الصباح." },
+            { en: "drive", ar: "يقود سيارة", ex: "I drive my car.", exAr: "أنا أقود سيارتي." },
+            { en: "travel", ar: "يسافر", ex: "They travel every year.", exAr: "هم يسافرون كل عام." },
+            { en: "sit", ar: "يجلس", ex: "Sit down on the chair.", exAr: "اجلس على الكرسي." },
+            { en: "stand", ar: "يقف", ex: "Stand up please.", exAr: "قف من فضلك." },
+            { en: "open", ar: "يفتح", ex: "Open the door.", exAr: "افتح الباب." },
+            { en: "close", ar: "يغلق", ex: "Close the window.", exAr: "أغلق النافذة." },
+            { en: "stop", ar: "يتوقف", ex: "Stop here please.", exAr: "توقف هنا من فضلك." },
+            { en: "start", ar: "يبدأ", ex: "Start the game.", exAr: "ابدأ اللعبة." }
+          ]
+        },
+        {
+          title: "أفعال التعامل والتواصل (Social & Communication Verbs)",
+          items: [
+            { en: "call", ar: "يتصل هاتفياً", ex: "Call me tonight.", exAr: "اتصل بي الليلة." },
+            { en: "ask", ar: "يسأل", ex: "Ask the question.", exAr: "اسأل السؤال." },
+            { en: "answer", ar: "يجيب", ex: "Answer the phone.", exAr: "رد على الهاتف." },
+            { en: "help", ar: "يساعد", ex: "Help your friend.", exAr: "ساعد صديقك." },
+            { en: "explain", ar: "يشرح", ex: "Explain this word.", exAr: "اشرح هذه الكلمة." },
+            { en: "understand", ar: "يفهم", ex: "I understand now.", exAr: "أنا أفهم الآن." },
+            { en: "remember", ar: "يتذكر", ex: "Remember my name.", exAr: "تذكر اسمي." },
+            { en: "forget", ar: "ينسى", ex: "Do not forget.", exAr: "لا تنسَ." },
+            { en: "buy", ar: "يشتري", ex: "Buy some milk.", exAr: "اشترِ بعض الحليب." },
+            { en: "pay", ar: "يدفع", ex: "Pay the bill.", exAr: "ادفع الفاتورة." }
+          ]
+        }
+      ]
+    },
 
-      { category: "☕ الكافيه والمطعم والطلبات", en: "Can I have a cup of black coffee, please?", ar: "هل يمكنني طلب كوب قهوة سادة من فضلك؟" }, { category: "☕ الكافيه والمطعم والطلبات", en: "I would like a bottle of mineral water.", ar: "أود الحصول على زجاجة مياه معدنية." }, { category: "☕ الكافيه والمطعم والطلبات", en: "Can I see the food menu, please?", ar: "هل يمكنني رؤية قائمة الطعام من فضلك؟" }, { category: "☕ الكافيه والمطعم والطلبات", en: "What do you recommend for a quick lunch?", ar: "ماذا تقترح لوجبة غداء سريعة؟" }, { category: "☕ الكافيه والمطعم والطلبات", en: "Can we have the bill, please?", ar: "هل يمكننا الحصول على الفاتورة من فضلك؟" }, { category: "☕ الكافيه والمطعم والطلبات", en: "I would like a cheese sandwich with fries.", ar: "أريد شطيرة جبن مع بطاطس مقلية." }, { category: "☕ الكافيه والمطعم والطلبات", en: "Is this table free or reserved?", ar: "هل هذه الطاولة شاغرة أم محجوزة؟" }, { category: "☕ الكافيه والمطعم والطلبات", en: "Without sugar, please.", ar: "بدون سكر، من فضلك." },
+    nouns: {
+      title: "📚 الأسماء — Nouns",
+      description: "مفردات ومصطلحات Level A1 مصنفة حسب الميادين الحياتية مع الترجمة.",
+      topics: [
+        {
+          title: "العائلة والأشخاص (Family & People)",
+          items: [
+            { en: "father", ar: "أب" }, { en: "mother", ar: "أم" }, { en: "parents", ar: "الوالدان" },
+            { en: "brother", ar: "أخ" }, { en: "sister", ar: "أخت" }, { en: "son", ar: "ابن" },
+            { en: "daughter", ar: "ابنة" }, { en: "child", ar: "طفل" }, { en: "baby", ar: "رضيع" },
+            { en: "grandfather", ar: "جد" }, { en: "grandmother", ar: "جدة" }, { en: "uncle", ar: "عم / خال" },
+            { en: "aunt", ar: "عمة / خالة" }, { en: "cousin", ar: "ابن العم أو الخال" }, { en: "husband", ar: "زوج" },
+            { en: "wife", ar: "زوجة" }, { en: "friend", ar: "صديق" }, { en: "man", ar: "رجل" },
+            { en: "woman", ar: "امرأة" }, { en: "boy", ar: "ولد" }, { en: "girl", ar: "بنت" }
+          ]
+        },
+        {
+          title: "المنزل والغرف والأثاث (Home & Furniture)",
+          items: [
+            { en: "house", ar: "منزل" }, { en: "apartment", ar: "شقة" }, { en: "room", ar: "غرفة" },
+            { en: "living room", ar: "غرفة الجلوس" }, { en: "bedroom", ar: "غرفة النوم" }, { en: "kitchen", ar: "مطبخ" },
+            { en: "bathroom", ar: "حمام" }, { en: "door", ar: "باب" }, { en: "window", ar: "نافذة" },
+            { en: "table", ar: "طاولة" }, { en: "chair", ar: "كرسي" }, { en: "bed", ar: "سرير" },
+            { en: "sofa", ar: "كنبة" }, { en: "lamp", ar: "مصباح" }
+          ]
+        },
+        {
+          title: "الطعام والمشروبات والوجبات (Food, Drinks & Meals)",
+          items: [
+            { en: "water", ar: "ماء" }, { en: "milk", ar: "حليب" }, { en: "tea", ar: "شاي" },
+            { en: "coffee", ar: "قهوة" }, { en: "juice", ar: "عصير" }, { en: "bread", ar: "خبز" },
+            { en: "rice", ar: "أرز" }, { en: "cheese", ar: "جبن" }, { en: "egg", ar: "بيضة" },
+            { en: "chicken", ar: "دجاج" }, { en: "meat", ar: "لحم" }, { en: "fish", ar: "سمك" },
+            { en: "apple", ar: "تفاحة" }, { en: "breakfast", ar: "إفطار" }, { en: "lunch", ar: "غداء" },
+            { en: "dinner", ar: "عشاء" }
+          ]
+        },
+        {
+          title: "الأماكن والمرافق العامة (Places & Facilities)",
+          items: [
+            { en: "city", ar: "مدينة" }, { en: "street", ar: "شارع" }, { en: "school", ar: "مدرسة" },
+            { en: "university", ar: "جامعة" }, { en: "hospital", ar: "مستشفى" }, { en: "pharmacy", ar: "صيدلية" },
+            { en: "bank", ar: "بنك" }, { en: "supermarket", ar: "سوبرماركت" }, { en: "restaurant", ar: "مطعم" },
+            { en: "cafe", ar: "مقهى" }, { en: "hotel", ar: "فندق" }, { en: "airport", ar: "مطار" },
+            { en: "station", ar: "محطة" }, { en: "office", ar: "مكتب" }
+          ]
+        }
+      ]
+    },
 
-      { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "Excuse me, where is the nearest bank?", ar: "معذرة، أين أقرب بنك من هنا؟" }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "Turn left at the traffic light.", ar: "انعطف يساراً عند إشارة المرور." }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "Go straight ahead for two blocks.", ar: "امشِ للأمام مباشرة لمسافة مبنيين." }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "It is right next to the big supermarket.", ar: "إنه بجوار السوبرماركت الكبير تماماً." }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "How do I get to the metro station?", ar: "كيف أصل إلى محطة المترو؟" }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "Is it far to walk from here?", ar: "هل المكان بعيد للسير على الأقدام؟" }, { category: "🗺️ السؤال عن الأماكن والاتجاهات", en: "Take the second right turn.", ar: "ادخل في ثاني منعطف على اليمين." },
+    adjectives: {
+      title: "🎨 الصفات — Adjectives",
+      description: "صفات أساسية لوصف الأشخاص والمشاعر والأشياء مع الأمثلة وترجمتها.",
+      topics: [
+        {
+          title: "صفات الأشخاص (Personal Traits)",
+          items: [
+            { en: "good", ar: "جيد", ex: "He is a good boy.", exAr: "هو ولد جيد." },
+            { en: "bad", ar: "سيء", ex: "This is a bad day.", exAr: "هذا يوم سيء." },
+            { en: "nice", ar: "لطيف", ex: "She is very nice.", exAr: "هي لطيفة جداً." },
+            { en: "smart", ar: "ذكي", ex: "He is a smart student.", exAr: "هو طالب ذكي." },
+            { en: "busy", ar: "مشغول", ex: "I am busy today.", exAr: "أنا مشغول اليوم." }
+          ]
+        },
+        {
+          title: "المشاعر والحالات (Feelings & States)",
+          items: [
+            { en: "happy", ar: "سعيد", ex: "I am happy today.", exAr: "أنا سعيد اليوم." },
+            { en: "sad", ar: "حزين", ex: "Why are you sad?", exAr: "لماذا أنت حزين؟" },
+            { en: "tired", ar: "متعب", ex: "I feel tired now.", exAr: "أنا أشعر بالتعب الآن." },
+            { en: "hungry", ar: "جائع", ex: "I am very hungry.", exAr: "أنا جائع جداً." },
+            { en: "thirsty", ar: "عطشان", ex: "I need water, I am thirsty.", exAr: "أحتاج ماء، أنا عطشان." }
+          ]
+        },
+        {
+          title: "الأحجام والأوصاف (Size & Description)",
+          items: [
+            { en: "big", ar: "كبير", ex: "Cairo is a big city.", exAr: "القاهرة مدينة كبيرة." },
+            { en: "small", ar: "صغير", ex: "This is a small room.", exAr: "هذه غرفة صغيرة." },
+            { en: "hot", ar: "حار / ساخن", ex: "The tea is hot.", exAr: "الشاي ساخن." },
+            { en: "cold", ar: "بارد", ex: "The water is cold.", exAr: "الماء بارد." },
+            { en: "fast", ar: "سريع", ex: "The car is fast.", exAr: "السيارة سريعة." },
+            { en: "easy", ar: "سهل", ex: "English is easy.", exAr: "اللغة الإنجليزية سهلة." }
+          ]
+        }
+      ]
+    },
 
-      { category: "🛍️ التسوق والأسعار والدفع", en: "How much does this white shirt cost?", ar: "كم سعر هذا القميص الأبيض؟" }, { category: "🛍️ التسوق والأسعار والدفع", en: "Do you accept credit cards here?", ar: "هل تقبلون الدفع بالبطاقات الائتمانية هنا؟" }, { category: "🛍️ التسوق والأسعار والدفع", en: "Can I pay in cash, please?", ar: "هل يمكنني الدفع نقداً من فضلك؟" }, { category: "🛍️ التسوق والأسعار والدفع", en: "Do you have this in a medium size?", ar: "هل يتوفر هذا بمقاس متوسط؟" }, { category: "🛍️ التسوق والأسعار والدفع", en: "I am just looking around, thank you.", ar: "أنا فقط ألقي نظرة، شكراً لك." }, { category: "🛍️ التسوق والأسعار والدفع", en: "It is too expensive for me.", ar: "إنه غالٍ جداً بالنسبة لي." }, { category: "🛍️ التسوق والأسعار والدفع", en: "Where can I find the fitting room?", ar: "أين يمكنني أن أجد غرفة قياس الملابس؟" },
+    sentences: {
+      title: "💬 الجمل اليومية — Sentences",
+      description: "جمل وتراكيب جاهزة تساعدك على التحدث من أول يوم.",
+      topics: [
+        {
+          title: "التحيات والتعارف (Greetings & Social)",
+          items: [
+            { en: "Hello! Good morning.", ar: "مرحباً! صباح الخير." },
+            { en: "How are you today?", ar: "كيف حالك اليوم؟" },
+            { en: "I am fine, thank you.", ar: "أنا بخير، شكراً لك." },
+            { en: "Nice to meet you.", ar: "سررت بلقائك." },
+            { en: "See you tomorrow.", ar: "أراك غداً." }
+          ]
+        },
+        {
+          title: "طلب المساعدة (Asking for Help)",
+          items: [
+            { en: "Can you help me, please?", ar: "هل يمكنك مساعدتي من فضلك؟" },
+            { en: "I don't understand.", ar: "أنا لا أفهم." },
+            { en: "Please repeat that.", ar: "أعد ذلك من فضلك." },
+            { en: "Speak slowly, please.", ar: "تحدث ببطء من فضلك." },
+            { en: "What does this word mean?", ar: "ماذا تعني هذه الكلمة؟" }
+          ]
+        },
+        {
+          title: "المطعم والتسوق (Dining & Shopping)",
+          items: [
+            { en: "I would like a cup of tea.", ar: "أود كوباً من الشاي." },
+            { en: "Can I have the menu, please?", ar: "هل يمكنني أخذ القائمة من فضلك؟" },
+            { en: "How much is this shirt?", ar: "كم سعر هذا القميص؟" },
+            { en: "The bill, please.", ar: "الفاتورة من فضلك." }
+          ]
+        }
+      ]
+    },
 
-      { category: "⏰ الوقت والمواعيد والروتين", en: "What time is it right now?", ar: "كم الساعة الآن؟" }, { category: "⏰ الوقت والمواعيد والروتين", en: "The lesson starts at nine sharp.", ar: "يبدأ الدرس في التاسعة تماماً." }, { category: "⏰ الوقت والمواعيد والروتين", en: "I wake up at six every single morning.", ar: "أستيقظ في السادسة كل صباح." }, { category: "⏰ الوقت والمواعيد والروتين", en: "I go to work by bus every day.", ar: "أذهب إلى العمل بالحافلة كل يوم." }, { category: "⏰ الوقت والمواعيد والروتين", en: "I study English for two hours daily.", ar: "أدرس الإنجليزية لمدة ساعتين يومياً." }, { category: "⏰ الوقت والمواعيد والروتين", en: "See you tomorrow at three PM.", ar: "أراك غداً في تمام الساعة الثالثة عصراً." },
+    conversations: {
+      title: "🗣️ المحادثات والحوارات الواقعية",
+      description: "حوارات قصيرة ومباشرة مترجمة بالكامل للمواقف اليومية.",
+      topics: [
+        {
+          title: "المحادثة 01: التعارف (Meeting Someone)",
+          items: [
+            { en: "A: Hello! What is your name?", ar: "أ: مرحباً! ما اسمك؟" },
+            { en: "B: My name is Ahmed. Nice to meet you.", ar: "ب: اسمي أحمد. سررت بلقائك." },
+            { en: "A: Where are you from?", ar: "أ: من أين أنت؟" },
+            { en: "B: I am from Egypt.", ar: "ب: أنا من مصر." }
+          ]
+        },
+        {
+          title: "المحادثة 02: في المطعم (In The Restaurant)",
+          items: [
+            { en: "Waiter: Are you ready to order?", ar: "النادل: هل أنت جاهز للطلب؟" },
+            { en: "Customer: Yes, I want a chicken sandwich.", ar: "الزبون: نعم، أريد شطيرة دجاج." },
+            { en: "Waiter: Anything to drink?", ar: "النادل: أي شيء للشرب؟" },
+            { en: "Customer: Water, please.", ar: "الزبون: ماء، من فضلك." }
+          ]
+        }
+      ]
+    },
 
-      { category: "💬 طلب المساعدة والفهم", en: "Can you help me with this, please?", ar: "هل يمكنك مساعدتي في هذا من فضلك؟" }, { category: "💬 طلب المساعدة والفهم", en: "I don't understand, please speak slowly.", ar: "أنا لا أفهم، تحدث ببطء من فضلك." }, { category: "💬 طلب المساعدة والفهم", en: "Could you repeat that one more time?", ar: "هل يمكنك تكرار ذلك مرة أخرى؟" }, { category: "💬 طلب المساعدة والفهم", en: "How do you say this in English?", ar: "كيف تقول هذا باللغة الإنجليزية؟" }, { category: "💬 طلب المساعدة والفهم", en: "What does this English word mean?", ar: "ماذا تعني هذه الكلمة الإنجليزية؟" }
-    ],
+    grammar: {
+      title: "🧠 القواعد — Grammar Basics",
+      description: "القواعد الأساسية مشروحة بأبسط شكل مع أمثلة مترجمة.",
+      topics: [
+        {
+          title: "فعل الكينونة (Verb to Be)",
+          items: [
+            { en: "I am -> I am a student.", ar: "أنا أكون طالب." },
+            { en: "He / She / It is -> He is happy.", ar: "هو يكون سعيد." },
+            { en: "We / They / You are -> They are at home.", ar: "هم يكونون في البيت." }
+          ]
+        },
+        {
+          title: "المضارع البسيط (Present Simple)",
+          items: [
+            { en: "I work every day.", ar: "أنا أعمل كل يوم." },
+            { en: "He works every day.", ar: "هو يعمل كل يوم (إضافة s مع المفرد)." },
+            { en: "I don't like tea.", ar: "أنا لا أحب الشاي (نفي بـ don't)." }
+          ]
+        }
+      ]
+    },
+
+    listening: {
+      title: "🎧 الاستماع — Listening Practice",
+      description: "تدريبات استماع أساسية وبسيطة.",
+      topics: [
+        {
+          title: "المستوى الأول: الحروف والأرقام",
+          items: [
+            { en: "Numbers: One, Two, Three, Four, Five.", ar: "الأرقام من 1 إلى 5 بالنطق الصحيح." },
+            { en: "Days: Monday, Tuesday, Wednesday.", ar: "أيام الأسبوع مع الاستماع لنطقها." }
+          ]
+        },
+        {
+          title: "المستوى الثاني: جمل قصيرة",
+          items: [
+            { en: "I wake up at seven and eat breakfast.", ar: "استمع للمقطع: أستيقظ في السابعة وأتناول الإفطار." }
+          ]
+        }
+      ]
+    },
+
+    writing: {
+      title: "✍️ الكتابة — Writing Practice",
+      description: "نماذج كتابة مبسطة ومترجمة للتدريب.",
+      topics: [
+        {
+          title: "التعريف بالنفس (Self Introduction)",
+          items: [
+            { en: "My name is [Name].", ar: "اسمي يكون [الاسم]." },
+            { en: "I am [Age] years old.", ar: "عمري [السن] سنوات." },
+            { en: "I live in Egypt.", ar: "أنا أعيش في مصر." }
+          ]
+        }
+      ]
+    },
+
+    pronunciation: {
+      title: "🔊 النطق والصوتيات — Pronunciation",
+      description: "مخارج الحروف المهمة لتجنب الأخطاء الشائعة.",
+      topics: [
+        {
+          title: "الفرق بين P و B",
+          items: [
+            { en: "Pen (قلم حبر) vs Ben (اسم شخص)", ar: "حرف P يخرج معه هواء خفيف بينما B لا يخرج معه هواء." },
+            { en: "Park (حديقة) vs Bark (ينبح)", ar: "تدرب على النطق بالضغط على الزر." }
+          ]
+        }
+      ]
+    },
+
+    expressions: {
+      title: "🔥 التعبيرات الشائعة — Common Expressions",
+      description: "تعبيرات يومية سريعة ومترجمة.",
+      topics: [
+        {
+          title: "تعبيرات شائعة",
+          items: [
+            { en: "No problem!", ar: "لا توجد مشكلة!" },
+            { en: "Of course!", ar: "بالتأكيد!" },
+            { en: "Wait a minute.", ar: "انتظر دقيقة." },
+            { en: "Never mind.", ar: "لا تشغل بالك / انسَ الأمر." }
+          ]
+        }
+      ]
+    }
   },
 a2: {
     badgeName: "Level A2 (Elementary Fluency)",
@@ -1656,31 +2048,69 @@ sentences: [
 let currentModalResourceType = null;
 let currentModalLevelData = null;
 
-// فتح نافذة البنك الكامل للأفعال أو الكلمات أو الجمل
+// فتح نافذة تفاصيل أي مهارة من المهارات العشر
 window.openResourceModal = function(type) {
   currentModalResourceType = type;
-  const levelRes = window.courseResourcesMaster[currentSelectedLevelId] || window.courseResourcesMaster['a1'];
-  currentModalLevelData = levelRes[type] || [];
+  
+  let levelData = null;
+  if (currentSelectedCourseId === "c_deutsch_all") {
+    levelData = (window.deutschMasterCurriculum && window.deutschMasterCurriculum[currentSelectedLevelId]) || window.deutschMasterCurriculum['a1'];
+  } else {
+    levelData = (window.courseResourcesMaster && window.courseResourcesMaster[currentSelectedLevelId]) || window.courseResourcesMaster['a1'];
+  }
+
+  const resData = (levelData && levelData[type]) ? levelData[type] : { title: "المحتوى", description: "", topics: [] };
 
   const modal = document.getElementById("resourceFullModal");
   const title = document.getElementById("resourceModalTitle");
-  const icon = document.getElementById("resourceModalIcon");
-  const searchInput = document.getElementById("resourceSearchInput");
-  if (searchInput) searchInput.value = "";
+  const subtitle = document.getElementById("resourceModalSubtitle");
+  const container = document.getElementById("resourceModalList");
 
-  if (type === "verbs") {
-    icon.textContent = "⚡";
-    title.textContent = `بنك الأفعال وتصريفاتها الكامل (${levelRes.verbs.length} أفعال)`;
-  } else if (type === "vocab") {
-    icon.textContent = "📚";
-    title.textContent = `بنك المفردات والمواضيع (${levelRes.vocab.length} مواضيع)`;
-  } else if (type === "sentences") {
-    icon.textContent = "🗣️";
-    title.textContent = `بنك الجمل والمحادثات الواقعية (${levelRes.sentences.length} جمل)`;
+  if (title) title.textContent = resData.title || "تفاصيل المهارة";
+  if (subtitle) subtitle.textContent = resData.description || "اضغط 🔊 للاستماع للنطق الفوري";
+
+  if (container) {
+    if (!resData.topics || resData.topics.length === 0) {
+      container.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">المحتوى قيد الإعداد والإضافة.</div>`;
+    } else {
+      container.innerHTML = resData.topics.map(topic => `
+        <div class="p-5 rounded-2xl bg-[#0A0F1D] border border-slate-800 space-y-3">
+          <h4 class="text-sm font-bold text-cyan-400 border-b border-slate-800/80 pb-2">${topic.title}</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            ${topic.items.map(it => {
+              const enText = typeof it === "object" ? it.en : it;
+              const arText = typeof it === "object" ? it.ar : "";
+              const exText = typeof it === "object" ? it.ex : "";
+
+              return `
+                <div class="p-3 rounded-xl bg-[#111827] border border-slate-800 flex items-center justify-between gap-3 hover:border-slate-700 transition">
+                  <div>
+                    <span class="text-xs font-bold text-white font-mono block">${enText}</span>
+                    ${arText ? `<span class="text-[11px] text-slate-400 block mt-0.5">${arText}</span>` : ""}
+                    ${exText ? `<span class="text-[10px] text-emerald-400 font-mono block mt-0.5">"${exText}"</span>` : ""}
+                  </div>
+                  <button type="button" onclick="speakEnglish('${enText.replace(/'/g, "\\'")}')" class="w-8 h-8 rounded-lg bg-cyan-950/60 border border-cyan-800/40 text-cyan-400 hover:bg-cyan-600 hover:text-white flex items-center justify-center text-xs transition shrink-0 cursor-pointer" title="استمع">
+                    🔊
+                  </button>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `).join("");
+    }
   }
 
-  renderModalList(currentModalLevelData);
-  modal.classList.remove("hidden");
+  if (modal) modal.classList.remove("hidden");
+};
+
+// فلترة كروت المهارات أثناء الكتابة في خانة البحث
+window.filterLangCardsLive = function() {
+  const query = document.getElementById("langSkillsSearchInput").value.toLowerCase().trim();
+  document.querySelectorAll(".skill-card-modern").forEach(card => {
+    const text = card.innerText.toLowerCase();
+    card.style.display = (!query || text.includes(query)) ? "flex" : "none";
+  });
 };
 
 window.closeResourceModal = function() {
@@ -1776,7 +2206,59 @@ function renderModalList(dataList) {
 
 
 
+// فتح واجهة الكورس وتحديد ما إذا كان مسار لغات أم برمجة
+window.openCourseView = function(courseId) {
+  const crs = window.catalogData[courseId];
+  if (!crs) return;
+  window.currentItemData = crs;
+  currentSelectedCourseId = courseId;
 
+  document.getElementById("crsTitle").textContent = typeof crs.title === "object" ? crs.title[currentLang] : crs.title;
+  document.getElementById("crsDesc").textContent = typeof crs.desc === "object" ? crs.desc[currentLang] : crs.desc;
+  document.getElementById("crsPrice").textContent = `${crs.price} ج.م`;
+  document.getElementById("crsCategory").textContent = (crs.year === 'tech' ? 'TECH & CYBER' : 'LANGUAGE TRACK');
+
+  ["mainNavbar", "hero", "years", "courses", "features", "honors", "reviews", "instructor", "mainFooter"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add("hidden");
+  });
+
+  const levelsSection = document.getElementById("courseLevelsSection");
+  const languagePortals = document.getElementById("languageSkillsPortals");
+  const levelsGrid = document.getElementById("levelsCardsGrid");
+  const courseLevels = window.courseLevelsDB ? window.courseLevelsDB[courseId] : null;
+
+  // إذا كان الكورس يحتوي على مستويات (مثل الإنجليزي والألماني)
+  if (courseLevels && courseLevels.length > 0) {
+    if (levelsSection) levelsSection.classList.remove("hidden");
+    if (languagePortals) {
+      languagePortals.classList.remove("hidden");
+      languagePortals.classList.add("grid");
+    }
+
+    levelsGrid.innerHTML = courseLevels.map((lvl, index) => `
+      <div onclick="selectCourseLevel('${courseId}', '${lvl.id}')" id="levelCard_${lvl.id}" class="level-capsule-btn ${index === 0 ? 'active' : ''}">
+        <div>
+          <span class="block text-xs font-bold text-white font-mono">${lvl.name}</span>
+          <span class="block text-[10px] text-slate-400">${lvl.sub}</span>
+        </div>
+      </div>
+    `).join("");
+
+    selectCourseLevel(courseId, courseLevels[0].id);
+  } else {
+    // كورسات البرمجة والتقنية (بدون مستويات لغوية)
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) {
+      languagePortals.classList.remove("grid");
+      languagePortals.classList.add("hidden");
+    }
+    window.loadFirestoreLectures(courseId);
+  }
+
+  document.getElementById("courseView").classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
 // دالة جلب المحاضرات المنشورة مع معالجة احترافية لحالة عدم وجود محاضرات
 window.loadFirestoreLectures = async function(courseOrLevelKey) {
@@ -1847,17 +2329,13 @@ window.loadFirestoreLectures = async function(courseOrLevelKey) {
   }
 };
 
-// تبديل المستوى وجلب محاضراته الحقيقية
-// تبديل المستوى وإغلاق أي فيديو مفتوح تلقائياً
 window.selectCourseLevel = function(courseId, levelId) {
   currentSelectedLevelId = levelId;
   
-  // 👈 إغلاق وتصفير أي فيديو قيد التشغيل عند الانتقال لتبويب آخر
   if (typeof window.closeVideoPlayer === "function") {
     window.closeVideoPlayer();
   }
 
-  // إخفاء نافذة الكويز السابقة إن وجدت
   const quizSec = document.getElementById("quizSection");
   if (quizSec) quizSec.classList.add("hidden");
 
@@ -1874,198 +2352,60 @@ window.selectCourseLevel = function(courseId, levelId) {
   const officeCard = document.getElementById("officeOverviewCard");
   const languagePortals = document.getElementById("languageSkillsPortals");
 
-  // إذا كان المقرر هو مسار الـ Office
+  // 1. مسار الأوفيس
   if (courseId === "c_office_suite") {
     if (languagePortals) languagePortals.classList.add("hidden");
     const officeData = window.officeCurriculumDB ? window.officeCurriculumDB[levelId] : null;
-    
     if (officeData && officeCard) {
       document.getElementById("officeProgramTitle").textContent = officeData.title;
       document.getElementById("officeProgramDesc").textContent = officeData.overview;
       document.getElementById("officeSkillsList").innerHTML = officeData.keySkills.map(sk => `
         <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-slate-300">${sk}</span>
       `).join("");
-      
       officeCard.classList.remove("hidden");
       renderLevelDetails(officeData);
     }
-  } else {
-    // لمسارات اللغات
+  } 
+  // 2. مسار اللغة الألمانية
+  else if (courseId === "c_deutsch_all") {
     if (officeCard) officeCard.classList.add("hidden");
-    const levelData = window.englishMasterCurriculum ? window.englishMasterCurriculum[levelId] : null;
-    if (levelData) {
-      renderLevelDetails(levelData);
-    }
-  }
-};
-window.currentUserEnrolledCourses = []; // لتخزين الكورسات المشترك بها الطالب
-
-function renderCatalog() {
-  const container = document.getElementById("coursesSlider");
-  if (!container) return;
-  const lang = currentLang;
-  const isEn = lang === "en";
-
-  let items = Object.values(window.catalogData).filter(item => {
-    if (currentFilter === "all") return true;
-    if (currentFilter === "pkg") return item.type === "package";
-    return item.year === currentFilter;
-  });
-
-  // فرز الكورسات: المشترك بها تظهر أولاً
-  const enrolledList = window.currentUserEnrolledCourses || [];
-  items.sort((a, b) => {
-    const aEnrolled = enrolledList.includes(a.id);
-    const bEnrolled = enrolledList.includes(b.id);
-    if (aEnrolled && !bEnrolled) return -1;
-    if (!aEnrolled && bEnrolled) return 1;
-    return 0;
-  });
-
-  if (items.length === 0) {
-    container.innerHTML = `<div class="w-full text-center py-12 text-slate-400">لا توجد كورسات مطابقة.</div>`;
-    return;
-  }
-
-  container.innerHTML = items.map(item => {
-    const isPkg = item.type === "package";
-    const isEnrolled = enrolledList.includes(item.id);
-    const titleText = typeof item.title === "object" ? item.title[lang] : item.title;
-    const categoryText = typeof item.category === "object" ? item.category[lang] : item.category;
-    const descText = isPkg ? item.sub[lang] : item.desc[lang];
-    const badgeText = item.badge ? item.badge[lang] : "";
-    const priceText = `${item.price} ${isEn ? 'EGP' : 'ج.م'}`;
-
-    return `
-      <article class="min-w-[290px] md:min-w-[340px] snap-start rounded-2xl border ${isEnrolled ? 'border-emerald-500/40 bg-emerald-950/10' : 'border-theme bg-surface'} p-3 flex flex-col justify-between transition hover:border-slate-600">
-        <div onclick="openImageLightbox('${item.img}')" class="rounded-xl overflow-hidden relative aspect-[4/3] bg-black cursor-pointer" title="معاينة البوستر">
-          ${isEnrolled ? `<span class="absolute top-2.5 start-2.5 z-10 text-[10px] font-bold bg-emerald-600 text-white px-2 py-0.5 rounded shadow">مشترك ومفعّل ✓</span>` : (badgeText ? `<span class="absolute top-2.5 start-2.5 z-10 text-[10px] font-bold bg-slate-900/90 text-slate-200 border border-slate-700 px-2 py-0.5 rounded">${badgeText}</span>` : "")}
-          <img src="${item.img}" class="w-full h-full object-cover transition duration-200 hover:scale-105" onerror="this.style.display='none'" />
-        </div>
-        <div class="p-2.5 flex-1 flex flex-col justify-between space-y-3 mt-2">
-          <div>
-            <div class="flex items-center justify-between text-[11px] text-muted">
-              <span>${categoryText}</span>
-              <span class="font-bold ${isEnrolled ? 'text-emerald-400' : 'text-main'} font-mono">${isEnrolled ? 'تم الاشتراك' : priceText}</span>
-            </div>
-            <h3 class="font-bold text-sm text-main mt-1">${titleText}</h3>
-            <p class="text-xs text-muted line-clamp-2 mt-1">${descText}</p>
-          </div>
-          
-          <div class="pt-1">
-            ${isEnrolled ? `
-              <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white shadow-lg transition cursor-pointer text-center">
-                متابعة الدراسة الآن ←
-              </button>
-            ` : `
-              <div class="grid grid-cols-2 gap-2">
-                <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-elevated hover:bg-slate-700 border border-theme text-xs font-bold text-main transition cursor-pointer text-center">
-                  ${isEn ? 'Syllabus' : 'استعراض المحتوى'}
-                </button>
-                <button onclick="openPaymentModal('${item.id}', '${titleText.replace(/'/g, "\\'")}', '${priceText}')" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white shadow-lg transition cursor-pointer text-center">
-                  ${isEn ? 'Enroll Now' : 'اشترك في الكورس'}
-                </button>
-              </div>
-            `}
-          </div>
-        </div>
-      </article>
-    `;
-  }).join("");
-}
-
-window.openCourseView = function(courseId) {
-  const crs = window.catalogData[courseId];
-  if (!crs) return;
-  window.currentItemData = crs;
-  currentSelectedCourseId = courseId;
-
-  document.getElementById("crsTitle").textContent = typeof crs.title === "object" ? crs.title[currentLang] : crs.title;
-  document.getElementById("crsDesc").textContent = typeof crs.desc === "object" ? crs.desc[currentLang] : crs.desc;
-  document.getElementById("crsPrice").textContent = `${crs.price} ج.م`;
-  document.getElementById("crsCategory").textContent = (crs.year === 'tech' ? 'TECH & CYBER' : 'LANGUAGE TRACK');
-
-  // فحص حالة الاشتراك وزر الهيدر
-  const isEnrolled = window.currentUserEnrolledCourses.includes(courseId);
-  const crsActionBtn = document.getElementById("crsActionBtn");
-
-  if (crsActionBtn) {
-    if (isEnrolled) {
-      crsActionBtn.className = "px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs flex items-center gap-1.5 cursor-default";
-      crsActionBtn.innerHTML = "<span>✓</span> <span>حسابك مفعل في هذا المسار</span>";
-      crsActionBtn.onclick = null;
-    } else {
-      crsActionBtn.className = "px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition cursor-pointer whitespace-nowrap";
-      crsActionBtn.textContent = "تأكيد الاشتراك في المسار";
-      crsActionBtn.onclick = toggleCourseEnrollment;
-    }
-  }
-
-  ["mainNavbar", "hero", "years", "courses", "features", "honors", "reviews", "instructor", "mainFooter"].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.classList.add("hidden");
-  });
-
-  const levelsSection = document.getElementById("courseLevelsSection");
-  const languagePortals = document.getElementById("languageSkillsPortals");
-  const levelsGrid = document.getElementById("levelsCardsGrid");
-  const courseLevels = window.courseLevelsDB ? window.courseLevelsDB[courseId] : null;
-
-  if (courseLevels && courseLevels.length > 0) {
-    if (levelsSection) levelsSection.classList.remove("hidden");
     if (languagePortals) {
-      if (courseId === "c_office_suite") {
-        languagePortals.classList.add("hidden");
-      } else {
-        languagePortals.classList.remove("hidden");
-        languagePortals.classList.add("grid");
-      }
+      languagePortals.classList.remove("hidden");
+      languagePortals.classList.add("grid");
     }
-
-    levelsGrid.innerHTML = courseLevels.map((lvl, index) => `
-      <div onclick="selectCourseLevel('${courseId}', '${lvl.id}')" id="levelCard_${lvl.id}" class="level-capsule-btn ${index === 0 ? 'active' : ''}">
-        <div>
-          <span class="block text-xs font-bold text-white font-mono">${lvl.name}</span>
-          <span class="block text-[10px] text-slate-400">${lvl.sub}</span>
-        </div>
-      </div>
-    `).join("");
-
-    selectCourseLevel(courseId, courseLevels[0].id);
-  } else {
-    if (levelsSection) levelsSection.classList.add("hidden");
-    if (languagePortals) languagePortals.classList.add("hidden");
-    window.loadFirestoreLectures(courseId);
+    const deutschData = window.deutschMasterCurriculum ? window.deutschMasterCurriculum[levelId] : null;
+    if (deutschData) {
+      renderLevelDetails(deutschData);
+    }
+  } 
+  // 3. مسار اللغة الإنجليزية
+  else {
+    if (officeCard) officeCard.classList.add("hidden");
+    if (languagePortals) {
+      languagePortals.classList.remove("hidden");
+      languagePortals.classList.add("grid");
+    }
+    const englishData = window.englishMasterCurriculum ? window.englishMasterCurriculum[levelId] : null;
+    if (englishData) {
+      renderLevelDetails(englishData);
+    }
   }
-
-  document.getElementById("courseView").classList.remove("hidden");
-  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
+// عرض محتويات المستوى والمحاضرات معرباً بالكامل
 function renderLevelDetails(data) {
   if (!data) return;
 
   const lessonsContainer = document.getElementById("lessonsList");
   const countBadge = document.getElementById("firestoreLecturesCount");
-  const lockedAlert = document.getElementById("courseLockedAlert");
-  
-  // التحقق من اشتراك الطالب
-  const isEnrolled = window.currentUserEnrolledCourses.includes(currentSelectedCourseId);
 
-  if (!isEnrolled) {
-    if (lessonsContainer) lessonsContainer.innerHTML = "";
-    if (countBadge) countBadge.textContent = "المحتوى مغلق 🔒";
-    if (lockedAlert) lockedAlert.classList.remove("hidden");
-    return;
-  }
-
-  if (lockedAlert) lockedAlert.classList.add("hidden");
-
+  // عرض المحاضرات والفيديوهات
   if (lessonsContainer && data.lectures) {
     if (countBadge) countBadge.textContent = `${data.lectures.length} محاضرة متاحة`;
     
     lessonsContainer.innerHTML = data.lectures.map((lec, idx) => `
       <div id="lessonRow_${idx}" class="p-3.5 rounded-xl border border-slate-800 bg-[#11131A] flex items-center justify-between flex-wrap gap-3 hover:border-slate-700 transition">
+       
         <div class="flex items-center gap-3">
           <span class="w-7 h-7 rounded-lg bg-[#181B24] border border-slate-700/60 text-cyan-400 font-mono text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
           <div>
@@ -2075,7 +2415,7 @@ function renderLevelDetails(data) {
         </div>
         <div class="flex items-center gap-2">
           ${lec.videoUrl ? `
-            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})" class="px-3.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">              
+            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})" class="px-3.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">             
               مشاهدة المحاضرة
             </button>
           ` : ''}
@@ -2261,7 +2601,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   // مراقبة حالة تسجيل الدخول وتحديث الواجهة تلقائياً
-// مراقبة حالة تسجيل الدخول وتحديث الواجهة والكورسات المشترك بها تلقائياً
   onAuthStateChanged(auth, async (user) => {
     const guestActions = document.getElementById("drawerGuestActions");
     const studentActions = document.getElementById("drawerStudentActions");
@@ -2274,17 +2613,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = (user.email || "").toLowerCase().trim();
       const isAdmin = ADMIN_EMAILS.some(adm => adm.toLowerCase().trim() === email);
       const displayName = user.displayName || email.split("@")[0];
-
-      // قراءة الكورسات المفعلة للطالب من Firestore
-      try {
-        const studentDoc = await getDoc(doc(db, "students", user.uid));
-        if (studentDoc.exists()) {
-          window.currentUserEnrolledCourses = studentDoc.data().enrolledCourses || [];
-          if (typeof renderCatalog === "function") renderCatalog();
-        }
-      } catch (e) {
-        console.error("Error reading student courses:", e);
-      }
 
       if (guestActions) guestActions.classList.add("hidden");
       if (heroGuestCta) heroGuestCta.classList.add("hidden");
@@ -2299,8 +2627,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (adminActions) adminActions.classList.add("hidden");
       }
     } else {
-      window.currentUserEnrolledCourses = [];
-      if (typeof renderCatalog === "function") renderCatalog();
       if (guestActions) { guestActions.classList.remove("hidden"); guestActions.classList.add("flex"); }
       if (studentActions) studentActions.classList.add("hidden");
       if (adminActions) adminActions.classList.add("hidden");
