@@ -1116,6 +1116,52 @@ window.toggleDrawer = function() {
 
 // ============ ATLAS CORE 8 MASTER TRACKS ============
 window.catalogData = {
+    // 5. مسار اللغة الإنجليزية الشامل
+  c_english_all: {
+    id: "c_english_all",
+    type: "single",
+    year: "lang_office",
+    code: { ar: "إنجليزي", en: "EN" },
+    category: { ar: "اللغة الإنجليزية • A1 إلى C1", en: "English Language (A1-C1)" },
+    title: { ar: "مسار احتراف اللغة الإنجليزية الشامل (A1 -> C1)", en: "Comprehensive English Language (A1 to C1)" },
+    desc: { ar: "تأسيس النطق والقواعد من الصفر، المحادثة اليومية، طلاقة الاستماع، والإنجليزية المهنية للأعمال.", en: "From A1 to C1: Phonetics, Grammar, Daily Conversations, Fluency & Business English." },
+    badge: { ar: "من الصفر للطلاقة 🗣️", en: "All Levels 🗣️" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/english.png",
+    lessons: []
+  },
+
+  // 6. مسار اللغة الألمانية الشامل
+  c_deutsch_all: {
+    id: "c_deutsch_all",
+    type: "single",
+    year: "lang_office",
+    code: { ar: "ألماني", en: "DE" },
+    category: { ar: "اللغة الألمانية • A1 إلى B2", en: "German Language (A1-B2)" },
+    title: { ar: "مسار احتراف اللغة الألمانية الشامل (Deutsch A1 -> B2)", en: "Complete German Mastery (A1 to B2)" },
+    desc: { ar: "تغطية كاملة من الحروف والمحادثات المبتدئة A1 وحتى اجتياز امتحانات معهد جوته B2 المعتمدة.", en: "Complete German: Pronunciation, Grammatik, Sprechen, Hören & Goethe Exam Prep." },
+    badge: { ar: "تجهيز جوته 🇩🇪", en: "Goethe Ready 🇩🇪" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/deutsch.png",
+    lessons: []
+  },
+    // 7. مسار حزمة البرمجيات المكتبية
+  c_office_suite: {
+    id: "c_office_suite",
+    type: "single",
+    year: "lang_office",
+    code: { ar: "أوفيس", en: "Office" },
+    category: { ar: "برمجيات الأعمال والمكاتب", en: "Microsoft Office Suite" },
+    title: { ar: "مسار حزمة الـ Office الاحترافية (Word, Excel, PowerPoint)", en: "Advanced Microsoft Office Specialist" },
+    desc: { ar: "إتقان دوال Excel المتقدمة وتحليل الجداول، تنسيق أبحاث Word، وتصميم عروض PowerPoint.", en: "Advanced Excel Formulas, Pivot Tables, Data Analytics, Word Reports & PowerPoint Decks." },
+    badge: { ar: "أساسي للعمل 📊", en: "Essential 📊" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/office.png",
+    lessons: []
+  },
   // 1. مسار تطوير الويب المتكامل
   c_web_dev: {
     id: "c_web_dev",
@@ -1178,51 +1224,37 @@ c_data_analysis: {
   },
 
 
-  // 5. مسار اللغة الإنجليزية الشامل
-  c_english_all: {
-    id: "c_english_all",
+
+
+
+  // مسار الحوسبة السحابية
+  c_cloud_computing: {
+    id: "c_cloud_computing",
     type: "single",
-    year: "lang_office",
-    code: { ar: "إنجليزي", en: "EN" },
-    category: { ar: "اللغة الإنجليزية • A1 إلى C1", en: "English Language (A1-C1)" },
-    title: { ar: "مسار احتراف اللغة الإنجليزية الشامل (A1 -> C1)", en: "Comprehensive English Language (A1 to C1)" },
-    desc: { ar: "تأسيس النطق والقواعد من الصفر، المحادثة اليومية، طلاقة الاستماع، والإنجليزية المهنية للأعمال.", en: "From A1 to C1: Phonetics, Grammar, Daily Conversations, Fluency & Business English." },
-    badge: { ar: "من الصفر للطلاقة 🗣️", en: "All Levels 🗣️" },
+    year: "tech",
+    code: { ar: "كلاود", en: "Cloud" },
+    category: { ar: "الحوسبة السحابية • Azure", en: "Cloud Computing & Azure" },
+    title: { ar: "مسار الحوسبة السحابية الشامل (Azure AZ-900 + AZ-104)", en: "Complete Cloud Computing (AZ-900 & AZ-104)" },
+    desc: { ar: "كورس شامل باللغة العربية مع Cloud with Moe لتغطية شهادات مايكروسوفت كلاود من الصفر حتى إدارة البنية التحتية والشبكات والأمان.", en: "Complete Microsoft Azure Course (Fundamentals AZ-900 & Administrator AZ-104)." },
+    badge: { ar: "شهادات معتمدة ☁️", en: "Certified Cloud ☁️" },
     price: "150",
-    oldPrice: "300",
-    img: "image/english.png",
+    oldPrice: "350",
+    img: "image/cyber.png",
     lessons: []
   },
-
-  // 6. مسار اللغة الألمانية الشامل
-  c_deutsch_all: {
-    id: "c_deutsch_all",
+  // مسار الـ DevOps والحوسبة السحابية
+  c_devops: {
+    id: "c_devops",
     type: "single",
-    year: "lang_office",
-    code: { ar: "ألماني", en: "DE" },
-    category: { ar: "اللغة الألمانية • A1 إلى B2", en: "German Language (A1-B2)" },
-    title: { ar: "مسار احتراف اللغة الألمانية الشامل (Deutsch A1 -> B2)", en: "Complete German Mastery (A1 to B2)" },
-    desc: { ar: "تغطية كاملة من الحروف والمحادثات المبتدئة A1 وحتى اجتياز امتحانات معهد جوته B2 المعتمدة.", en: "Complete German: Pronunciation, Grammatik, Sprechen, Hören & Goethe Exam Prep." },
-    badge: { ar: "تجهيز جوته 🇩🇪", en: "Goethe Ready 🇩🇪" },
+    year: "tech",
+    code: { ar: "ديف أوبس", en: "DevOps" },
+    category: { ar: "الديف أوبس والحوسبة السحابية", en: "DevOps & Cloud Engineering" },
+    title: { ar: "مسار احتراف الـ DevOps والحوسبة السحابية (AWS & CI/CD)", en: "DevOps & Cloud Engineering Track" },
+    desc: { ar: "دورة شاملة في الـ DevOps: من Git و Docker وصولاً إلى Ansible, Jenkins, Kubernetes, و Terraform على AWS.", en: "Master CI/CD Pipelines, Docker, Kubernetes, Ansible, Terraform & AWS Cloud." },
+    badge: { ar: "الأعلى طلباً 🚀", en: "High Demand 🚀" },
     price: "150",
     oldPrice: "300",
-    img: "image/deutsch.png",
-    lessons: []
-  },
-
-  // 7. مسار حزمة البرمجيات المكتبية
-  c_office_suite: {
-    id: "c_office_suite",
-    type: "single",
-    year: "lang_office",
-    code: { ar: "أوفيس", en: "Office" },
-    category: { ar: "برمجيات الأعمال والمكاتب", en: "Microsoft Office Suite" },
-    title: { ar: "مسار حزمة الـ Office الاحترافية (Word, Excel, PowerPoint)", en: "Advanced Microsoft Office Specialist" },
-    desc: { ar: "إتقان دوال Excel المتقدمة وتحليل الجداول، تنسيق أبحاث Word، وتصميم عروض PowerPoint.", en: "Advanced Excel Formulas, Pivot Tables, Data Analytics, Word Reports & PowerPoint Decks." },
-    badge: { ar: "أساسي للعمل 📊", en: "Essential 📊" },
-    price: "150",
-    oldPrice: "300",
-    img: "image/office.png",
+    img: "image/cyber.png",
     lessons: []
   },
 
@@ -1241,7 +1273,11 @@ c_data_analysis: {
     img: "image/ui_ux.png",
     lessons: []
   }
+  
 };
+
+
+
 
 let currentFilter = "all";
 window.currentItemData = null;
@@ -1406,7 +1442,123 @@ window.courseLevelsDB = {
     { id: "powerpoint", name: "PowerPoint", sub: "العروض التقديمية التفاعلية" }
   ]
 };
+window.devopsCurriculumDB = {
+  main: {
+    title: "مسار احتراف الـ DevOps والحوسبة السحابية (DevOps Mastery)",
+    overview: "دورة عملية متكاملة من قناة JohnyDev تغطي أدوات ومفاهيم الـ DevOps: أنظمة إدارة الإصدارات Git، الحاويات Docker، الأتمتة بـ Ansible، خطوط الإنتاج CI/CD بـ Jenkins، إدارة الحاويات Kubernetes، والبنية التحتية ككود Terraform على سحابة AWS.",
+    keySkills: ["Docker & Containers", "Kubernetes (K8s)", "CI/CD with Jenkins", "Infrastructure as Code (Terraform)", "Ansible Automation", "AWS Cloud Services"],
+    lectures: [
+      { title: "01. شرح Devops بالعربي", videoUrl: "https://www.youtube.com/watch?v=KvZ5xyLT-Dw", desc: "مدخل شامل لمفهوم الـ DevOps ودوره في سوق العمل." },
+      { title: "02. ازاي تذاكر How to study Devops", videoUrl: "https://www.youtube.com/watch?v=cydta_Aw9Wg", desc: "خارطة الطريق وأفضل استراتيجية لمذاكرة الأدوات." },
+      { title: "03. شرح Version Control - Github - Gitlab - Bitbucket", videoUrl: "https://www.youtube.com/watch?v=MC5ZAyGl2bw", desc: "إدارة الإصدارات ومستودعات الكود السحابية." },
+      { title: "04. شرح Docker يعني ايه", videoUrl: "https://www.youtube.com/watch?v=konAsZCudrA", desc: "بناء وتشغيل الحاويات وفهم بيئة الدوكر." },
+      { title: "05. شرح docker compose", videoUrl: "https://www.youtube.com/watch?v=mZdU7r8Rf5c", desc: "إدارة وتشغيل بيئات الحاويات المتعددة بملف واحد." },
+      { title: "06. شرح ansible-playbook", videoUrl: "https://www.youtube.com/watch?v=-86oMSw6pSc", desc: "أتمتة إعداد السيرفرات وتنفيذ المهام التكرارية." },
+      { title: "07. شرح Ansible Molecule", videoUrl: "https://www.youtube.com/watch?v=no8ZM1F7rhA", desc: "اختبار وتأكيد جودة إعدادات أدوار Ansible." },
+      { title: "08. شرح Deploy Website on AWS using S3 Bucket | Apache", videoUrl: "https://www.youtube.com/watch?v=NeGdfKEXA-E", desc: "رفع ونشر موقع ويب على سحابة AWS." },
+      { title: "09. شرح Jenkins | Docker | Ansible | EC2 AWS", videoUrl: "https://www.youtube.com/watch?v=awqwdGM_Trw", desc: "بناء خط إنتاج CI/CD متكامل لربط الأدوات معاً." },
+      { title: "10. شرح Kubernetes, Scalability, Monolithic and Microservices", videoUrl: "https://www.youtube.com/watch?v=YfJZBngbhM8", desc: "أساسيات الكوبرنيتس والخدمات المصغرة وقابلية التوسع." },
+      { title: "11. شرح Kubernetes Elasticity, Fault Tolerance and High Availability", videoUrl: "https://www.youtube.com/watch?v=kV4jINv3s-k", desc: "المرونة ومقاومة الأعطال وجاهزية النظام العالية." },
+      { title: "12. شرح Kubernetes Cluster on AWS EKS", videoUrl: "https://www.youtube.com/watch?v=4Tkxe0VjrYw", desc: "إنشاء وإدارة كلاستر كوبرنيتس على خدمة AWS EKS." },
+      { title: "13. شرح Terraform (الجزء الأول)", videoUrl: "https://www.youtube.com/watch?v=zF_N4flz8lw", desc: "مدخل لمفهوم الـ Infrastructure as Code (IaC)." },
+      { title: "14. شرح Terraform (الجزء الثاني)", videoUrl: "https://www.youtube.com/watch?v=V6CPs_C9v8A", desc: "بناء وإدارة موارد AWS السحابية عبر كود تيرافورم." },
+      { title: "15. شرح DevOps Pipeline PHP and MySQL", videoUrl: "https://www.youtube.com/watch?v=vrdlDh2GAPw", desc: "تطبيق عملي كامل لبناء بايبلاين لتطبيق ويب وقاعدة بيانات." },
+      { title: "16. Practice DevOps | DevOps Tasks", videoUrl: "https://www.youtube.com/watch?v=P3cxaPMO1wE", desc: "تطبيقات وتحديات عملية لصقل المهارات المكتسبة." },
+      { title: "17. أسئلة DevOps Interview Questions", videoUrl: "https://www.youtube.com/watch?v=ZPFj-ZHiALU", desc: "أهم الأسئلة التقنية الشائعة في مقابلات التوظيف." }
+    ]
+  }
+};
 
+window.cloudCurriculumDB = {
+  main: {
+    title: "مسار الحوسبة السحابية الشامل (Microsoft Azure AZ-900 & AZ-104)",
+    overview: "الكورس العربي الأقوى والمفصل مع المهندس محمد (Cloud with Moe) الذي يجمع بين التأسيس المتين لشهادة AZ-900 Azure Fundamentals والاحتراف الإداري المتقدم لشهادة AZ-104 Azure Administrator، بما يشمل الشبكات الافتراضية، الهوية وإدارة الصلاحيات (Microsoft Entra ID)، وتأمين موارد الكلاود.",
+    keySkills: ["Azure Fundamentals (AZ-900)", "Azure Administrator (AZ-104)", "Microsoft Entra ID (Azure AD)", "Virtual Networking & VNET Peering", "Cloud Security & Governance", "Azure Storage & Monitoring"],
+    lectures: [
+      { title: "00. مقدمة عن Microsoft Azure Fundamentals Az-900 وطريقة الدراسة وشرح بيئة On-Premise", videoUrl: "https://www.youtube.com/watch?v=iEVLHTWzW3Y", desc: "مدخل تأسيسي شامل للتعرف على بيئة العمل والسحابة وكيفية الاستعداد العملي للمسار." },
+      { title: "01. [1] AZ-900 Azure Fundamentals - What is Cloud Computing - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=cfh6bxFu7nU", desc: "مدخل شامل لفهم مفهوم الحوسبة السحابية وأنواعها." },
+      { title: "02. [2] AZ-900 Azure Fundamentals - How to create a free Azure Subscription - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=SFGd_LFi3XE", desc: "طريقة إنشاء حساب واشتراك مجاني على منصة Azure." },
+      { title: "03. [3] AZ-900 Azure Fundamentals - Identify Cloud Computing Benefits - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=pg_XBr_VIAE", desc: "مميزات وفوائد الانتقال إلى الحوسبة السحابية." },
+      { title: "04. [4] Az900 | Fundamentals | Cloud Consumption Model - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=xf7VJgql6vA", desc: "نماذج تسعير واستهلاك الموارد السحابية." },
+      { title: "05. [5] How to Become an Azure Cloud Engineer | ازاي تبدأ في الكلاود", videoUrl: "https://www.youtube.com/watch?v=ANimktHLA6M", desc: "خارطة الطريق لاحتراف العمل كمهندس كلاود." },
+      { title: "06. [6] Az-900 | Azure Regions & Availability Zones - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=mBYHCu8JLUk", desc: "المناطق الجغرافية ومراكز البيانات ونطاقات التوفر." },
+      { title: "07. [7] AZ 900 | Azure Region Pairs & Availability Sets - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=tpd2JCGXEKk", desc: "توزيع الموارد ومقاومة الأعطال وضمان استمرارية الخدمة." },
+      { title: "08. [8] AZ 900 | Create an Azure Resource Groups - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=rBVAMXiAix4", desc: "إنشاء وتنظيم مجموعات الموارد Resource Groups." },
+      { title: "09. [9] AZ 900 | Describe Azure Management Groups & Subscriptions - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=9J8UVxygjHw", desc: "إدارة الاشتراكات والمجموعات الإدارية العليا." },
+      { title: "10. [10] AZ 900 | Describe Azure Resource Manager - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=oE-uqaHe6rM", desc: "فهم بنية ARM وقوالب إدارة الموارد." },
+      { title: "11. [11] AZ-900 | Describe Azure virtual machine - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=xoUUYPSIkmE", desc: "إنشاء وإدارة الأجهزة الافتراضية (VMs)." },
+      { title: "12. [12] AZ-900 | Describe Virtual Networking, Subnets - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=5N4yDzfNqEg", desc: "أساسيات الشبكات الافتراضية والتقسيم إلى Subnets." },
+      { title: "13. [13] AZ-900 | Describe Azure VPN, Express Route, Peering - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=6Ss5X61M2Zk", desc: "ربط الشبكات عبر VPN و ExpressRoute و Peering." },
+      { title: "14. [14] AZ-900 | Define Public and Private Endpoints - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=JyHrlU04vaE", desc: "تأمين الوصول للموارد عبر النقاط العامة والخاصة." },
+      { title: "15. [15] AZ-900 | Describe Azure storage services - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=fuEG3xa2pUU", desc: "خدمات التخزين السحابي بأنواعها المختلفة." },
+      { title: "16. [16] Az-900 | Types of Databases on Azure - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=LBZoAgQQ1OE", desc: "أنواع قواعد البيانات المدارة على Azure." },
+      { title: "17. [17] AZ-900 | Azure Management tools, Portal, PS & CLI - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=ru9oKgDzyYA", desc: "أدوات الإدارة عبر البوابة و PowerShell و Azure CLI." },
+      { title: "18. [18] AZ-900 | What is Azure Market Place - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=xsldVE_j9LI", desc: "سوق حلول وتطبيقات Azure الجاهزة." },
+      { title: "19. [19] AZ-900 | What is Azure Advisor ? - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=prADeknB4wU", desc: "تحسين التكلفة والأداء مع مستشار Azure." },
+      { title: "20. [20] Az-900 | Describe the purpose of Azure Health", videoUrl: "https://www.youtube.com/watch?v=RmDG7TGdngc", desc: "متابعة الحالة التشغيلية وصحة الخدمات السحابية." },
+      { title: "21. [21] AZ-900 | Describe Azure Monitor, Alerts, Workspace - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=Utq1vOAugRU", desc: "مراقبة الأنظمة وإنشاء التنبيهات الذكية." },
+      { title: "22. [22] AZ-900 | Describe the purpose of resource locks - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=Uiz_yQRQhXU", desc: "حماية الموارد من الحذف أو التعديل غير المقصود." },
+      { title: "23. [23] AZ-900 | Describe the purpose of tags - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=YVbKp08QjJY", desc: "تنظيم الموارد وتتبع التكاليف باستخدام الـ Tags." },
+      { title: "24. [24] AZ-900 | Describe cost management capabilities in Azure - Arabic", videoUrl: "https://www.youtube.com/watch?v=6hJuNydcR0I", desc: "إدارة وترشيد الميزانية والمصروفات السحابية." },
+      { title: "25. [25] AZ-900 | Understanding Network Security Groups: A Comprehensive Overview - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=msPiuP8EjyY", desc: "تأمين الشبكات وقواعد الجدران النارية بـ NSG." },
+      { title: "26. [26] AZ-900 | Describe the Purpose of Azure Firewall", videoUrl: "https://www.youtube.com/watch?v=uUQvC3XS1jw", desc: "حماية الشبكات السحابية بجدار حماية Azure Firewall." },
+      { title: "27. [27] AZ-900 | Describe the usage of Azure DDOS - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=UOAY4SHUwWY", desc: "الحماية من هجمات حجب الخدمة الموزعة DDoS." },
+      { title: "28. خلاص هانت فاضل 3 فيديوهات ونخلص الفانديمنتالز ياشباب", videoUrl: "https://www.youtube.com/watch?v=86hyzd_PSQc", desc: "مراجعة سريعة وتشجيع لاستكمال المسار." },
+      { title: "29. [28] AZ-900 | Describe factors that can affect costs in Azure - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=zcZhvlvek80", desc: "العوامل المؤثرة في زيادة أو خفض التكاليف." },
+      { title: "30. [29] AZ-900 | Compare the pricing and the (TCO) Calculator - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=ZV-xDDC2lfQ", desc: "حساب التكلفة الإجمالية للملكية TCO Calculator." },
+      { title: "31. [30] AZ-900 | Describe directory services in Azure including Azure AD - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=5LAoZf5PZSY", desc: "خدمات الدليل وإدارة الهويات عبر Azure AD." },
+      { title: "32. [31] AZ-900 | Describe Conditional Access in Azure AD - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=IJZ0SDgtN-8", desc: "قواعد الوصول المشروط وحماية تسجيل الدخول." },
+      { title: "33. [32] AZ-900 | Describe the purpose of Azure Policy - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=pqfa8kD3NFk", desc: "فرض السياسات والامتثال المؤسسي بـ Azure Policy." },
+      { title: "34. [33] AZ-900 | Describe external identities in Azure including B2B & B2C - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=IAupnUaDxXY", desc: "إدارة الهويات الخارجية للشركاء والعملاء." },
+      { title: "35. [34] AZ-900 | Describe Azure role-based access control (RBAC) - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=XUvBuIWbG9Q", desc: "التحكم في الوصول والصلاحيات المعتمد على الأدوار." },
+      { title: "36. [35] AZ-900 | Describe the purpose of the Defense-in-Depth Model", videoUrl: "https://www.youtube.com/watch?v=GBpCDsaiMgo", desc: "نموذج الدفاع في العمق والأمن متعدد الطبقات." },
+      { title: "37. [36] AZ-900 | Describe the concept of Zero Trust - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=lTCA3liShCo", desc: "مبدأ انعدام الثقة التام Zero Trust." },
+      { title: "38. [37] AZ-900 | How to prepare for the Azure fundamentals exam - Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=DNut5Qva3Ag", desc: "نصائح وإرشادات لاجتياز اختبار AZ-900 الدولي بنجاح." },
+      { title: "39. [1] Az 104 - Introduction to Azure Administration: Your Ultimate Beginner's Course Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=D3f81Z8lLM0", desc: "بداية مسار الـ Administrator المتقدم AZ-104." },
+      { title: "40. [2] AZ 104 - Azure Subscription vs. Entra ID: Understanding the Key Difference Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=2HtkGub91-A", desc: "فهم الفرق الجوهري بين الاشتراكات ودليل الهويات." },
+      { title: "41. [3] AZ 104 - Azure Administrator | Getting Started with Microsoft Entra Id Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=cJ3frSZNkYU", desc: "التعامل مع بيئة Microsoft Entra ID المحدثة." },
+      { title: "42. [4] AZ 104 - Azure Administrator | Creating Users in Microsoft Entra ID Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=S9rnlob28PE", desc: "إنشاء وإدارة حسابات المستخدمين في المؤسسة." },
+      { title: "43. [5] AZ 104 - Azure Administrator | Creating Groups in Microsoft Entra Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=ymDqLgw3TDE", desc: "إنشاء مجموعات المستخدمين وتنظيم الصلاحيات." },
+      { title: "44. [6] AZ 104 - Step by step how to sync on-prem users to MS Entra Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=hk7ZbFs1Dj8", desc: "مزامنة المستخدمين المحليين مع السحابة خطوة بخطوة." },
+      { title: "45. [7] AZ 104 - Microsoft Entra Id Self-Service Password Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=WZVFir3JTVQ", desc: "تفعيل ميزة إعادة تعيين كلمة المرور الذاتية SSPR." },
+      { title: "46. [8] AZ 104 - Create Azure Management Groups Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=y_K1eTd1AGA", desc: "بناء الهيكل الإداري الهرمي للمجموعات." },
+      { title: "47. [9] AZ 104 - How to Manage Azure Subscriptions Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=WpyD8a_L9rU", desc: "إدارة الميزانيات وتراخيص الاشتراكات السحابية." },
+      { title: "48. [10] AZ 104 - What is Azure Role Based Access Control Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=JIGKDBVBZ20", desc: "التحكم المتقدم في صلاحيات الأدوار المخصصة." },
+      { title: "49. [11] AZ 104 - Step-by-Step Azure RBAC Configuration Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=V3hBimxbHxg", desc: "تطبيق عملي لضبط صلاحيات الـ RBAC." },
+      { title: "50. [12] AZ 104 Prevent Costly Mistakes with Azure Resource Locks Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=alV24naP8Xc", desc: "تأمين بيئة الإنتاج من الأخطاء المكلفة." },
+      { title: "51. [13] AZ 104 Azure Resource Tags: Organize Your Cloud Like a Pro! Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=w-nfs3S8CBE", desc: "تنظيم بيئة العمل الاحترافية بالوسوم." },
+      { title: "52. [14] AZ 104 How to Use Azure Policy for Cloud Compliance & Governance Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=bXyEVvzbs2Q", desc: "الحوكمة وضمان الامتثال للمعايير الأمنية." },
+      { title: "53. [15] AZ 104 What is Azure VNET? A Beginner's Guide to Virtual Networks - Arabic", videoUrl: "https://www.youtube.com/watch?v=opoG2W21jgE", desc: "الدليل الشامل لفهم وتصميم الشبكات الافتراضية VNET." },
+      { title: "54. [16] AZ 104 Step by step: How to create Azure VNET Arabic شرح", videoUrl: "https://www.youtube.com/watch?v=6EC3BIwcxhQ", desc: "إنشاء شبكة افتراضية وربط الـ Subnets عملياً." },
+      { title: "55. [17] AZ 104 Azure Public vs Private IP: Key Differences & Setup Guide Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=2zz53oQHryc", desc: "عناوين IP العامة والخاصة وتكوينها السليم." },
+      { title: "56. [18] AZ 104 How to Create and Configure Network Security Groups شرح", videoUrl: "https://www.youtube.com/watch?v=gls-xTPiBbQ", desc: "إعداد وتخصيص قواعد الأمان للشبكات." },
+      { title: "57. [19] AZ 104 A Complete Guide to Azure VNET Peering Arabic شرح", videoUrl: "https://www.youtube.com/watch?v=pvIEH1UflvQ", desc: "ربط شبكتين افتراضيتين عبر VNET Peering." },
+      { title: "58. [20] AZ 104 How to create Custom Routes Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=kDeYT9LeOsw", desc: "توجيه حركة مرور الشبكة عبر المسارات المخصصة UDR." },
+      { title: "59. [21] Azure Administrator 104: Azure Service Endpoint أمن شبكتك بسهولة مع", videoUrl: "https://www.youtube.com/watch?v=Ld0g5ZHdn4g", desc: "تأمين الاتصال بخدمات Azure عبر Service Endpoints." },
+      { title: "60. [22] AZ 104: Azure Private Link | احمي بياناتك زي المحترفين", videoUrl: "https://www.youtube.com/watch?v=XC0PgpyY2fk", desc: "حماية البيانات وعزل الاتصال بـ Azure Private Link." },
+      { title: "61. [23] AZ 104: Mastering Azure Load Balancer بالعربي", videoUrl: "https://www.youtube.com/watch?v=zF3p1a-5ym4", desc: "توزيع الأحمال وضمان توفر الخدمات بـ Load Balancer." },
+      { title: "62. [24] AZ 104: Secure & Scale with Azure Application Gateway بالعربي", videoUrl: "https://www.youtube.com/watch?v=2_trynzz3NY", desc: "إدارة وتأمين تطبيقات الويب بـ Application Gateway." },
+      { title: "63. [25] AZ 104 : Azure Public & Private DNS Explained with Demo شرح", videoUrl: "https://www.youtube.com/watch?v=4WopYGPEU8w", desc: "إدارة وتوجيه أسماء النطاقات DNS العامة والخاصة." },
+      { title: "64. [26] AZ 104 : Mastering Azure App Services Arabic شرح بالعربي", videoUrl: "https://www.youtube.com/watch?v=WY7yhV1PpvQ", desc: "استضافة وإدارة تطبيقات الويب بـ App Services." },
+      { title: "65. [27] AZ 104: Unlock the Power of Azure App Services Arabic", videoUrl: "https://www.youtube.com/watch?v=zTBFvV5aoZQ", desc: "الميزات المتقدمة وتوسيع نطاق تطبيقات الويب." },
+      { title: "66. [28] AZ 104: Simplifying Azure: Understanding VMs, Containers, and ACI شرح بالعربي", videoUrl: "https://www.youtube.com/watch?v=kGprqXcjw2o", desc: "مقارنة الأجهزة الافتراضية والحاويات و ACI." },
+      { title: "67. [29] AZ 104: Introduction to Azure VMs Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=Kl3xq3I7YqA", desc: "إعداد وضبط السيرفرات والأجهزة الافتراضية." },
+      { title: "68. [30] AZ 104: What are the Types of Azure Cloud Storage شرح", videoUrl: "https://www.youtube.com/watch?v=bLE_XNBvptM", desc: "أنواع التخزين السحابي: Blobs, Files, Queues, Tables." },
+      { title: "69. [31] AZ 104: How to Configure Azure Blob storage Versioning بالعربي", videoUrl: "https://www.youtube.com/watch?v=dkdmmJVAWEU", desc: "إدارة إصدارات ملفات الـ Blob وحمايتها من التلف." },
+      { title: "70. [32] AZ 104: How to configure Azure Blob Replication ? Arabic | شرح", videoUrl: "https://www.youtube.com/watch?v=g6v4ZW7iYyo", desc: "تكرار ونسخ البيانات عبر مناطق جغرافية متعددة." },
+      { title: "71. [33] AZ 104 : How to Manage Azure Storage Access ? شرح", videoUrl: "https://www.youtube.com/watch?v=kT7VW4OqfBE", desc: "التحكم في أذونات ومفاتيح الوصول لحساب التخزين." },
+      { title: "72. [34] AZ 104: How to install Azure Storage Explorer ? شرح", videoUrl: "https://www.youtube.com/watch?v=-pBVloB-8cU", desc: "إدارة وتصفح الملفات السحابية عبر أداة Storage Explorer." },
+      { title: "73. [35] AZ 104: What is and How to configure Azure Monitor ? شرح", videoUrl: "https://www.youtube.com/watch?v=7qTgd-LK1Do", desc: "تكوين منصة المراقبة الشاملة Azure Monitor." },
+      { title: "74. [1] دليلك الكامل لشهادات مايكروسوفت Azure Certifications Roadmap (Arabic)", videoUrl: "https://www.youtube.com/watch?v=CTD8OeytQ-w", desc: "خارطة طريق كاملة للشهادات والمسارات المهنية المعتمدة." },
+      { title: "75. [36] AZ 104: How to configure Azure Monitor Logs & Workbooks (Arabic) ? شرح", videoUrl: "https://www.youtube.com/watch?v=eoz3CLee9qI", desc: "تحليل السجلات وإنشاء لوحات المتابعة Workbooks." },
+      { title: "76. [37] AZ 104: How to configure Azure Monitor Alerts ? Arabic - شرح", videoUrl: "https://www.youtube.com/watch?v=PaHZx9WWAR0", desc: "ضبط التنبيهات الفورية وإرسال إشعارات الأعطال." },
+      { title: "77. [38] AZ 104 Azure Monitor: Setting Up Action Groups & Processing Rules", videoUrl: "https://www.youtube.com/watch?v=xlDDGqNKAvI", desc: "أتمتة الاستجابة للتنبيهات عبر Action Groups." },
+      { title: "78. [39] AZ 104 Azure Monitor Pricing: How Much Does It REALLY Cost ? Arabic - شرح", videoUrl: "https://www.youtube.com/watch?v=JiRiLmdmDZ0", desc: "حساب تكاليف المراقبة وحجم السجلات المستهلكة." },
+      { title: "79. [40] AZ 104 Azure Backup: Introduction to Protecting Your Cloud Data", videoUrl: "https://www.youtube.com/watch?v=r3o1WIHCI5o", desc: "حماية البيانات وإنشاء النسخ الاحتياطية بـ Azure Backup." },
+      { title: "80. [41] AZ 104 Azure Site Recovery: Disaster Recovery Planning & Setup", videoUrl: "https://www.youtube.com/watch?v=jKj8Y5HG76Y", desc: "خطة التعافي من الكوارث وإدارة جاهزية الأعمال." }
+    ]
+  }
+};
 window.officeCurriculumDB = {
 word: {
     title: "Microsoft Word Specialist",
@@ -2459,6 +2611,34 @@ if (courseId === "c_office_suite" || courseId === "c_web_dev") {
     `).join("");
 
     selectCourseLevel(courseId, courseLevels[0].id);
+} else if (courseId === "c_devops") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const devopsData = window.devopsCurriculumDB ? window.devopsCurriculumDB.main : null;
+    if (devopsData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = devopsData.title;
+      document.getElementById("officeProgramDesc").textContent = devopsData.overview;
+      document.getElementById("officeSkillsList").innerHTML = devopsData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(devopsData);
+    }
+  } else if (courseId === "c_cloud_computing") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const cloudData = window.cloudCurriculumDB ? window.cloudCurriculumDB.main : null;
+    if (cloudData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = cloudData.title;
+      document.getElementById("officeProgramDesc").textContent = cloudData.overview;
+      document.getElementById("officeSkillsList").innerHTML = cloudData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(cloudData);
+    }
   } else {
     if (levelsSection) levelsSection.classList.add("hidden");
     if (languagePortals) languagePortals.classList.add("hidden");
