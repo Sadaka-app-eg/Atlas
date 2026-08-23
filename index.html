@@ -1388,6 +1388,11 @@ window.courseLevelsDB = {
     { id: "b2", name: "Level B2", sub: "Upper-Intermediate" },
     { id: "c1", name: "Level C1", sub: "Advanced & Business" }
   ],
+  c_web_dev: [
+    { id: "frontend", name: "Frontend Track", sub: "تطوير الواجهات والتصميم (Elzero)" },
+    { id: "fullstack", name: "Full Stack Mastery", sub: "المسار الشامل (Dr. Hossam Balaha)" },
+    { id: "backend", name: "Backend & APIs", sub: "تطوير الخوادم وقواعد البيانات" }
+  ],
   c_deutsch_all: [
     { id: "a1", name: "Niveau A1", sub: "المبتدئ التأسيسي" },
     { id: "a2", name: "Niveau A2", sub: "فوق المبتدئ" },
@@ -1547,6 +1552,115 @@ powerpoint: {
       { title: "18. كيفية عمل عداد بيانات تفاعلي في العرض", videoUrl: "https://www.youtube.com/watch?v=tTRX3fvJk8M&list=PLJ6rITJKyxItOyRC9Tq0Y4uxIfcHao_av&index=18&pp=iAQB0gcJCRMMAYcqIYzv", desc: "تصميم عداد رقمي متحرك لمؤشرات الأداء." },
       { title: "19. تصميم ألعاب تفاعلية واختيارات للأطفال", videoUrl: "https://www.youtube.com/watch?v=DjENB_8GP4c&list=PLJ6rITJKyxItOyRC9Tq0Y4uxIfcHao_av&index=19&pp=iAQB", desc: "استخدام التريجر والأزرار لإنشاء عروض تفاعلية." },
       { title: "20. أسرار دمج الأشكال (Merge Shapes) مع التطبيق", videoUrl: "https://www.youtube.com/watch?v=jiALegJHgZk&list=PLJ6rITJKyxItOyRC9Tq0Y4uxIfcHao_av&index=20&pp=iAQB", desc: "تقطيع ودمج وتفريغ الأشكال لابتكار أيقونات فريدة." }
+    ]
+  }
+};
+
+window.webCurriculumDB = {
+  // 1. مسار الواجهات (Frontend - Elzero Web School)
+  frontend: {
+    title: "مسار تطوير الواجهات الأمامية (Frontend Development)",
+    overview: "التأسيس البرمجي العملي الشامل مع المهندس أسامة الزيرو: من أساسيات الويب HTML و CSS وصولاً إلى JavaScript التفاعلية، بناء المشروعات الحقيقية، والتعامل مع الـ DOM و Web APIs.",
+    keySkills: ["HTML5 & CSS3 Semantic Design", "JavaScript ES6+ Core", "DOM & Event Manipulation", "Responsive Web Design"],
+    lectures: [
+      { title: "01. Introduction and What Is Web Development?", videoUrl: "https://www.youtube.com/watch?v=qfPUMV9J5yw", desc: "مدخل شامل لفهم طبيعة الويب ومحركات التصفح." },
+      { title: "02. Elements, Doctype, and Head Meta Information", videoUrl: "https://www.youtube.com/watch?v=qyVkLebgfzY", desc: "بناء الهيكل العظمي للموقع وضبط إعدادات الـ SEO." },
+      { title: "03. Headings, Paragraphs, and Text Formatting", videoUrl: "https://www.youtube.com/watch?v=_-eh8cwGGwg", desc: "تنسيق الفقرات والنصوص واستخدام وسوم الـ Semantic." },
+      { title: "04. Links, Anchors, and Target Attributes", videoUrl: "https://www.youtube.com/watch?v=heuDmrEAgUA", desc: "الربط بين صفحات الويب وتوجيه الروابط الخارجية." },
+      { title: "05. Images, Formats, and Attributes Handling", videoUrl: "https://www.youtube.com/watch?v=vkc99WHcDTk", desc: "إدراج الصور وإدارتها وتحسين أداء التحميل." },
+      { title: "06. Lists (Ordered, Unordered, and Description)", videoUrl: "https://www.youtube.com/watch?v=DflEcuzjsyA", desc: "بناء القوائم المنسدلة وهياكل المنيو." },
+      { title: "07. Tables (Structure, Cells, and Data Formatting)", videoUrl: "https://www.youtube.com/watch?v=gIGGhFlGgLI", desc: "إنشاء وتصميم الجداول لعرض البيانات المعقدة." },
+      { title: "08. Forms (Inputs, Validations, and Methods)", videoUrl: "https://www.youtube.com/watch?v=FKrfis1W1tk", desc: "بناء نماذج تسجيل المستخدمين وحقول الإدخال الاحترافية." }
+    ]
+  },
+
+  // 2. مسار الفول استاك الكامل (Dr. Hossam Magdy Balaha - 69 حلقة كاملة بالترتيب)
+  fullstack: {
+    title: "مسار الويب المتكامل الشامل (Full Stack Web Development)",
+    overview: "دورة شاملة ومكثفة مع د. حسام مجدي بلحة (69 محاضرة عملية) تغطي المسار من الصفر: HTML، ثم احتراف CSS، يليهما JavaScript وتطبيقاتها، والربط المتكامل مع الـ Backend وقواعد البيانات وبناء المشروعات الواقعية.",
+    keySkills: ["Full Stack Architecture", "HTML5 & Modern CSS3", "JavaScript Programming", "Backend Integration & Deployment"],
+    lectures: [
+      { title: "01. HMB | FSWD | Introduction to Full Stack Development", videoUrl: "https://www.youtube.com/watch?v=OKG_0CEKoj4", desc: "مقدمة شاملة عن الويب وكيف تعمل الخوادم والمتصفحات." },
+      { title: "02. HMB | FSWD | CH01 | HTML 01 - Basics & Structure", videoUrl: "https://www.youtube.com/watch?v=N_YWNVg3j5g", desc: "تأسيس لغة HTML وهيكل الصفحة." },
+      { title: "03. HMB | FSWD | CH01 | HTML 02 - Elements & Semantics", videoUrl: "https://www.youtube.com/watch?v=DbMZSg9cac0", desc: "العناصر الأساسية والوسوم الدلالية." },
+      { title: "04. HMB | FSWD | CH01 | HTML 03 - Media & Links", videoUrl: "https://www.youtube.com/watch?v=TJkoOii53do", desc: "الوسائط المتعددة والروابط التشعبية." },
+      { title: "05. HMB | FSWD | CH01 | HTML 04 - Tables & Lists", videoUrl: "https://www.youtube.com/watch?v=KM0mPGqr4D0", desc: "الجداول والقوائم وتنسيق البيانات." },
+      { title: "06. HMB | FSWD | CH01 | HTML 05 - Forms & Controls", videoUrl: "https://www.youtube.com/watch?v=RTDrEl8mB1A", desc: "نماذج الإدخال والتحقق من البيانات." },
+      { title: "07. HMB | FSWD | CH01 | HTML 06 - Advanced HTML Features", videoUrl: "https://www.youtube.com/watch?v=JF3hL8Fkh40", desc: "مميزات HTML5 المتقدمة وتجربة المستخدم." },
+      { title: "08. HMB | FSWD | CH02 | CSS 01 - Selectors & Syntax", videoUrl: "https://www.youtube.com/watch?v=PdrsuHMZkjk", desc: "بداية مسار التنسيق وتحديد العناصر." },
+      { title: "09. HMB | FSWD | CH02 | CSS 02 - Colors, Backgrounds & Text", videoUrl: "https://www.youtube.com/watch?v=V56czVJYLQs", desc: "الألوان، الخلفيات، وتنسيق الخطوط." },
+      { title: "10. HMB | FSWD | CH02 | CSS 03 - Box Model (Margin, Padding, Border)", videoUrl: "https://www.youtube.com/watch?v=lSgPcV6jxbM", desc: "فهم نموذج الصندوق وأبعاد العناصر." },
+      { title: "11. HMB | FSWD | CH02 | CSS 04 - Display & Visibility", videoUrl: "https://www.youtube.com/watch?v=PLtMzoDtPK0", desc: "خصائص العرض والإخفاء والتحكم بالشاشة." },
+      { title: "12. HMB | FSWD | CH02 | CSS 05 - Positioning & Floating", videoUrl: "https://www.youtube.com/watch?v=myFescuGLPM", desc: "تموضع العناصر النسبي والمطلق." },
+      { title: "13. HMB | FSWD | CH02 | CSS 06 - Flexbox Layout Model", videoUrl: "https://www.youtube.com/watch?v=W4Cd4_yffgw", desc: "احتراف توزيع العناصر بالـ Flexbox." },
+      { title: "14. HMB | FSWD | CH02 | CSS 07 - CSS Grid Layout", videoUrl: "https://www.youtube.com/watch?v=Kcs4PltC4s4", desc: "بناء الشبكات المعقدة بـ CSS Grid." },
+      { title: "15. HMB | FSWD | CH02 | CSS 08 - Responsive Web Design & Media Queries", videoUrl: "https://www.youtube.com/watch?v=9iDwSAtmevc", desc: "تجاوب المواقع مع شاشات الموبايل والتابلت." },
+      { title: "16. HMB | FSWD | CH02 | CSS 09 - Transitions & Transforms", videoUrl: "https://www.youtube.com/watch?v=30SlcuU7QyM", desc: "الحركات والتحولات البصرية الانسيابية." },
+      { title: "17. HMB | FSWD | CH02 | CSS 10 - Keyframes Animations", videoUrl: "https://www.youtube.com/watch?v=U1YvkGUC6Xg", desc: "تصميم التحريكات المعقدة والأنيميشن." },
+      { title: "18. HMB | FSWD | CH02 | CSS 11 - Modern CSS Project", videoUrl: "https://www.youtube.com/watch?v=tmtTPA8zlwQ", desc: "مشروع تطبيقي كامل على ما تم تعلمه في CSS." },
+      { title: "19. HMB | FSWD | CH03 | JS 01 - Introduction to JavaScript", videoUrl: "https://www.youtube.com/watch?v=5b4g_Vfoy4Q", desc: "مدخل للغة الجافاسكريبت وبيئة التشغيل." },
+      { title: "20. HMB | FSWD | CH03 | JS 02 - Variables & Data Types", videoUrl: "https://www.youtube.com/watch?v=1lCmEgSdsJw", desc: "المتغيرات وأنواع البيانات الأساسية." },
+      { title: "21. HMB | FSWD | CH03 | JS 03 - Operators & Expressions", videoUrl: "https://www.youtube.com/watch?v=qarfa08s58Q", desc: "العمليات الحسابية والمنطقية." },
+      { title: "22. HMB | FSWD | CH03 | JS 04 - Conditionals (If-Else, Switch)", videoUrl: "https://www.youtube.com/watch?v=ClEdnVCks-g", desc: "اتخاذ القرارات والمسارات الشرطية." },
+      { title: "23. HMB | FSWD | CH03 | JS 05 - Loops & Iteration (For, While)", videoUrl: "https://www.youtube.com/watch?v=aq21I0Jha4I", desc: "حلقات التكرار والتعامل مع المجموعات." },
+      { title: "24. HMB | FSWD | CH03 | JS 06 - Functions & Scope", videoUrl: "https://www.youtube.com/watch?v=wO9NImRcszE", desc: "بناء الدوال ونطاق المتغيرات Scope." },
+      { title: "25. HMB | FSWD | CH03 | JS 07 - Arrays & Array Methods", videoUrl: "https://www.youtube.com/watch?v=wm2j5VgkIcM", desc: "المصفوفات والعمليات المتقدمة عليها (Map, Filter)." },
+      { title: "26. HMB | FSWD | CH03 | JS 08 - Objects & JSON", videoUrl: "https://www.youtube.com/watch?v=hMaqkMRwuPs", desc: "الكائنات وهيكلة البيانات بصيغة JSON." },
+      { title: "27. HMB | FSWD | CH03 | JS 09 - DOM Manipulation (Part 1)", videoUrl: "https://www.youtube.com/watch?v=eDGheUyt8Q8", desc: "التحكم في عناصر صفحة الويب عبر الكود." },
+      { title: "28. HMB | FSWD | CH03 | JS 10 - DOM Manipulation (Part 2)", videoUrl: "https://www.youtube.com/watch?v=CpFm66aFAlw", desc: "تعديل النصوص، الفئات، والتنسيقات ديناميكياً." },
+      { title: "29. HMB | FSWD | CH03 | JS 11 - Event Handling & Listeners", videoUrl: "https://www.youtube.com/watch?v=dhBwwwHaEYw", desc: "التفاعل مع نقرات المستخدم وحركات الفأرة." },
+      { title: "30. HMB | FSWD | CH03 | JS 12 - Web Storage (LocalStorage & SessionStorage)", videoUrl: "https://www.youtube.com/watch?v=GJLNHM8eVy4", desc: "حفظ البيانات داخل متصفح المستخدم دون إنترنت." },
+      { title: "31. HMB | FSWD | CH03 | JS 13 - Asynchronous JS & Callbacks", videoUrl: "https://www.youtube.com/watch?v=wQeaEEpdNvs", desc: "مفاهيم العمليات غير المتزامنة." },
+      { title: "32. HMB | FSWD | CH03 | JS 14 - Promises & Async/Await", videoUrl: "https://www.youtube.com/watch?v=OB-czt5dn5E", desc: "إتقان الـ Promises و Async/Await الحديثة." },
+      { title: "33. HMB | FSWD | CH03 | JS 15 - Fetch API & AJAX Requests", videoUrl: "https://www.youtube.com/watch?v=Lqqm37PvVBQ", desc: "جلب وإرسال البيانات للـ APIs الخارجية." },
+      { title: "34. HMB | FSWD | CH03 | JS 16 - Interactive JavaScript Project", videoUrl: "https://www.youtube.com/watch?v=1fXCMZMWwD4", desc: "مشروع تطبيقي كامل يجمع مهارات الواجهات." },
+      { title: "35. HMB | FSWD | CH04 | Backend Overview & Server Architecture", videoUrl: "https://www.youtube.com/watch?v=VtfwY5UlLV8", desc: "فهم معمارية الخوادم والـ Client-Server Model." },
+      { title: "36. HMB | FSWD | CH04 | Databases & Relational Modeling (SQL)", videoUrl: "https://www.youtube.com/watch?v=f6haEUKnLm8", desc: "تصميم قواعد البيانات والجداول والعلاقات." },
+      { title: "37. HMB | FSWD | CH04 | Database Queries & CRUD Operations", videoUrl: "https://www.youtube.com/watch?v=suvMPBKcJ0I", desc: "عمليات الإنشاء، القراءة، التعديل، والحذف." },
+      { title: "38. HMB | FSWD | CH04 | Backend Logic & Routing", videoUrl: "https://www.youtube.com/watch?v=e3ZvZJ6aUg0", desc: "توجيه المسارات والتعامل مع طلبات الـ HTTP." },
+      { title: "39. HMB | FSWD | CH04 | RESTful APIs Architecture & Endpoints", videoUrl: "https://www.youtube.com/watch?v=8tydY71tjz0", desc: "بناء واجهات برمجة التطبيقات القياسية." },
+      { title: "40. HMB | FSWD | CH04 | Authentication & Authorization Concepts", videoUrl: "https://www.youtube.com/watch?v=X7BOjMfMGyw", desc: "حماية الخادم والتحقق من هوية المستخدمين." },
+      { title: "41. HMB | FSWD | CH04 | Token-Based Security & Sessions", videoUrl: "https://www.youtube.com/watch?v=3LMWTq6itXM", desc: "إدارة الجلسات وحماية الـ Tokens." },
+      { title: "42. HMB | FSWD | CH05 | Full Stack Integration (Frontend + Backend)", videoUrl: "https://www.youtube.com/watch?v=m4m5WzvTCOI", desc: "ربط واجهات الـ Frontend بخادم الـ Backend." },
+      { title: "43. HMB | FSWD | CH05 | State Management Across Stack", videoUrl: "https://www.youtube.com/watch?v=8cximIuRkdY", desc: "إدارة تدفق البيانات وحالة التطبيق الموحدة." },
+      { title: "44. HMB | FSWD | CH05 | Error Handling & Debugging Best Practices", videoUrl: "https://www.youtube.com/watch?v=o95uHcHyE6A", desc: "معالجة الأخطاء وتأمين تدفق العمليات." },
+      { title: "45. HMB | FSWD | CH05 | Form Submissions & File Uploads", videoUrl: "https://www.youtube.com/watch?v=KXI8UYR42IY", desc: "إرسال البيانات ورفع الملفات للسيرفر." },
+      { title: "46. HMB | FSWD | CH05 | Security Vulnerabilities & Mitigations", videoUrl: "https://www.youtube.com/watch?v=2bGfJVojpAg", desc: "حماية التطبيق من ثغرات XSS و CSRF و SQL Injection." },
+      { title: "47. HMB | FSWD | CH06 | Full Stack Real-World Project (Part 1)", videoUrl: "https://www.youtube.com/watch?v=-mXVcJ6QdBQ", desc: "البدء في بناء مشروع واقعي متكامل." },
+      { title: "48. HMB | FSWD | CH06 | Full Stack Project - Database Setup (Part 2)", videoUrl: "https://www.youtube.com/watch?v=v7F7CnhdH-E", desc: "إعداد قاعدة البيانات ومخططات الجداول." },
+      { title: "49. HMB | FSWD | CH06 | Full Stack Project - Backend APIs (Part 3)", videoUrl: "https://www.youtube.com/watch?v=L8nccuDHsaM", desc: "برمجة الـ Endpoints والتحقق من المدخلات." },
+      { title: "50. HMB | FSWD | CH06 | Full Stack Project - Frontend UI (Part 4)", videoUrl: "https://www.youtube.com/watch?v=fPmDchNQXME", desc: "بناء واجهات المستخدم التفاعلية المتجاوبة." },
+      { title: "51. HMB | FSWD | CH06 | Full Stack Project - Connecting APIs (Part 5)", videoUrl: "https://www.youtube.com/watch?v=iD8KQipsgXQ", desc: "ربط الواجهات وتفعيل التفاعل الفوري." },
+      { title: "52. HMB | FSWD | CH06 | Full Stack Project - User Auth Flow (Part 6)", videoUrl: "https://www.youtube.com/watch?v=-0dCRfLPsIQ", desc: "تفعيل نظام تسجيل الدخول وإنشاء الحسابات." },
+      { title: "53. HMB | FSWD | CH06 | Full Stack Project - Dashboard & Admin (Part 7)", videoUrl: "https://www.youtube.com/watch?v=j_jtlwDaLZE", desc: "بناء لوحة تحكم المشرف وإدارة البيانات." },
+      { title: "54. HMB | FSWD | CH06 | Full Stack Project - CRUD Polish (Part 8)", videoUrl: "https://www.youtube.com/watch?v=6JhulI_GH2Y", desc: "تحسين عمليات التعديل والحذف وإظهار التنبيهات." },
+      { title: "55. HMB | FSWD | CH06 | Full Stack Project - Search & Filter (Part 9)", videoUrl: "https://www.youtube.com/watch?v=-4sAC8oFp3k", desc: "إضافة البحث المباشر والفلترة المتقدمة." },
+      { title: "56. HMB | FSWD | CH06 | Full Stack Project - Pagination (Part 10)", videoUrl: "https://www.youtube.com/watch?v=hKECQQLbHfw", desc: "تقسيم الصفحات لتسريع تحميل البيانات الضخمة." },
+      { title: "57. HMB | FSWD | CH06 | Full Stack Project - Testing & QA (Part 11)", videoUrl: "https://www.youtube.com/watch?v=JHMbXDYWhI4", desc: "فحص جودة النظام واختبار المسارات." },
+      { title: "58. HMB | FSWD | CH06 | Full Stack Project - Code Optimization (Part 12)", videoUrl: "https://www.youtube.com/watch?v=cJ4PEGJnl6w", desc: "تحسين أداء الكود وتنظيف البنية." },
+      { title: "59. HMB | FSWD | CH07 | Deployment & Hosting Preparation", videoUrl: "https://www.youtube.com/watch?v=B97v3y-Hp-s", desc: "تجهيز المشروع لبيئة الإنتاج والرفع السحابي." },
+      { title: "60. HMB | FSWD | CH07 | Domain Configuration & HTTPS", videoUrl: "https://www.youtube.com/watch?v=8M4wBX1PjsM", desc: "ربط الدومين وضبط شهادات الأمان SSL." },
+      { title: "61. HMB | FSWD | CH07 | Production Database Setup", videoUrl: "https://www.youtube.com/watch?v=GK9KDWeDqhM", desc: "إعداد قاعدة البيانات الحية والنسخ الاحتياطي." },
+      { title: "62. HMB | FSWD | CH07 | Live Deployment Walkthrough", videoUrl: "https://www.youtube.com/watch?v=ZCL2qr8p4Rg", desc: "نشر المشروع على السيرفر الفعلي خطوة بخطوة." },
+      { title: "63. HMB | FSWD | CH07 | Continuous Maintenance & Monitoring", videoUrl: "https://www.youtube.com/watch?v=rMYbpnIwvJA", desc: "مراقبة سجلات السيرفر وتحليل الأداء." },
+      { title: "64. HMB | FSWD | CH08 | Portfolio Preparation for Job Market", videoUrl: "https://www.youtube.com/watch?v=Jb8oTrPZ0q8", desc: "تجهيز البورتفوليو وعرض المشاريع للشركات." },
+      { title: "65. HMB | FSWD | CH08 | Resume & Technical Interview Tips", videoUrl: "https://www.youtube.com/watch?v=fqO7m4HgQVQ", desc: "أسرار المقابلات التقنية وأسئلة التوظيف." },
+      { title: "66. HMB | FSWD | CH08 | GitHub Best Practices & Open Source", videoUrl: "https://www.youtube.com/watch?v=QM_VbfcwYa4", desc: "إدارة مستودعات GitHub والعمل الجماعي." },
+      { title: "67. HMB | FSWD | CH08 | Freelancing Strategies & Client Management", videoUrl: "https://www.youtube.com/watch?v=p3vRmVB8fYE", desc: "العمل الحر وتسعير المشاريع البرمجية." },
+      { title: "68. HMB | FSWD | CH08 | Next Steps in Advanced Engineering", videoUrl: "https://www.youtube.com/watch?v=3F3iIPTAktI", desc: "خارطة الطريق للتعمق في المعماريات المتقدمة." },
+      { title: "69. HMB | FSWD | Course Conclusion & Summary", videoUrl: "https://www.youtube.com/watch?v=yhHLr1nWVAI", desc: "ملخص المسار والختام." }
+    ]
+  },
+
+  // 3. مسار الباك إند والخوادم
+  backend: {
+    title: "مسار تطوير الخوادم وقواعد البيانات (Backend Development)",
+    overview: "تأسيس عميق في قواعد البيانات SQL، هندسة معمارية السيرفرات، بناء الـ APIs الآمنة، والمصادقة الاحترافية.",
+    keySkills: ["SQL Database Design", "RESTful APIs", "Authentication & Security", "Server Architecture"],
+    lectures: [
+      { title: "01. Introduction to Backend Architecture & Database Design", videoUrl: "https://www.youtube.com/watch?v=VtfwY5UlLV8", desc: "فهم كيفية معالجة الطلبات وإدارة السيرفرات." },
+      { title: "02. Relational Database Modeling & SQL Queries", videoUrl: "https://www.youtube.com/watch?v=f6haEUKnLm8", desc: "تصميم الجداول وربط العلاقات وتنفيذ الاستعلامات." },
+      { title: "03. Building Secure RESTful APIs & Middleware", videoUrl: "https://www.youtube.com/watch?v=8tydY71tjz0", desc: "هيكلة الـ Endpoints وتأمين تدفق البيانات." }
     ]
   }
 };
@@ -2249,7 +2363,20 @@ window.selectCourseLevel = function(courseId, levelId) {
   if (typeof window.closeVideoPlayer === "function") {
     window.closeVideoPlayer();
   }
-
+// فحص مسار الويب
+  if (courseId === "c_web_dev") {
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const webData = window.webCurriculumDB ? window.webCurriculumDB[levelId] : null;
+    if (webData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = webData.title;
+      document.getElementById("officeProgramDesc").textContent = webData.overview;
+      document.getElementById("officeSkillsList").innerHTML = webData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(webData);
+    }
+  }
   const quizSec = document.getElementById("quizSection");
   if (quizSec) quizSec.classList.add("hidden");
 
