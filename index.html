@@ -600,6 +600,22 @@
 
     <!-- المحتوى الداخلي الشامل -->
     <div id="levelDetailedContent" class="space-y-6">
+
+      <!-- كارت الحماية: يظهر إذا كان الطالب غير مفعل في هذا المسار -->
+      <div id="courseLockedAlert" class="hidden p-8 rounded-2xl bg-[#11131A] border border-amber-500/30 text-center space-y-4">
+        <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 border border-amber-500/20 text-2xl flex items-center justify-center mx-auto">
+          🔒
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-base font-bold text-white">المحتوى محمي وخاص بالمشتركين</h3>
+          <p class="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+            للوصول إلى كافة المحاضرات، الكويزات، والملفات التطبيقية، يُرجى تأكيد الاشتراك ليقوم فريق الإدارة بتفعيل حسابك فوراً.
+          </p>
+        </div>
+        <button onclick="toggleCourseEnrollment()" class="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition shadow-lg cursor-pointer">
+          اشترك الآن لتفعيل المسار 🚀
+        </button>
+      </div>
 <!-- كارت النبذة النظرية والتطبيقية المباشرة (يظهر تلقائياً لمسارات الأوفيس) -->
       <div id="officeOverviewCard" class="hidden p-6 rounded-xl bg-[#11131A] border border-slate-800 space-y-4">
         <div class="space-y-2">
@@ -1084,54 +1100,7 @@ let currentFilter = "all";
 window.currentItemData = null;
 let currentOpenedPkgId = "pkg_fullstack";
 
-function renderCatalog() {
-  const container = document.getElementById("coursesSlider");
-  if (!container) return;
-  const lang = currentLang;
-  const isEn = lang === "en";
 
-  let items = Object.values(window.catalogData).filter(item => {
-    if (currentFilter === "all") return true;
-    if (currentFilter === "pkg") return item.type === "package";
-    return item.year === currentFilter;
-  });
-
-  if (items.length === 0) {
-    container.innerHTML = `<div class="w-full text-center py-12 text-slate-400">لا توجد كورسات مطابقة.</div>`;
-    return;
-  }
-
-  container.innerHTML = items.map(item => {
-    const isPkg = item.type === "package";
-    const codeBadge = isPkg ? "⭐" : (item.code[lang] || item.code);
-    const titleText = typeof item.title === "object" ? item.title[lang] : item.title;
-    const categoryText = typeof item.category === "object" ? item.category[lang] : item.category;
-    const descText = isPkg ? item.sub[lang] : item.desc[lang];
-    const badgeText = item.badge ? item.badge[lang] : "";
-    const priceText = `${item.price} ${isEn ? 'EGP' : 'ج.م'}`;
-return `
-      <article class="min-w-[290px] md:min-w-[340px] snap-start rounded-2xl border border-theme bg-surface p-3 flex flex-col justify-between transition hover:border-slate-600">
-        <div onclick="openImageLightbox('${item.img}')" class="rounded-xl overflow-hidden relative aspect-[4/3] bg-black cursor-pointer" title="معاينة البوستر">
-          ${badgeText ? `<span class="absolute top-2.5 start-2.5 z-10 text-[10px] font-bold bg-slate-900/90 text-slate-200 border border-slate-700 px-2 py-0.5 rounded">${badgeText}</span>` : ""}
-          <img src="${item.img}" class="w-full h-full object-cover transition duration-200 hover:scale-105" onerror="this.style.display='none'" />
-        </div>
-        <div class="p-2.5 flex-1 flex flex-col justify-between space-y-3 mt-2">
-          <div>
-            <div class="flex items-center justify-between text-[11px] text-muted">
-              <span>${categoryText}</span>
-              <span class="font-bold text-main font-mono">${priceText}</span>
-            </div>
-            <h3 class="font-bold text-sm text-main mt-1">${titleText}</h3>
-            <p class="text-xs text-muted line-clamp-2 mt-1">${descText}</p>
-          </div>
-          <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-elevated hover:bg-slate-700 border border-theme text-xs font-bold text-main transition cursor-pointer">
-            ${isEn ? 'View Syllabus' : 'استعراض المحتوى'}
-          </button>
-        </div>
-      </article>
-    `;
-  }).join("");
-}
 
 function filterCourses(type) {
   currentFilter = type;
@@ -1807,59 +1776,7 @@ function renderModalList(dataList) {
 
 
 
-// فتح واجهة الكورس وتحديد ما إذا كان مسار لغات أم برمجة
-window.openCourseView = function(courseId) {
-  const crs = window.catalogData[courseId];
-  if (!crs) return;
-  window.currentItemData = crs;
-  currentSelectedCourseId = courseId;
 
-  document.getElementById("crsTitle").textContent = typeof crs.title === "object" ? crs.title[currentLang] : crs.title;
-  document.getElementById("crsDesc").textContent = typeof crs.desc === "object" ? crs.desc[currentLang] : crs.desc;
-  document.getElementById("crsPrice").textContent = `${crs.price} ج.م`;
-  document.getElementById("crsCategory").textContent = (crs.year === 'tech' ? 'TECH & CYBER' : 'LANGUAGE TRACK');
-
-  ["mainNavbar", "hero", "years", "courses", "features", "honors", "reviews", "instructor", "mainFooter"].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.classList.add("hidden");
-  });
-
-  const levelsSection = document.getElementById("courseLevelsSection");
-  const languagePortals = document.getElementById("languageSkillsPortals");
-  const levelsGrid = document.getElementById("levelsCardsGrid");
-  const courseLevels = window.courseLevelsDB ? window.courseLevelsDB[courseId] : null;
-
-  // إذا كان الكورس يحتوي على مستويات (مثل الإنجليزي والألماني)
-  if (courseLevels && courseLevels.length > 0) {
-    if (levelsSection) levelsSection.classList.remove("hidden");
-    if (languagePortals) {
-      languagePortals.classList.remove("hidden");
-      languagePortals.classList.add("grid");
-    }
-
-    levelsGrid.innerHTML = courseLevels.map((lvl, index) => `
-      <div onclick="selectCourseLevel('${courseId}', '${lvl.id}')" id="levelCard_${lvl.id}" class="level-capsule-btn ${index === 0 ? 'active' : ''}">
-        <div>
-          <span class="block text-xs font-bold text-white font-mono">${lvl.name}</span>
-          <span class="block text-[10px] text-slate-400">${lvl.sub}</span>
-        </div>
-      </div>
-    `).join("");
-
-    selectCourseLevel(courseId, courseLevels[0].id);
-  } else {
-    // كورسات البرمجة والتقنية (بدون مستويات لغوية)
-    if (levelsSection) levelsSection.classList.add("hidden");
-    if (languagePortals) {
-      languagePortals.classList.remove("grid");
-      languagePortals.classList.add("hidden");
-    }
-    window.loadFirestoreLectures(courseId);
-  }
-
-  document.getElementById("courseView").classList.remove("hidden");
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
 
 // دالة جلب المحاضرات المنشورة مع معالجة احترافية لحالة عدم وجود محاضرات
 window.loadFirestoreLectures = async function(courseOrLevelKey) {
@@ -1981,21 +1898,174 @@ window.selectCourseLevel = function(courseId, levelId) {
     }
   }
 };
+window.currentUserEnrolledCourses = []; // لتخزين الكورسات المشترك بها الطالب
 
-// عرض محتويات المستوى والمحاضرات معرباً بالكامل
+function renderCatalog() {
+  const container = document.getElementById("coursesSlider");
+  if (!container) return;
+  const lang = currentLang;
+  const isEn = lang === "en";
+
+  let items = Object.values(window.catalogData).filter(item => {
+    if (currentFilter === "all") return true;
+    if (currentFilter === "pkg") return item.type === "package";
+    return item.year === currentFilter;
+  });
+
+  // فرز الكورسات: المشترك بها تظهر أولاً
+  const enrolledList = window.currentUserEnrolledCourses || [];
+  items.sort((a, b) => {
+    const aEnrolled = enrolledList.includes(a.id);
+    const bEnrolled = enrolledList.includes(b.id);
+    if (aEnrolled && !bEnrolled) return -1;
+    if (!aEnrolled && bEnrolled) return 1;
+    return 0;
+  });
+
+  if (items.length === 0) {
+    container.innerHTML = `<div class="w-full text-center py-12 text-slate-400">لا توجد كورسات مطابقة.</div>`;
+    return;
+  }
+
+  container.innerHTML = items.map(item => {
+    const isPkg = item.type === "package";
+    const isEnrolled = enrolledList.includes(item.id);
+    const titleText = typeof item.title === "object" ? item.title[lang] : item.title;
+    const categoryText = typeof item.category === "object" ? item.category[lang] : item.category;
+    const descText = isPkg ? item.sub[lang] : item.desc[lang];
+    const badgeText = item.badge ? item.badge[lang] : "";
+    const priceText = `${item.price} ${isEn ? 'EGP' : 'ج.م'}`;
+
+    return `
+      <article class="min-w-[290px] md:min-w-[340px] snap-start rounded-2xl border ${isEnrolled ? 'border-emerald-500/40 bg-emerald-950/10' : 'border-theme bg-surface'} p-3 flex flex-col justify-between transition hover:border-slate-600">
+        <div onclick="openImageLightbox('${item.img}')" class="rounded-xl overflow-hidden relative aspect-[4/3] bg-black cursor-pointer" title="معاينة البوستر">
+          ${isEnrolled ? `<span class="absolute top-2.5 start-2.5 z-10 text-[10px] font-bold bg-emerald-600 text-white px-2 py-0.5 rounded shadow">مشترك ومفعّل ✓</span>` : (badgeText ? `<span class="absolute top-2.5 start-2.5 z-10 text-[10px] font-bold bg-slate-900/90 text-slate-200 border border-slate-700 px-2 py-0.5 rounded">${badgeText}</span>` : "")}
+          <img src="${item.img}" class="w-full h-full object-cover transition duration-200 hover:scale-105" onerror="this.style.display='none'" />
+        </div>
+        <div class="p-2.5 flex-1 flex flex-col justify-between space-y-3 mt-2">
+          <div>
+            <div class="flex items-center justify-between text-[11px] text-muted">
+              <span>${categoryText}</span>
+              <span class="font-bold ${isEnrolled ? 'text-emerald-400' : 'text-main'} font-mono">${isEnrolled ? 'تم الاشتراك' : priceText}</span>
+            </div>
+            <h3 class="font-bold text-sm text-main mt-1">${titleText}</h3>
+            <p class="text-xs text-muted line-clamp-2 mt-1">${descText}</p>
+          </div>
+          
+          <div class="pt-1">
+            ${isEnrolled ? `
+              <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white shadow-lg transition cursor-pointer text-center">
+                متابعة الدراسة الآن ←
+              </button>
+            ` : `
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-elevated hover:bg-slate-700 border border-theme text-xs font-bold text-main transition cursor-pointer text-center">
+                  ${isEn ? 'Syllabus' : 'استعراض المحتوى'}
+                </button>
+                <button onclick="openPaymentModal('${item.id}', '${titleText.replace(/'/g, "\\'")}', '${priceText}')" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white shadow-lg transition cursor-pointer text-center">
+                  ${isEn ? 'Enroll Now' : 'اشترك في الكورس'}
+                </button>
+              </div>
+            `}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+window.openCourseView = function(courseId) {
+  const crs = window.catalogData[courseId];
+  if (!crs) return;
+  window.currentItemData = crs;
+  currentSelectedCourseId = courseId;
+
+  document.getElementById("crsTitle").textContent = typeof crs.title === "object" ? crs.title[currentLang] : crs.title;
+  document.getElementById("crsDesc").textContent = typeof crs.desc === "object" ? crs.desc[currentLang] : crs.desc;
+  document.getElementById("crsPrice").textContent = `${crs.price} ج.م`;
+  document.getElementById("crsCategory").textContent = (crs.year === 'tech' ? 'TECH & CYBER' : 'LANGUAGE TRACK');
+
+  // فحص حالة الاشتراك وزر الهيدر
+  const isEnrolled = window.currentUserEnrolledCourses.includes(courseId);
+  const crsActionBtn = document.getElementById("crsActionBtn");
+
+  if (crsActionBtn) {
+    if (isEnrolled) {
+      crsActionBtn.className = "px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs flex items-center gap-1.5 cursor-default";
+      crsActionBtn.innerHTML = "<span>✓</span> <span>حسابك مفعل في هذا المسار</span>";
+      crsActionBtn.onclick = null;
+    } else {
+      crsActionBtn.className = "px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition cursor-pointer whitespace-nowrap";
+      crsActionBtn.textContent = "تأكيد الاشتراك في المسار";
+      crsActionBtn.onclick = toggleCourseEnrollment;
+    }
+  }
+
+  ["mainNavbar", "hero", "years", "courses", "features", "honors", "reviews", "instructor", "mainFooter"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add("hidden");
+  });
+
+  const levelsSection = document.getElementById("courseLevelsSection");
+  const languagePortals = document.getElementById("languageSkillsPortals");
+  const levelsGrid = document.getElementById("levelsCardsGrid");
+  const courseLevels = window.courseLevelsDB ? window.courseLevelsDB[courseId] : null;
+
+  if (courseLevels && courseLevels.length > 0) {
+    if (levelsSection) levelsSection.classList.remove("hidden");
+    if (languagePortals) {
+      if (courseId === "c_office_suite") {
+        languagePortals.classList.add("hidden");
+      } else {
+        languagePortals.classList.remove("hidden");
+        languagePortals.classList.add("grid");
+      }
+    }
+
+    levelsGrid.innerHTML = courseLevels.map((lvl, index) => `
+      <div onclick="selectCourseLevel('${courseId}', '${lvl.id}')" id="levelCard_${lvl.id}" class="level-capsule-btn ${index === 0 ? 'active' : ''}">
+        <div>
+          <span class="block text-xs font-bold text-white font-mono">${lvl.name}</span>
+          <span class="block text-[10px] text-slate-400">${lvl.sub}</span>
+        </div>
+      </div>
+    `).join("");
+
+    selectCourseLevel(courseId, courseLevels[0].id);
+  } else {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    window.loadFirestoreLectures(courseId);
+  }
+
+  document.getElementById("courseView").classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 function renderLevelDetails(data) {
   if (!data) return;
 
   const lessonsContainer = document.getElementById("lessonsList");
   const countBadge = document.getElementById("firestoreLecturesCount");
+  const lockedAlert = document.getElementById("courseLockedAlert");
+  
+  // التحقق من اشتراك الطالب
+  const isEnrolled = window.currentUserEnrolledCourses.includes(currentSelectedCourseId);
 
-  // عرض المحاضرات والفيديوهات
+  if (!isEnrolled) {
+    if (lessonsContainer) lessonsContainer.innerHTML = "";
+    if (countBadge) countBadge.textContent = "المحتوى مغلق 🔒";
+    if (lockedAlert) lockedAlert.classList.remove("hidden");
+    return;
+  }
+
+  if (lockedAlert) lockedAlert.classList.add("hidden");
+
   if (lessonsContainer && data.lectures) {
     if (countBadge) countBadge.textContent = `${data.lectures.length} محاضرة متاحة`;
     
     lessonsContainer.innerHTML = data.lectures.map((lec, idx) => `
       <div id="lessonRow_${idx}" class="p-3.5 rounded-xl border border-slate-800 bg-[#11131A] flex items-center justify-between flex-wrap gap-3 hover:border-slate-700 transition">
-       
         <div class="flex items-center gap-3">
           <span class="w-7 h-7 rounded-lg bg-[#181B24] border border-slate-700/60 text-cyan-400 font-mono text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
           <div>
@@ -2005,7 +2075,7 @@ function renderLevelDetails(data) {
         </div>
         <div class="flex items-center gap-2">
           ${lec.videoUrl ? `
-            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})" class="px-3.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">             
+            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})" class="px-3.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">              
               مشاهدة المحاضرة
             </button>
           ` : ''}
@@ -2191,6 +2261,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   // مراقبة حالة تسجيل الدخول وتحديث الواجهة تلقائياً
+// مراقبة حالة تسجيل الدخول وتحديث الواجهة والكورسات المشترك بها تلقائياً
   onAuthStateChanged(auth, async (user) => {
     const guestActions = document.getElementById("drawerGuestActions");
     const studentActions = document.getElementById("drawerStudentActions");
@@ -2203,6 +2274,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = (user.email || "").toLowerCase().trim();
       const isAdmin = ADMIN_EMAILS.some(adm => adm.toLowerCase().trim() === email);
       const displayName = user.displayName || email.split("@")[0];
+
+      // قراءة الكورسات المفعلة للطالب من Firestore
+      try {
+        const studentDoc = await getDoc(doc(db, "students", user.uid));
+        if (studentDoc.exists()) {
+          window.currentUserEnrolledCourses = studentDoc.data().enrolledCourses || [];
+          if (typeof renderCatalog === "function") renderCatalog();
+        }
+      } catch (e) {
+        console.error("Error reading student courses:", e);
+      }
 
       if (guestActions) guestActions.classList.add("hidden");
       if (heroGuestCta) heroGuestCta.classList.add("hidden");
@@ -2217,6 +2299,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (adminActions) adminActions.classList.add("hidden");
       }
     } else {
+      window.currentUserEnrolledCourses = [];
+      if (typeof renderCatalog === "function") renderCatalog();
       if (guestActions) { guestActions.classList.remove("hidden"); guestActions.classList.add("flex"); }
       if (studentActions) studentActions.classList.add("hidden");
       if (adminActions) adminActions.classList.add("hidden");
