@@ -1177,6 +1177,21 @@ window.catalogData = {
     img: "image/pkg_fullstack.png",
     lessons: []
   },
+  // مسار تطوير تطبيقات الموبايل
+  c_flutter_mobile: {
+    id: "c_flutter_mobile",
+    type: "single",
+    year: "tech",
+    code: { ar: "موبايل", en: "Mobile" },
+    category: { ar: "تطوير تطبيقات الموبايل • Flutter", en: "Mobile App Development" },
+    title: { ar: "مسار تطوير وبرمجة تطبيقات الموبايل (Flutter & Dart)", en: "Mobile App Development with Flutter & Dart" },
+    desc: { ar: "كورس كامل من الصفر حتى الاحتراف: لغة Dart، بناء الواجهات UI، التنقل Navigation، التعامل مع APIs، ربط Firebase، وإطلاق التطبيقات على Google Play.", en: "Master Flutter & Dart: UI Widgets, Navigation, State Management, Firebase & App Publishing." },
+    badge: { ar: "مسار متكامل 📱", en: "Full Track 📱" },
+    price: "150",
+    oldPrice: "350",
+    img: "image/flutter.png",
+    lessons: []
+  },
 
   // 2. مسار الأمن السيبراني واختبار الاختراق
   c_cyber_sec: {
@@ -1188,6 +1203,21 @@ window.catalogData = {
     title: { ar: "مسار الأمن السيبراني واختبار الاختراق (Cyber Security)", en: "Cyber Security & Ethical Hacking" },
     desc: { ar: "التأسيس في شبكات الحاسب، نظام Linux، اكتشاف وتحليل الثغرات واختبار الاختراق العملي.", en: "Computer Networks, Linux Administration, Vulnerability Assessment & Ethical Hacking." },
     badge: { ar: "الأكثر طلباً 🛡️", en: "Top Security 🛡️" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/cyber.png",
+    lessons: []
+  },
+  // مسار أساسيات شبكات الحاسب
+  c_networking: {
+    id: "c_networking",
+    type: "single",
+    year: "tech",
+    code: { ar: "شبكات", en: "Network" },
+    category: { ar: "شبكات الحاسب وتكنولوجيا المعلومات", en: "Computer Networks & IT" },
+    title: { ar: "مسار أساسيات ومفاهيم شبكات الحاسب (CCNA & Network Fund)", en: "Computer Networks Fundamentals" },
+    desc: { ar: "شرح شامل ومبسط مع م. عماد نشأت (IT Dose) بأسلوب الوايت بورد: طبقات OSI، بروتوكولات TCP/IP، الراوتر والسويتش، الـ Subnetting، والأمان.", en: "Master Networking Basics: OSI Model, IP Addressing, DNS, DHCP, VLAN, Firewalls & Protocols." },
+    badge: { ar: "تأسيس معتمد 🌐", en: "Network Core 🌐" },
     price: "150",
     oldPrice: "300",
     img: "image/cyber.png",
@@ -1556,6 +1586,165 @@ window.cloudCurriculumDB = {
       { title: "78. [39] AZ 104 Azure Monitor Pricing: How Much Does It REALLY Cost ? Arabic - شرح", videoUrl: "https://www.youtube.com/watch?v=JiRiLmdmDZ0", desc: "حساب تكاليف المراقبة وحجم السجلات المستهلكة." },
       { title: "79. [40] AZ 104 Azure Backup: Introduction to Protecting Your Cloud Data", videoUrl: "https://www.youtube.com/watch?v=r3o1WIHCI5o", desc: "حماية البيانات وإنشاء النسخ الاحتياطية بـ Azure Backup." },
       { title: "80. [41] AZ 104 Azure Site Recovery: Disaster Recovery Planning & Setup", videoUrl: "https://www.youtube.com/watch?v=jKj8Y5HG76Y", desc: "خطة التعافي من الكوارث وإدارة جاهزية الأعمال." }
+    ]
+  }
+};
+
+window.flutterCurriculumDB = {
+  main: {
+    title: "مسار تطوير وبرمجة تطبيقات الموبايل (Flutter & Dart)",
+    overview: "الدورة الشاملة للمهندس عمار الخطيب (117 محاضرة عملية) لبناء تطبيقات Android و iOS من الصفر وحتى نشرها على المتاجر الرسمية، متضمنة 4 مشاريع واقعية كاملة: تطبيق بطاقتي، الدليل السياحي Travel App، تطبيق الشات مع Firebase، وتطبيق المهام Todo App مع إدارة الحالة Provider.",
+    keySkills: ["Dart Fundamentals & OOP", "Flutter UI & Custom Widgets", "Navigation & Routing", "Firebase Auth & Firestore", "State Management (Provider)", "Publishing on Google Play"],
+    lectures: [
+      { title: "01. مقدمة عن فلاتر - تعلم برمجة تطبيقات الموبايل باستخدام فلاتر : Flutter course", videoUrl: "https://www.youtube.com/watch?v=lRercKJaAes", desc: "مدخل شامل لفهم إطار عمل Flutter ومميزاته." },
+      { title: "02. ما هو ولماذا فلاتر؟ - تعلم برمجة تطبيقات الموبايل باستخدام فلاتر : Flutter Course", videoUrl: "https://www.youtube.com/watch?v=W4xajA5e5nA", desc: "فلسفة فلاتر وكيفية بناء تطبيق يعمل على Android و iOS بكود واحد." },
+      { title: "03. تحميل وتثبيت فلاتر وبرنامج أندرويد استوديو 2021 : Flutter install", videoUrl: "https://www.youtube.com/watch?v=9Oblo1ZLY1I", desc: "تهيئة بيئة العمل وتثبيت Flutter SDK و Android Studio." },
+      { title: "04. تحميل وتثبيت فيجوال استوديو كود 2020 : Flutter", videoUrl: "https://www.youtube.com/watch?v=IxSNp7P36Qs", desc: "إعداد محرر VS Code وإضافات فلاتر ودارت." },
+      { title: "05. تطبيق بسيط جدا 01 - تعلم برمجة تطبيقات الموبايل : Create App Files", videoUrl: "https://www.youtube.com/watch?v=wlC5FBhrpTs", desc: "إنشاء أول مشروع وهيكلة ملفات التطبيق." },
+      { title: "06. تطبيق بسيط جدا 02 - تعلم برمجة تطبيقات الموبايل : Material App", videoUrl: "https://www.youtube.com/watch?v=JtcBZLbrajM", desc: "استخدام ويدجت MaterialApp وضبط الثيم." },
+      { title: "07. تطبيق بسيط جدا 03 - تعلم برمجة تطبيقات الموبايل : Scaffold Widget", videoUrl: "https://www.youtube.com/watch?v=n4dwi9l_X1k", desc: "بناء هيكل الشاشة باستخدام Scaffold و AppBar." },
+      { title: "08. تطبيق بسيط جدا 04 - تعلم إضافة الصور لتطبيقات الموبايل : Assets Images", videoUrl: "https://www.youtube.com/watch?v=Par2c-IJBAU", desc: "إدراج الصور في مجلد assets وضبط ملف pubspec.yaml." },
+      { title: "09. تطبيق بسيط 01 (بطاقتي) - كورس تعلم فلاتر باللغة العربية من الصفر : Create Files", videoUrl: "https://www.youtube.com/watch?v=fINHBP40uqk", desc: "البدء في تصميم وبناء تطبيق بطاقتي الشخصية." },
+      { title: "10. تطبيق بسيط 02 (بطاقتي) - دورة تطوير فلاتر للمبتدئين من الصفر : Stateless Widget", videoUrl: "https://www.youtube.com/watch?v=aigTbJnwv-8", desc: "فهم واستخدام الـ StatelessWidget للواجهات الثابتة." },
+      { title: "11. تطبيق بسيط 03 (بطاقتي) - سلسلة تطوير برامج الموبايل : Container Widget", videoUrl: "https://www.youtube.com/watch?v=4EZtvsvSswA", desc: "احتراف استخدام Container لضبط الهوامش والحواف." },
+      { title: "12. تطبيق بسيط 04 (بطاقتي) - كورس تطوير فلاتر للمبتدئين : Column & Row", videoUrl: "https://www.youtube.com/watch?v=fJwjM5bmBHU", desc: "تنظيم وترتيب العناصر رأسياً وأفقياً." },
+      { title: "13. تطبيق بسيط 05 (بطاقتي) - كورس تطوير فلاتر للمبتدئين : CircleAvatar", videoUrl: "https://www.youtube.com/watch?v=Abu0w1-YDy0", desc: "تصميم الصور الدائرية الشخصية داخل التطبيق." },
+      { title: "14. تطبيق بسيط 06 (بطاقتي) - كيف نضيف خط عربي مع فلاتر : Add Fonts", videoUrl: "https://www.youtube.com/watch?v=OmQlBteoWzc", desc: "إضافة واستخدام الخطوط العربية المخصصة." },
+      { title: "15. تطبيق بسيط 07 (بطاقتي) - كيف نستخدم الأيقونات من الصفر : Add Icons", videoUrl: "https://www.youtube.com/watch?v=urKMZHTvuBM", desc: "إدراج الأيقونات وتنسيقها بألوان متناسقة." },
+      { title: "16. تطبيق بسيط 08 (بطاقتي) - كيفية استخدام البطاقة مع فلاتر : Card & ListTile", videoUrl: "https://www.youtube.com/watch?v=2ywBwTK4qxs", desc: "بناء قوائم الاتصال بـ Card و ListTile." },
+      { title: "17. تطبيق بسيط 09 (بطاقتي) - تغيير شعار تطبيق الموبايل : App Icon", videoUrl: "https://www.youtube.com/watch?v=jh_alF4pymI", desc: "تخصيص أيقونة التطبيق التي تظهر على شاشة الهاتف." },
+      { title: "18. كيفية تشغيل تطبيق الموبايل على موبايل حقيقي خلال البرمجة : Run Mobile App on Real Device", videoUrl: "https://www.youtube.com/watch?v=RB-W4bNUnbU", desc: "تفعيل وضع المطور واختبار التطبيق على هاتف فعلي." },
+      { title: "19. تطبيق متوسط 01 - إنشاء الملفات : Create App Files", videoUrl: "https://www.youtube.com/watch?v=smjlMKDxlW0", desc: "البدء في مشروع التطبيق المتوسط وتنظيم الكود." },
+      { title: "20. تطبيق متوسط 02 - كيف نمنع خروج العناصر عن شاشة التطبيق : Expanded Widget", videoUrl: "https://www.youtube.com/watch?v=-VZHvAkzK1c", desc: "التحكم في المساحات المرنة بـ Expanded." },
+      { title: "21. تطبيق متوسط 03 - كيف نستخدم الأزرار في تطوير تطبيق الموبايل : Buttons & onPressed", videoUrl: "https://www.youtube.com/watch?v=1puDXWBEht4", desc: "أنواع الأزرار والتعامل مع أحداث النقر." },
+      { title: "22. تطبيق متوسط 04 - كيف نستخدم الدالة بتطوير تطبيقات الموبايل : Functions in Dart", videoUrl: "https://www.youtube.com/watch?v=brUGtdAJnhE", desc: "بناء واستدعاء الدوال البرمجية في لغة Dart." },
+      { title: "23. تطبيق متوسط 05 - كيف نستخدم المتغيرات في برمجة تطبيق الموبايل : Variables in Dart", videoUrl: "https://www.youtube.com/watch?v=KhTDULI2jTc", desc: "أنواع المتغيرات وتخزين القيم في الذاكرة." },
+      { title: "24. تطبيق متوسط 06 - ما هي أنواع المتغيرات في تطوير تطبيق الموبايل : Dart Data Types", videoUrl: "https://www.youtube.com/watch?v=48aPfXpLTrk", desc: "الأنواع الأساسية: String, int, double, bool." },
+      { title: "25. تطبيق متوسط 07 - ما الفرق بين أهم مكونين لتطوير التطبيق : Stateless vs. Stateful", videoUrl: "https://www.youtube.com/watch?v=pvEfXKifO4U", desc: "فهم تحديث الواجهات التفاعلية بـ StatefulWidget و setState." },
+      { title: "26. تطبيق متوسط 08 - كيف نولد رقم عشوائي في تطوير تطبيقات الموبايل : Random number", videoUrl: "https://www.youtube.com/watch?v=ytKryU1Vs5g", desc: "توليد القيم والأرقام العشوائية في Dart." },
+      { title: "27. استنساخ وتحميل ملفات أي تطبيق موبايل آخر من غيت هاب : Clone Apps Github", videoUrl: "https://www.youtube.com/watch?v=YFGBnyTF3tE", desc: "استيراد وتشغيل مشاريع مفتوحة المصدر من GitHub." },
+      { title: "28. تطبيق متوسط 01 - كيف نستخدم البرامج المساعدة في تطوير التطبيقات : Packages", videoUrl: "https://www.youtube.com/watch?v=KLtlGIXQyjU", desc: "إضافة واستخدام مكاتب pub.dev في المشروع." },
+      { title: "29. تطبيق متوسط 02 - كيف نستخدم المدخلات في الدالة لتطوير التطبيقات : Input argument", videoUrl: "https://www.youtube.com/watch?v=bhcbFNmZJ5U", desc: "تمرير المعاملات والـ Arguments إلى الدوال." },
+      { title: "30. متوسط 03 - تصميم وبرمجة تطبيق موبايل النغمات : Mobile App design", videoUrl: "https://www.youtube.com/watch?v=DAuW5pJqjuI", desc: "بناء وتصميم واجهة تطبيق تشغيل النغمات." },
+      { title: "31. تطبيق متوسط 04 - كيف نستخدم مخرجات الدالة لتطوير التطبيقات : Output in Functions", videoUrl: "https://www.youtube.com/watch?v=45G4q-CX4C0", desc: "التعامل مع القيم المرتجعة من الدوال (Return values)." },
+      { title: "32. تطبيق متوسط 05 - العمل على التصميم النهائي لتطبيق نغمات للمبتدئين : Final Design", videoUrl: "https://www.youtube.com/watch?v=cibpxicoAUQ", desc: "اللمسات النهائية لتطبيق النغمات التفاعلي." },
+      { title: "33. حدد هدفك لتصل - نصائح برمجية", videoUrl: "https://www.youtube.com/watch?v=b0Yq-c-JLNg", desc: "نصائح وإرشادات للاستمرار في التعلم والتطوير." },
+      { title: "34. فوق المتوسط 01 - إنشاء الملفات - برمجة تطبيق إختبار مع فلاتر : Create App files", videoUrl: "https://www.youtube.com/watch?v=uL8l0KbeEXY", desc: "بدء مشروع تطبيق اختبار تفاعلي Quiz App." },
+      { title: "35. فوق المتوسط 02 - عرض نتيجة إجابة الأسئلة على الشاشة : List in Dart", videoUrl: "https://www.youtube.com/watch?v=Wa6sMJIf9ZY", desc: "إدارة قائمة الأسئلة والإجابات بالمصفوفات." },
+      { title: "36. فوق المتوسط 03 - عرض الأسئلة واستدعائها من القائمة : List for questions", videoUrl: "https://www.youtube.com/watch?v=MFadZ5cOP9I", desc: "عرض الأسئلة والخيارات ديناميكياً على الشاشة." },
+      { title: "37. فوق المتوسط 04 - كيف نستخدم إذا الشرطية للتأكد من صحة الأسئلة : if Conditional", videoUrl: "https://www.youtube.com/watch?v=5cLg2_ZZ5vU", desc: "فحص الإجابات وحساب نتيجة الاختبار بالشروط." },
+      { title: "38. فوق المتوسط 05 - كيف تنشأ الكلاس والباني مع فلاتر : Classes & Constructor", videoUrl: "https://www.youtube.com/watch?v=krGB3zjKWP0", desc: "مدخل البرمجة كائنية التوجه OOP وبناء الكلاسات." },
+      { title: "39. فوق المتوسط 06 - كيفية تطوير وإضافة أيقون لقائمة عند الضغط على الزر : Add icons to list", videoUrl: "https://www.youtube.com/watch?v=Y7-rpMoQo2Q", desc: "إضافة مؤشرات الإجابات الصحيحة والخاطئة لحظياً." },
+      { title: "40. فوق المتوسط 07 - تبسيط الكود المعقد وتجريده مع فلاتر : Abstraction", videoUrl: "https://www.youtube.com/watch?v=bBwz0eC6E5o", desc: "مفهوم التجريد وتصميم بنية برمجية منظمة." },
+      { title: "41. فوق المتوسط 08 - تعلم التغليف أو الحماية في لغات البرمجة : Encapsulation", videoUrl: "https://www.youtube.com/watch?v=7f3Hoo5yIxM", desc: "حماية البيانات واستخدام الدوال الخاصة Private." },
+      { title: "42. فوق المتوسط 09 - تعلم التوريث في البرمجة لمنع التكرار : Inheritance", videoUrl: "https://www.youtube.com/watch?v=xFl3gjLvTcI", desc: "مفهوم الوراثة وإعادة استخدام الخصائص." },
+      { title: "43. فوق المتوسط 10 - تعلم تعدد الأشكال بالبرمجة : Polymorphism", videoUrl: "https://www.youtube.com/watch?v=WWpMAHp8gpg", desc: "إعادة كتابة وتكييف الدوال لتناسب كل فئة." },
+      { title: "44. فوق المتوسط 11 - إنهاء برمجة تطبيق الموبايل اختبار : Finishing the app", videoUrl: "https://www.youtube.com/watch?v=a55sLMvu36s", desc: "إكمال تطبيق الاختبار وإظهار النتيجة النهائية للمستخدم." },
+      { title: "45. برمجة تطبيق موبايل متجر إلكترونيات كامل مع فلاتر خطوة بخطوة : Electrical store mobile app", videoUrl: "https://www.youtube.com/watch?v=V9vL9whDEQc", desc: "مشروع كامل مدته 50 دقيقة لتصميم وتكويد متجر متكامل." },
+      { title: "46. فوق المتوسط 01 - شرح آلية عمل تطبيق الدليل السياحي ومراحل برمجته : Mobile travel app", videoUrl: "https://www.youtube.com/watch?v=FrYDUIdZNzo", desc: "التخطيط وبدء مشروع تطبيق الدليل السياحي Travel App." },
+      { title: "47. فوق المتوسط 02 - إنشاء ملفات التطبيق وتجهيز قاعدة البيانات : Travel app", videoUrl: "https://www.youtube.com/watch?v=gH55mpPfGBc", desc: "بناء نماذج البيانات ومصفوفات الرحلات السياحية." },
+      { title: "48. فوق المتوسط 03 - عرض الصور والعنوان من ملف البيانات : Travel app", videoUrl: "https://www.youtube.com/watch?v=3eGiYzl8uxI", desc: "عرض بطاقات الرحلات واستخراج الصور والنصوص." },
+      { title: "49. فوق المتوسط 04 - إضافة خط عربي وتحويل اتجاه الكتابة : Travel app", videoUrl: "https://www.youtube.com/watch?v=GHIUFzuTFIs", desc: "دعم اللغة العربية وضبط الاتجاه من اليمين لليسار RTL." },
+      { title: "50. فوق المتوسط 05 - التنقل بين صفحات البرنامج وفتح وإغلاق شاشات التطبيق : Travel app", videoUrl: "https://www.youtube.com/watch?v=fQsXCvru9Hc", desc: "استخدام Navigator للتبديل بين الشاشات." },
+      { title: "51. فوق المتوسط 06 - تمرير بيانات تطبيق الموبايل من خلال استخدام الباني : Travel mobile app", videoUrl: "https://www.youtube.com/watch?v=A4d6La_kMJI", desc: "نقل بيانات الرحلة المحددة إلى صفحة التفاصيل." },
+      { title: "52. فوق المتوسط 07 - تمرير وفتح صفحات التطبيق باستخدام الراوت : Travel app", videoUrl: "https://www.youtube.com/watch?v=snTHmeSKms8", desc: "تنظيم المسارات باستخدام Named Routes." },
+      { title: "53. فوق المتوسط 08 - استخدام متغير ثابت لتمرير وفتح صفحات التطبيق : Travel app", videoUrl: "https://www.youtube.com/watch?v=zy8JlDyi7uU", desc: "الممارسات الاحترافية لتسمية المسارات الثابتة." },
+      { title: "54. فوق المتوسط 09 - تجهيز بيانات الرحلات وإنشاء الباني لها : Travel app", videoUrl: "https://www.youtube.com/watch?v=k6rMYX0Png8", desc: "إنشاء الـ Data Models للرحلات والتصنيفات." },
+      { title: "55. فوق المتوسط 10 - فلترة الرحلات حسب التصنيفات : Travel app", videoUrl: "https://www.youtube.com/watch?v=3LyB26t0Brs", desc: "تصفية وعرض الرحلات التابعة لكل قسم." },
+      { title: "56. فوق المتوسط 11 - تصميم بطاقة الرحلات في صفحة التصنيفات : Travel app", videoUrl: "https://www.youtube.com/watch?v=eGt8wh6nB1Q", desc: "تنسيق كروت الرحلات وإظهار السعر والمدة." },
+      { title: "57. فوق المتوسط 12 - استكمال تصميم بطاقة الرحلات في صفحة التصنيفات : Travel app", videoUrl: "https://www.youtube.com/watch?v=bEyN_5z9ecU", desc: "إضافة تدرجات الألوان والتأثيرات الجمالية." },
+      { title: "58. فوق المتوسط 13 - كيفية فتح صفحة تفاصيل الرحلة : Travel app", videoUrl: "https://www.youtube.com/watch?v=Gd99AwQgFCk", desc: "برمجة النقر وفتح الشاشة الكاملة للرحلة." },
+      { title: "59. فوق المتوسط 14 - تصميم صفحة تفاصيل الرحلة : Travel app", videoUrl: "https://www.youtube.com/watch?v=nawTCIr1JNI", desc: "بناء واجهة التفاصيل وعرض خطة الأنشطة اليومية." },
+      { title: "60. فوق المتوسط 15 - برمجة شريط التبويب العلوي أو التاب بار : Travel app", videoUrl: "https://www.youtube.com/watch?v=1iCyq1cgGE0", desc: "استخدام DefaultTabController والتبديل بين التبويبات." },
+      { title: "61. فوق المتوسط 16 - برمجة شريط التبويب أو التاب بار في أسفل الشاشة : Travel Mobile app", videoUrl: "https://www.youtube.com/watch?v=j8i7IsSGcDo", desc: "بناء الـ BottomNavigationBar المخصص." },
+      { title: "62. فوق المتوسط 17 - ما هي الماب في لغة البرمجة دارت وكيفية استخدامها : Travel Mobile app", videoUrl: "https://www.youtube.com/watch?v=ZWvh_dEU3vw", desc: "التعامل مع هياكل البيانات Map (Key-Value)." },
+      { title: "63. فوق المتوسط 18 - برمجة قائمة السحب في الشريط العلوي لتطبيق الموبايل : Travel Mobile app", videoUrl: "https://www.youtube.com/watch?v=TRowxBh8ylw", desc: "تصميم القائمة الجانبية المنبثقة Drawer." },
+      { title: "64. فوق المتوسط 19 - برمجة وتطوير صفحة الفلترة لتطبيق موبايل الرحلات : Travel mobile app", videoUrl: "https://www.youtube.com/watch?v=6wIYuFuB9qM", desc: "بناء شاشة الفلاتر ومربعات الاختيار Switches." },
+      { title: "65. فوق المتوسط 20 - تمرير البيانات بين صفحات تطبيق الدليل السياحي : Travel mobile app", videoUrl: "https://www.youtube.com/watch?v=6HeOfLPieo8", desc: "تطبيق التفضيلات وحفظ حالة الفلترة عبر الصفحات." },
+      { title: "66. كيف يمكنك دعم المحتوى - فيديو الانتساب للقناة", videoUrl: "https://www.youtube.com/watch?v=ol6tFSyIxWU", desc: "نبذة عن دعم واستمرار السلسلة التعليمية." },
+      { title: "67. فوق المتوسط 21 - برمجة آلية عمل أزرار الفلترة بتطبيق الدليل السياحي : Travel mobile app", videoUrl: "https://www.youtube.com/watch?v=Oo9itGSoFVg", desc: "تطبيق خوارزمية الفلترة على قائمة الرحلات الفعلية." },
+      { title: "68. فوق المتوسط 22 - كيفية برمجة صفحة المفضلة وإنهاء تطبيق الدليل السياحي : Travel mobile app", videoUrl: "https://www.youtube.com/watch?v=xeXuHV8mClg", desc: "إضافة وإزالة الرحلات من المفضلة وختام المشروع." },
+      { title: "69. برمجة موقع ويب وتطبيق موبايل كامل مع فلاتر - موقع تطوير عقاري : Real Estate mobile app", videoUrl: "https://www.youtube.com/watch?v=XOBZYosTgFA", desc: "مشروع كامل لتطبيق وموقع عقارات متجاوب مع فلاتر ويب." },
+      { title: "70. برمجة تطبيق موبايل مع قاعدة بيانات من الفايربيز : Chat mobile app - Flutter & Firebase", videoUrl: "https://www.youtube.com/watch?v=knbWcmJAWNA", desc: "بدء مشروع تطبيق محادثة فوري مع Firebase." },
+      { title: "71. تصميم وبرمجة صفحات تطبيق الموبايل المحادثة : Chat mobile app UI", videoUrl: "https://www.youtube.com/watch?v=ACfmQbRoKus", desc: "تصميم واجهات تسجيل الدخول والدردشة." },
+      { title: "72. التنقل بين صفحات تطبيق الموبايل : Chat mobile app 03 - Routes", videoUrl: "https://www.youtube.com/watch?v=KqtSJw85TzY", desc: "ضبط مسارات صفحات الشات والتسجيل." },
+      { title: "73. إنشاء مشروع فايربيز وربطه بالتطبيق : Chat mobile app 04 - Firebase Setup", videoUrl: "https://www.youtube.com/watch?v=dkkuMdCkQFo", desc: "إنشاء حساب على وحدة تحكم Firebase وربط ملفات الإعداد." },
+      { title: "74. تسجيل جهاز موبايل آيفون بمشروع الفايربيز : Chat app 05 - iOS setup", videoUrl: "https://www.youtube.com/watch?v=_bDUfpVwtS0", desc: "ضبط إعدادات الحزمة وتوافق أجهزة iOS." },
+      { title: "75. تحميل البرامج المساعدة الخاصة بالفايربيز : Chat app 06 - Firebase Packages", videoUrl: "https://www.youtube.com/watch?v=Q75TOe74MYo", desc: "تثبيت حزم firebase_core و firebase_auth و cloud_firestore." },
+      { title: "76. كيفية تسجيل مستخدم جديد بقاعدة البيانات مع الفايربيز : Chat app 07 - Firebase Auth", videoUrl: "https://www.youtube.com/watch?v=pHGU9p1TOHQ", desc: "برمجة إنشاء حساب مستخدم جديد عبر الإيميل والباسورد." },
+      { title: "77. كيفية عمل تسجيل دخول وخروج لمستخدم قديم : Chat app 08 - Login & Logout", videoUrl: "https://www.youtube.com/watch?v=1gM7WT9KEiA", desc: "تفعيل تسجيل الدخول والخروج وإدارة الجلسة." },
+      { title: "78. كيفية إضافة مؤشر التحميل قبل ظهور البيانات من الانترنت : Chat app 09 - Loading Spinner", videoUrl: "https://www.youtube.com/watch?v=eqhYuom-tdI", desc: "إظهار شاشة انتظار أثناء العمليات السحابية." },
+      { title: "79. كيفية حفظ الرسائل من التطبيق على قاعدة البيانات : Chat 10 - Firestore Save", videoUrl: "https://www.youtube.com/watch?v=1fn_l-Lq5J0", desc: "إرسال وتخزين رسائل المحادثة في Firestore." },
+      { title: "80. كيفية استدعاء الرسائل أو الداتا من قاعدة الفايربيز : Chat 11 - Retrieve Messages", videoUrl: "https://www.youtube.com/watch?v=OQQFZu972iU", desc: "قراءة الرسائل المخزنة وعرضها للمستخدم." },
+      { title: "81. كيفية دفع الرسائل وليس استدعائها من الفايربيز : Chat 12 - Streams", videoUrl: "https://www.youtube.com/watch?v=q6SUsxiJH88", desc: "استقبال التحديثات الفورية Real-time عبر Streams." },
+      { title: "82. استخدام الودجت الخاصة لعرض الرسائل من الفايربيز : Chat 13 - StreamBuilder", videoUrl: "https://www.youtube.com/watch?v=6J5nraNua6c", desc: "تحديث الشاشة تلقائياً بـ StreamBuilder فور وصول رسالة جديدة." },
+      { title: "83. تصميم كيفية عرض الرسائل على شاشة الموبايل : Chat 14 - ListView Widget", videoUrl: "https://www.youtube.com/watch?v=mKqyw7pAFtE", desc: "عرض فقاعات الرسائل داخل ListView ديناميكية." },
+      { title: "84. تصميم شاشة المحادثة : Chat 15 - Message Bubble Design", videoUrl: "https://www.youtube.com/watch?v=-8Lf6qV0bT8", desc: "تنسيق فقاعات الرسائل للراسل والمستقبل بألوان مختلفة." },
+      { title: "85. ترتيب الرسائل حسب التوقيت وإبقاء التطبيق بحالة تسجيل دخول : Chat 16", videoUrl: "https://www.youtube.com/watch?v=FATHYzd-2gk", desc: "ترتيب المحادثات زمنياً وحفظ جلسة تسجيل الدخول." },
+      { title: "86. تعلم فلاتر والفايربيز مع برمجة تطبيق محادثة كامل : Chat app Masterclass", videoUrl: "https://www.youtube.com/watch?v=wXtAm2zXE8Q", desc: "فيديو مجمع مدته ساعتان لمراجعة وتثبيت تطبيق المحادثة." },
+      { title: "87. كيفية نشر وتحميل تطبيق فلاتر على متجر تطبيقات جوجل : Flutter & Google Play Store", videoUrl: "https://www.youtube.com/watch?v=_enL3bRiHVI", desc: "تجهيز وتوقيع الـ APK/App Bundle ورفع التطبيق على متجر Google Play." },
+      { title: "88. برمجة تطبيق موبايل لإدارة المهام مع فلاتر : Todo app 01", videoUrl: "https://www.youtube.com/watch?v=LfcDPKHBbtA", desc: "بدء مشروع تطبيق إدارة المهام اليومية Todo App." },
+      { title: "89. برمجة واجهة تطبيق موبايل إدارة المهام مع فلاتر : Todo app 02 - UI", videoUrl: "https://www.youtube.com/watch?v=JSvoNKCAqmI", desc: "تصميم واجهة المهام والعدّاد الصباحي." },
+      { title: "90. عرض قائمة المهام : Todo app 03 - Task List", videoUrl: "https://www.youtube.com/watch?v=r0HQSEXSwfg", desc: "بناء القائمة التفاعلية للمهام." },
+      { title: "91. برمجة صفحة إضافة مهمة جديدة : Todo app 04 - BottomSheet", videoUrl: "https://www.youtube.com/watch?v=z0XlxGV-O-w", desc: "فتح نافذة منبثقة من الأسفل لإدخال مهمة جديدة." },
+      { title: "92. شرح معنى حالة التطبيق : Todo app 05 - What is State", videoUrl: "https://www.youtube.com/watch?v=uPd9mITpVBs", desc: "فهم مفهوم حالة التطبيق وأهمية إدارة الحالة." },
+      { title: "93. استخدام Stateful widget : Todo app 06", videoUrl: "https://www.youtube.com/watch?v=6jIenhu1Sns", desc: "تطبيق التحديث الموضعي للواجهات." },
+      { title: "94. تحويل المهام وعرضهم في قائمة : Todo app 07 - List Object", videoUrl: "https://www.youtube.com/watch?v=wMwtJ9DBTTo", desc: "تحويل المدخلات إلى كائنات Task وتخزينها." },
+      { title: "95. استخدام ListView builder : Todo app 08", videoUrl: "https://www.youtube.com/watch?v=lDgwt837gRE", desc: "بناء القوائم بكفاءة عالية واستهلاك ذاكرة أقل." },
+      { title: "96. إعادة تفعيل مربع التحديد : Todo app 09 - Checkbox State", videoUrl: "https://www.youtube.com/watch?v=q8Ezruwv7HA", desc: "تحديد المهمة كمكتملة وتغيير حالتها." },
+      { title: "97. رفع متغير لويدجت أعلى في شجرة المكونات : Todo app 10 - State Lifting", videoUrl: "https://www.youtube.com/watch?v=2DiVwB0X1Bg", desc: "مفهوم رفع الحالة ومشاركة البيانات بين الودجتس." },
+      { title: "98. عرض المهمة الجديدة على الشاشة : Todo app 11", videoUrl: "https://www.youtube.com/watch?v=KVPVT9gvGLE", desc: "تحديث شاشة العرض فور إضافة أي مهمة جديدة." },
+      { title: "99. إدارة حالة التطبيق باستخدام البروفايدر : Todo app 12 - State management with Provider", videoUrl: "https://www.youtube.com/watch?v=GILkMtpdogk", desc: "البداية الاحترافية مع حزمة Provider و ChangeNotifier." },
+      { title: "100. عرض المهمة الجديدة على الشاشة باستخدام البروفايدر : Todo app 13", videoUrl: "https://www.youtube.com/watch?v=VHODKtQW-Kk", desc: "استهلاك البيانات عبر Provider وتحديث الودجتس بكفاءة." },
+      { title: "101. تحديد مهمة باستخدام البروفايدر : Todo app 14 - Flutter", videoUrl: "https://www.youtube.com/watch?v=WsCqMOpDqnE&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=101&pp=iAQB", desc: "تبديل حالة إنجاز المهمة عبر دوال البروفايدر." },
+      { title: "102. حذف مهمة باستخدام البروفايدر وإنهاء التطبيق : Todo app 15 - Flutter", videoUrl: "https://www.youtube.com/watch?v=4KPWiwEHOUI&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=102&pp=iAQB", desc: "حذف المهام وتحديث العدادات والختام." },
+      { title: "103. فلاتر على الماشي - نافذة اختيار التاريخ : Flutter to go - Date Picker", videoUrl: "https://www.youtube.com/watch?v=j_oO4jd5544&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=103&pp=iAQB", desc: "استخدام منتقي التاريخ DatePicker في التطبيق." },
+      { title: "104. فلاتر على الماشي - نافذة اختيار التوقيت : Flutter to go - Time Picker", videoUrl: "https://www.youtube.com/watch?v=S4EuyOU43xc&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=104&pp=iAQB", desc: "استخدام منتقي الوقت السريع TimePicker." },
+      { title: "105. فلاتر على الماشي - نافذة اختيار التاريخ والتوقيت معا : Flutter to go - DateTime Picker", videoUrl: "https://www.youtube.com/watch?v=O692euMb57s&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=105&pp=iAQB", desc: "دمج التاريخ والوقت معاً في حقل واحد." },
+      { title: "106. فلاتر على الماشي - نوافذ التبويب السفلية : Flutter to go - NavigationBar", videoUrl: "https://www.youtube.com/watch?v=lLe9LDzVPYk&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=106&pp=iAQB", desc: "تخصيص شريط التنقل السفلي بشكل عصري." },
+      { title: "107. فلاتر على الماشي - نافذة مربع الحوار : Flutter to go - Pop-up Dialog", videoUrl: "https://www.youtube.com/watch?v=I-iglj1hXkY&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=107&pp=iAQB", desc: "إظهار نوافذ التنبيهات المنبثقة AlertDialog." },
+      { title: "108. ما هو الجديد مع تحديث فلاتر الأخير - Flutter Update 3.0", videoUrl: "https://www.youtube.com/watch?v=bQI8W4CrfmI&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=108&pp=iAQB", desc: "استعراض أهم الميزات والتحديثات الجديدة." },
+      { title: "109. فلاتر على الماشي - القائمة المنسدلة : Flutter to go - Dropdown Menu", videoUrl: "https://www.youtube.com/watch?v=Cdd0lvEbTN0&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=109&pp=iAQB", desc: "تصميم القوائم المنسدلة لاختيار الخيارات." },
+      { title: "110. فلاتر على الماشي - حجم خط متناسب مع مساحة الصندوق : Flutter to go - FittedBox Widget", videoUrl: "https://www.youtube.com/watch?v=-z7wBTsMfvw&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=110&pp=iAQB", desc: "ضبط حجم النصوص ليتناسب تلقائياً مع حجم الشاشة." },
+      { title: "111. فلاتر على الماشي - إعادة ترتيب قائمة عن طريق السحب : Flutter to go - Drag & Drop", videoUrl: "https://www.youtube.com/watch?v=dhRLHVXO3TA&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=111&pp=iAQB", desc: "استخدام ReorderableListView لإعادة ترتيب العناصر بالسحب." },
+      { title: "112. فلاتر على الماشي - سحب وإفلات عنصر على الشاشة : Flutter to go - Draggable & DragTarget", videoUrl: "https://www.youtube.com/watch?v=rYnXYH4l7VA&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=112&pp=iAQB", desc: "برمجة سحب وإسقاط العناصر داخل مساحات محددة." },
+      { title: "113. فلاتر على الماشي - تصميم متناسب ومتجاوب مع جميع الشاشات : Flutter to go - Responsive Design", videoUrl: "https://www.youtube.com/watch?v=71phqmaMsKc&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=113&pp=iAQB", desc: "تقنيات بناء واجهات تتكيف مع الهواتف والأجهزة اللوحية." },
+      { title: "114. برمجة صفحة تسجيل الدخول مع الفايربيز : Firebase - Sign In #1 - Flutter", videoUrl: "https://www.youtube.com/watch?v=bxIcWZIZ0HI&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=114&pp=iAQB", desc: "تصميم وبرمجة واجهة تسجيل الدخول المتقدمة." },
+      { title: "115. إنشاء وربط حساب فايربيز لأجهزة الأندرويد والآبل : Firebase - Setup #2 - Flutter", videoUrl: "https://www.youtube.com/watch?v=4vx8uJieD28&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=115&pp=iAQB", desc: "الربط الشامل والمحدث مع Firebase." },
+      { title: "116. تسجيل دخول المستخدم باستخدام الايميل وكلمة السر مع الفايربيز : Firebase - Sign in #3 - Flutter", videoUrl: "https://www.youtube.com/watch?v=eUWYn1aajrM&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=116&pp=iAQB", desc: "التحقق من صحة بيانات المستخدم وتسجيل الدخول." },
+      { title: "117. برمجة صفحة تسجيل المستخدم : Firebase - Sign up #4 - Flutter", videoUrl: "https://www.youtube.com/watch?v=Z7P3ZVhS9iE&list=PLw6Y5u47CYq47oDw63bMqkq06fjuoK_GJ&index=117&pp=iAQB0gcJCRMMAYcqIYzv", desc: "إنشاء حسابات جديدة وتأمين كلمات المرور والختام." }
+    ]
+  }
+};
+window.networkingCurriculumDB = {
+  main: {
+    title: "مسار أساسيات ومفاهيم شبكات الحاسب (Network Fundamentals)",
+    overview: "دورة مرئية متميزة جداً بأسلوب الرسوم والوايت بورد مع م. عماد نشأت (IT Dose) لشرح كل ما يخص عالم الشبكات وتكنولوجيا المعلومات من الصفر للمبتدئين، لتأهيلك التام لمسارات الأمن السيبراني والـ Cloud والـ DevOps وشهادة CCNA.",
+    keySkills: ["OSI 7 Layers Model", "TCP/IP & Subnetting", "Routing & Switching", "DNS, DHCP & ARP Protocols", "VLAN & Network Security", "Firewalls & VPN"],
+    lectures: [
+      { title: "01. ازاي تبدأ في مجال الشبكات والـ IT في 5 دقائق فقط - Introduction to Networks and CCNA", videoUrl: "https://www.youtube.com/watch?v=q6tUCEUqxTQ", desc: "مدخل ومقدمة عامة لمجال الـ IT وخارطة طريق الشبكات." },
+      { title: "02. شرح المكونات الأساسية للشبكات و أنواع الكابلات - Network components and types of cables", videoUrl: "https://www.youtube.com/watch?v=2XJTR6MLX3U", desc: "أنواع كابلات الشبكة (UTP, STP, Fiber) والمكونات المادية." },
+      { title: "03. شرح الـ Network Topologies بالعربي بطريقة مبسطة - Bus - Ring - Mesh - Star", videoUrl: "https://www.youtube.com/watch?v=cLuBLwa3XlI", desc: "طوبولوجيا وهياكل ربط الأجهزة في الشبكة." },
+      { title: "04. أنواع الكاستنج والفرق بين الـ broadcast والـ multicast والـ unicast والـ half-duplex والـ full-duplex", videoUrl: "https://www.youtube.com/watch?v=GCHcGimdA3g", desc: "طرق بث واستقبال البيانات عبر وسائط الشبكة." },
+      { title: "05. شرح أنواع الشبكات LAN, WAN, PAN, CAN, MAN, SAN", videoUrl: "https://www.youtube.com/watch?v=sPevWU0O7bI", desc: "تصنيفات الشبكات جغرافياً وحسب الاستخدام." },
+      { title: "06. شرح الفرق بين Work Group P2P و Client/Server", videoUrl: "https://www.youtube.com/watch?v=I_FckdVN2RA", desc: "أنظمة العمل الجماعي وشبكات الخادم والعميل." },
+      { title: "07. شرح الـ OSI Model والـ 7 مراحل شرح مبسط بالعربي في 20 دقيقة فقط", videoUrl: "https://www.youtube.com/watch?v=61kRxdZ5p-o", desc: "فهم طبقات نموذج OSI السبع بالتفصيل والرسوم." },
+      { title: "08. شرح مفصل للـ IP Address والـ Subnet Mask ,الفرق بين Public IP Vs Private IP", videoUrl: "https://www.youtube.com/watch?v=Nnv36wG_iCI", desc: "عناوين الـ IP وتقسيم الشبكات وحساب الـ Subnetting." },
+      { title: "09. شرح مفصل للـ MAC Address و كارت الشبكة NIC بالعربي", videoUrl: "https://www.youtube.com/watch?v=noVDOsIQuWw", desc: "العنوان الفيزيائي الثابت وكيف تعمل كروت الشبكة." },
+      { title: "10. شرح شامل للـ DNS بالعربي - Domain Name system", videoUrl: "https://www.youtube.com/watch?v=s-9143t3cHA", desc: "خوادم ترجمة أسماء النطاقات إلى عناوين IP." },
+      { title: "11. شرح الـ DHCP بالتفصيل وبالعربي وجرافيك احترافي", videoUrl: "https://www.youtube.com/watch?v=ODmgVVN-D0Q", desc: "التوزيع التلقائي لعناوين الـ IP وإعدادات الشبكة." },
+      { title: "12. شرح بروتوكول الـ ARP بالعربي - Address Resolution Protocol", videoUrl: "https://www.youtube.com/watch?v=yGVEd4CqmTM", desc: "كيفية مطابقة عناوين IP مع عناوين الـ MAC." },
+      { title: "13. شرح أجهزة الشبكات والفرق بين الهاب والسويتش والراوتر - Hub vs Switch vs Router", videoUrl: "https://www.youtube.com/watch?v=_ifRgCb8o60", desc: "أجهزة توجيه وتوزيع البيانات والفرق العملي بينها." },
+      { title: "14. شرح تفصيلي للفايروول - Firewall وأنواعه (جدار الحماية) بجرافيك احترافي", videoUrl: "https://www.youtube.com/watch?v=geQS8wLq9IA", desc: "تأمين الشبكات وحظر التهديدات بالجدران النارية." },
+      { title: "15. شرح شامل للـ DMZ - Demilitarized Zone وطريقة تفعيله في راوتر المنزل", videoUrl: "https://www.youtube.com/watch?v=Ld1sDiwE-ns", desc: "المنطقة منزوعة السلاح وعزل الخوادم المعرضة للإنترنت." },
+      { title: "16. شرح المنافذ و الـ Port Number بطريقة مبسطة", videoUrl: "https://www.youtube.com/watch?v=RxFgqeyXh6c", desc: "أرقام البورتات الشائعة والبروتوكولات (HTTP, HTTPS, SSH, FTP)." },
+      { title: "17. شرح تفصيلي للـ VLAN بطريقة مبسطة وجرافيك احترافي", videoUrl: "https://www.youtube.com/watch?v=yX_1Yit53Lc", desc: "تقسيم السويتش إلى شبكات افتراضية معزولة." },
+      { title: "18. شرح شامل للـ VPN وأنواعه بطريقة مبسطة وجرافيك احترافي", videoUrl: "https://www.youtube.com/watch?v=C4IHTdHYHuI", desc: "الشبكات الافتراضية الخاصة وتشفير حركة المرور." },
+      { title: "19. شرح الـ NAT وأنواعه بالتفصيل بجرافيك احترافي", videoUrl: "https://www.youtube.com/watch?v=TriqRvr-X_o", desc: "تحويل العناوين الخاصة للإنترنت الخارجي (Network Address Translation)." },
+      { title: "20. شرح الاكسيس بوينت Access point بطريقة مبسطة وجرافيك احترافي", videoUrl: "https://www.youtube.com/watch?v=4cYwjfiIqmw", desc: "توسيع نطاق الشبكات اللاسلكية ونقاط الوصول." },
+      { title: "21. شرح الشبكات اللاسلكية Wireless - Wi-Fi والفرق بين 2.4 و 5 GHZ", videoUrl: "https://www.youtube.com/watch?v=L3Keks1sa6o", desc: "ترددات الواي فاي والسرعات والمدى اللاسلكي." },
+      { title: "22. شرح تقنية الـ Virtualization والـ VM بطريقة مبسطة وجرافيك احترافي", videoUrl: "https://www.youtube.com/watch?v=9zKVL1v3nVE", desc: "الأنظمة الافتراضية وتشغيل أكثر من نظام على جهاز واحد." },
+      { title: "23. شرح تفصيلي للـ Cloud Computing وازاي تبدأ فيه في أقل من 20 دقيقة", videoUrl: "https://www.youtube.com/watch?v=nlZunZM92_A", desc: "مفاهيم الحوسبة السحابية وربطها بالبنية التحتية للشبكات." }
     ]
   }
 };
@@ -2639,7 +2828,36 @@ if (courseId === "c_office_suite" || courseId === "c_web_dev") {
       officeCard.classList.remove("hidden");
       renderLevelDetails(cloudData);
     }
-  } else {
+  } else if (courseId === "c_flutter_mobile") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const flutterData = window.flutterCurriculumDB ? window.flutterCurriculumDB.main : null;
+    if (flutterData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = flutterData.title;
+      document.getElementById("officeProgramDesc").textContent = flutterData.overview;
+      document.getElementById("officeSkillsList").innerHTML = flutterData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(flutterData);
+    }
+  } else if (courseId === "c_networking") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const netData = window.networkingCurriculumDB ? window.networkingCurriculumDB.main : null;
+    if (netData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = netData.title;
+      document.getElementById("officeProgramDesc").textContent = netData.overview;
+      document.getElementById("officeSkillsList").innerHTML = netData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(netData);
+    }
+  }
+    else {
     if (levelsSection) levelsSection.classList.add("hidden");
     if (languagePortals) languagePortals.classList.add("hidden");
     window.loadFirestoreLectures(courseId);
