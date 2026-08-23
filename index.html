@@ -2589,11 +2589,7 @@ window.playLessonVideo = function(title, videoUrl, rowIdx) {
 
   wrapper.classList.remove("hidden");
 
-  // نقل عنصر المشغل فعلياً ليظهر أسفل المحاضرة التي تم الضغط عليها
-  if (typeof rowIdx !== "undefined") {
-    const rowEl = document.getElementById(`lessonRow_${rowIdx}`);
-    if (rowEl) rowEl.insertAdjacentElement("afterend", wrapper);
-  }
+
 
   wrapper.scrollIntoView({ behavior: "smooth", block: "start" });
 };
