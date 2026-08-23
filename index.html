@@ -1192,6 +1192,22 @@ window.catalogData = {
     img: "image/flutter.png",
     lessons: []
   },
+    // 8. مسار تصميم واجهات وتجربة المستخدم
+  c_ui_ux: {
+    id: "c_ui_ux",
+    type: "single",
+    year: "tech",
+    code: { ar: "تصميم", en: "UI/UX" },
+    category: { ar: "تصميم الواجهات وتجربة المستخدم", en: "UI/UX Design & Figma" },
+    title: { ar: "مسار تصميم الواجهات وتجربة المستخدم (UI/UX Design & Figma)", en: "UI/UX Design & Figma Systems" },
+    desc: { ar: "دراسة سلوك المستخدم، رسم Wireframes، تصميم واجهات الموبايل والويب، وبناء Design Systems.", en: "User Experience Research, Wireframing, Web/Mobile Interface Design & Figma Systems." },
+    badge: { ar: "إبداعي وعملي 🎨", en: "Design 🎨" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/ui_ux.png",
+    lessons: []
+  }, // 8. مسار تصميم واجهات وتجربة المستخدم
+
 
   // 2. مسار الأمن السيبراني واختبار الاختراق
   c_cyber_sec: {
@@ -1254,7 +1270,21 @@ c_data_analysis: {
   },
 
 
-
+// مسار اختبار البرمجيات وضمان الجودة
+  c_software_testing: {
+    id: "c_software_testing",
+    type: "single",
+    year: "tech",
+    code: { ar: "تستنج", en: "QA" },
+    category: { ar: "اختبار البرمجيات • Software Testing", en: "Software Testing & QA" },
+    title: { ar: "مسار اختبار البرمجيات وضمان الجودة (Software Testing Course)", en: "Automated & Manual Software Testing" },
+    desc: { ar: "دورة شاملة باللغة العربية مع Tresmerge لاحتراف اختبار البرمجيات: من Manual و Automated Testing حتى Jest, TDD, BDD, API Testing, و JMeter.", en: "Master Software Testing: Manual vs Automated, Unit Testing, Jest, TDD, BDD, API Testing & Performance Testing." },
+    badge: { ar: "مسار عملي 🧪", en: "QA Mastery 🧪" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/cyber.png",
+    lessons: []
+  },
 
 
   // مسار الحوسبة السحابية
@@ -1288,21 +1318,22 @@ c_data_analysis: {
     lessons: []
   },
 
-  // 8. مسار تصميم واجهات وتجربة المستخدم
-  c_ui_ux: {
-    id: "c_ui_ux",
+  // مسار التسويق الإلكتروني والميديا باينج
+  c_digital_marketing: {
+    id: "c_digital_marketing",
     type: "single",
     year: "tech",
-    code: { ar: "تصميم", en: "UI/UX" },
-    category: { ar: "تصميم الواجهات وتجربة المستخدم", en: "UI/UX Design & Figma" },
-    title: { ar: "مسار تصميم الواجهات وتجربة المستخدم (UI/UX Design & Figma)", en: "UI/UX Design & Figma Systems" },
-    desc: { ar: "دراسة سلوك المستخدم، رسم Wireframes، تصميم واجهات الموبايل والويب، وبناء Design Systems.", en: "User Experience Research, Wireframing, Web/Mobile Interface Design & Figma Systems." },
-    badge: { ar: "إبداعي وعملي 🎨", en: "Design 🎨" },
+    code: { ar: "تسويق", en: "Marketing" },
+    category: { ar: "التسويق الإلكتروني • Digital Marketing", en: "Digital & Performance Marketing" },
+    title: { ar: "مسار التسويق الإلكتروني الشامل (Digital Marketing from 0 to Work)", en: "Complete Digital & Performance Marketing" },
+    desc: { ar: "دورة شاملة من الصفر للتأهيل لسوق العمل مع Content Is Content: خطط التسويق، إعلانات فيسبوك وتيك توك، Google Ads، Google Tag Manager، تحليلات GA4، وتقارير قياس الأداء Performance Sheets.", en: "Master Inbound Marketing, Meta & TikTok Ads, Google Search & Call Ads, GTM, GA4 Analytics & Performance Marketing Sheets." },
+    badge: { ar: "سوق العمل 📈", en: "Career Ready 📈" },
     price: "150",
     oldPrice: "300",
-    img: "image/ui_ux.png",
+    img: "image/marketing.png",
     lessons: []
   }
+
   
 };
 
@@ -1745,6 +1776,105 @@ window.networkingCurriculumDB = {
       { title: "21. شرح الشبكات اللاسلكية Wireless - Wi-Fi والفرق بين 2.4 و 5 GHZ", videoUrl: "https://www.youtube.com/watch?v=L3Keks1sa6o", desc: "ترددات الواي فاي والسرعات والمدى اللاسلكي." },
       { title: "22. شرح تقنية الـ Virtualization والـ VM بطريقة مبسطة وجرافيك احترافي", videoUrl: "https://www.youtube.com/watch?v=9zKVL1v3nVE", desc: "الأنظمة الافتراضية وتشغيل أكثر من نظام على جهاز واحد." },
       { title: "23. شرح تفصيلي للـ Cloud Computing وازاي تبدأ فيه في أقل من 20 دقيقة", videoUrl: "https://www.youtube.com/watch?v=nlZunZM92_A", desc: "مفاهيم الحوسبة السحابية وربطها بالبنية التحتية للشبكات." }
+    ]
+  }
+};
+window.testingCurriculumDB = {
+  main: {
+    title: "مسار اختبار البرمجيات وضمان الجودة (Software Testing & QA)",
+    overview: "الدورة العملية المتكاملة من قناة Tresmerge لشرح اختبار البرمجيات والأتمتة من الصفر حتى الاحتراف، متضمنة: Manual vs Automated Testing، إطار العمل Jest، اختبارات Unit و Integration و E2E، منهجيات TDD و BDD، واختبارات الأداء والحمل باستخدام JMeter.",
+    keySkills: ["Manual & Automated Testing", "Unit & Integration Testing (Jest)", "API Testing", "Test Driven Development (TDD)", "Behavior Driven Development (BDD)", "Performance Testing (JMeter)"],
+    lectures: [
+      { title: "01. Software Testing Course in Arabic | #01 - Intro & Course Agenda شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=rQZ-NbN3RLA", desc: "مدخل شامل للمسار وخطة دراسة اختبار البرمجيات." },
+      { title: "02. Software Testing Course in Arabic | #02 - Manual Vs Automated Testing شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=BSyK1yBA_vQ", desc: "الفرق الجوهري بين الاختبار اليدوي والاختبار المؤتمت." },
+      { title: "03. Software Testing Course in Arabic | #03 - Types of Testing شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=VJP5q3AqQHU", desc: "أنواع ومستويات اختبار البرمجيات (Functional & Non-Functional)." },
+      { title: "04. Software Testing Course in Arabic | #04 - Testing Pyramid and Tools شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=O-Nk0R6Tt6o", desc: "هرم الاختبارات وأشهر الأدوات المستخدمة في سوق العمل." },
+      { title: "05. Software Testing Course in Arabic | #05 - Jest and JavaScript شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=9sfo95rIfhM", desc: "تهيئة بيئة العمل والبدء مع إطار العمل Jest." },
+      { title: "06. Software Testing Course in Arabic | #06 - Testing: Numbers & Strings شرح software testing", videoUrl: "https://www.youtube.com/watch?v=D1jWuV7uRto", desc: "كتابة اختبارات الأرقام والنصوص ومطابقة النتائج." },
+      { title: "07. Software Testing Course in Arabic | #07 - Testing: Truthiness & Arrays software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=XkMdvv9Elcw", desc: "اختبار القيم المنطقية والمصفوفات." },
+      { title: "08. Software Testing Course in Arabic | #08 - Testing: Objects & Errors شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=2U6TwQ_g1jc", desc: "فحص الكائنات والتعامل مع الأخطاء والاستثناءات." },
+      { title: "09. Software Testing Course in Arabic | #09 - Async Code & Mocks شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=aJdll1wnfDs", desc: "اختبار الأكواد غير المتزامنة ومفهوم الـ Mocks." },
+      { title: "10. Software Testing Course in Arabic | #10 - Mocks in Unit Testing شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=mP1MvXPrhXE", desc: "تطبيق المحاكاة Mocks في اختبارات الوحدات Unit Testing." },
+      { title: "11. Software Testing Course in Arabic | #11 - Unit Testing Example شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=gqT4KP968aI", desc: "تطبيق عملي شامل على اختبار الوحدات." },
+      { title: "12. Software Testing Course in Arabic | #12 - Integration Testing: App Setup بالعربي software testing", videoUrl: "https://www.youtube.com/watch?v=ou4hR5EM3XA", desc: "إعداد التطبيق وبدء اختبارات التكامل Integration Testing." },
+      { title: "13. Software Testing Course in Arabic | #13 - Testing Database Operations شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=kPJVUZcU8r4", desc: "اختبار عمليات واستعلامات قاعدة البيانات." },
+      { title: "14. Software Testing Course in Arabic | #14 - Jest Helpers شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=dFnq1Q08qaE", desc: "استخدام الدوال المساعدة في إطار Jest." },
+      { title: "15. Software Testing Course in Arabic | #15 - API Testing شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=zL436v46nCU", desc: "اختبار واجهات برمجة التطبيقات APIs والتأكد من الاستجابات." },
+      { title: "16. Software Testing Course in Arabic | #16 - Jest Coverage شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=-edjlco40M8", desc: "قياس نسبة تغطية الاختبارات للكود (Code Coverage)." },
+      { title: "17. Software Testing Course in Arabic | #17 - E2E Testing شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=gh7TmUcku8M", desc: "اختبار النظام بالكامل من البداية للنهاية End-to-End." },
+      { title: "18. Software Testing Course in Arabic | #18 - Test Driven Development (TDD) بالعربي software testing", videoUrl: "https://www.youtube.com/watch?v=-ljyQJb9Voo", desc: "مفهوم التطوير الموجه باختبارات الكود TDD." },
+      { title: "19. Software Testing Course in Arabic | #19 - TDD Code Example شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=utAdF3h_x0Q", desc: "تطبيق عملي خطوة بخطوة على منهجية TDD." },
+      { title: "20. Software Testing Course in Arabic | #20 - Behavior Driven Development (BDD) بالعربي software testing", videoUrl: "https://www.youtube.com/watch?v=PgKdTKBgFts", desc: "مفهوم التطوير الموجه بالسلوك BDD." },
+      { title: "21. Software Testing Course in Arabic | #21 - BDD Code Example شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=kGpcI6bmLlQ", desc: "تطبيق عملي وكتابة سيناريوهات BDD." },
+      { title: "22. Software Testing Course in Arabic | #22 - Performance Testing شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=lqcrhxxge4c", desc: "مفاهيم اختبارات الأداء وسرعة الاستجابة." },
+      { title: "23. Software Testing Course in Arabic | #23 - JMeter شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=ljCtcZpI3bE", desc: "اختبار الأحمال والضغط على النظام باستخدام أداة Apache JMeter." },
+      { title: "24. Software Testing Course in Arabic | #24 - Final Video and Next Steps شرح software testing بالعربي", videoUrl: "https://www.youtube.com/watch?v=iU1oVPc9-3U", desc: "خاتمة المسار والخطوات القادمة في سوق العمل." }
+    ]
+  }
+};
+window.dataAnalysisCurriculumDB = {
+  main: {
+    title: "مسار تحليل البيانات الشامل (Data Analysis Mastery)",
+    overview: "الدورة العملية الكاملة من قناة (داتا ساينس بالعربي) لتأهيلك للعمل كمحلل بيانات محترف من الصفر: Advanced Excel، الإحصاء الوصفي، قواعد بيانات SQL، لغة Python ومكتبات Pandas و Numpy و Matplotlib، أداة Power BI والـ DAX، ومشاريع قطاعات الأعمال (Sales, Marketing, Finance).",
+    keySkills: ["Advanced Excel & Forecasting", "Descriptive Statistics", "SQL Database Queries", "Python (Pandas, Numpy, Seaborn)", "Power BI & DAX Modeling", "Business Domains Analysis"],
+    lectures: [
+{ title: "00. الدليل الشامل لتعلم تحليل البيانات || كيف تصبح محلل بيانات ؟ - Ahmed El-Gendy", videoUrl: "https://youtu.be/-PDckX34514?si=3QBLyE7eBO9UEohN", desc: "خارطة طريق كاملة ومفصلة لتعلم تحليل البيانات وتحديد الأدوات والمهارات الأساسية لدخول سوق العمل." },
+
+      { title: "01. كورس تحليل البيانات للمبتدئين من الصفر 1 (المقدمة) Data Analysis From Scratch", videoUrl: "https://www.youtube.com/watch?v=oOv1gE0ER3I", desc: "مدخل ومقدمة عامة لمجال تحليل البيانات والمهارات المطلوبة في سوق العمل." },
+      { title: "02. كورس تحليل البيانات للمبتدئين من الصفر 2 (Excel)", videoUrl: "https://www.youtube.com/watch?v=DXNg8wjRgRQ", desc: "أساسيات الإكسيل وإدخال البيانات وتنظيم الجداول." },
+      { title: "03. تحليل البيانات للمبتدئين .. المحاضرة الثالثة", videoUrl: "https://www.youtube.com/watch?v=QpobhsSvVqM", desc: "التعامل مع الدوال والصيغ الرياضية المتقدمة في Excel." },
+      { title: "04. كورس تحليل البيانات للمبتدئين .. المحاضرة الرابعة (Excel)", videoUrl: "https://www.youtube.com/watch?v=pPddBbf7Sf8", desc: "تنظيف البيانات والجداول المحورية Pivot Tables." },
+      { title: "05. تحليل البيانات للمبتدئين .. 5 (تدريب عملي على حل أسئلة المقابلات في الشركات / بداية قسم الإحصاء)", videoUrl: "https://www.youtube.com/watch?v=FsVaDx4zJoc", desc: "تدريبات حية على أسئلة الإنترفيو ومدخل علم الإحصاء." },
+      { title: "06. كورس تحليل البيانات للمبتدئين .. 6 (الإحصاء الوصفية)", videoUrl: "https://www.youtube.com/watch?v=c-Ev274RKIo", desc: "مقاييس النزعة المركزية والتشتت والانحراف المعياري." },
+      { title: "07. المحاضرة السابعة SQL", videoUrl: "https://www.youtube.com/watch?v=wNGfeUKqeMY", desc: "مدخل قواعد البيانات ولغة SQL وإنشاء الجداول." },
+      { title: "08. المحاضرة الثامنة SQL", videoUrl: "https://www.youtube.com/watch?v=yX_wGsG3Lzo", desc: "استعلامات SELECT والفلترة بـ WHERE والشروط." },
+      { title: "09. المحاضرة التاسعة SQL", videoUrl: "https://www.youtube.com/watch?v=nc7-u7--gJc", desc: "دوال التجميع والربط بين الجداول المختلفة JOINs." },
+      { title: "10. كورس تحليل البيانات للمبتدئين .. المحاضرة 10 .. SQL", videoUrl: "https://www.youtube.com/watch?v=iCiGXxu35aM", desc: "الاستعلامات الفرعية Subqueries وتجميع البيانات GROUP BY." },
+      { title: "11. المحاضرة 11 .. تطبيق عملي .. SQL خطوة بخطوة", videoUrl: "https://www.youtube.com/watch?v=j8_iR9xS-JI", desc: "مشروع تطبيقي كامل لاستخراج تقارير الأعمال بـ SQL." },
+      { title: "12. كورس تحليل البيانات للمبتدئين من الصفر .. 12 .. Python", videoUrl: "https://www.youtube.com/watch?v=3ZOiet9A47o", desc: "مدخل لغة بايثون وتثبيت بيئة Jupyter Notebook." },
+      { title: "13. كورس تحليل البيانات للمبتدئين من الصفر .. 13 .. Python", videoUrl: "https://www.youtube.com/watch?v=y7Mr60Clzo0", desc: "المتغيرات وأنواع البيانات والجمل الشرطية في بايثون." },
+      { title: "14. كورس تحليل البيانات .. 14 .. التدريب على Loops", videoUrl: "https://www.youtube.com/watch?v=1DmpUCTAqs4", desc: "حلقات التكرار والتعامل مع المجموعات في بايثون." },
+      { title: "15. كورس تحليل البيانات للمبتدئين .. 14 .. FUNCTIONS", videoUrl: "https://www.youtube.com/watch?v=yCA9RuVV2BE", desc: "بناء الدوال البرمجية لإعادة استخدام الكود بكفاءة." },
+      { title: "16. كورس تحليل البيانات للمبتدئين .. 15 .. مكتبة Numpy", videoUrl: "https://www.youtube.com/watch?v=mvfgLoCpa8I", desc: "العمليات الحسابية والمصفوفات متعددة الأبعاد بـ Numpy." },
+      { title: "17. كورس تحليل البيانات للمبتدئين .. 16 .. Pandas المكتبة العملاقة", videoUrl: "https://www.youtube.com/watch?v=Cwu7BPQ9z38", desc: "إتقان DataFrames وقراءة وتنظيف ومعالجة ملفات البيانات بـ Pandas." },
+      { title: "18. كورس تحليل البيانات للمبتدئين .. 17 .. إنشاء الصور البيانية باستخدام مكتبتي MATPLOTLIB & SEABORN", videoUrl: "https://www.youtube.com/watch?v=b37nCDDpKLs", desc: "التمثيل البصري للبيانات ورسم المخططات الإحصائية." },
+      { title: "19. كورس تحليل البيانات للمبتدئين .. 18 .. شرح Power BI الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=VycnrG3iweY", desc: "مدخل واجهة Power BI واستيراد البيانات." },
+      { title: "20. كورس تحليل البيانات للمبتدئين .. 19 .. شرح Power BI الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=69xcDrxRcE8", desc: "بناء وتصميم التقارير والمخططات التفاعلية." },
+      { title: "21. شرح الأداة الرائعة لتحليل البيانات والعمل الحر Looker - Google Studio", videoUrl: "https://www.youtube.com/watch?v=wYpo8-qrl98", desc: "بناء الداشبورد السحابية باستخدام Google Looker Studio." },
+      { title: "22. كورس تحليل البيانات للمبتدئين .. 21 .. شرح Power BI الجزء الرابع .. Append Data", videoUrl: "https://www.youtube.com/watch?v=u3gEOhVV4qU", desc: "دمج وإلحاق مصادر البيانات المتعددة داخل Power BI." },
+      { title: "23. كورس تحليل البيانات للمبتدئين .. 22 .. شرح Power Query الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=TkyVvRnp0E8", desc: "تحويل وتنظيف وتجهيز البيانات باستخدام محرك Power Query." },
+      { title: "24. كورس تحليل البيانات للمبتدئين .. 23 .. شرح Power Query الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=3TXphThNXL8", desc: "المعالجة المتقدمة للأعمدة والصفوف غير المنتظمة." },
+      { title: "25. How to Forecast and Predict in Excel ... التنبؤ والتوقع باستخدام Excel", videoUrl: "https://www.youtube.com/watch?v=Pdme9dUVb5U", desc: "استشراف المبيعات المستقبلية وتحليل الاتجاهات الزمنية في الإكسيل." },
+      { title: "26. Full Power Bi Project (Walmart Sales)", videoUrl: "https://www.youtube.com/watch?v=6e9hBeqmZaw", desc: "مشروع تطبيقي كامل لبناء داشبورد مبيعات شركة Walmart." },
+      { title: "27. Power Bi Data Modeling", videoUrl: "https://www.youtube.com/watch?v=ySvgTy2KTDI", desc: "نمذجة البيانات وبناء العلاقات بين الجداول (Star & Snowflake Schema)." },
+      { title: "28. Learn Dax In 50 Minutes تعلم لغة الداكس في 50 دقيقة", videoUrl: "https://www.youtube.com/watch?v=sccs_BvKBkw", desc: "احتراف معادلات ومقاييس DAX الحسابية المعقدة في Power BI." },
+      { title: "29. كيف تكتشف الـ Outliers في بياناتك؟ الحل السحري باستخدام Python!", videoUrl: "https://www.youtube.com/watch?v=jIzhwcGg_nA", desc: "اكتشاف القيم الشاذة والمتطرفة ومعالجتها برمجياً." },
+      { title: "30. لو محلل بيانات ... لازم تعرف البيزنس! شرح الماركتنج، المبيعات، HR، Supply Chain والمالية", videoUrl: "https://www.youtube.com/watch?v=r-vcVSIn26I", desc: "فهم لغة الإدارة وبيئات الأعمال المختلفة لمحلل البيانات." },
+      { title: "31. أسرار الـ KPIs لتحليل البيانات في البيزنس | كيف تراقب وتطور أداء شركتك في أي مجال!", videoUrl: "https://www.youtube.com/watch?v=Co14mupw83M", desc: "تحديد مؤشرات الأداء الرئيسية وربطها بالقرارات التنفيذية." },
+      { title: "32. كورس تحليل البيانات .. المحاضرة الثانية .. Sales Domain", videoUrl: "https://www.youtube.com/watch?v=JYq1K36IhGI", desc: "تحليل بيانات قطاع المبيعات وتتبع أداء المنتجات والمناديب." },
+      { title: "33. كورس تحليل البيانات .. المحاضرة الثالثة .. Marketing Analysis Domain", videoUrl: "https://www.youtube.com/watch?v=2k2I9O98DHU", desc: "تحليل الحملات التسويقية ومعدلات التحويل وتكلفة الاكتساب." },
+      { title: "34. كورس تحليل البيانات .. المحاضرة الرابعة .. Financial Analysis Domain", videoUrl: "https://www.youtube.com/watch?v=TR72ul1LTFE", desc: "التحليل المالي للقوائم والأرباح والتدفقات النقدية." },
+      { title: "35. كورس تحليل البيانات .. المحاضرة الخامسة .. عقلية محلل البيانات Data Analyst Mindset", videoUrl: "https://www.youtube.com/watch?v=iU0ROB8lJeg", desc: "طريقة التفكير التحليلية وحل المشكلات المعقدة بالبيانات." },
+      { title: "36. أنا اشتغلت بالطرق دي.. أسرار مش هاتلاقي حد يقولها عن الوظائف/الفري لانس (غير في الكورسات المدفوعة)", videoUrl: "https://www.youtube.com/watch?v=cNlZr2bADto", desc: "نصائح الحصول على وظائف وتحقيق دخل من العمل الحر في تحليل البيانات." }
+    ]
+  }
+};
+window.cyberSecurityCurriculumDB = {
+  main: {
+    title: "مسار الأمن السيبراني واختبار الاختراق (Cyber Security Fundamentals)",
+    overview: "المنهج التأسيسي المعتمد من سيسكو (Cisco Introduction to Cybersecurity) مع المهندس أحمد عبد الرازق، ومقدمة شاملة من المهندس محمد العسال تشرح لك خارطة طريق دخول واحتراف مجال أمن المعلومات، حماية الشبكات والأنظمة، اكتشاف الثغرات، والتصدي للهجمات السيبرانية.",
+    keySkills: ["Cyber Security Fundamentals", "Network Defense & Protection", "Threats & Vulnerability Assessment", "Cisco Security Concepts", "Ethical Hacking Roadmap"],
+    lectures: [
+      { title: "00. ازاي تتعلم الامن السيبراني و تدخل في المجال - Mohamed Al Assaal", videoUrl: "https://youtu.be/u-oUB8uBN94?si=Q7QnzE2_U-fHxYEr", desc: "مدخل شامل لفهم مجالات أمن المعلومات، الوظائف المتاحة، وكيف تبدأ رحلتك من الصفر." },
+      { title: "01. cyber security chapter1 part 1 | Arabic Introduction to Cybersecurity v3.0", videoUrl: "https://www.youtube.com/watch?v=4KtcomKXO-Q", desc: "مفاهيم الأمن السيبراني الأساسية والحاجة الملحة لحماية البيانات." },
+      { title: "02. cyber security chapter1 part 2 | Arabic Introduction to Cybersecurity v3.0", videoUrl: "https://www.youtube.com/watch?v=Te9TMx69C_c", desc: "أنواع الهجمات الإلكترونية ودوافع المخترقين." },
+      { title: "03. cyber security chapter2 part 1 | Arabic Introduction to Cybersecurity v3.0", videoUrl: "https://www.youtube.com/watch?v=a4uns-3OC-I", desc: "أنواع البرمجيات الخبيثة (Malware, Ransomware, Trojans)." },
+      { title: "04. cyber security chapter2 part 2 | Arabic Introduction to Cybersecurity v3.0", videoUrl: "https://www.youtube.com/watch?v=9lcOSoto4Ls", desc: "أساليب الخداع والهندسة الاجتماعية (Social Engineering & Phishing)." },
+      { title: "05. cyber security chapter3 part 1 | Arabic Introduction to Cybersecurity v3.0", videoUrl: "https://www.youtube.com/watch?v=KgI_DiSz0gw", desc: "مبادئ حماية البيانات وسرية وسلامة المعلومات (CIA Triad)." },
+      { title: "06. cyber security chapter3 part 2 | Arabic Introduction to Cybersecurity v3.0", videoUrl: "https://www.youtube.com/watch?v=LHK15s0J8Vk", desc: "تقنيات التشفير وإدارة كلمات المرور والمصادقة الثنائية." },
+      { title: "07. cyber security chapter4 part 1 | Arabic Introduction to Cybersecurity v3.0", videoUrl: "https://www.youtube.com/watch?v=R6NmGmqMkT0", desc: "حماية الشبكات والأجهزة وجدران الحماية Firewalls." },
+      { title: "08. cyber security chapter4 part 2 | Arabic Introduction to Cybersecurity v3.0", videoUrl: "https://www.youtube.com/watch?v=e0nCZ61Z15s", desc: "السلوك الأمني السليم وإجراءات التصدي للحوادث السيبرانية." },
+      { title: "09. introduction to cyber security | مقدمة الأمن السيبراني (مراجعة وأسئلة)", videoUrl: "https://www.youtube.com/watch?v=bKqJvMbPD44", desc: "مراجعة شاملة وأسئلة تدريبية لاجتياز اختبار سيسكو المعتمد." }
     ]
   }
 };
@@ -2855,6 +2985,62 @@ if (courseId === "c_office_suite" || courseId === "c_web_dev") {
       `).join("");
       officeCard.classList.remove("hidden");
       renderLevelDetails(netData);
+    }
+  } else if (courseId === "c_software_testing") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const testData = window.testingCurriculumDB ? window.testingCurriculumDB.main : null;
+    if (testData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = testData.title;
+      document.getElementById("officeProgramDesc").textContent = testData.overview;
+      document.getElementById("officeSkillsList").innerHTML = testData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(testData);
+    }
+  } else if (courseId === "c_digital_marketing") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const mktData = window.marketingCurriculumDB ? window.marketingCurriculumDB.main : null;
+    if (mktData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = mktData.title;
+      document.getElementById("officeProgramDesc").textContent = mktData.overview;
+      document.getElementById("officeSkillsList").innerHTML = mktData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(mktData);
+    }
+  } else if (courseId === "c_data_analysis") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const dataAnalysisData = window.dataAnalysisCurriculumDB ? window.dataAnalysisCurriculumDB.main : null;
+    if (dataAnalysisData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = dataAnalysisData.title;
+      document.getElementById("officeProgramDesc").textContent = dataAnalysisData.overview;
+      document.getElementById("officeSkillsList").innerHTML = dataAnalysisData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(dataAnalysisData);
+    }
+  } else if (courseId === "c_cyber_sec") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const secData = window.cyberSecurityCurriculumDB ? window.cyberSecurityCurriculumDB.main : null;
+    if (secData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = secData.title;
+      document.getElementById("officeProgramDesc").textContent = secData.overview;
+      document.getElementById("officeSkillsList").innerHTML = secData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(secData);
     }
   }
     else {
