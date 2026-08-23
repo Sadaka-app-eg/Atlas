@@ -2359,24 +2359,8 @@ window.closeResourceModal = function() {
 
 window.selectCourseLevel = function(courseId, levelId) {
   currentSelectedLevelId = levelId;
-  
-  if (typeof window.closeVideoPlayer === "function") {
-    window.closeVideoPlayer();
-  }
-// فحص مسار الويب
-  if (courseId === "c_web_dev") {
-    if (languagePortals) languagePortals.classList.add("hidden");
-    const webData = window.webCurriculumDB ? window.webCurriculumDB[levelId] : null;
-    if (webData && officeCard) {
-      document.getElementById("officeProgramTitle").textContent = webData.title;
-      document.getElementById("officeProgramDesc").textContent = webData.overview;
-      document.getElementById("officeSkillsList").innerHTML = webData.keySkills.map(sk => `
-        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
-      `).join("");
-      officeCard.classList.remove("hidden");
-      renderLevelDetails(webData);
-    }
-  }
+  if (typeof window.closeVideoPlayer === "function") window.closeVideoPlayer();
+
   const quizSec = document.getElementById("quizSection");
   if (quizSec) quizSec.classList.add("hidden");
 
@@ -2386,50 +2370,34 @@ window.selectCourseLevel = function(courseId, levelId) {
 
   const courseLevels = window.courseLevelsDB[courseId] || [];
   const selectedLvl = courseLevels.find(l => l.id === levelId);
-  if (selectedLvl) {
-    document.getElementById("activeLevelBadge").textContent = `${selectedLvl.name}`;
-  }
+  if (selectedLvl) document.getElementById("activeLevelBadge").textContent = selectedLvl.name;
 
   const officeCard = document.getElementById("officeOverviewCard");
   const languagePortals = document.getElementById("languageSkillsPortals");
 
-  // 1. مسار الأوفيس
-  if (courseId === "c_office_suite") {
+  if (courseId === "c_office_suite" || courseId === "c_web_dev") {
     if (languagePortals) languagePortals.classList.add("hidden");
-    const officeData = window.officeCurriculumDB ? window.officeCurriculumDB[levelId] : null;
-    if (officeData && officeCard) {
-      document.getElementById("officeProgramTitle").textContent = officeData.title;
-      document.getElementById("officeProgramDesc").textContent = officeData.overview;
-      document.getElementById("officeSkillsList").innerHTML = officeData.keySkills.map(sk => `
-        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-slate-300">${sk}</span>
-      `).join("");
+    const db = courseId === "c_web_dev" ? window.webCurriculumDB : window.officeCurriculumDB;
+    const data = db ? db[levelId] : null;
+    if (data && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = data.title;
+      document.getElementById("officeProgramDesc").textContent = data.overview;
+      document.getElementById("officeSkillsList").innerHTML = data.keySkills.map(sk =>
+        `<span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-slate-300">${sk}</span>`
+      ).join("");
       officeCard.classList.remove("hidden");
-      renderLevelDetails(officeData);
+      renderLevelDetails(data);
     }
-  } 
-  // 2. مسار اللغة الألمانية
-  else if (courseId === "c_deutsch_all") {
+  } else if (courseId === "c_deutsch_all") {
     if (officeCard) officeCard.classList.add("hidden");
-    if (languagePortals) {
-      languagePortals.classList.remove("hidden");
-      languagePortals.classList.add("block");
-    }
-    const deutschData = window.deutschMasterCurriculum ? window.deutschMasterCurriculum[levelId] : null;
-    if (deutschData) {
-      renderLevelDetails(deutschData);
-    }
-  } 
-  // 3. مسار اللغة الإنجليزية
-  else {
+    if (languagePortals) { languagePortals.classList.remove("hidden"); languagePortals.classList.add("grid"); }
+    const data = window.deutschMasterCurriculum ? window.deutschMasterCurriculum[levelId] : null;
+    if (data) renderLevelDetails(data);
+  } else {
     if (officeCard) officeCard.classList.add("hidden");
-    if (languagePortals) {
-      languagePortals.classList.remove("hidden");
-      languagePortals.classList.add("block");
-    }
-    const englishData = window.englishMasterCurriculum ? window.englishMasterCurriculum[levelId] : null;
-    if (englishData) {
-      renderLevelDetails(englishData);
-    }
+    if (languagePortals) { languagePortals.classList.remove("hidden"); languagePortals.classList.add("grid"); }
+    const data = window.courseResourcesMaster ? window.courseResourcesMaster[levelId] : null;
+    if (data) renderLevelDetails(data);
   }
 };
 
@@ -2472,7 +2440,8 @@ window.openCourseView = function(courseId) {
   if (courseLevels && courseLevels.length > 0) {
     if (levelsSection) levelsSection.classList.remove("hidden");
     if (languagePortals) {
-      if (courseId === "c_office_suite") {
+if (courseId === "c_office_suite" || courseId === "c_web_dev") {
+
         languagePortals.classList.add("hidden");
       } else {
         languagePortals.classList.remove("hidden");
@@ -2569,68 +2538,7 @@ window.loadFirestoreLectures = async function(courseOrLevelKey) {
   }
 };
 
-window.selectCourseLevel = function(courseId, levelId) {
-  currentSelectedLevelId = levelId;
-  
-  if (typeof window.closeVideoPlayer === "function") {
-    window.closeVideoPlayer();
-  }
 
-  const quizSec = document.getElementById("quizSection");
-  if (quizSec) quizSec.classList.add("hidden");
-
-  document.querySelectorAll(".level-capsule-btn").forEach(btn => btn.classList.remove("active"));
-  const activeBtn = document.getElementById(`levelCard_${levelId}`);
-  if (activeBtn) activeBtn.classList.add("active");
-
-  const courseLevels = window.courseLevelsDB[courseId] || [];
-  const selectedLvl = courseLevels.find(l => l.id === levelId);
-  if (selectedLvl) {
-    document.getElementById("activeLevelBadge").textContent = `${selectedLvl.name}`;
-  }
-
-  const officeCard = document.getElementById("officeOverviewCard");
-  const languagePortals = document.getElementById("languageSkillsPortals");
-
-  // 1. مسار الأوفيس
-  if (courseId === "c_office_suite") {
-    if (languagePortals) languagePortals.classList.add("hidden");
-    const officeData = window.officeCurriculumDB ? window.officeCurriculumDB[levelId] : null;
-    if (officeData && officeCard) {
-      document.getElementById("officeProgramTitle").textContent = officeData.title;
-      document.getElementById("officeProgramDesc").textContent = officeData.overview;
-      document.getElementById("officeSkillsList").innerHTML = officeData.keySkills.map(sk => `
-        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-slate-300">${sk}</span>
-      `).join("");
-      officeCard.classList.remove("hidden");
-      renderLevelDetails(officeData);
-    }
-  } 
-  // 2. مسار اللغة الألمانية
-  else if (courseId === "c_deutsch_all") {
-    if (officeCard) officeCard.classList.add("hidden");
-    if (languagePortals) {
-      languagePortals.classList.remove("hidden");
-      languagePortals.classList.add("grid");
-    }
-    const deutschData = window.deutschMasterCurriculum ? window.deutschMasterCurriculum[levelId] : null;
-    if (deutschData) {
-      renderLevelDetails(deutschData);
-    }
-  } 
-  // 3. مسار اللغة الإنجليزية
-  else {
-    if (officeCard) officeCard.classList.add("hidden");
-    if (languagePortals) {
-      languagePortals.classList.remove("hidden");
-      languagePortals.classList.add("grid");
-    }
-    const englishData = window.englishMasterCurriculum ? window.englishMasterCurriculum[levelId] : null;
-    if (englishData) {
-      renderLevelDetails(englishData);
-    }
-  }
-};
 
 // عرض محتويات المستوى والمحاضرات معرباً بالكامل
 function renderLevelDetails(data) {
