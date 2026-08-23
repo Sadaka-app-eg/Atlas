@@ -646,143 +646,193 @@
       </div>
 
 <!-- بوابات المهارات العشر الشاملة (Language Mastery Hub) -->
-      <div id="languageSkillsPortals" class="hidden space-y-4">
+      <div id="languageSkillsPortals" class="hidden space-y-5">
         
-        <!-- حقل البحث السريع داخل مهارات المستوى -->
+        <!-- حقل البحث السريع -->
         <div class="relative">
-          <input id="langSkillsSearchInput" oninput="filterLangCardsLive()" type="text" placeholder="🔎 ابحث عن فعل، كلمة، صفة، قاعدة، محادثة..." class="w-full h-12 rounded-2xl px-5 border border-slate-700 bg-[#0A0F1D] text-xs text-white placeholder:text-slate-500 focus:border-cyan-400 outline-none transition" />
+          <input id="langSkillsSearchInput" oninput="filterLangCardsLive()" type="text" placeholder="🔎 ابحث عن فعل، كلمة، صفة، قاعدة، محادثة..." class="w-full h-12 rounded-2xl px-5 border border-slate-700/80 bg-[#11131A] text-xs text-white placeholder:text-slate-500 focus:border-cyan-400 outline-none transition shadow-inner" />
         </div>
 
-        <!-- شبكة الكروت الـ 10 -->
-        <div class="skill-grid-hub" id="langCardsGrid">
+        <!-- شبكة الكروت والمستطيلات المتجاورة -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="langCardsGrid">
           
           <!-- 1. الأفعال -->
-          <article class="skill-card-modern" style="--glow:#27cfff;--progress:35%" onclick="openResourceModal('verbs')">
+          <article onclick="openResourceModal('verbs')" class="group relative overflow-hidden p-5 rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-[#111c32] to-[#09101d] hover:border-cyan-400/60 hover:-translate-y-1 transition duration-200 cursor-pointer shadow-lg flex flex-col justify-between min-h-[190px]">
             <div>
-              <div class="skill-icon-badge">⚡</div>
-              <h3 class="font-bold text-base text-white">الأفعال — Verbs</h3>
-              <p class="text-xs text-slate-400 leading-relaxed mt-1">أهم الأفعال الأساسية وأفعال الحياة اليومية مع التصريف والأمثلة.</p>
+              <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-2xl flex items-center justify-center mb-3">⚡</div>
+              <h3 class="font-bold text-base text-white group-hover:text-cyan-300 transition">الأفعال — Verbs</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">أهم الأفعال الأساسية وأفعال الحياة اليومية مع التصريف والترجمة.</p>
             </div>
-            <div>
-              <div class="text-[11px] font-bold text-cyan-400 font-mono mt-3">120+ Verb • 35% مكتمل</div>
-              <div class="mini-progress-bar" style="--progress:35%"><span></span></div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <div class="flex items-center justify-between text-[11px] font-bold text-cyan-400 font-mono mb-1.5">
+                <span>120+ Verb</span>
+                <span>35% مكتمل</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 w-[35%] rounded-full"></div>
+              </div>
             </div>
           </article>
 
           <!-- 2. الأسماء والمفردات -->
-          <article class="skill-card-modern" style="--glow:#6d5cff;--progress:28%" onclick="openResourceModal('nouns')">
+          <article onclick="openResourceModal('nouns')" class="group relative overflow-hidden p-5 rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-[#131635] to-[#09101d] hover:border-indigo-400/60 hover:-translate-y-1 transition duration-200 cursor-pointer shadow-lg flex flex-col justify-between min-h-[190px]">
             <div>
-              <div class="skill-icon-badge">📚</div>
-              <h3 class="font-bold text-base text-white">الأسماء — Nouns</h3>
+              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-2xl flex items-center justify-center mb-3">📚</div>
+              <h3 class="font-bold text-base text-white group-hover:text-indigo-300 transition">الأسماء — Nouns</h3>
               <p class="text-xs text-slate-400 leading-relaxed mt-1">مفردات مصنفة حسب العائلة، المنزل، الطعام، والأماكن العامة.</p>
             </div>
-            <div>
-              <div class="text-[11px] font-bold text-indigo-400 font-mono mt-3">250+ Word • 28% مكتمل</div>
-              <div class="mini-progress-bar" style="--progress:28%"><span></span></div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <div class="flex items-center justify-between text-[11px] font-bold text-indigo-400 font-mono mb-1.5">
+                <span>250+ Word</span>
+                <span>28% مكتمل</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-400 w-[28%] rounded-full"></div>
+              </div>
             </div>
           </article>
 
           <!-- 3. الصفات والأضداد -->
-          <article class="skill-card-modern" style="--glow:#ff4fc8;--progress:20%" onclick="openResourceModal('adjectives')">
+          <article onclick="openResourceModal('adjectives')" class="group relative overflow-hidden p-5 rounded-2xl border border-pink-500/20 bg-gradient-to-br from-[#211228] to-[#09101d] hover:border-pink-400/60 hover:-translate-y-1 transition duration-200 cursor-pointer shadow-lg flex flex-col justify-between min-h-[190px]">
             <div>
-              <div class="skill-icon-badge">🎨</div>
-              <h3 class="font-bold text-base text-white">الصفات — Adjectives</h3>
-              <p class="text-xs text-slate-400 leading-relaxed mt-1">صفات الأشخاص، المشاعر، الأحجام، والألوان مع أمثلة تطبيقية.</p>
+              <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-400 text-2xl flex items-center justify-center mb-3">🎨</div>
+              <h3 class="font-bold text-base text-white group-hover:text-pink-300 transition">الصفات — Adjectives</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mt-1">صفات الأشخاص، المشاعر، الأحجام، والألوان مع أمثلة مترجمة.</p>
             </div>
-            <div>
-              <div class="text-[11px] font-bold text-pink-400 font-mono mt-3">100+ Adjective • 20% مكتمل</div>
-              <div class="mini-progress-bar" style="--progress:20%"><span></span></div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <div class="flex items-center justify-between text-[11px] font-bold text-pink-400 font-mono mb-1.5">
+                <span>100+ Adjective</span>
+                <span>20% مكتمل</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-pink-500 to-rose-400 w-[20%] rounded-full"></div>
+              </div>
             </div>
           </article>
 
           <!-- 4. الجمل اليومية -->
-          <article class="skill-card-modern" style="--glow:#35e6a0;--progress:42%" onclick="openResourceModal('sentences')">
+          <article onclick="openResourceModal('sentences')" class="group relative overflow-hidden p-5 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-[#102322] to-[#09101d] hover:border-emerald-400/60 hover:-translate-y-1 transition duration-200 cursor-pointer shadow-lg flex flex-col justify-between min-h-[190px]">
             <div>
-              <div class="skill-icon-badge">💬</div>
-              <h3 class="font-bold text-base text-white">الجمل اليومية — Sentences</h3>
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-2xl flex items-center justify-center mb-3">💬</div>
+              <h3 class="font-bold text-base text-white group-hover:text-emerald-300 transition">الجمل اليومية — Sentences</h3>
               <p class="text-xs text-slate-400 leading-relaxed mt-1">تعبيرات التحية، طلب المساعدة، التسوق والمواقف السريعة.</p>
             </div>
-            <div>
-              <div class="text-[11px] font-bold text-emerald-400 font-mono mt-3">200+ Sentence • 42% مكتمل</div>
-              <div class="mini-progress-bar" style="--progress:42%"><span></span></div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <div class="flex items-center justify-between text-[11px] font-bold text-emerald-400 font-mono mb-1.5">
+                <span>200+ Sentence</span>
+                <span>42% مكتمل</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 w-[42%] rounded-full"></div>
+              </div>
             </div>
           </article>
 
           <!-- 5. المحادثات الواقعية -->
-          <article class="skill-card-modern" style="--glow:#ffb52e;--progress:18%" onclick="openResourceModal('conversations')">
+          <article onclick="openResourceModal('conversations')" class="group relative overflow-hidden p-5 rounded-2xl border border-amber-500/20 bg-gradient-to-br from-[#241a12] to-[#09101d] hover:border-amber-400/60 hover:-translate-y-1 transition duration-200 cursor-pointer shadow-lg flex flex-col justify-between min-h-[190px]">
             <div>
-              <div class="skill-icon-badge">🗣️</div>
-              <h3 class="font-bold text-base text-white">المحادثات — Conversations</h3>
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 text-2xl flex items-center justify-center mb-3">🗣️</div>
+              <h3 class="font-bold text-base text-white group-hover:text-amber-300 transition">المحادثات — Conversations</h3>
               <p class="text-xs text-slate-400 leading-relaxed mt-1">حوارات كاملة في التعارف، المطاعم، التسوق، والسؤال عن الأماكن.</p>
             </div>
-            <div>
-              <div class="text-[11px] font-bold text-amber-400 font-mono mt-3">30+ Dialogue • 18% مكتمل</div>
-              <div class="mini-progress-bar" style="--progress:18%"><span></span></div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <div class="flex items-center justify-between text-[11px] font-bold text-amber-400 font-mono mb-1.5">
+                <span>30+ Dialogue</span>
+                <span>18% مكتمل</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-amber-500 to-yellow-400 w-[18%] rounded-full"></div>
+              </div>
             </div>
           </article>
 
           <!-- 6. القواعد Grammar -->
-          <article class="skill-card-modern" style="--glow:#8c6cff;--progress:31%" onclick="openResourceModal('grammar')">
+          <article onclick="openResourceModal('grammar')" class="group relative overflow-hidden p-5 rounded-2xl border border-purple-500/20 bg-gradient-to-br from-[#1c122e] to-[#09101d] hover:border-purple-400/60 hover:-translate-y-1 transition duration-200 cursor-pointer shadow-lg flex flex-col justify-between min-h-[190px]">
             <div>
-              <div class="skill-icon-badge">🧠</div>
-              <h3 class="font-bold text-base text-white">القواعد — Grammar</h3>
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 text-2xl flex items-center justify-center mb-3">🧠</div>
+              <h3 class="font-bold text-base text-white group-hover:text-purple-300 transition">القواعد — Grammar</h3>
               <p class="text-xs text-slate-400 leading-relaxed mt-1">تكوين الجملة، الأزمنة البسيطة، ضمائر الفاعل، والأسئلة الشائعة.</p>
             </div>
-            <div>
-              <div class="text-[11px] font-bold text-purple-400 font-mono mt-3">20+ Rules • 31% مكتمل</div>
-              <div class="mini-progress-bar" style="--progress:31%"><span></span></div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <div class="flex items-center justify-between text-[11px] font-bold text-purple-400 font-mono mb-1.5">
+                <span>20+ Rules</span>
+                <span>31% مكتمل</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-purple-500 to-indigo-400 w-[31%] rounded-full"></div>
+              </div>
             </div>
           </article>
 
           <!-- 7. الاستماع Listening -->
-          <article class="skill-card-modern" style="--glow:#00d9ff;--progress:15%" onclick="openResourceModal('listening')">
+          <article onclick="openResourceModal('listening')" class="group relative overflow-hidden p-5 rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-[#0e212f] to-[#09101d] hover:border-cyan-400/60 hover:-translate-y-1 transition duration-200 cursor-pointer shadow-lg flex flex-col justify-between min-h-[190px]">
             <div>
-              <div class="skill-icon-badge">🎧</div>
-              <h3 class="font-bold text-base text-white">الاستماع — Listening</h3>
+              <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-2xl flex items-center justify-center mb-3">🎧</div>
+              <h3 class="font-bold text-base text-white group-hover:text-cyan-300 transition">الاستماع — Listening</h3>
               <p class="text-xs text-slate-400 leading-relaxed mt-1">تدريبات سمعية متدرجة تبدأ من الكلمات حتى نصوص الحوار الكاملة.</p>
             </div>
-            <div>
-              <div class="text-[11px] font-bold text-cyan-300 font-mono mt-3">25+ Lesson • 15% مكتمل</div>
-              <div class="mini-progress-bar" style="--progress:15%"><span></span></div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <div class="flex items-center justify-between text-[11px] font-bold text-cyan-400 font-mono mb-1.5">
+                <span>25+ Lesson</span>
+                <span>15% مكتمل</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-400 w-[15%] rounded-full"></div>
+              </div>
             </div>
           </article>
 
           <!-- 8. الكتابة Writing -->
-          <article class="skill-card-modern" style="--glow:#ff6b8a;--progress:12%" onclick="openResourceModal('writing')">
+          <article onclick="openResourceModal('writing')" class="group relative overflow-hidden p-5 rounded-2xl border border-rose-500/20 bg-gradient-to-br from-[#26111a] to-[#09101d] hover:border-rose-400/60 hover:-translate-y-1 transition duration-200 cursor-pointer shadow-lg flex flex-col justify-between min-h-[190px]">
             <div>
-              <div class="skill-icon-badge">✍️</div>
-              <h3 class="font-bold text-base text-white">الكتابة — Writing</h3>
+              <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-2xl flex items-center justify-center mb-3">✍️</div>
+              <h3 class="font-bold text-base text-white group-hover:text-rose-300 transition">الكتابة — Writing</h3>
               <p class="text-xs text-slate-400 leading-relaxed mt-1">كتابة فقرات التقديم الشخصي، وصف العائلة واليوميات والرسائل.</p>
             </div>
-            <div>
-              <div class="text-[11px] font-bold text-rose-400 font-mono mt-3">15+ Template • 12% مكتمل</div>
-              <div class="mini-progress-bar" style="--progress:12%"><span></span></div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <div class="flex items-center justify-between text-[11px] font-bold text-rose-400 font-mono mb-1.5">
+                <span>15+ Template</span>
+                <span>12% مكتمل</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-rose-500 to-pink-400 w-[12%] rounded-full"></div>
+              </div>
             </div>
           </article>
 
           <!-- 9. النطق والصوتيات Pronunciation -->
-          <article class="skill-card-modern" style="--glow:#44f0c0;--progress:25%" onclick="openResourceModal('pronunciation')">
+          <article onclick="openResourceModal('pronunciation')" class="group relative overflow-hidden p-5 rounded-2xl border border-teal-500/20 bg-gradient-to-br from-[#0e2422] to-[#09101d] hover:border-teal-400/60 hover:-translate-y-1 transition duration-200 cursor-pointer shadow-lg flex flex-col justify-between min-h-[190px]">
             <div>
-              <div class="skill-icon-badge">🔊</div>
-              <h3 class="font-bold text-base text-white">النطق — Pronunciation</h3>
+              <div class="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-400 text-2xl flex items-center justify-center mb-3">🔊</div>
+              <h3 class="font-bold text-base text-white group-hover:text-teal-300 transition">النطق — Pronunciation</h3>
               <p class="text-xs text-slate-400 leading-relaxed mt-1">مخارج الحروف، الحروف المركبة، وتدريب التمييز الصوتي (P vs B).</p>
             </div>
-            <div>
-              <div class="text-[11px] font-bold text-teal-400 font-mono mt-3">18+ Rules • 25% مكتمل</div>
-              <div class="mini-progress-bar" style="--progress:25%"><span></span></div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <div class="flex items-center justify-between text-[11px] font-bold text-teal-400 font-mono mb-1.5">
+                <span>18+ Rules</span>
+                <span>25% مكتمل</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-teal-500 to-emerald-400 w-[25%] rounded-full"></div>
+              </div>
             </div>
           </article>
 
           <!-- 10. التعبيرات الشائعة Expressions -->
-          <article class="skill-card-modern" style="--glow:#ff8a3d;--progress:22%" onclick="openResourceModal('expressions')">
+          <article onclick="openResourceModal('expressions')" class="group relative overflow-hidden p-5 rounded-2xl border border-orange-500/20 bg-gradient-to-br from-[#26170e] to-[#09101d] hover:border-orange-400/60 hover:-translate-y-1 transition duration-200 cursor-pointer shadow-lg flex flex-col justify-between min-h-[190px]">
             <div>
-              <div class="skill-icon-badge">🔥</div>
-              <h3 class="font-bold text-base text-white">التعبيرات — Expressions</h3>
+              <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/30 text-orange-400 text-2xl flex items-center justify-center mb-3">🔥</div>
+              <h3 class="font-bold text-base text-white group-hover:text-orange-300 transition">التعبيرات — Expressions</h3>
               <p class="text-xs text-slate-400 leading-relaxed mt-1">مصطلحات وردود فورية جاهزة للاستخدام اللحظي في المحادثة.</p>
             </div>
-            <div>
-              <div class="text-[11px] font-bold text-orange-400 font-mono mt-3">150+ Expression • 22% مكتمل</div>
-              <div class="mini-progress-bar" style="--progress:22%"><span></span></div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <div class="flex items-center justify-between text-[11px] font-bold text-orange-400 font-mono mb-1.5">
+                <span>150+ Expression</span>
+                <span>22% مكتمل</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-orange-500 to-amber-400 w-[22%] rounded-full"></div>
+              </div>
             </div>
           </article>
 
@@ -2122,7 +2172,7 @@ sentences: [
 let currentModalResourceType = null;
 let currentModalLevelData = null;
 
-// فتح نافذة تفاصيل أي مهارة من المهارات العشر
+// فتح نافذة تفاصيل أي مهارة من المهارات العشر مع إظهار الأمثلة والترجمة العربية
 window.openResourceModal = function(type) {
   currentModalResourceType = type;
   
@@ -2150,18 +2200,20 @@ window.openResourceModal = function(type) {
       container.innerHTML = resData.topics.map(topic => `
         <div class="p-5 rounded-2xl bg-[#0A0F1D] border border-slate-800 space-y-3">
           <h4 class="text-sm font-bold text-cyan-400 border-b border-slate-800/80 pb-2">${topic.title}</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             ${topic.items.map(it => {
               const enText = typeof it === "object" ? it.en : it;
               const arText = typeof it === "object" ? it.ar : "";
               const exText = typeof it === "object" ? it.ex : "";
+              const exArText = typeof it === "object" ? it.exAr : "";
 
               return `
-                <div class="p-3 rounded-xl bg-[#111827] border border-slate-800 flex items-center justify-between gap-3 hover:border-slate-700 transition">
-                  <div>
+                <div class="p-3.5 rounded-xl bg-[#111827] border border-slate-800 flex items-center justify-between gap-3 hover:border-slate-700 transition">
+                  <div class="space-y-0.5">
                     <span class="text-xs font-bold text-white font-mono block">${enText}</span>
-                    ${arText ? `<span class="text-[11px] text-slate-400 block mt-0.5">${arText}</span>` : ""}
-                    ${exText ? `<span class="text-[10px] text-emerald-400 font-mono block mt-0.5">"${exText}"</span>` : ""}
+                    ${arText ? `<span class="text-[11px] text-slate-400 block">${arText}</span>` : ""}
+                    ${exText ? `<span class="text-[10px] text-cyan-400 font-mono block pt-1">"${exText}"</span>` : ""}
+                    ${exArText ? `<span class="text-[10px] text-emerald-400 block">↳ الترجمة: ${exArText}</span>` : ""}
                   </div>
                   <button type="button" onclick="speakEnglish('${enText.replace(/'/g, "\\'")}')" class="w-8 h-8 rounded-lg bg-cyan-950/60 border border-cyan-800/40 text-cyan-400 hover:bg-cyan-600 hover:text-white flex items-center justify-center text-xs transition shrink-0 cursor-pointer" title="استمع">
                     🔊
@@ -2178,10 +2230,10 @@ window.openResourceModal = function(type) {
   if (modal) modal.classList.remove("hidden");
 };
 
-// فلترة كروت المهارات أثناء الكتابة في خانة البحث
+// فلترة كروت المهارات أثناء البحث المباشر
 window.filterLangCardsLive = function() {
   const query = document.getElementById("langSkillsSearchInput").value.toLowerCase().trim();
-  document.querySelectorAll(".skill-card-modern").forEach(card => {
+  document.querySelectorAll("#langCardsGrid article").forEach(card => {
     const text = card.innerText.toLowerCase();
     card.style.display = (!query || text.includes(query)) ? "flex" : "none";
   });
@@ -2191,96 +2243,69 @@ window.closeResourceModal = function() {
   document.getElementById("resourceFullModal").classList.add("hidden");
 };
 
-// تصفية نتائج البحث في المودال
-window.filterResourceModalData = function() {
-  const query = document.getElementById("resourceSearchInput").value.toLowerCase().trim();
-  if (!currentModalLevelData) return;
+window.selectCourseLevel = function(courseId, levelId) {
+  currentSelectedLevelId = levelId;
+  
+  if (typeof window.closeVideoPlayer === "function") {
+    window.closeVideoPlayer();
+  }
 
-  const filtered = currentModalLevelData.filter(item => {
-    if (currentModalResourceType === "verbs") {
-      return item.base.toLowerCase().includes(query) || item.past.toLowerCase().includes(query) || item.ar.includes(query);
-    } else if (currentModalResourceType === "vocab") {
-      return item.en.toLowerCase().includes(query) || item.ar.includes(query);
-    } else if (currentModalResourceType === "sentences") {
-      return item.en.toLowerCase().includes(query) || item.ar.includes(query);
+  const quizSec = document.getElementById("quizSection");
+  if (quizSec) quizSec.classList.add("hidden");
+
+  document.querySelectorAll(".level-capsule-btn").forEach(btn => btn.classList.remove("active"));
+  const activeBtn = document.getElementById(`levelCard_${levelId}`);
+  if (activeBtn) activeBtn.classList.add("active");
+
+  const courseLevels = window.courseLevelsDB[courseId] || [];
+  const selectedLvl = courseLevels.find(l => l.id === levelId);
+  if (selectedLvl) {
+    document.getElementById("activeLevelBadge").textContent = `${selectedLvl.name}`;
+  }
+
+  const officeCard = document.getElementById("officeOverviewCard");
+  const languagePortals = document.getElementById("languageSkillsPortals");
+
+  // 1. مسار الأوفيس
+  if (courseId === "c_office_suite") {
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeData = window.officeCurriculumDB ? window.officeCurriculumDB[levelId] : null;
+    if (officeData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = officeData.title;
+      document.getElementById("officeProgramDesc").textContent = officeData.overview;
+      document.getElementById("officeSkillsList").innerHTML = officeData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-slate-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(officeData);
     }
-    return false;
-  });
-
-  renderModalList(filtered);
+  } 
+  // 2. مسار اللغة الألمانية
+  else if (courseId === "c_deutsch_all") {
+    if (officeCard) officeCard.classList.add("hidden");
+    if (languagePortals) {
+      languagePortals.classList.remove("hidden");
+      languagePortals.classList.add("block");
+    }
+    const deutschData = window.deutschMasterCurriculum ? window.deutschMasterCurriculum[levelId] : null;
+    if (deutschData) {
+      renderLevelDetails(deutschData);
+    }
+  } 
+  // 3. مسار اللغة الإنجليزية
+  else {
+    if (officeCard) officeCard.classList.add("hidden");
+    if (languagePortals) {
+      languagePortals.classList.remove("hidden");
+      languagePortals.classList.add("block");
+    }
+    const englishData = window.englishMasterCurriculum ? window.englishMasterCurriculum[levelId] : null;
+    if (englishData) {
+      renderLevelDetails(englishData);
+    }
+  }
 };
 
-// رسم القائمة داخل المودال مع دعم النطق الفوري
-function renderModalList(dataList) {
-  const container = document.getElementById("resourceModalList");
-  if (!container) return;
-
-  if (dataList.length === 0) {
-    container.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">لا توجد نتائج مطابقة للبحث.</div>`;
-    return;
-  }
-
-  if (currentModalResourceType === "verbs") {
-    container.innerHTML = dataList.map((v, i) => `
-      <div class="p-4 rounded-2xl bg-[#0A0F1D] border border-slate-800 flex items-center justify-between flex-wrap gap-3">
-        <div class="flex items-center gap-3">
-          <span class="w-7 h-7 rounded-xl bg-cyan-950 text-cyan-400 font-mono font-bold text-xs flex items-center justify-center">${i + 1}</span>
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-sm font-black text-cyan-300 font-mono">${v.base}</span>
-              <span class="text-[11px] text-slate-500 font-mono">/ Past: ${v.past}</span>
-            </div>
-            <span class="text-xs text-slate-300 font-bold block mt-0.5">المعنى: ${v.ar}</span>
-            <span class="text-[11px] text-emerald-400 font-mono block mt-0.5">"${v.ex}"</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-2">
-          <button type="button" onclick="speakEnglish('${v.base}')" class="px-3 py-1.5 rounded-xl bg-cyan-950 hover:bg-cyan-600 text-cyan-300 hover:text-white border border-cyan-800/40 text-xs font-bold transition flex items-center gap-1 cursor-pointer">
-            <span>🔊</span> نطق الفعل
-          </button>
-          <button type="button" onclick="speakEnglish('${v.ex}')" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-emerald-600 text-slate-300 hover:text-white text-xs font-bold transition flex items-center gap-1 cursor-pointer">
-            <span>🔊</span> نطق المثال
-          </button>
-        </div>
-      </div>
-    `).join("");
-  } else if (currentModalResourceType === "vocab") {
-    container.innerHTML = dataList.map((item, i) => `
-      <div class="p-3.5 rounded-2xl bg-[#0A0F1D] border border-slate-800 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <span class="w-6 h-6 rounded-lg bg-emerald-950 text-emerald-400 font-mono font-bold text-xs flex items-center justify-center">${i + 1}</span>
-          <div>
-            <h4 class="text-xs sm:text-sm font-black text-white font-mono">${item.en}</h4>
-            <span class="text-[11px] text-slate-400">${item.ar}</span>
-          </div>
-        </div>
-        <button type="button" onclick="speakEnglish('${item.en}')" class="w-8 h-8 rounded-xl bg-emerald-950 border border-emerald-800/40 hover:bg-emerald-600 text-emerald-400 hover:text-white flex items-center justify-center text-xs transition cursor-pointer" title="استمع">
-          🔊
-        </button>
-      </div>
-    `).join("");
-} else if (currentModalResourceType === "sentences") {
-    container.innerHTML = dataList.map((st, i) => `
-      <div class="p-4 rounded-2xl bg-[#0A0F1D] border border-slate-800 flex items-center justify-between flex-wrap gap-3 hover:border-amber-500/40 transition">
-        <div class="flex items-start gap-3">
-          <span class="w-7 h-7 rounded-xl bg-amber-950 text-amber-400 font-bold text-xs flex items-center justify-center shrink-0 mt-1">${i + 1}</span>
-          <div>
-            ${st.category ? `<span class="inline-block text-[10px] font-bold px-2 py-0.5 rounded-md bg-amber-400/10 text-amber-300 border border-amber-400/20 mb-1">${st.category}</span>` : ''}
-            <p class="text-xs sm:text-sm font-black text-white font-mono leading-relaxed">${st.en}</p>
-            <p class="text-[11px] text-slate-400 mt-1">${st.ar}</p>
-          </div>
-        </div>
-        <button type="button" onclick="speakEnglish('${st.en.replace(/'/g, "\\'")}')" class="px-3.5 py-1.5 rounded-xl bg-amber-950/80 border border-amber-800/50 hover:bg-amber-600 hover:text-white text-amber-300 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
-          <span>🔊</span> استمع للجملة
-        </button>
-      </div>
-    `).join("");
-  }
-}
-
-
-
-// فتح واجهة الكورس وتحديد ما إذا كان مسار لغات أم برمجة
 window.openCourseView = function(courseId) {
   const crs = window.catalogData[courseId];
   if (!crs) return;
@@ -2292,6 +2317,21 @@ window.openCourseView = function(courseId) {
   document.getElementById("crsPrice").textContent = `${crs.price} ج.م`;
   document.getElementById("crsCategory").textContent = (crs.year === 'tech' ? 'TECH & CYBER' : 'LANGUAGE TRACK');
 
+  const isEnrolled = window.currentUserEnrolledCourses && window.currentUserEnrolledCourses.includes(courseId);
+  const crsActionBtn = document.getElementById("crsActionBtn");
+
+  if (crsActionBtn) {
+    if (isEnrolled) {
+      crsActionBtn.className = "px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-xs flex items-center gap-1.5 cursor-default";
+      crsActionBtn.innerHTML = "<span>✓</span> <span>حسابك مفعل في هذا المسار</span>";
+      crsActionBtn.onclick = null;
+    } else {
+      crsActionBtn.className = "px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition cursor-pointer whitespace-nowrap";
+      crsActionBtn.textContent = "تأكيد الاشتراك في المسار";
+      crsActionBtn.onclick = toggleCourseEnrollment;
+    }
+  }
+
   ["mainNavbar", "hero", "years", "courses", "features", "honors", "reviews", "instructor", "mainFooter"].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.add("hidden");
@@ -2302,12 +2342,15 @@ window.openCourseView = function(courseId) {
   const levelsGrid = document.getElementById("levelsCardsGrid");
   const courseLevels = window.courseLevelsDB ? window.courseLevelsDB[courseId] : null;
 
-  // إذا كان الكورس يحتوي على مستويات (مثل الإنجليزي والألماني)
   if (courseLevels && courseLevels.length > 0) {
     if (levelsSection) levelsSection.classList.remove("hidden");
     if (languagePortals) {
-      languagePortals.classList.remove("hidden");
-      languagePortals.classList.add("grid");
+      if (courseId === "c_office_suite") {
+        languagePortals.classList.add("hidden");
+      } else {
+        languagePortals.classList.remove("hidden");
+        languagePortals.classList.add("block");
+      }
     }
 
     levelsGrid.innerHTML = courseLevels.map((lvl, index) => `
@@ -2321,12 +2364,8 @@ window.openCourseView = function(courseId) {
 
     selectCourseLevel(courseId, courseLevels[0].id);
   } else {
-    // كورسات البرمجة والتقنية (بدون مستويات لغوية)
     if (levelsSection) levelsSection.classList.add("hidden");
-    if (languagePortals) {
-      languagePortals.classList.remove("grid");
-      languagePortals.classList.add("hidden");
-    }
+    if (languagePortals) languagePortals.classList.add("hidden");
     window.loadFirestoreLectures(courseId);
   }
 
