@@ -1,5 +1,5 @@
 /* ========================================================
-   ATLAS | KEMET LUXURY THEME VARIABLES
+   ATLAS | KEMET ULTRA LUXURY ENGINE
 ======================================================== */
 :root {
   --gold-light: #E8C97A;
@@ -15,70 +15,144 @@
   --sand-light: #E8D5A3;
   --border-gold: #503d17;
   --border-gold-subtle: rgba(201, 168, 76, 0.25);
-  --trans: 0.3s ease;
+  --trans: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Base Body Background & Typography */
+/* Luxury Background with Gradient Radial & Noise Feel */
 body {
-  background: radial-gradient(circle at 50% 30%, rgba(184, 138, 46, 0.15) 0%, transparent 70%), var(--obsidian-dark) !important;
+  background: 
+    radial-gradient(circle at 50% 10%, rgba(201, 168, 76, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 80% 50%, rgba(31, 78, 121, 0.08) 0%, transparent 50%),
+    var(--obsidian-dark) !important;
   color: var(--papyrus) !important;
-  font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif !important;
-  min-height: 100vh;
+  font-family: 'Alexandria', sans-serif !important;
+  overflow-x: hidden;
 }
 
-/* Titles with Amiri Font */
-h1, h2, .brand-font {
+/* Royal Headings Typography */
+h1, h2, h3, .brand-font {
   font-family: 'Amiri', serif !important;
   letter-spacing: 0.5px;
 }
 
-/* Custom Luxury Scrollbar */
+/* Scroll Progress Bar at very top */
+#scrollProgress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+  z-index: 9999;
+  box-shadow: 0 0 10px var(--gold);
+}
+
+/* Elegant Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--obsidian); }
-::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 4px; }
+::-webkit-scrollbar-track { background: var(--obsidian-dark); }
+::-webkit-scrollbar-thumb { 
+  background: linear-gradient(to bottom, var(--gold-dark), #503d17); 
+  border-radius: 4px; 
+}
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-/* Overwrite Tailwind Surfaces & Borders */
-.bg-surface, .bg-elevated, .bg-\[\#111827\], .bg-\[\#11131A\] {
-  background-color: var(--obsidian-light) !important;
-  border-color: var(--border-gold-subtle) !important;
+/* Golden Divider Line from Kemet */
+.kemet-gold-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to left, transparent, var(--gold), transparent);
+  margin: 3rem 0;
+  opacity: 0.6;
 }
 
-.border-theme, .border-slate-800, .border-slate-700 {
-  border-color: var(--border-gold-subtle) !important;
+/* Section Title Scaffolding */
+.kemet-section-header {
+  text-align: center;
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.kemet-section-header .eyebrow {
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.kemet-section-header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  color: var(--papyrus-light);
+  font-weight: 700;
+}
+.kemet-section-header::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 1px;
+  width: 120px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
-.text-cyan-400, .text-cyan-300, .text-blue-400 {
-  color: var(--gold-light) !important;
-}
-
-.text-muted, .text-slate-400 {
-  color: #BFAE84 !important;
-}
-
-/* Luxury Cards Glow */
+/* Luxury Cards with Border Glow */
 .kemet-card-hover {
+  background: linear-gradient(135deg, rgba(42, 32, 21, 0.85), rgba(26, 18, 9, 0.95)) !important;
+  border: 1px solid var(--border-gold-subtle) !important;
+  backdrop-filter: blur(10px);
   transition: var(--trans);
-  border: 1px solid var(--border-gold-subtle);
-  background: linear-gradient(145deg, var(--obsidian-light), var(--obsidian));
+  position: relative;
 }
 .kemet-card-hover:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.01);
   border-color: var(--gold) !important;
-  box-shadow: 0 0 35px rgba(201, 168, 76, 0.25);
+  box-shadow: 0 10px 40px rgba(201, 168, 76, 0.22);
 }
 
-/* Gold Primary Buttons */
+/* Royal Golden Buttons */
 .bg-brand, .bg-blue-600 {
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold)) !important;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%) !important;
   color: var(--obsidian-dark) !important;
   font-weight: 800 !important;
   border: 1px solid var(--gold-light) !important;
-  box-shadow: 0 0 15px rgba(201, 168, 76, 0.3) !important;
-  transition: var(--trans);
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.25) !important;
+  transition: var(--trans) !important;
 }
 .bg-brand:hover, .bg-blue-600:hover {
-  background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important;
-  box-shadow: 0 0 25px rgba(201, 168, 76, 0.6) !important;
   transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(201, 168, 76, 0.5) !important;
+  filter: brightness(1.1);
+}
+
+/* Badges & Pills */
+.kemet-badge {
+  background: var(--obsidian-dark);
+  color: var(--gold-light);
+  border: 1px solid var(--border-gold);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+
+/* Floating Scroll to top Button */
+.btn-up_body {
+  bottom: 25px;
+  right: 25px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--obsidian-light);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(201, 168, 76, 0.3);
+  transition: var(--trans);
+  z-index: 999;
+}
+.btn-up_body:hover {
+  background: var(--gold);
+  color: var(--obsidian-dark);
+  transform: translateY(-4px);
 }
