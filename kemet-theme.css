@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   KEMET ULTRA STYLING ENGINE - ADVANCED VISUAL OVERHAUL
+   ATLAS × KEMET MASTER ARCHITECTURE (ULTRA LUXURY EDITION)
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
@@ -11,91 +11,122 @@
   --obsidian-dark: #0D0A05;
   --obsidian: #1A1209;
   --obsidian-light: #2A2015;
+  --papyrus-white: #FFFDF9;
   --papyrus-light: #FAF0DC;
   --papyrus: #F5E6C8;
-  --papyrus-dark: #C4B598;
+  --papyrus-dark: #BFAE84;
   --sand: #D4A853;
+  --sand-light: #E8D5A3;
   --border-gold: #503D17;
-  --border-gold-subtle: rgba(201, 168, 76, 0.25);
+  --border-gold-subtle: rgba(201, 168, 76, 0.28);
   --trans: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: radial-gradient(circle at 50% 20%, rgba(184, 137, 46, 0.18) 0%, transparent 65%),
-              radial-gradient(circle at 80% 80%, rgba(31, 78, 121, 0.1) 0%, transparent 50%),
-              var(--obsidian-darkest) !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 50% 15%, rgba(201, 168, 76, 0.18) 0%, transparent 60%),
+    radial-gradient(circle at 80% 75%, rgba(31, 78, 121, 0.12) 0%, transparent 50%),
+    var(--obsidian-darkest) !important;
+  background-attachment: fixed !important;
   color: var(--papyrus) !important;
   font-family: 'Alexandria', sans-serif !important;
   overflow-x: hidden;
 }
 
-/* Central Hero Glow */
-.kemet-hero-glow {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 650px;
-  height: 400px;
-  background: radial-gradient(ellipse, rgba(201, 168, 76, 0.22) 0%, rgba(26, 18, 9, 0) 70%);
-  filter: blur(50px);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Hero Typography */
-.kemet-hero-title {
+/* Headings Typography */
+h1, h2, h3, .brand-font {
   font-family: 'Amiri', serif !important;
-  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
-  font-weight: 800;
-  line-height: 1.25;
+  letter-spacing: 0.5px;
   color: var(--papyrus-light);
-  text-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
 }
 
-.kemet-gold-gradient {
-  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--sand) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.num-font {
+  font-family: 'Merriweather', monospace, sans-serif !important;
+}
+
+/* Royal Golden Divider */
+.kemet-gold-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+  margin: 3.5rem auto;
+  opacity: 0.6;
+}
+
+/* Section Titles */
+.kemet-section-header {
+  text-align: center;
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.kemet-section-header .eyebrow {
+  color: var(--gold);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
   display: inline-block;
-  text-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+  margin-bottom: 0.4rem;
 }
 
-.kemet-hero-desc {
-  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-  line-height: 2;
-  color: var(--papyrus-dark);
+.kemet-section-header h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--papyrus-light);
+  font-weight: bold;
 }
 
-/* Primary Luxury Gold Button */
-.kemet-btn-primary {
-  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+.kemet-section-header::after {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* Buttons */
+.kemet-btn-primary, .bg-brand {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%) !important;
   color: var(--obsidian-darkest) !important;
-  font-weight: 800;
-  font-size: 0.95rem;
-  padding: 14px 34px;
-  border-radius: 40px;
-  border: 1px solid var(--gold-light);
-  box-shadow: 0 0 25px rgba(201, 168, 76, 0.35);
+  font-weight: 800 !important;
+  font-size: 0.95rem !important;
+  padding: 13px 32px !important;
+  border-radius: 40px !important;
+  border: 1px solid var(--gold-light) !important;
+  box-shadow: 0 0 25px rgba(201, 168, 76, 0.35) !important;
   display: inline-flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  transition: var(--trans);
+  transition: var(--trans) !important;
 }
 
-.kemet-btn-primary:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 0 40px rgba(201, 168, 76, 0.65);
+.kemet-btn-primary:hover, .bg-brand:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 40px rgba(201, 168, 76, 0.65) !important;
+  filter: brightness(1.1);
 }
 
-/* Secondary Papyrus Outline Button */
 .kemet-btn-secondary {
-  background: rgba(42, 32, 21, 0.6);
+  background: rgba(42, 32, 21, 0.7);
   color: var(--papyrus-light) !important;
   font-weight: 700;
   font-size: 0.95rem;
-  padding: 14px 30px;
+  padding: 13px 28px;
   border-radius: 40px;
   border: 1px solid var(--border-gold);
   backdrop-filter: blur(10px);
@@ -112,60 +143,32 @@ body {
   transform: translateY(-3px);
 }
 
-/* Navigation Buttons */
-.kemet-nav-btn {
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-  color: var(--obsidian-darkest);
-  font-weight: 800;
-  font-size: 0.8rem;
-  padding: 8px 18px;
-  border-radius: 25px;
-  border: 1px solid var(--gold-light);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
+/* Luxury Cards */
+.kemet-card-hover, #coursesSlider article {
+  background: linear-gradient(145deg, rgba(42, 32, 21, 0.85), rgba(26, 18, 9, 0.95)) !important;
+  border: 1px solid var(--border-gold-subtle) !important;
+  border-radius: 24px !important;
+  backdrop-filter: blur(14px);
   transition: var(--trans);
 }
 
-.kemet-nav-btn:hover {
-  box-shadow: 0 0 20px rgba(201, 168, 76, 0.5);
-  transform: translateY(-2px);
+.kemet-card-hover:hover, #coursesSlider article:hover {
+  border-color: var(--gold) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 35px rgba(201, 168, 76, 0.25) !important;
 }
 
-.kemet-circle-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--obsidian-light);
-  border: 1px solid var(--border-gold);
-  color: var(--gold-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: var(--trans);
+/* Animations */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-.kemet-circle-btn:hover {
-  border-color: var(--gold);
-  background: var(--obsidian);
-  color: var(--papyrus);
+.animate-float {
+  animation: floatGentle 4.5s ease-in-out infinite;
 }
 
-.kemet-user-pill {
-  background: var(--obsidian-light);
-  border: 1px solid var(--gold);
-  padding: 6px 16px;
-  border-radius: 30px;
-  font-size: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 0 15px rgba(201, 168, 76, 0.2);
-}
-
-/* Scroll Shape Animator */
+/* Scroll Indicator */
 .kemet-scroll-indicator {
   display: flex;
   justify-content: center;
@@ -195,4 +198,30 @@ body {
 @keyframes scrollDown {
   0% { transform: translate(-50%, 0); opacity: 1; }
   100% { transform: translate(-50%, 16px); opacity: 0; }
+}
+
+/* Back to Top */
+.btn-up_body {
+  position: fixed !important;
+  bottom: 25px;
+  right: 25px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--obsidian-light);
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(201, 168, 76, 0.35);
+  transition: var(--trans);
+  z-index: 999;
+}
+
+.btn-up_body:hover {
+  background: var(--gold);
+  color: var(--obsidian-darkest);
+  transform: translateY(-4px) scale(1.08);
 }
