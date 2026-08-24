@@ -238,7 +238,9 @@
 
   </div>
 </section>
-
+<div class="relative w-full max-w-md mb-4">
+  <input type="text" id="courseSearchInput" oninput="searchCoursesLive()" placeholder="🔎 ابحث عن أي كورس أو مسار..." class="w-full h-11 rounded-2xl px-4 border border-[#503d17] bg-[#11131A] text-xs text-white placeholder:text-slate-500 focus:border-[#C9A84C] outline-none shadow-inner" />
+</div>
 <!-- ============ COURSES & SLIDER SECTION ============ -->
 <section id="courses" class="w-full px-4 sm:px-6 lg:px-10 py-12 border-b border-slate-800 relative">
   <div class="w-full">
@@ -1129,6 +1131,21 @@ window.catalogData = {
     img: "image/deutsch.png",
     lessons: []
   },
+  // مسار أساسيات الكمبيوتر ونظام التشغيل ويندوز
+  c_computer_windows: {
+    id: "c_computer_windows",
+    type: "single",
+    year: "lang_office",
+    code: { ar: "كمبيوتر", en: "PC" },
+    category: { ar: "أساسيات الحاسب الآلي • Windows 10 & PC", en: "Computer & Windows Fundamentals" },
+    title: { ar: "مسار أساسيات الكمبيوتر ونظام التشغيل Windows 10", en: "Computer Basics & Windows 10 Mastery" },
+    desc: { ar: "دورة تأسيسية شاملة للمبتدئين من الصفر: التعامل مع سطح المكتب، إدارة الملفات والمجلدات، تخصيص شريط المهام وقائمة Start، حسابات المستخدمين، وتأمين وتحديث النظام.", en: "Master Computer Basics: Desktop Setup, File Explorer, User Accounts, Taskbar, Edge Browser & Windows 10 System Updates." },
+    badge: { ar: "تأسيس من الصفر 💻", en: "Beginner Core 💻" },
+    price: "150",
+    oldPrice: "300",
+    img: "image/office.png",
+    lessons: []
+  },
     // 7. مسار حزمة البرمجيات المكتبية
   c_office_suite: {
     id: "c_office_suite",
@@ -1189,7 +1206,111 @@ window.catalogData = {
     img: "image/ui_ux.png",
     lessons: []
   }, // 8. مسار تصميم واجهات وتجربة المستخدم
-
+// مسار الفايب كودينج والبرمجة بالذكاء الاصطناعي
+  c_vibe_coding: {
+    id: "c_vibe_coding",
+    type: "single",
+    year: "tech",
+    code: { ar: "فايب", en: "Vibe" },
+    category: { ar: "البرمجة بالذكاء الاصطناعي • Vibe Coding", en: "Vibe Coding & AI Apps" },
+    title: { ar: "كورس الفايب كودينج الشامل (Vibe Coding MasterClass)", en: "Complete Vibe Coding & AI SaaS MasterClass" },
+    desc: { ar: "كورس متكامل لبناء تطبيقات الويب وخدمات الـ SaaS والبرمجيات من الصفر بدون كتابة كود يدوي: مهارات الفايب كودر، التعامل مع Claude و ChatGPT، استخدام Boilerplates، وربط الـ APIs وقواعد البيانات.", en: "Master Vibe Coding: Build Full SaaS Web Apps with AI, LLM Prompts, APIs, Database & Fast Deployment." },
+    badge: { ar: "الأحدث لعام 2026 🤖", en: "AI Coding 🤖" },
+    price: "150",
+    oldPrice: "350",
+    img: "image/cyber.png",
+    lessons: []
+  },
+  // مسار تطوير تطبيقات الويب بدون كود (Bubble.io)
+  c_bubble_nocode: {
+    id: "c_bubble_nocode",
+    type: "single",
+    year: "tech",
+    code: { ar: "نوكود", en: "NoCode" },
+    category: { ar: "تطوير تطبيقات الويب بدون كود • Bubble.io", en: "No-Code Web Apps & Bubble" },
+    title: { ar: "دورة No Code Ninja الكاملة لبناء تطبيقات الويب (Bubble.io)", en: "Complete Bubble.io No-Code MasterClass" },
+    desc: { ar: "دورة عملية شاملة من 47 محاضرة لبناء تطبيق إدارة مشاريع سحابي متكامل من الصفر: تصميم الواجهات، قواعد البيانات، Workflows، أدوار المستخدمين، بوابات الدفع Stripe، والـ Backend Workflows.", en: "Build Full-Stack Web Apps with Bubble.io: UI Design, Relational DB, Workflows, User Roles, Stripe & Backend Automations." },
+    badge: { ar: "مسار عملي متكامل ⚡", en: "Full 47 Lectures ⚡" },
+    price: "150",
+    oldPrice: "350",
+    img: "image/cyber.png",
+    lessons: []
+  },
+  // مسار أدوات الذكاء الاصطناعي والتصميم الرقمي (مصطفى مكرم)
+  c_ai_tools_creative: {
+    id: "c_ai_tools_creative",
+    type: "single",
+    year: "tech",
+    code: { ar: "ذكاء إبداعي", en: "Creative AI" },
+    category: { ar: "الذكاء الاصطناعي والتصميم • أدوات إبداعية", en: "AI Tools & Creative Design" },
+    title: { ar: "مسار تطبيقات وأدوات الذكاء الاصطناعي (Mostafa Makram)", en: "Complete AI Creative & Production Mastery" },
+    desc: { ar: "دورة شاملة تضم 71 محاضرة تطبيقية لاحتراف أدوات الذكاء الاصطناعي في التصميم، توليد الفيديو، تحريك الصور، تعديل الصوت، وتصميم المنتجات ثلاثية الأبعاد.", en: "Master 70+ AI Tools: Midjourney, Firefly, Runway, Leonardo AI, Voice Generation & 3D Packaging." },
+    badge: { ar: "71 محاضرة عملية 🎨", en: "71 Lectures 🎨" },
+    price: "150",
+    oldPrice: "350",
+    img: "image/python_ai.png",
+    lessons: []
+  },
+  // مسار احتراف أدوبي فوتوشوب وتصميم السوشيال ميديا
+  c_photoshop_mastery: {
+    id: "c_photoshop_mastery",
+    type: "single",
+    year: "tech",
+    code: { ar: "فوتوشوب", en: "Ps" },
+    category: { ar: "الجرافيك ديزاين • Adobe Photoshop", en: "Graphic Design & Photoshop" },
+    title: { ar: "مسار احتراف أدوبي فوتوشوب وتصميم السوشيال ميديا", en: "Complete Adobe Photoshop & Social Media Track" },
+    desc: { ar: "مسار متكامل مقسم لمستويين: التأسيس وأدوات الذكاء الاصطناعي (مصطفى مكرم)، وتطبيقات تصميم السوشيال ميديا والتلوين والتايبوجرافي (أحمد مصطفى).", en: "Master Photoshop: AI Tools (Mostafa Makram) + Social Media Designs, Retouching & Typography (Ahmed Mostafa)." },
+    badge: { ar: "مسار مزدوج شامل 🎨", en: "Dual Track 🎨" },
+    price: "150",
+    oldPrice: "350",
+    img: "image/ui_ux.png",
+    lessons: []
+  },
+  // مسار مونتاج الفيديو وصناعة المحتوى (Adobe Premiere Pro)
+  c_premiere_video: {
+    id: "c_premiere_video",
+    type: "single",
+    year: "tech",
+    code: { ar: "مونتاج", en: "Pr" },
+    category: { ar: "صناعة ومونتاج الفيديو • Adobe Premiere Pro", en: "Video Editing & Premiere Pro" },
+    title: { ar: "مسار احتراف مونتاج الفيديو (Adobe Premiere Pro)", en: "Complete Adobe Premiere Pro MasterClass" },
+    desc: { ar: "دورة عملية متكاملة من 27 محاضرة من الصفر للاحتراف: قص وتركيب المقاطع، الانتقالات، تصحيح وتلوين الفيديو Lumetri Color، المؤثرات الصوتية، تفريغ الكروما الخضراء، والربط مع برامج أدوبي.", en: "Master Video Editing: Cuts, Transitions, Lumetri Color Grading, Audio FX, Chroma Key & Adobe Dynamic Link." },
+    badge: { ar: "27 محاضرة شاملة 🎬", en: "27 Lectures 🎬" },
+    price: "150",
+    oldPrice: "350",
+    img: "image/marketing.png",
+    lessons: []
+  },
+  // مسار احتراف التصميم والربح من كانفا (Canva MasterClass)
+  c_canva_design: {
+    id: "c_canva_design",
+    type: "single",
+    year: "tech",
+    code: { ar: "كانفا", en: "Canva" },
+    category: { ar: "التصميم الرقمي والعمل الحر • Canva Pro", en: "Canva Design & Freelancing" },
+    title: { ar: "مسار احتراف كانفا والعمل الحر (Canva & Freelancing)", en: "Complete Canva Design & Freelance MasterClass" },
+    desc: { ar: "كورس متكامل يضم 31 محاضرة تطبيقية: التصميم من الكمبيوتر والهاتف، تصميم الشعارات والسوشيال ميديا وتغليف المنتجات، مونتاج الفيديو، وعرض خدماتك على منصات العمل الحر مثل خمسات.", en: "Master Canva from Zero: Logo Design, Social Media, Product Packaging, Video Editing, Mockups & Freelance on Khamsat." },
+    badge: { ar: "31 محاضرة + ماستركلاس 6 ساعات 🎨", en: "31 Lectures 🎨" },
+    price: "150",
+    oldPrice: "350",
+    img: "image/ui_ux.png",
+    lessons: []
+  },
+  // مسار أتمتة الأعمال بالذكاء الاصطناعي وتطبيق n8n
+  c_ai_automation: {
+    id: "c_ai_automation",
+    type: "single",
+    year: "tech",
+    code: { ar: "أوتوميشن", en: "AI Auto" },
+    category: { ar: "أتمتة الذكاء الاصطناعي • n8n & AI Agents", en: "AI Automation & n8n Workflows" },
+    title: { ar: "مسار أتمتة الأعمال بالذكاء الاصطناعي (AI Automation & n8n)", en: "Complete AI Automation & n8n MasterClass" },
+    desc: { ar: "مسار مزدوج شامل: بناء الوكلاء الذكيين AI Agents، أتمتة العمليات السحابية بـ n8n بدون كود (Syntax)، والماستركلاس الشامل لأنظمة الـ Automation والربط مع LLMs (Mohamed Salah).", en: "Master AI Automation: n8n Workflows, AI Agents, RAG Pipelines (Syntax) + Complete 5-Hour n8n Mastery (Mohamed Salah)." },
+    badge: { ar: "الأعلى طلباً ⚡", en: "Top In-Demand ⚡" },
+    price: "150",
+    oldPrice: "350",
+    img: "image/cyber.png",
+    lessons: []
+  },
 
   // 2. مسار الأمن السيبراني واختبار الاختراق
   c_cyber_sec: {
@@ -1886,6 +2007,378 @@ window.pythonAiCurriculumDB = {
       { title: "16. تعلم الذكاء الاصطناعي مشروع تحليل مشاعر من النص", videoUrl: "https://www.youtube.com/watch?v=kQNaW0LWdXY", desc: "مشروع معالجة لغات طبيعية (NLP): تصنيف وتحليل المشاعر من النصوص." },
       { title: "17. اساسيات الذكاء الاصطناعي 2025 مجاناً من الصفر", videoUrl: "https://www.youtube.com/watch?v=egtZiI8tqMc", desc: "مراجعة شاملة ومحدثة لأهم مفاهيم وتقنيات الذكاء الاصطناعي الحديثة." },
       { title: "18. تعلم الذكاء الاصطناعي اساسيات تعلم الالة والتعلم العميق 2025 مجاناً بدايتك من هنا", videoUrl: "https://www.youtube.com/watch?v=35iAq6aoFMs", desc: "خلاصة مسار الـ Machine Learning و Deep Learning لبدء مشروعاتك المستقبلية." }
+    ]
+  }
+};
+window.uiuxCurriculumDB = {
+  main: {
+    title: "مسار تصميم الواجهات وتجربة المستخدم (UI/UX Design & Figma)",
+    overview: "كورس متكامل وعملي مع زياد طوسن (Zyad Toson) لتعلم الـ UI/UX من الصفر وحتى الاحتراف: التفكير التصميمي، مراحل الـ UX، أدوات Figma، الـ Grid System، وتصميم تطبيق طلب طعام كامل وشاشات الحجز مع الـ Auto Layout و Design Systems.",
+    keySkills: ["UI/UX Fundamentals", "Figma Tools & Frames", "Grid System & Layout", "Auto Layout Mastery", "Mobile App UI Design", "Responsive Constraints"],
+    lectures: [
+      { title: "00. كورس UI/UX كامل بالعربي من الصفر — أول مشاريع UI/UX عملية", videoUrl: "https://www.youtube.com/watch?v=8TCjKKReoo8", desc: "مقدمة المسار واستعراض المشاريع العملية التي سيتم بناؤها." },
+      { title: "01. إيه هو مجال الـ UI/UX Design؟ — حلقة 1 | كورس UI/UX بالعربي", videoUrl: "https://www.youtube.com/watch?v=dmXhStVAL9w", desc: "الفرق بين UI و UX ودور المصمم في بناء المنتجات الرقمية." },
+      { title: "02. إزاي بيفكر مصمم الـ UX؟ الـ 5 مراحل لأي منتج ناجح | UI/UX #2", videoUrl: "https://www.youtube.com/watch?v=M6FfVwW6Bw0", desc: "المراحل الخمس لتجربة المستخدم من البحث حتى الاختبار." },
+      { title: "03. أول خطوة عملية احترافية في Figma — حلقة 3 | كورس UI/UX", videoUrl: "https://www.youtube.com/watch?v=XseMvlnBPT8", desc: "فتح البرنامج وضبط مساحة العمل والبدء مع الواجهة." },
+      { title: "04. شرح Figma Tools و الفرق بين Frame و Rectangle — حلقة 4 | كورس UI/UX بالعربي", videoUrl: "https://www.youtube.com/watch?v=hwoxqfhLCXo", desc: "التعامل مع الفريمات والمستطيلات والأشكال الهندسية." },
+      { title: "05. حلقة 5 | كورس UI/UX بالعربي — Frame و Rectangle", videoUrl: "https://www.youtube.com/watch?v=VxdIGHJT7dc", desc: "تطبيقات متقدمة على إدارة الفريمات والأبعاد." },
+      { title: "06. الـ Grid System في التصميم — حلقة 6 | كورس UI/UX بالعربي", videoUrl: "https://www.youtube.com/watch?v=K4-QGtUP0w8", desc: "بناء الشبكات وتوزيع العناصر بشكل متناسق ومتجاوب." },
+      { title: "07. تصميم تطبيق طلب طعام كامل (الجزء 1) — حلقة 7 | كورس UI/UX", videoUrl: "https://www.youtube.com/watch?v=yADCaSsGC7E", desc: "البدء العملي في تصميم واجهات تطبيق طلب الطعام." },
+      { title: "08. كيف تصمم تطبيق طلب طعام احترافي؟ | تطبيق عملي حلقة 8", videoUrl: "https://www.youtube.com/watch?v=v50t1k51288", desc: "بناء شاشات القائمة وعناصر الوجبات والأزرار." },
+      { title: "09. تصميم صفحة إتمام الطلب (Checkout) — حلقة 9 | كورس UI/UX", videoUrl: "https://www.youtube.com/watch?v=kx22D9wWQ2A", desc: "تصميم شاشات السلة والدفع وتأكيد العنوان." },
+      { title: "10. تصميم الصفحة الرئيسية لتطبيق حجز عامة | كورس UI/UX حلقة 10", videoUrl: "https://www.youtube.com/watch?v=t51Z8jelI9U", desc: "تصميم واجهة الهوم لتطبيق الحجوزات العامة." },
+      { title: "11. إزاي تصمم صفحة تفاصيل احترافية في Figma؟ — حلقة 11 | كورس UI/UX بالعربي", videoUrl: "https://www.youtube.com/watch?v=aAJH_Zd6BoE", desc: "بناء بطاقات التفاصيل والصور التفاعلية." },
+      { title: "12. إيه هو الـ Auto Layout في Figma؟ — حلقة 12 | كورس UI/UX", videoUrl: "https://www.youtube.com/watch?v=g5AXu4vlGX8", desc: "فهم واستخدام الـ Auto Layout للتصميم المرن." },
+      { title: "13. تطبيق عملي على Figma Auto Layout — حلقة 13 | كورس UI/UX بالعربي", videoUrl: "https://www.youtube.com/watch?v=FeSWuQ2sW9E", desc: "تطبيق قواعد الـ Auto Layout على القوائم والشاشات." },
+      { title: "14. الفرق بين Fixed و Hug Content و Fill Container — حلقة 14 | كورس UI/UX بالعربي", videoUrl: "https://www.youtube.com/watch?v=mgxC2mNbyNM", desc: "التحكم الكامل في تمدد وانكماش العناصر وتجاوبها مع الشاشات." }
+    ]
+  }
+};
+window.vibeCodingCurriculumDB = {
+  main: {
+    title: "كورس الفايب كودينج الشامل (Vibe Coding MasterClass)",
+    overview: "الدورة العملية الكاملة مع إبراهيم الشربيني (SEO Equation) لتعلم أحدث ثورة في عالم البرمجة (Vibe Coding): كيفية توجيه نماذج الذكاء الاصطناعي مثل Claude و ChatGPT لبناء مشاريع وتطبيقات ويب سحابية SaaS كاملة، من تجهيز الفكرة وإعداد الـ Boilerplate وحتى بناء الواجهات وربط الـ APIs وقواعد البيانات وطرق الدفع.",
+    keySkills: ["Vibe Coding Mindset", "AI Prompts for Developers", "SaaS Boilerplate Setup", "API Integration with AI", "Full Stack AI Generation", "Deploying AI Apps"],
+    lectures: [
+      { title: "01. فايب كودينج: الدرس الأول | 6 مهارات لاحتراف البرمجة بالذكاء الاصطناعي", videoUrl: "https://www.youtube.com/watch?v=AqiXFGQn3Zk", desc: "مدخل شامل لمفهوم الفايب كودينج، المهارات التقنية والبيزنس المطلوبة للتحول لـ Vibe Coder." },
+      { title: "02. فايب كودينج: الدرس الثاني | تجهيز فكرة تطبيق الويب بالذكاء الاصطناعي", videoUrl: "https://www.youtube.com/watch?v=T0REql3HDWk", desc: "كيفية بلورة الفكرة البرمجية وتجهيز المتطلبات وصياغة البرومبت الهندسي للذكاء الاصطناعي." },
+      { title: "03. فايب كودينج: الدرس الثالث | تحويل الفكرة إلى SaaS | إعدادات ملف SaaS Boilerplate", videoUrl: "https://www.youtube.com/watch?v=tPb5zaNTmtY", desc: "إعداد القوالب الجاهزة وتجهيز بنية المشروع الأساسية لبدء التوليد البرمجي." },
+      { title: "04. فايب كودينج: الدرس الرابع | بناء واجهة الـ SaaS والعمل على الـ API باستخدام الذكاء الاصطناعي", videoUrl: "https://www.youtube.com/watch?v=5zBhyjdI1nA", desc: "بناء واجهات المستخدم التفاعلية وربط الـ Backend APIs عبر الذكاء الاصطناعي." },
+      { title: "05. فايب كودينج: الدرس الخامس | ربط الواجهة بأداة API وبناء لوحة تحكم للمشاريع والدفع في أداة الويب", videoUrl: "https://www.youtube.com/watch?v=VvcZgOIzWrs", desc: "ربط بوابات الدفع الإلكتروني وبناء لوحة تحكم المشتركين وإدارة بيانات المشروع." },
+      { title: "06. فايب كودينج: الدرس السادس | بناء الانتج النوح الميزانية وتصدير مخرجات البحث لويب ابلكيشن SaaS", videoUrl: "https://www.youtube.com/watch?v=GeSu3URK35A", desc: "استخراج وتصدير البيانات وتجهيز التطبيق لخدمة آلاف المستخدمين." },
+      { title: "07. ويب بروتوكول: سبق اختراع MCP لن تشهر أوراكل في نتائج بحث الذكاء الاصطناعي", videoUrl: "https://www.youtube.com/watch?v=ZMC5bHze_PE", desc: "فهم بروتوكول Model Context Protocol (MCP) واستخدامه في ربط وتوسيع قدرات الـ AI." },
+      { title: "08. تطوير لعبة من الصفر بالذكاء الاصطناعي بدون خبرة برمجية فايب كودينج", videoUrl: "https://www.youtube.com/watch?v=ef_Yjsd9XBI", desc: "تطبيق عملي كامل لبناء وبرمجة لعبة من البداية للنهاية دون كتابة سطر كود يدوي." },
+      { title: "09. ازاي بنيت SaaS شامل بالذكاء الاصطناعي في 6 أيام (باك اند + فرونت اند) | فايب كودينج 2026", videoUrl: "https://www.youtube.com/watch?v=VPnOMI-NC0s", desc: "دراسة حالة واقعية وخلاصة تجربة بناء مشروع SaaS تجاري كامل في 6 أيام فقط." }
+    ]
+  }
+};
+window.bubbleCurriculumDB = {
+  main: {
+    title: "دورة No Code Ninja الكاملة لبناء تطبيقات الويب (Bubble.io)",
+    overview: "الدورة المتكاملة والشاملة (47 محاضرة) لبناء أداة إدارة مشاريع SaaS كاملة بدون كود عبر منصة Bubble.io: بداية من واجهة المحرر وقواعد البيانات، بناء واجهات الـ Signup و Login، التعامل مع الـ Repeating Groups، إعداد الصلاحيات وأدوار المستخدمين، ضبط الإشعارات، وربط بوابة الدفع Stripe.",
+    keySkills: ["Bubble.io Editor & UI", "Relational Database & Privacy Rules", "Workflows & Custom Events", "Repeating Groups & Filtering", "User Roles & Permissions", "Stripe Checkout & Monetization"],
+    lectures: [
+      { title: "01. ما هي منصة Bubble.io؟ تعلّم بناء تطبيقات ويب بدون كود", videoUrl: "https://www.youtube.com/watch?v=6FYwWO_5QzE", desc: "مدخل شامل لفهم ثورة الـ No-Code وقوة منصة Bubble لبناء تطبيقات سحابية كاملة." },
+      { title: "02. جولة للمبتدئين في Bubble.io: تعرّف على المحرر وكل الأقسام الأساسية", videoUrl: "https://www.youtube.com/watch?v=TDP79Wq9_2U", desc: "شرح واجهة العمل: Design, Workflows, Data, Styles, Plugins, Settings." },
+      { title: "03. شرح عناصر Bubble.io الأساسية: النصوص، الأزرار، الإدخال، والصور", videoUrl: "https://www.youtube.com/watch?v=IZ1TgbSCOoQ", desc: "التعامل مع العناصر التفاعلية الأساسية وضبط خصائصها." },
+      { title: "04. كيفية إنشاء شريط قائمة أعلى في أعلى الصفحة على Bubble.io", videoUrl: "https://www.youtube.com/watch?v=bUaQzLi6nI8", desc: "بناء الهيدر وشريط التنقل الأساسي للروابط." },
+      { title: "05. كيفية جعل شريط القائمة (Navbar) متجاوباً على الجوال في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=m1F0eJSFboE", desc: "ضبط استجابة شريط القائمة ليناسب جميع مقاسات الهواتف." },
+      { title: "06. شرح Property Editor في Bubble.io — تحكم كامل في خصائص العناصر", videoUrl: "https://www.youtube.com/watch?v=pSyGLZ9j4RY", desc: "التحكم في الأبعاد والألوان والتنسيقات المتقدمة." },
+      { title: "07. إضافة أزرار تسجيل الدخول والتسجيل إلى القائمة باحترافية في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=K7LkeX2xMMs", desc: "ربط أزرار المصادقة بالقائمة العلوية." },
+      { title: "08. تصميم الصفحة الرئيسية (Homepage) في Bubble.io خطوة بخطوة", videoUrl: "https://www.youtube.com/watch?v=MoUl67UL_Ys", desc: "بناء واجهة الهبوط الترحيبية وتوزيع الأقسام." },
+      { title: "09. تصميم صفحة التسجيل (Sign Up) في Bubble.io بسهولة واحترافية", videoUrl: "https://www.youtube.com/watch?v=Qm_q-R5bkHI", desc: "إنشاء نموذج تسجيل حساب جديد وضبط الحقول." },
+      { title: "10. إنشاء Workflow لصفحة التسجيل (Sign Up) في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=bNsWxCqEPiQ", desc: "برمجة سير العمل لإنشاء حساب المستخدم في قاعدة البيانات." },
+      { title: "11. تصميم صفحة تسجيل الدخول (Login) في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=Ig6nt-30oy4", desc: "تصميم واجهة تسجيل دخول المستخدمين المسجلين." },
+      { title: "12. ربط الأزرار والروابط في Bubble.io باستخدام الـ Workflows", videoUrl: "https://www.youtube.com/watch?v=X1L7ERcre-8", desc: "توجيه المستخدمين بين الصفحات والنوافذ." },
+      { title: "13. البيانات والخصوصية في Bubble.io (الجزء الأول)", videoUrl: "https://www.youtube.com/watch?v=AWrPGiG4qac", desc: "مبادئ إدارة الجداول والحقول في قاعدة بيانات Bubble." },
+      { title: "14. البيانات والخصوصية في Bubble.io (الجزء الثاني)", videoUrl: "https://www.youtube.com/watch?v=TbJEhvOo3jM", desc: "قواعد الخصوصية وحماية بيانات المستخدمين (Privacy Rules)." },
+      { title: "15. ضبط الشريط الجانبي (Sidebar) في لوحة التحكم واستدعاء البيانات في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=ey6A5bMqqTg", desc: "تصميم القائمة الجانبية للوحة التحكم Dashboard." },
+      { title: "16. إنشاء مجموعة (Group) لعرض المشاريع داخل لوحة التحكم في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=tiFkDSqegcE", desc: "هيكلة وعرض بطاقات المشاريع داخل مساحات منظمة." },
+      { title: "17. احتراف استدعاء وحفظ بيانات المستخدم باستخدام الـ Workflow لإعادة تعيين البيانات في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=E1XRvMEXi6U", desc: "التعامل مع عمليات تحديث واسترجاع البيانات." },
+      { title: "18. إنشاء صفحة تأكيد عند حذف البيانات لمنع الخطأ (مثل إرسال الـ Alert)", videoUrl: "https://www.youtube.com/watch?v=miYCmIfFwy8", desc: "بناء نوافذ تأكيد الحذف وتأمين العمليات الحرجة." },
+      { title: "19. استخدام الشرطيات لتغيير ألوان القائمة حسب الصفحة في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=Gtkww-MPKcU", desc: "تطبيق التنسيق الشرطي (Conditionals) حسب الصفحة النشطة." },
+      { title: "20. ربط المستخدم الجديد بالفريق الصحيح بعد التسجيل في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=B03y3asbUMs", desc: "إسناد الصلاحيات وربط الحسابات بمنظومة الفريق." },
+      { title: "21. إنشاء نافذة منبثقة (Popup) لإنشاء مشروع جديد في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=BdFUGjypS8g", desc: "تصميم نافذة إدخال بيانات المشروع السريعة." },
+      { title: "22. إنشاء Workflow لإضافة مشروع جديد في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=QTyOTUg_aAQ", desc: "حفظ المشروع الجديد وربطه بالمستخدم الحالي." },
+      { title: "23. استخدام Repeating Group لعرض المشاريع في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=XKIg1R7dcLs", desc: "احتراف الـ Repeating Group لعرض البيانات الديناميكية." },
+      { title: "24. جعل الـ Repeating Group متجاوباً على الجوال في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=4r24XzgWzqE", desc: "تنسيق عرض القوائم على الشاشات الصغيرة." },
+      { title: "25. تعديل المشاريع باستخدام Workflows وفهم مفهوم CRUD في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=flMwxkC07oE", desc: "إتقان عمليات الإنشاء والقراءة والتعديل والحذف." },
+      { title: "26. حذف المشاريع باستخدام Workflows في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=OLShcZ2YS8k", desc: "برمجة مسح السجلات وتحديث القوائم تلقائياً." },
+      { title: "27. إنشاء صفحة مبسطة لتعديل إعدادات الملف الشخصي في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=MIQf93Yx3a4", desc: "بناء شاشة تعديل بيانات الحساب والاسم وكلمة المرور." },
+      { title: "28. إنشاء صفحة لعرض تفاصيل المستخدم الحالي وإعادة تعيين مشروع في Bubble.io Repeating Group", videoUrl: "https://www.youtube.com/watch?v=fXG5I4xCpeo", desc: "عرض معلومات البروفايل والمشاريع المرتبطة." },
+      { title: "29. ما هي الـ States في Bubble.io؟ شرح شامل للمبتدئين", videoUrl: "https://www.youtube.com/watch?v=hd1eTvV6MQk", desc: "فهم واستخدام الـ Custom States لتخزين المتغيرات اللحظية." },
+      { title: "30. تعديل المستخدمين المنشئين للمشروع بإنشاء States في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=bC5qiecTkW8", desc: "تطبيق الـ States على تبديل وتعيين مسؤولي المشاريع." },
+      { title: "31. شرح إضافة Croppie لقص الصور في Bubble.io — استخدام الإضافات (Plugins)", videoUrl: "https://www.youtube.com/watch?v=YRH2fzA66eE", desc: "تثبيت وتفعيل إضافة قص وتعديل الصور الشخصية." },
+      { title: "32. تحسين إعدادات الملف الشخصي لإضافة صورة المستخدم في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=2qv9pzKR5jo", desc: "رفع وتخزين وعرض الصور الشخصية في قاعدة البيانات." },
+      { title: "33. اللمسات الأخيرة على إعداد Croppie لقص الصور في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=twbbRER4Da4", desc: "ضبط قياسات وإخراج الصور بشكل احترافي." },
+      { title: "34. تهيئة الأعضاء الجدد (Onboarding) بعد دعوتهم إلى المنصة في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=hchpSoHU5ws", desc: "بناء مسار ترحيبي وتوجيهي للأعضاء الجدد." },
+      { title: "35. منح المستخدمين الإذن من تعديل المشاريع باستخدام صلاحيات المستخدم (User Roles) في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=5r6EHAv0-Vo", desc: "بناء نظام الصلاحيات المتقدم (Admin / Member)." },
+      { title: "36. إنشاء قسم الأعضاء لعرض جميع مستخدمي الفريق في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=hIhycDw9O30", desc: "عرض قائمة أعضاء الفريق وإدارتهم." },
+      { title: "37. تعديل وحذف المستخدمين في Bubble.io من خلال قسم الأعضاء", videoUrl: "https://www.youtube.com/watch?v=4aYypHQ83Js", desc: "إدارة أعضاء الفريق وتعديل أدوارهم أو إزالتهم." },
+      { title: "38. استعادة كلمة المرور / إعادة تعيين كلمة المرور في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=Q9mAM4rqPac", desc: "إرسال روابط إعادة ضبط الباسورد عبر البريد الإلكتروني." },
+      { title: "39. إنشاء صفحة مخصصة لكل مشروع لعرض التفاصيل الكاملة في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=PC9IjLJ4SsM", desc: "بناء صفحة تفاصيل المشروع وتمرير المعرّف (Project ID)." },
+      { title: "40. إنشاء جدول المهام داخل صفحة المشروع في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=nRSNMej3c38", desc: "عرض قائمة المهام المرتبطة بكل مشروع." },
+      { title: "41. إنشاء مهام جديدة داخل صفحة المشروع في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=nwaGRTFN-7I", desc: "إضافة المهام وإسنادها للمسؤولين وتحديد التواريخ." },
+      { title: "42. إنشاء صفحة \"مهامي\" لعرض المهام المخصصة لكل مستخدم في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=12gXKecPir0", desc: "فلترة وعرض المهام الخاصة بكل مستخدم على حدة." },
+      { title: "43. تحديث صفحة \"مهامي\" وإضافة فلتر حسب التاريخ (اليوم / لاحقاً) في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=jI1GdZV_N0Q", desc: "الفلترة الزمنية الذكية للمهام المجدولة." },
+      { title: "44. إضافة إشعارات للمستخدم لعرض عدد المهام المخصصة له في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=7Q_WnmXlR84", desc: "بناء شارات وعدادات الإشعارات التفاعلية." },
+      { title: "45. الـ Backend Workflows والـ Events في Bubble.io – شرح شامل", videoUrl: "https://www.youtube.com/watch?v=UMR1WWivtA4", desc: "تنفيذ العمليات المتقدمة والمجدولة في الخلفية السحابية." },
+      { title: "46. إرسال إشعارات عبر الإيميل للمستخدمين للتذكير بالمهام في Bubble.io", videoUrl: "https://www.youtube.com/watch?v=lbI-ctGnIKI", desc: "أتمتة إرسال رسائل التذكير البريدية للمستخدمين." },
+      { title: "47. نشر التطبيق وتحقيق الربح منه في Bubble.io — الخطوات النهائية", videoUrl: "https://www.youtube.com/watch?v=0fBjH4e0MNM", desc: "ربط بوابة Stripe Checkout، إطلاق التطبيق الحي، ونماذج تحقيق الدخل." }
+    ]
+  }
+};
+window.aiToolsCreativeCurriculumDB = {
+  main: {
+    title: "مسار تطبيقات وأدوات الذكاء الاصطناعي (Mostafa Makram)",
+    overview: "الدورة الشاملة للأستاذ مصطفى مكرم (71 محاضرة عملية) لتغطية أقوى أدوات ومواقع الذكاء الاصطناعي التوليدي: توليد الصور بـ Midjourney و Leonardo AI و Firefly، توليد وتعديل الفيديو بالذكاء الاصطناعي بـ Runway و Veo2، التحريك والتصميم المعماري، التعليق الصوتي، وتصميم موك اب المنتجات ثلاثية الأبعاد.",
+    keySkills: ["Generative AI Tools", "Photoshop Generative Fill", "AI Video & Animation", "Midjourney & Leonardo.Ai", "Voice & Audio AI", "Product Mockup & 3D Packaging"],
+    lectures: [
+      { title: "01. بديل مجاني لكانفا من مايكروسوفت - Microsoft Designer", videoUrl: "https://www.youtube.com/watch?v=LfeKennm8mw", desc: "مدخل لأداة التصميم الذكية المجانية من مايكروسوفت." },
+      { title: "02. تطور جديد في عالم الذكاء الاصطناعي مع Kaiber", videoUrl: "https://www.youtube.com/watch?v=HHYpSiL8tj4", desc: "توليد وتحريك الفيديوهات الفنية بالذكاء الاصطناعي." },
+      { title: "03. موقعك بالذكاء الاصطناعي مع Hostinger", videoUrl: "https://www.youtube.com/watch?v=_DyrsoD6aEg", desc: "بناء مواقع الويب الاحترافية بضغطة زر وبدون كود." },
+      { title: "04. حيل الذكاء الاصطناعي لإنتاج إعلانات الفيديو مع D-ID Studio", videoUrl: "https://www.youtube.com/watch?v=xX2xCKWY8dk", desc: "صناعة الشخصيات المتحدثة والإعلانات الرقمية." },
+      { title: "05. اخيراً أدوبي بالذكاء الاصطناعي - Adobe Firefly", videoUrl: "https://www.youtube.com/watch?v=LI3z0Q2r9Jc", desc: "التعرف على محرك أدوبي التوليدي وتطبيقاته في التصميم." },
+      { title: "06. صمم ديكور بيتك باحترافية وسهولة بدون برامج - Coohom", videoUrl: "https://www.youtube.com/watch?v=z2JN6X4eqDg", desc: "التصميم الداخلي والديكور ثلاثي الأبعاد." },
+      { title: "07. الذكاء الاصطناعي وتصميم المنتجات ثلاثية الأبعاد", videoUrl: "https://www.youtube.com/watch?v=OAUlXJcEhFs", desc: "صناعة وتجسيم المنتجات والعلب التجارية." },
+      { title: "08. لوجو احترافي بالذكاء الاصطناعي وبدائل الميدجورني", videoUrl: "https://www.youtube.com/watch?v=Sg6vTE9s3IU", desc: "ابتكار الشعارات والهويات البصرية." },
+      { title: "09. ثورة الذكاء الاصطناعي في صناعة الفيديو و VFX", videoUrl: "https://www.youtube.com/watch?v=zvP_XB-Y8j4", desc: "المؤثرات البصرية وتوليد المشاهد السينمائية." },
+      { title: "10. تجربة توليد الفيديو بالذكاء الاصطناعي Runway", videoUrl: "https://www.youtube.com/watch?v=fPGfWHGI7DI", desc: "احتراف أداة Runway Gen لتوليد مقاطع الفيديو." },
+      { title: "11. كل أسرار الذكاء الاصطناعي (المجانية) - Midjourney البدائل", videoUrl: "https://www.youtube.com/watch?v=wK-p6oa4d_w", desc: "أقوى البدائل المجانية لتوليد الصور فائقة الدقة." },
+      { title: "12. هل الذكاء الاصطناعي خطر حقيقي على المصممين؟ تجربة مع Midjourney", videoUrl: "https://www.youtube.com/watch?v=S6K0JtYNQlM", desc: "نقاش عملي حول مستقبل مهنة الجرافيك ديزاين." },
+      { title: "13. التصميم بالذكاء الاصطناعي - Midjourney الاحترافي", videoUrl: "https://www.youtube.com/watch?v=1uPGVTulNms", desc: "صياغة البرومبت المتقدم والتحكم في إضاءة وتفاصيل الصور." },
+      { title: "14. جنون الفوتوشوب بالذكاء الاصطناعي - Adobe Photoshop Generative Fill", videoUrl: "https://www.youtube.com/watch?v=d46NVCLm6e0", desc: "استخدام ميزة التوليد والتعبئة الذكية داخل الفوتوشوب." },
+      { title: "15. أسهل طريقة لاحتراف تصميم علب المنتجات للطباعة والموك اب - Pacdora", videoUrl: "https://www.youtube.com/watch?v=VWSpIa5WISI", desc: "تصميم التغليف والعلب التجارية باحترافية." },
+      { title: "16. التحديثات الجديدة على فايرفلاي - Adobe Firefly", videoUrl: "https://www.youtube.com/watch?v=aPrN_t04xz8", desc: "الميزات المحدثة ونماذج أدوبي الجديدة." },
+      { title: "17. أرسم بالذكاء الاصطناعي مع انفيديا - Nvidia Canvas", videoUrl: "https://www.youtube.com/watch?v=POocAId8rTM", desc: "تحويل الشخبطة والرسوم البسيطة إلى مناظر طبيعية واقعية." },
+      { title: "18. التعليق الصوتي بالذكاء الاصطناعي - Generative Voice AI", videoUrl: "https://www.youtube.com/watch?v=E81XRjEwRf4", desc: "توليد نبرات صوتية طبيعية لمقاطع الفيديو والمحتوى." },
+      { title: "19. بديل شبه مجاني لميدجورني - Leonardo.Ai", videoUrl: "https://www.youtube.com/watch?v=vUjdKDobPLI", desc: "شرح منصة ليوناردو وتوليد الصور والنماذج المخصصة." },
+      { title: "20. تحديث الموك اب في اليستريتور بيتا - Adobe Illustrator Beta", videoUrl: "https://www.youtube.com/watch?v=y1HOrIuLfyo", desc: "تطبيق التصاميم والشعارات على الأجسام تلقائياً." },
+      { title: "21. تحويل البيكسل والصور إلى فيكتور بضغطة واحدة مع Vectorizer Ai", videoUrl: "https://www.youtube.com/watch?v=LmMT-BJrZys", desc: "تحويل الرسومات النقطية إلى مسارات فيكتور عالية النقاء." },
+      { title: "22. بديل كانفا من أدوبي - Adobe Express", videoUrl: "https://www.youtube.com/watch?v=hhhNoU0-jtY", desc: "تصميم منشورات السوشيال ميديا وقوالب الفيديو السريعة." },
+      { title: "23. الإظهار المعماري والديكور الداخلي وتحويل الاسكتش لريندر بضغطة واحدة", videoUrl: "https://www.youtube.com/watch?v=WS1hoFjvJUo", desc: "الريندر المعماري الذكي من المخططات الأولية." },
+      { title: "24. تحريك رسومات الأطفال بالذكاء الاصطناعي - Animated Drawings", videoUrl: "https://www.youtube.com/watch?v=_bQDf74agY0", desc: "بث الحياة والتحريك في الرسومات والشخصيات الكرتونية." },
+      { title: "25. موقع رهيب هيساعدك في شغل التصميم المعماري الداخلي والخارجي", videoUrl: "https://www.youtube.com/watch?v=lGcTFXLELzA", desc: "توليد بيئات معمارية وخامات واقعية." },
+      { title: "26. تحويل الصور لفيديو بالذكاء الاصطناعي بسهولة", videoUrl: "https://www.youtube.com/watch?v=OjtaEWZV5c8", desc: "تحويل الصور الثابتة إلى لقطات فيديو متحركة." },
+      { title: "27. تحريك الصور باحترافية بالذكاء الاصطناعي (مجاني)", videoUrl: "https://www.youtube.com/watch?v=B7qnfsUlvM4", desc: "أدوات مجانية لتحريك ملامح الوجه والشخصيات." },
+      { title: "28. ارسم اي شئ وهيتحول لصورة بالذكاء الاصطناعي - ClipDrop", videoUrl: "https://www.youtube.com/watch?v=yw-c-G-njow", desc: "أدوات Clipdrop لمعالجة الصور والإضاءة التوليدية." },
+      { title: "29. ازاي تغير شكلك في الفيديو بضغطة واحدة بالذكاء الاصطناعي", videoUrl: "https://www.youtube.com/watch?v=s59LCPE2qiM", desc: "تقنيات تبديل الوجوه وتعديل الملامح في الفيديو." },
+      { title: "30. ازاي تعمل بريزنتيشن كامل لأي موضوع في ثواني وبالعربي", videoUrl: "https://www.youtube.com/watch?v=5cPFtxWtf9Q", desc: "توليد العروض التقديمية والشرائح التفاعلية بالـ AI." },
+      { title: "31. الرسم الهندسي بقى أسهل وبدون أوتوكاد", videoUrl: "https://www.youtube.com/watch?v=kBWrgOp_jD8", desc: "أدوات مساعدة للمصممين والمهندسين المعماريين." },
+      { title: "32. بلاجن تحويل النص لتعليق صوتي بالذكاء الاصطناعي للأفتر ايفكتس والبريمير - AEJuice", videoUrl: "https://www.youtube.com/watch?v=zxhslPGNl44", desc: "دمج الفويس أوفر التوليدي داخل برامج المونتاج مباشرة." },
+      { title: "33. تطور رهيب في تحريك الصور لفيديو بالذكاء الاصطناعي - Animate Anyone", videoUrl: "https://www.youtube.com/watch?v=ZPRetZv3Blw", desc: "تحريك الشخصيات الكاملة بحركات بشرية معقدة." },
+      { title: "34. قصص فيديو بالذكاء الاصطناعي - MyFone Novi AI", videoUrl: "https://www.youtube.com/watch?v=LyoAj-RVtCs", desc: "صناعة فيديوهات القصص والمحتوى القصير للشورتس والريلز." },
+      { title: "35. تحريك الصور في ليوناردو (الموشن) - Leonardo.Ai", videoUrl: "https://www.youtube.com/watch?v=OhLk8yAIMJk", desc: "استخدام محرك Motion داخل منصة ليوناردو." },
+      { title: "36. الذكاء الاصطناعي في أدوبي بالعربي", videoUrl: "https://www.youtube.com/watch?v=UVMp4P65ZzQ", desc: "دعم اللغة العربية في أدوات ومحركات أدوبي التوليدية." },
+      { title: "37. وأخيرا جوجل والذكاء الاصطناعي مع Lumiere", videoUrl: "https://www.youtube.com/watch?v=ukSBFM7OZJ4", desc: "استعراض نموذج جوجل العملاق لتوليد الفيديو." },
+      { title: "38. برنامج لرفع جودة الصور ومعالجتها بالذكاء الاصطناعي - HitPaw Photo AI", videoUrl: "https://www.youtube.com/watch?v=3ZzDC6oiTwg", desc: "ترقية الدقة وإزالة التشويش وترميم الصور القديمة." },
+      { title: "39. تحدي إصلاح الصور القديمة في فوتوشوب بالذكاء الاصطناعي - Generative Fill", videoUrl: "https://www.youtube.com/watch?v=6DkCw6NHdQE", desc: "استعادة وترميم تفاصيل الصور التالفة والتاريخية." },
+      { title: "40. رفع جودة الفيديوهات ومعالجتها بالذكاء الاصطناعي - HitPaw Video Enhancer", videoUrl: "https://www.youtube.com/watch?v=ediIXYkc4eU", desc: "تحسين جودة الفيديو إلى 4K وزيادة النقاء." },
+      { title: "41. الذكاء الاصطناعي من مايكروسوفت - Microsoft Copilot", videoUrl: "https://www.youtube.com/watch?v=gGzC12ewFmo", desc: "استخدام مساعد مايكروسوفت الذكي في الإنتاجية والبحث." },
+      { title: "42. تحديث الذكاء الاصطناعي في فوتوشوب بيتا 2024", videoUrl: "https://www.youtube.com/watch?v=eT0dRbDu1J0", desc: "أحدث الميزات التوليدية المضافة للفوتوشوب." },
+      { title: "43. متجر الكتروني في موقعك بدقائق مع Hostinger", videoUrl: "https://www.youtube.com/watch?v=-YMaqUgsxqA", desc: "إنشاء وإطلاق متجر تجارة إلكترونية متكامل بالذكاء الاصطناعي." },
+      { title: "44. تحديث خرافي للذكاء الاصطناعي في فايرفلاي - Adobe Firefly", videoUrl: "https://www.youtube.com/watch?v=wE34LW4hzm8", desc: "توليد عناصر التصميم بدقة وواقعية تفوق التوقعات." },
+      { title: "45. أسطورة تصميم علب المنتجات للطباعة وعرض الموك اب فيديو - Pacdora", videoUrl: "https://www.youtube.com/watch?v=wiksP48aK90", desc: "تصدير موك اب المنتجات كفيديو متحرك لعرضه للعملاء." },
+      { title: "46. أضافة خطيرة للمصورين في فوتوشوب بيتا 2024", videoUrl: "https://www.youtube.com/watch?v=G_PRyJ8TvG0", desc: "أدوات مخصصة لتعديل وتنسيق صور البورتريه والمنتجات." },
+      { title: "47. أسهل طريقة لعمل قناة يوتيوب كرتون للأطفال", videoUrl: "https://www.youtube.com/watch?v=7IW15SCQdQs", desc: "صناعة محتوى كرتوني كامل للأطفال بالذكاء الاصطناعي." },
+      { title: "48. الوحش الصيني Qwen - هيعمل كل حاجة", videoUrl: "https://www.youtube.com/watch?v=YQk9X5WEhPA", desc: "استعراض قدرات نموذج Qwen في التحليل والإنتاجية." },
+      { title: "49. حول أي فكرة إلى موقع الكتروني بالذكاء الاصطناعي مع Horizons", videoUrl: "https://www.youtube.com/watch?v=_CbBSXm6t-0", desc: "توليد صفحات المواقع واللاندنج بيج ببرومبت بسيط." },
+      { title: "50. أقوى أداة مجانية لتوليد الفيديو بالذكاء الاصطناعي من جوجل - Veo2", videoUrl: "https://www.youtube.com/watch?v=Qa-JnRAlQbQ", desc: "توليد المشاهد فائقة الواقعية بمحرك جوجل المتطور." },
+      { title: "51. تطبيق عملي موقع لتعليم المهام بالذكاء الاصطناعي مع Horizons", videoUrl: "https://www.youtube.com/watch?v=oJ3NTGuR2F8", desc: "مشروع تطبيقي كامل لبناء موقع خدمات تفاعلي." },
+      { title: "52. أصنع أفلام كارتون بتحريك الصور الاحترافي من Magi", videoUrl: "https://www.youtube.com/watch?v=oz1MZuTpopY", desc: "صناعة لقطات الرسوم المتحركة الاحترافية." },
+      { title: "53. تحويل النصوص إلى صوت أو حوار مجانا مع إضافة جوجل الجديدة", videoUrl: "https://www.youtube.com/watch?v=Hl-3ZUjLJag", desc: "توليد الحوارات الصوتية متعددة الشخصيات." },
+      { title: "54. صور منتجاتك بالذكاء الاصطناعي جربها مع تحديث Pacdora", videoUrl: "https://www.youtube.com/watch?v=p0dLwbGU1JE", desc: "وضع المنتجات داخل بيئات واستوديوهات تصوير افتراضية." },
+      { title: "55. لو عندك براند أو مصنع ملابس شوف التغيير - FitRoom", videoUrl: "https://www.youtube.com/watch?v=N4w7-PsSrg8", desc: "تجربة وارتداء الملابس على موديلز بالذكاء الاصطناعي." },
+      { title: "56. لو بتبيع أصلية أون لاين شوف الفيديوهات دي", videoUrl: "https://www.youtube.com/watch?v=rFJFkYO9TWs", desc: "صناعة إعلانات الفيديو الترويجية للمنتجات." },
+      { title: "57. خرائط السفر لليوتيوبر بالذكاء الاصطناعي", videoUrl: "https://www.youtube.com/watch?v=jDnEn8DcAEw", desc: "تصميم خرائط الرحلات ومسارات السفر المتحركة لصناع المحتوى." },
+      { title: "58. صناعة اللوجوهات بالذكاء الاصطناعي", videoUrl: "https://www.youtube.com/watch?v=94iE7sPo2lY", desc: "أفكار وطرق توليد الشعارات المتجهة والهويات البصرية." },
+      { title: "59. 6 استخدامات للموبايل الرهيب من جوجل فوتو - Nano Banana", videoUrl: "https://www.youtube.com/watch?v=IEkMsbqKr8c", desc: "حيل وتطبيقات الذكاء الاصطناعي في الهواتف الذكية." },
+      { title: "60. أقوى تحديث في تاريخ فوتوشوب - Photoshop Beta Nano Banana", videoUrl: "https://www.youtube.com/watch?v=dvWIh21MK-E", desc: "ميزات تحرير وتعديل الصور المتقدمة." },
+      { title: "61. تكبير حجم الصور بالفوتوشوب 2026 - Super Resolution", videoUrl: "https://www.youtube.com/watch?v=SG9342vCZcI", desc: "مضاعفة دقة الصور مع الحفاظ على وضوح التفاصيل." },
+      { title: "62. افضل وقت لعمل موقع الكتروني مع Hostinger", videoUrl: "https://www.youtube.com/watch?v=HmuyJ9Ww3rw", desc: "استراتيجيات إطلاق المواقع والمتاجر السحابية." },
+      { title: "63. الربح من تصميم المواقع الالكترونية مع Hostinger", videoUrl: "https://www.youtube.com/watch?v=pkJLLykfsVM", desc: "كيفية تقديم خدمات بناء المواقع للعملاء وتحقيق دخل." },
+      { title: "64. فوتوشوب داخل ChatGPT - تحديث جديد", videoUrl: "https://www.youtube.com/watch?v=q8_7S8ctobk", desc: "تعديل وتوليد ومعالجة الصور مباشرة داخل واجهة شات جي بي تي." },
+      { title: "65. خطورة تطور الذكاء الاصطناعي على المصممين حصلت", videoUrl: "https://www.youtube.com/watch?v=cQlNpqOF06w", desc: "كيف تطور مهاراتك لتتفوق في عصر الأدوات الذكية." },
+      { title: "66. مجاني ورهيب للمذاكرة والتحضير في عصر الذكاء الاصطناعي - NotebookLM", videoUrl: "https://www.youtube.com/watch?v=sIjGrqnRFX0", desc: "استخدام أداة جوجل NotebookLM لتلخيص الأبحاث وتحويلها لبودكاست." },
+      { title: "67. تحديثات مجنونة في فوتوشوب بيتا 2026", videoUrl: "https://www.youtube.com/watch?v=O9u3Xqx1we8", desc: "مراجعة الميزات والخصائص التوليدية الحديثة." },
+      { title: "68. استمتع مع محمد خيال - حكاية حرة أكثر من 20 سنة في التصميم", videoUrl: "https://www.youtube.com/watch?v=ddScFbLDqHY", desc: "حوار ملهم عن مسيرة الجرافيك ديزاين وتحديات التكنولوجيا." },
+      { title: "69. صور ونماذج حتى النماذج الترويجية لكارتون الهوية في مصر مجانا", videoUrl: "https://www.youtube.com/watch?v=Y59Xddrs6Q8", desc: "توليد الخامات والنماذج الفنية المستوحاة من الهوية المصرية." },
+      { title: "70. بوست سينمائي احترافي مع الأداة دي عملتها - Horizons", videoUrl: "https://www.youtube.com/watch?v=a_pNTm1CRpM", desc: "تصميم البوسترات الدعائية والإعلانات السينمائية." },
+      { title: "71. أخيرا لقيت مكان يجمع ويرتب كل أفكاري - Youmind", videoUrl: "https://www.youtube.com/watch?v=7uSomH3MSkE", desc: "تنظيم وإدارة الأفكار والمشاريع والمصادر الإبداعية." }
+    ]
+  }
+};
+window.photoshopCurriculumDB = {
+  // المستوى الأول: مصطفى مكرم (18 محاضرة)
+  ps_ai_basics: {
+    title: "دورة تعلم الفوتوشوب بالذكاء الاصطناعي للمبتدئين (Mostafa Makram)",
+    overview: "دورة متكاملة مع مصطفى مكرم لشرح برنامج Adobe Photoshop مع أدوات الذكاء الاصطناعي التوليدي Generative Fill، أدوات القص والتحديد، ضبط الألوان، والفلاتر الذكية.",
+    keySkills: ["Photoshop Workspace", "Generative Fill & AI", "Selection & Masking", "Layers & Smart Objects", "Color Adjustments", "Filters & Retouching"],
+    lectures: [
+      { title: "01. مجاناً دورة تعلم الفوتوشوب 2026 - المبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=1NfzmrUyEhQ", desc: "مدخل ومقدمة عامة لواجهة البرنامج وكيف تبدأ رحلتك من الصفر." },
+      { title: "02. الدرس الثاني من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=1BcaG23V3pM", desc: "إنشاء مساحات العمل والمقاسات القياسية للتصاميم." },
+      { title: "03. الدرس الثالث من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=sk4VF6L0JQs", desc: "شرح لوحة الطبقات (Layers) وتنظيم العناصر." },
+      { title: "04. الدرس الرابع من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=N_dwMRMU5T8", desc: "أدوات التحريك والتحويل والتكبير والتصغير (Transform)." },
+      { title: "05. الدرس الخامس من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=0DacwSHj7G4", desc: "أدوات التحديد الأساسية والمستطيلات والدوائر." },
+      { title: "06. الدرس السادس من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=8uIDWuVt35w", desc: "أدوات التحديد الذكي والتحديد السريع والماجيك واند." },
+      { title: "07. الدرس السابع من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=pLnme37w1bw", desc: "قص وتفريغ الصور وعزل الخلفيات المعقدة." },
+      { title: "08. الدرس الثامن من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=B4JTuXnzPXo", desc: "استخدام الأقنعة (Layer Masks) لتعديل وحذف الأجزاء باحترافية." },
+      { title: "09. الدرس التاسع من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=HRiHdl9MJKM", desc: "أدوات التلوين والفرش وتدرجات الألوان (Gradients)." },
+      { title: "10. الدرس العاشر من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=Rc6x_7gDSLE", desc: "الكتابة وإضافة النصوص وتنسيق الخطوط (Type Tool)." },
+      { title: "11. الدرس الحادي عشر من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=psF1xok75kw", desc: "أنماط وتأثيرات الطبقات (Layer Styles) والظلال والبروز." },
+      { title: "12. الدرس الثاني عشر من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=HJSFTDwhJRo", desc: "تصحيح الإضاءة والألوان باستخدام Adjustment Layers." },
+      { title: "13. الدرس الثالث عشر من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=T2uEWC613YQ", desc: "أدوات إزالة العيوب والرتوش وترميم الصور (Spot Healing)." },
+      { title: "14. الدرس الرابع عشر من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=8ZXbdnd_kik", desc: "أداة البن تول (Pen Tool) ورسم الأشكال والفيكتور." },
+      { title: "15. الدرس الخامس عشر من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=abZ7gmj66gA", desc: "استخدام ميزات الذكاء الاصطناعي والتوليد التلقائي للصور." },
+      { title: "16. الدرس السادس عشر من دورة تعلم الفوتوشوب للمبتدئين - Adobe Photoshop", videoUrl: "https://www.youtube.com/watch?v=KdkoTg3BVvU", desc: "الفلاتر والمرشحات الذكية والتأثيرات الفنية." },
+      { title: "17. تحديثات مجنونة في فوتوشوب بيتا", videoUrl: "https://www.youtube.com/watch?v=O9u3Xqx1we8", desc: "أحدث التقنيات والميزات التوليدية المضافة لنسخ الفوتوشوب الحديثة." },
+      { title: "18. العميل الفضائي واللوجو المبكسل!", videoUrl: "https://www.youtube.com/watch?v=6yzJffXH_ek", desc: "نصائح وإرشادات للتعامل مع العملاء وتجهيز الملفات للطباعة والعرض." }
+    ]
+  },
+
+  // المستوى الثاني: أحمد مصطفى (29 محاضرة)
+  ps_social_media: {
+    title: "كورس فوتوشوب كامل وتصميم إعلانات السوشيال ميديا (Ahmed Mostafa)",
+    overview: "دورة شاملة ومكثفة مع أحمد مصطفى (29 محاضرة عملية) لاحتراف تصميم إعلانات وبوسترات السوشيال ميديا، تفريغ الصور المتقدم، دمج الصور والإضاءة، تعديل وتصحيح الألوان Color Grading، وقواعد التايبوجرافي واختيار الخطوط.",
+    keySkills: ["Social Media Ad Design", "Photo Manipulation", "Blending Modes & Pen Tool", "Color Correction & Grading", "Typography Rules", "Shutterstock Asset Search"],
+    lectures: [
+      { title: "01. يعني إيه فوتوشوب وأتعلمه في وقت قد إيه؟ | كورس فوتوشوب كامل", videoUrl: "https://www.youtube.com/watch?v=k89eD23Cmug", desc: "خارطة طريق تعلم الفوتوشوب ومجالات العمل المتاحة للمصمم." },
+      { title: "02. إزاي أتعامل مع الفوتوشوب لأول مرة؟ | كورس فوتوشوب كامل", videoUrl: "https://www.youtube.com/watch?v=Xxpn37-DB_E", desc: "تهيئة مساحة العمل وفهم الأساسيات للمبتدئين." },
+      { title: "03. مفهوم الطبقات والدمج بين الفيكتور والبيكسل | كورس فوتوشوب كامل", videoUrl: "https://www.youtube.com/watch?v=Exi8GY4zR_I", desc: "الفرق بين الصور النقطية والمتجهة وطرق دمجها." },
+      { title: "04. مفهوم الدمج في الفوتوشوب | كورس فوتوشوب كامل", videoUrl: "https://www.youtube.com/watch?v=nnRQiSQ7Z_M", desc: "مبادئ دمج الصور والتراكيب البصرية المتناسقة." },
+      { title: "05. أسهل 3 طرق لقص الصور المعقدة في الفوتوشوب | كورس فوتوشوب كامل", videoUrl: "https://www.youtube.com/watch?v=rZ6Laf5rHTI", desc: "قص الشعر والخلفيات الصعبة بأكثر من طريقة احترافية." },
+      { title: "06. شرح أداة الفرشاة والتفريغ اللوني | كورس فوتوشوب كامل", videoUrl: "https://www.youtube.com/watch?v=O5V0D7TpWJw", desc: "احتراف استخدام الفرش والإضاءات اليدوية والتفريغ." },
+      { title: "07. شرح أداة البن تول Pen Tool | كورس فوتوشوب كامل", videoUrl: "https://www.youtube.com/watch?v=rssmO0Ck-ag", desc: "إتقان الرسم والتحديد الدقيق بالـ Pen Tool." },
+      { title: "08. شرح أنماط الدمج Blending Modes | كورس فوتوشوب كامل", videoUrl: "https://www.youtube.com/watch?v=dW-4l5SoRH0", desc: "أسرار دمج الإضاءات والظلال والخامات بأنماط الدمج." },
+      { title: "09. شرح أدوات الرتوش Clone Stamp Tool | كورس فوتوشوب كامل", videoUrl: "https://www.youtube.com/watch?v=rLXxM4z0W4M", desc: "تنظيف الصور وإزالة العناصر غير المرغوبة بدقة." },
+      { title: "10. شرح أدوات تفتيح وتغميق الإضاءات Dodge & Burn Tool | كورس كامل", videoUrl: "https://www.youtube.com/watch?v=9-LDQqzEwpY", desc: "رسم الظلال والهايلايتس لإعطاء عمق وواقعية للعناصر." },
+      { title: "11. شرح شامل لقائمة تعديل الألوان والإضاءات Adjustment Layers", videoUrl: "https://www.youtube.com/watch?v=sOCZw4AN1IU", desc: "التحكم في المنحنيات Curves و Levels والتوازن اللوني." },
+      { title: "12. شرح أدوات الكتابة وحل مشكلة الكتابة المعكوسة بالعربي", videoUrl: "https://www.youtube.com/watch?v=24_aYojsJSY", desc: "تنسيق النصوص وحل جميع المشاكل التقنية للخطوط." },
+      { title: "13. شرح كامل لقائمة التأثيرات Layer Styles | كورس فوتوشوب كامل", videoUrl: "https://www.youtube.com/watch?v=ElC3H-Gvvx4", desc: "عمل تأثيرات التوهج والنصوص الذهبية والظلال الاحترافية." },
+      { title: "14. شرح كامل لفلاتر الفوتوشوب Photoshop Filters | كورس كامل", videoUrl: "https://www.youtube.com/watch?v=6TAdjhxKxlk", desc: "فلاتر التمويه والبلور والمؤثرات البصرية." },
+      { title: "15. إزاي تبدأ تصميم سوشيال ميديا لو أنت مبتدئ؟ | شرح فوتوشوب", videoUrl: "https://www.youtube.com/watch?v=X1yq1YMZun8", desc: "القواعد الذهبية لبدء أول تصميم إعلاني متكامل." },
+      { title: "16. إزاي تبدأ أي تصميم سوشيال ميديا على الفوتوشوب؟", videoUrl: "https://www.youtube.com/watch?v=kguegiXpyRw", desc: "بناء التكوين والكتل البصرية وتوزيع العناصر." },
+      { title: "17. إزاي تعمل تصميم سوشيال ميديا على الفوتوشوب للمبتدئين؟", videoUrl: "https://www.youtube.com/watch?v=Q0TF9NPmC7Q", desc: "تطبيق عملي كامل لإنشاء بوستر سوشيال ميديا من الصفر." },
+      { title: "18. إزاي تعمل تصميم سوشيال ميديا لشاي ليبتون المثلج؟", videoUrl: "https://www.youtube.com/watch?v=Zpv3tV0yefw", desc: "تطبيق عملي لتصميم إعلان مشروبات صيفية." },
+      { title: "19. إزاي تعمل تصميم سوشيال ميديا لسمنة بقري طبيعي؟", videoUrl: "https://www.youtube.com/watch?v=2SMRF0zD2S0", desc: "تطبيق عملي لتصميم إعلانات المنتجات الغذائية." },
+      { title: "20. إزاي تعمل تصميم سوشيال ميديا لعربية في الصحراء؟", videoUrl: "https://www.youtube.com/watch?v=iZ8QXQwSCIw", desc: "تطبيق عملي متقدم لدمج سيارة في بيئة صحراوية واقعية." },
+      { title: "21. إزاي تعمل تصميم سوشيال ميديا لساعة ضد المياه؟", videoUrl: "https://www.youtube.com/watch?v=90s-PzikgF4", desc: "دمج تأثيرات الماء والرذاذ والإضاءة تحت الماء." },
+      { title: "22. إزاي تعمل تصميم سوشيال ميديا لإعلان آيس كريم؟", videoUrl: "https://www.youtube.com/watch?v=W19g_0sFmao", desc: "تصميم إعلان جذاب لمنتج مثلجات باستخدام خامات ناعمة." },
+      { title: "23. إزاي تعمل تصميم سوشيال ميديا لشيبسي بالفلفل؟", videoUrl: "https://www.youtube.com/watch?v=Jw9V-rbPfVE", desc: "تصميم بوستر بطابع ناري ومؤثرات اللهب والحركة." },
+      { title: "24. اعرف إزاي تختار ألوان متناسقة زي المحترفين | شرح عجلة الألوان", videoUrl: "https://www.youtube.com/watch?v=72WuliyjSxE", desc: "نظرية الألوان واستخدام التناغم اللوني في الإعلانات." },
+      { title: "25. شرح كامل لكيفية تعديل وتصحيح ألوان الصور Color Correction & Grading", videoUrl: "https://www.youtube.com/watch?v=_XddgQIp5l8", desc: "مطابقة ألوان العناصر المدمجة وإعطاء التصميم مودي متناسق." },
+      { title: "26. كل أسرار البحث عن الصور وأهم المصطلحات في شاترستوك", videoUrl: "https://www.youtube.com/watch?v=7SbkZaqJo6Y", desc: "طرق العثور على الخامات والصور التكميلية بجودة عالية." },
+      { title: "27. أساسيات التايبوجرافي | الدرس الأول: أنواع الخطوط", videoUrl: "https://www.youtube.com/watch?v=tGdSVmtwFk0", desc: "قواعد اختيار الخطوط العربية والإنجليزية المناسبة لكل تصميم." },
+      { title: "28. أساسيات التايبوجرافي | الدرس الثاني: التباين والمحاذاة والترتيب الهرمي", videoUrl: "https://www.youtube.com/watch?v=9mXXkHZBJpE", desc: "Hierarchy, Contrast, Alignment في النصوص الإعلانية." },
+      { title: "29. طريقة سحرية تجيب بيها أفكار تصميمات للسوشيال ميديا", videoUrl: "https://www.youtube.com/watch?v=qNWHqOWfJNg", desc: "التغذية البصرية وتحويل الأفكار إلى تصاميم مبهرة وسريعة." }
+    ]
+  }
+};
+window.premiereCurriculumDB = {
+  main: {
+    title: "مسار احتراف مونتاج الفيديو (Adobe Premiere Pro)",
+    overview: "الدورة الشاملة للأستاذ مصطفى مكرم (27 محاضرة عملية) لاحتراف صناعة وتحرير الفيديو على برنامج Adobe Premiere Pro: من الواجهة وقص المقاطع وضبط التايم لاين، مروراً بتصميم النصوص والترجمات، تصحيح الألوان Lumetri Color، المؤثرات الصوتية وتعديل الصوت، تفريغ الكروما الخضراء، وحتى التطبيقات المتقدمة وتصدير الفيديو بأعلى جودة.",
+    keySkills: ["Timeline & Video Cuts", "Transitions & Effects", "Lumetri Color Grading", "Audio Mixing & SFX", "Chroma Key (Green Screen)", "Adobe Dynamic Link"],
+    lectures: [
+      { title: "00. يلا نتعلم مونتاج الفيديو من الصفر — Adobe Premiere Pro", videoUrl: "https://www.youtube.com/watch?v=9Hf-OQ-MZ4A", desc: "مدخل ومقدمة عامة للمسار والتعرف على أساسيات صناعة الفيديو ومجالات العمل." },
+      { title: "01. الدرس الأول: دورة تعلم مونتاج الفيديو للمبتدئين — Adobe Premiere Pro", videoUrl: "https://www.youtube.com/watch?v=PjD_wf7nCWU", desc: "فتح البرنامج، إنشاء مشروع جديد (New Project)، وضبط إعدادات مساحة العمل." },
+      { title: "02. الدرس الثاني: استيراد الملفات وتنظيم الوسائط داخل المشروع", videoUrl: "https://www.youtube.com/watch?v=vcGcxEUPomc", desc: "إدراج الفيديوهات، الصور، والموسيقى وتنظيمها داخل مجلدات (Bins)." },
+      { title: "03. الدرس الثالث: إنشاء السيكونس وضبط مقاسات الفيديو القياسية", videoUrl: "https://www.youtube.com/watch?v=1z8-42AfXM0", desc: "فهم أبعاد الفيديو (FHD, 4K, Reels) ومعدل الإطارات (Frame Rate)." },
+      { title: "04. الدرس الرابع: أدوات التايم لاين وقص وحذف المشاهد الزائدة", videoUrl: "https://www.youtube.com/watch?v=oyR4y3NXJ6U", desc: "استخدام أداة Razor Tool واختصارات القص السريع على التايم لاين." },
+      { title: "05. الدرس الخامس: التحكم في سرعة وتبطيء وتسريع المقاطع (Speed & Duration)", videoUrl: "https://www.youtube.com/watch?v=9aIOSURiCxs", desc: "عمل تأثيرات السلو موشن (Slow Motion) وتثبيت المشاهد (Frame Hold)." },
+      { title: "06. الدرس السادس: التحريك والتموضع وضبط مقياس العناصر (Effect Controls)", videoUrl: "https://www.youtube.com/watch?v=pxbvHvs40pM", desc: "استخدام الـ Keyframes للتحريك وتغيير الحجم والمكان بدقة." },
+      { title: "07. الدرس السابع: الانتقالات البصرية بين المشاهد (Video Transitions)", videoUrl: "https://www.youtube.com/watch?v=3Ar-tfquTEk", desc: "إضافة وتخصيص الانتقالات السلسة والـ Dissolves بين اللقطات." },
+      { title: "08. الدرس الثامن: الكتابة وإضافة العناوين والنصوص العربية الاحترافية", videoUrl: "https://www.youtube.com/watch?v=Hh6QrHfwvhI", desc: "استخدام أداة Type Tool ولوحة Essential Graphics لتنسيق الخطوط." },
+      { title: "09. الدرس التاسع: قوالب النصوص المتحركة والـ MOGRTs الجاهزة", videoUrl: "https://www.youtube.com/watch?v=QYW7asqComo", desc: "تثبيت واستخدام قوالب الموشن جرافيكس والعناوين المتحركة الجاهزة." },
+      { title: "10. الدرس العاشر: أساسيات هندسة الصوت والمؤثرات الصوتية (Audio Track Mixer)", videoUrl: "https://www.youtube.com/watch?v=aQeKtleT8x4", desc: "موازنة مستويات الصوت وفصل الضوضاء وتوزيع الموسيقى الخلفية." },
+      { title: "11. الدرس الحادي عشر: الفلاتر والمؤثرات البصرية وتطبيق التأثيرات الفنية", videoUrl: "https://www.youtube.com/watch?v=hzqSC_pTa2A", desc: "استخدام مكتبة Video Effects وإضافة البلور والتشويه الإبداعي." },
+      { title: "12. الدرس الثاني عشر: تصحيح وتعديل الألوان الأساسي (Basic Color Correction)", videoUrl: "https://www.youtube.com/watch?v=5XQOTgjhIS4", desc: "ضبط الإضاءة والتباين والـ White Balance للمشاهد." },
+      { title: "13. الدرس الثالث عشر: التلوين السينمائي المتقدم باستخدام Lumetri Color", videoUrl: "https://www.youtube.com/watch?v=HY_cm577TiU", desc: "استخدام الـ Curves وعجلات الألوان ومودات التلوين السينمائي LUTs." },
+      { title: "14. الدرس الرابع عشر: قراءة سكوبات التلوين الاحترافية (Lumetri Scopes)", videoUrl: "https://www.youtube.com/watch?v=8Ff4LOkms1w", desc: "تحليل توازن الألوان ومستويات السطوع بدقة عبر الـ Scopes." },
+      { title: "15. الدرس الخامس عشر: استخدام الـ Adjustment Layer لتلوين المشروع بالكامل", videoUrl: "https://www.youtube.com/watch?v=bohIClOB3wk", desc: "تطبيق التعديلات اللونية على عدة مشاهد بطبقة واحدة موحدة." },
+      { title: "16. الدرس السادس عشر: تصدير الفيديو وإعدادات الرندر النهائية (Export Settings)", videoUrl: "https://www.youtube.com/watch?v=0g3mtXpk6t4", desc: "إخراج الفيديو بصيغة H.264 بجودة عالية وحجم ملف مثالي للنشر." },
+      { title: "17. الدرس السابع عشر: التصدير السحابي والتعامل مع Adobe Media Encoder", videoUrl: "https://www.youtube.com/watch?v=JeKApo6Miu4", desc: "رندر المشاريع الضخمة في الخلفية بصيغ متعددة." },
+      { title: "18. الدرس الثامن عشر: أهم الاختصارات الاحترافية لمضاعفة سرعة المونتاج", videoUrl: "https://www.youtube.com/watch?v=F2ZEv5A8JJc", desc: "تخصيص لوحة المفاتيح والعمل بسرعة المحترفين." },
+      { title: "19. الدرس التاسع عشر: مراجعة شاملة وأسرار تنظيم وتخزين المشاريع الضخمة", videoUrl: "https://www.youtube.com/watch?v=FmlzUF2Zj3s", desc: "أرشفة ملفات الميديا وحل مشاكل الملفات المفقودة (Offline Media)." },
+      { title: "20. فيديو واحد هيعلمك مونتاج الفيديو على أدوبي بريمير بالكامل", videoUrl: "https://www.youtube.com/watch?v=GqDZ4pe9-SQ", desc: "ملخص مكثف وشامل يجمع مراحل المونتاج من البداية للتصدير." },
+      { title: "21. التطبيق الأول: تصميم تأثير تقسيم الشاشة الاحترافي (Split Screen)", videoUrl: "https://www.youtube.com/watch?v=GP4trTSgqSE", desc: "عرض أكثر من لقطة في شاشة واحدة بتصميم جذاب ومتحرك." },
+      { title: "22. التطبيق الثاني: استخدام ماسك التتبع والدمج (Track Matte Key)", videoUrl: "https://www.youtube.com/watch?v=PajR7g6gbU8", desc: "دمج الفيديو داخل النصوص والأشكال الهندسية بذكاء." },
+      { title: "23. التطبيق الثالث: الربط الديناميكي بين برامج أدوبي (Adobe Dynamic Link)", videoUrl: "https://www.youtube.com/watch?v=S1zgBtUXfmo", desc: "العمل المتزامن والمباشر بين Premiere Pro و After Effects و Audition." },
+      { title: "24. التطبيق الرابع: هندسة المؤثرات الصوتية وصناعة المشاهد التفاعلية (SFX)", videoUrl: "https://www.youtube.com/watch?v=m3yidoZm7qE", desc: "تركيب الفولي ومؤثرات الحركة والصدمات لإعطاء قوة للمشهد." },
+      { title: "25. التطبيق الخامس: تفريغ الكروما والشاشة الخضراء (Ultra Key)", videoUrl: "https://www.youtube.com/watch?v=MKboEocZKdY", desc: "عزل الخلفية الخضراء بدقة وإزالة الانعكاسات وضبط الحواف." },
+      { title: "26. التحديث المنتظر في أدوبي بريمير بيتا وميزات الذكاء الاصطناعي", videoUrl: "https://www.youtube.com/watch?v=OvuiAan3gSc", desc: "استعراض ميزات التعديل الصوتي التلقائي والترجمة الذكية وقص الصمت." }
+    ]
+  }
+};
+window.canvaCurriculumDB = {
+  main: {
+    title: "مسار احتراف كانفا والعمل الحر (Canva & Freelancing)",
+    overview: "الدورة التطبيقية المتكاملة مع قناة (Geel Techs - جيل تكس) والأستاذ محمد أبو عبد الله: تغطي أسرار منصة Canva من الصفر للتصميم عبر الحاسوب والموبايل، تصميم الشعارات Logos، منشورات السوشيال ميديا، الموك اب Mockups، تصميم وتغليف المنتجات، مونتاج الفيديو، وكيفية بيع الخدمات وتحقيق دخل من منصات العمل الحر مثل خمسات ومستقل.",
+    keySkills: ["Canva Desktop & Mobile", "Logo & Brand Identity", "Social Media Graphics", "Product Packaging (Pacdora)", "Video Editing on Canva", "Freelancing on Khamsat & Behance"],
+    lectures: [
+      { title: "01. بداية كورس الربح من كانفا مجانا بالكامل — Canva course", videoUrl: "https://www.youtube.com/watch?v=IcS4c92fUFY", desc: "خارطة طريق الكورس وأساسيات استثمار مهارات التصميم على كانفا للربح من الإنترنت." },
+      { title: "02. شرح التصميم على كانفا كامل في 30 دقيقة فقط || موقع Canva", videoUrl: "https://www.youtube.com/watch?v=Pzw_zHz5SLQ", desc: "جولة سريعة وشاملة في واجهة موقع كانفا وأهم أدوات التصميم السريع." },
+      { title: "03. شرح التصميم على تطبيق كانفا من الهاتف بالتفصيل في 30 دقيقة — Canva Phone", videoUrl: "https://www.youtube.com/watch?v=9VxnB3AoO00", desc: "احتراف التصميم وإنشاء البوستات مباشرة عبر تطبيق كانفا على الموبايل." },
+      { title: "04. تعلم أساسيات التصميم واختيار الألوان والخطوط | كورس الربح من كانفا", videoUrl: "https://www.youtube.com/watch?v=D-rfRSZjnAk", desc: "القواعد الذهبية لتناسق الألوان واختيار الخطوط العربية والإنجليزية باحتراف." },
+      { title: "05. تعلم تصميم الشعار (Logo) على كانفا — كورس الربح من كانفا", videoUrl: "https://www.youtube.com/watch?v=I5jPm3HWWic", desc: "طرق ابتكار وتصميم لوجوهات بصرية جذابة للشركات والمتاجر." },
+      { title: "06. تعلم تصميم الشعار من هاتفك على كانفا — Logo Design", videoUrl: "https://www.youtube.com/watch?v=vvP3JKdxDf4", desc: "تطبيق عملي لتصميم شعارات احترافية بالكامل من شاشة الهاتف." },
+      { title: "07. الربح من تصميمات سوشيال ميديا على كانفا — كورس تصميم Canva", videoUrl: "https://www.youtube.com/watch?v=WDig9axg60c", desc: "تصميم إعلانات وبوسترات السوشيال ميديا لمنصات فيسبوك وإنستغرام." },
+      { title: "08. الربح من تصميم صور مصغرة (Thumbnail) لليوتيوب — كورس الربح من كانفا", videoUrl: "https://www.youtube.com/watch?v=QOA6iYLlBrA", desc: "أسرار صناعة الصور المصغرة الجذابة التي ترفع نسب المشاهدة CTR." },
+      { title: "09. تعلم الربح من تصميم كروت شخصية بسهولة | كورس الربح من كانفا", videoUrl: "https://www.youtube.com/watch?v=KULiRp3OEaQ", desc: "تصميم كروت العمل (Business Cards) وتجهيزها للطباعة الرقمية." },
+      { title: "10. كورس الربح من كانفا | تصميم سيرة ذاتية احترافية (CV)", videoUrl: "https://www.youtube.com/watch?v=r1P-VqL51fY", desc: "تصميم السير الذاتية الحديثة بتنسيق احترافي يلفت أنظار مسؤولي التوظيف." },
+      { title: "11. كيفية تصميم ونشر موقع إلكتروني مجاناً على كانفا — كورس الربح من كانفا", videoUrl: "https://www.youtube.com/watch?v=lOKu0an43dY", desc: "بناء ونشر مواقع الويب وصفحات الهبوط (Landing Pages) المجانية بـ Canva." },
+      { title: "12. كيفية تصميم وتعديل موقع إلكتروني مجاناً على كانفا (الجزء الثاني)", videoUrl: "https://www.youtube.com/watch?v=33US0Ihjo5Y", desc: "تخصيص الروابط والأزرار التفاعلية لموقعك المنشور." },
+      { title: "13. نص مليون دولار من تصميم تغليف المنتجات على كانفا | شرح Pacdora", videoUrl: "https://www.youtube.com/watch?v=qIn4UfwwtuA", desc: "دمج قوالب كانفا مع أداة Pacdora لتصميم علب المنتجات ثلاثية الأبعاد." },
+      { title: "14. كيف تصمم تغليف المنتجات بالذكاء الاصطناعي وتربح منه | دليل Pacdora الكامل", videoUrl: "https://www.youtube.com/watch?v=VLBuU3IW5U0", desc: "ابتكار خامات وأشكال التغليف وتصدير الموك اب للعملاء." },
+      { title: "15. تعلم تصميم الفيديوهات على كانفا والمونتاج بسهولة في 25 دقيقة فقط", videoUrl: "https://www.youtube.com/watch?v=4ZzNGoAQ2rk", desc: "قص وتركيب الفيديوهات وإضافة النصوص والموسيقى داخل كانفا." },
+      { title: "16. أهم فيديو للربح من كانفا بدون خبرة وإزاي تحصل على عملاء وتكسب بالدولار", videoUrl: "https://www.youtube.com/watch?v=yfWzeknkxWs", desc: "استراتيجيات تسويق خدمات التصميم والعثور على أول عميل يدفع لك." },
+      { title: "17. بناء معرض أعمال على بيهانس وكيف تحصل على شغل | Behance Portfolio", videoUrl: "https://www.youtube.com/watch?v=hikZWtQuT2w", desc: "إنشاء بورتفوليو احترافي على Behance لعرض تصاميمك للشركات." },
+      { title: "18. شرح الموك اب (Mockup) من الهاتف لعرض أعمالك باحترافية — كورس الربح من كانفا", videoUrl: "https://www.youtube.com/watch?v=6cS1zPxmosg", desc: "عرض تصاميمك على شاشات الهواتف واللوحات الإعلانية من الموبايل." },
+      { title: "19. شرح الموك اب + 5 مواقع لتحميل Mockups مجانية وسهلة جداً", videoUrl: "https://www.youtube.com/watch?v=nE_ZjTgS0Wc", desc: "أفضل المصادر السحابية لتحميل قوالب العرض الواقعية لتصاميمك." },
+      { title: "20. تصميم عملي سوشيال ميديا على كانفا — كورس الربح من كانفا", videoUrl: "https://www.youtube.com/watch?v=c2VrXXAKoug", desc: "ورشة عمل تطبيقية لتنفيذ تصميم إعلاني متكامل خطوة بخطوة." },
+      { title: "21. تقييم تصميماتكم | اتعلم من تصميمات الآخرين — الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=sGtVXsapVZg", desc: "تحليل ونقد تصاميم المتدربين وتصحيح الأخطاء الشائعة في التوزيع البصري." },
+      { title: "22. تقييم تصميماتكم | اتعلم من تصميمات الآخرين — الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=1cQmfBSDOv4", desc: "مراجعة عملية لأخطاء الخطوط والتباين اللوني وطرق تحسينها." },
+      { title: "23. تقييم تصميماتكم | كيف تطور مستواك في التصميم؟ — الجزء الثالث", videoUrl: "https://www.youtube.com/watch?v=0Hd3jQSdJVo", desc: "نصائح متقدمة لرفع جودة تصاميمك لتنافس المصممين المحترفين." },
+      { title: "24. شرح موقع خمسات للعمل الحر ونصائح مهمة للربح (شرح عملي)", videoUrl: "https://www.youtube.com/watch?v=ZxhUy3tPbo4", desc: "إنشاء حساب بائع، كتابة الخدمات المصغرة، والتسعير الصحيح على خمسات." },
+      { title: "25. أفضل بديل لمنصات العمل الحر — أرباحك بدون عمولة وطرق سحب كثيرة", videoUrl: "https://www.youtube.com/watch?v=654V5lETAF8", desc: "استكشاف منصات العمل الحر البديلة وطرق استلام أرباحك المالية بسهولة." },
+      { title: "26. طريقتي في الربح من الإنترنت — أرقام واقعية", videoUrl: "https://www.youtube.com/watch?v=EcvtZSE5O7w", desc: "مشاركة تجربة حقيقية وخطة عملية لتحقيق أول 300 دولار من التصميم." },
+      { title: "27. استخدمت الذكاء الاصطناعي وكانفا لتصميم صورة معبرة", videoUrl: "https://www.youtube.com/watch?v=eWZhsKAH_mQ", desc: "دمج أدوات التوليد بالذكاء الاصطناعي مع قوالب وخامات كانفا." },
+      { title: "28. كورس كانفا المدفوع وأسرار ميزات Canva Pro", videoUrl: "https://www.youtube.com/watch?v=Os3_-mGgKf4", desc: "استخدام ميزات كانفا برو المتقدمة مثل إزالة الخلفيات وتغيير المقاسات السحري." },
+      { title: "29. كورس الربح من كانفا مجاناً بالكامل — ملخص المسار", videoUrl: "https://www.youtube.com/watch?v=GlcUlgNdhR0", desc: "مراجعة شاملة لجميع مهارات الكورس ونصائح الانطلاق في سوق العمل." },
+      { title: "30. شرح التصميم على كانفا في 25 دقيقة فقط || موقع Canva كامل", videoUrl: "https://www.youtube.com/watch?v=xySgcaBm8_4", desc: "ملخص مكثف وسريع لأهم أدوات المنصة للمراجعة السريعة والتطبيق." },
+      { title: "31. في 6 ساعات: احترف تصميم الجرافيك على كانفا (Canva) وابدأ الربح | كورس شامل 2026", videoUrl: "https://youtu.be/YpG4zMi3j3Y", desc: "الماستركلاس الشامل (6 ساعات كاملة) مع محمد أبو عبد الله: تعلم كانفا من الصفر وحتى إتقان السوشيال ميديا، تعديل الصور، الفيديو، وتصميم المواقع الإلكترونية." }
+    ]
+  }
+};
+window.aiAutomationCurriculumDB = {
+  // المستوى الأول: قناة Syntax (7 محاضرات)
+  auto_syntax: {
+    title: "كورس الـ AI Automation الكامل بالعربي (Syntax)",
+    overview: "دورة تطبيقية من قناة Syntax لشرح هندسة أتمتة العمليات بالذكاء الاصطناعي: استخدام أداة n8n، بناء وكلاء الأتمتة الذكية AI Agents للرد على العملاء وصناعة المحتوى، دمج نماذج Claude و ChatGPT، وبناء أنظمة الـ RAG المتقدمة والربح من خدمات الأوتوميشن.",
+    keySkills: ["n8n Architecture", "Building AI Agents", "RAG Systems & Vector Stores", "Claude & ChatGPT Integration", "Automated Content & Support", "Selling AI Automation Services"],
+    lectures: [
+      { title: "01. تعلم الأوتوميشن من الصفر للاحتراف في 60 دقيقة | للمبتدئين تماماً بدون أي أكواد", videoUrl: "https://www.youtube.com/watch?v=r_ZM_46uKVA", desc: "مدخل شامل لفهم ثورة الـ AI Automation وكيف توفر الشركات آلاف الساعات باستخدام أدوات الأتمتة." },
+      { title: "02. خطر مهنة الأستاذ: هل ChatGPT قضى على n8n رسمياً؟", videoUrl: "https://www.youtube.com/watch?v=PyBzEAZmA8A", desc: "مقارنة تقنية بين قدرات الشات المباشر ومنظومات الأتمتة وربط الـ Workflows السحابية." },
+      { title: "03. من الصفر للاحتراف: من العمالة إلى AI Agents في n8n — من سنتين باستخدام n8n", videoUrl: "https://www.youtube.com/watch?v=za4jJbUp6zc", desc: "شرح معمق لبناء وتوظيف الوكلاء الأذكياء (AI Agents) لتنفيذ مهام الأعمال المعقدة ذاتياً." },
+      { title: "04. كورس الذكاء العملي المستوى الثاني: بناء نظام يرد على العملاء ويصنع محتوى بالذكاء الاصطناعي", videoUrl: "https://www.youtube.com/watch?v=i59pw-1VHFc", desc: "تطبيق عملي لبناء بوت دعم فني ذكي ونظام أتمتة منشورات السوشيال ميديا." },
+      { title: "05. إزاي تبني بزنس كامل من الـ AI Automation (بدون خبرة أو رأس مال)", videoUrl: "https://www.youtube.com/watch?v=YWXggLaqRuU", desc: "استراتيجيات تقديم خدمات الأوتوميشن للشركات والتسعير وبناء وكالة AI Automation Agency (AAA)." },
+      { title: "06. لأول مرة نظام n8n يغير الـ AI Automation في ثواني باستخدام Claude بدون معرفة تقنية", videoUrl: "https://www.youtube.com/watch?v=SIugQ3WD3j4", desc: "توليد وتعديل خطوط إنتاج n8n وسير العمل المعقد بالبرومبت الهندسي مع نماذج Claude." },
+      { title: "07. أول ماستر كلاس AI Automation في العالم العربي: كورس 30 دقيقة | بناء نظام RAG كامل باستخدام n8n", videoUrl: "https://www.youtube.com/watch?v=hevCJpMiPaY", desc: "بناء بنية Retrieval-Augmented Generation (RAG) لربط وثائق وملفات الشركات بقواعد البيانات الشعاعية والـ LLMs." }
+    ]
+  },
+
+  // المستوى الثاني: قناة Mohamed Salah (4 محاضرات)
+  auto_salah: {
+    title: "ماستركلاس n8n الشامل وأتمتة الذكاء الاصطناعي (Mohamed Salah)",
+    overview: "دورة شاملة ومكثفة مع محمد صلاح تتضمن ماستركلاس عملي مدته 5 ساعات لتغطية منصة n8n من الصفر: تثبيت الأداة، التعامل مع الـ Nodes، معالجة البيانات والـ JSON، ربط الـ APIs ونماذج الذكاء الاصطناعي، وبناء مساعدات بريد إلكتروني ودعم فني مؤتمتة بالكامل.",
+    keySkills: ["n8n Setup & Nodes", "JSON Data Manipulation", "LLM Chain Integration", "Automated Form Submissions", "Email & CRM Workflows", "Production Error Handling"],
+    lectures: [
+      { title: "01. كورس n8n الكامل | تعلم الأوتوميشن في 5 ساعات (من الصفر للاحتراف)", videoUrl: "https://www.youtube.com/watch?v=0mBxbBfRUxc", desc: "الماستركلاس الأكبر (5 ساعات كاملة): شرح شامل لجميع أدوات n8n وربطها بنماذج الذكاء الاصطناعي وبناء مشاريع واقعية." },
+      { title: "02. من الصفر: AI Automation #1 | دليلك الشامل لتعلم الـ AI Automation", videoUrl: "https://www.youtube.com/watch?v=H4J-NUOQ2xc", desc: "تأسيس المفهوم والتعرف على خريطة طريق الأتمتة وأشهر المنصات (n8n, Make, Zapier)." },
+      { title: "03. من الصفر: AI Automation #2 | أنواع الـ AI Automation", videoUrl: "https://www.youtube.com/watch?v=iIw-MnVyZRo", desc: "الفرق بين الأتمتة الخطية البسيطة والأتمتة الذكية المعتمدة على الـ Agents والذاكرة." },
+      { title: "04. من الصفر: AI Automation #3 | شرح الأساسيات والأدوات المساعدة", videoUrl: "https://www.youtube.com/watch?v=ta-cmeSJpWg", desc: "التطبيق العملي على ربط النماذج، الـ Webhooks، وحفظ وتمرير المتغيرات بين المسارات." }
+    ]
+  }
+};
+window.windowsCurriculumDB = {
+  main: {
+    title: "مسار أساسيات الكمبيوتر ونظام التشغيل Windows 10",
+    overview: "الدورة التأسيسية المتكاملة مع قناة (easy T) والأستاذ إسلام سليمان: صُممت خصيصاً للراغبين في تعلم استخدام الحاسب الآلي ونظام ويندوز 10 من الصفر، لتغطية التعامل مع النوافذ، متصفح الملفات File Explorer، حسابات المستخدمين، تخصيص قائمة Start وشريط المهام، واستخدام متصفح Edge وإعدادات التحديث والصيانة.",
+    keySkills: ["Computer Hardware & OS Basics", "Desktop & File Explorer", "Taskbar & Start Menu Customization", "User Accounts & Security", "Microsoft Edge & Store", "System Maintenance & Updates"],
+    lectures: [
+      { title: "01. دورة ويندوز 10 كاملة للمبتدئين — أساسيات هامة للتعامل مع ويندوز | الدرس 1", videoUrl: "https://www.youtube.com/watch?v=8zjvYUltfwA", desc: "مدخل ومفاهيم أولية لفهم بيئة نظام التشغيل وكيفية بدء تشغيل واستخدام الجهاز." },
+      { title: "02. دورة ويندوز 10 كاملة للمبتدئين — سطح المكتب Desktop | الدرس 2", videoUrl: "https://www.youtube.com/watch?v=EnFBoPhNICM", desc: "التعرف على مكونات سطح المكتب، ترتيب الأيقونات، وتغيير الخلفيات والمظهر." },
+      { title: "03. دورة ويندوز 10 كاملة للمبتدئين — التعامل مع النوافذ | الدرس 3", videoUrl: "https://www.youtube.com/watch?v=5Y12ZFGWtXw", desc: "إدارة النوافذ المفتوحة، تقسيم الشاشة (Snap Assist)، والتنقل السريع بين البرامج." },
+      { title: "04. دورة ويندوز 10 كاملة للمبتدئين — حسابات المستخدمين User Accounts | الدرس 4", videoUrl: "https://www.youtube.com/watch?v=-by4Tj0XBBk", desc: "إنشاء حسابات مستخدمين جديدة، تعيين كلمات المرور، وإدارة الصلاحيات." },
+      { title: "05. دورة ويندوز 10 كاملة للمبتدئين — قائمة المهام Start Menu | الدرس 5", videoUrl: "https://www.youtube.com/watch?v=ih_yEPzmO7I", desc: "تخصيص وترتيب قائمة ابدأ وإضافة البرامج والتطبيقات المثبتة." },
+      { title: "06. دورة ويندوز 10 كاملة للمبتدئين — متجر مايكروسوفت Microsoft Store | الدرس 6", videoUrl: "https://www.youtube.com/watch?v=iaQsXVxy9VA", desc: "البحث عن التطبيقات والألعاب وتحميلها وتحديثها من المتجر الرسمي." },
+      { title: "07. تعليم ويندوز 10 — شريط المهام Task Bar | الدرس 7", videoUrl: "https://www.youtube.com/watch?v=L4cVLB-N-70", desc: "تخصيص شريط المهام، تثبيت البرامج، وضبط شريط البحث وأزرار التحكم." },
+      { title: "08. تعليم ويندوز 10 للمبتدئين — منطقة الإشعار Notification Area | الدرس 8", videoUrl: "https://www.youtube.com/watch?v=nmJaKjdphLI", desc: "التحكم في الإشعارات، مركز العمليات Action Center، الصوت والشبكات." },
+      { title: "09. دورة ويندوز 10 كاملة للمبتدئين — استخدام متصفح الإنترنت Microsoft Edge | الدرس 9", videoUrl: "https://www.youtube.com/watch?v=oCjciDpOGx8", desc: "تصفح الويب، حفظ المفضلة، وإدارة التنزيلات وإعدادات الأمان." },
+      { title: "10. دورة ويندوز 10 كاملة للمبتدئين — استخدام مستكشف الملفات File Explorer | الدرس 10", videoUrl: "https://www.youtube.com/watch?v=byA9DWYCIL8", desc: "إنشاء ونسخ ونقل وإعادة تسمية المجلدات والملفات والبحث عنها بدقة." },
+      { title: "11. كورس ويندوز 10 كامل للمبتدئين — صيانة وتحديث ويندوز System Update | الدرس 11", videoUrl: "https://www.youtube.com/watch?v=JZrNJIU5jkA", desc: "تحديثات النظام الدورية، أمان الجهاز Windows Defender، وحذف الملفات المؤقتة." },
+      { title: "12. تفاصيل وتطبيقات إضافية لاحتراف استخدام نظام ويندوز 10 | الدرس 12", videoUrl: "https://www.youtube.com/watch?v=XIb3b7oFazM", desc: "مراجعة شاملة لأهم الحيل والاختصارات لرفع سرعة وإنتاجية العمل اليومي." },
+      { title: "13. تعلم أساسيات الكمبيوتر في فيديو واحد من الصفر | تعلم ويندوز 10 (Islam Soliman)", videoUrl: "https://youtu.be/5ctLHqcW8Yc", desc: "الماستركلاس المجمع للمهندس إسلام سليمان: شرح متكامل ومبسط لأساسيات الكمبيوتر والتعامل مع ويندوز 10 خطوة بخطوة في فيديو واحد." }
     ]
   }
 };
@@ -2857,9 +3350,14 @@ window.selectCourseLevel = function(courseId, levelId) {
   const officeCard = document.getElementById("officeOverviewCard");
   const languagePortals = document.getElementById("languageSkillsPortals");
 
-  if (courseId === "c_office_suite" || courseId === "c_web_dev") {
+if (courseId === "c_office_suite" || courseId === "c_web_dev" || courseId === "c_photoshop_mastery" || courseId === "c_ai_automation") {
     if (languagePortals) languagePortals.classList.add("hidden");
-    const db = courseId === "c_web_dev" ? window.webCurriculumDB : window.officeCurriculumDB;
+    let db = null;
+    if (courseId === "c_web_dev") db = window.webCurriculumDB;
+    else if (courseId === "c_office_suite") db = window.officeCurriculumDB;
+    else if (courseId === "c_photoshop_mastery") db = window.photoshopCurriculumDB;
+    else if (courseId === "c_ai_automation") db = window.aiAutomationCurriculumDB;
+
     const data = db ? db[levelId] : null;
     if (data && officeCard) {
       document.getElementById("officeProgramTitle").textContent = data.title;
@@ -2922,7 +3420,7 @@ window.openCourseView = function(courseId) {
   if (courseLevels && courseLevels.length > 0) {
     if (levelsSection) levelsSection.classList.remove("hidden");
     if (languagePortals) {
-if (courseId === "c_office_suite" || courseId === "c_web_dev") {
+if (courseId === "c_office_suite" || courseId === "c_web_dev" || courseId === "c_photoshop_mastery" || courseId === "c_ai_automation") {  
 
         languagePortals.classList.add("hidden");
       } else {
@@ -3067,7 +3565,107 @@ if (courseId === "c_office_suite" || courseId === "c_web_dev") {
       officeCard.classList.remove("hidden");
       renderLevelDetails(aiData);
     }
+  }else if (courseId === "c_ui_ux") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const uiuxData = window.uiuxCurriculumDB ? window.uiuxCurriculumDB.main : null;
+    if (uiuxData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = uiuxData.title;
+      document.getElementById("officeProgramDesc").textContent = uiuxData.overview;
+      document.getElementById("officeSkillsList").innerHTML = uiuxData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(uiuxData);
+    }
+  }else if (courseId === "c_vibe_coding") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const vibeData = window.vibeCodingCurriculumDB ? window.vibeCodingCurriculumDB.main : null;
+    if (vibeData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = vibeData.title;
+      document.getElementById("officeProgramDesc").textContent = vibeData.overview;
+      document.getElementById("officeSkillsList").innerHTML = vibeData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(vibeData);
+    }
+  }else if (courseId === "c_bubble_nocode") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const bubbleData = window.bubbleCurriculumDB ? window.bubbleCurriculumDB.main : null;
+    if (bubbleData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = bubbleData.title;
+      document.getElementById("officeProgramDesc").textContent = bubbleData.overview;
+      document.getElementById("officeSkillsList").innerHTML = bubbleData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(bubbleData);
+    }
   }
+  else if (courseId === "c_ai_tools_creative") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const aiToolsData = window.aiToolsCreativeCurriculumDB ? window.aiToolsCreativeCurriculumDB.main : null;
+    if (aiToolsData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = aiToolsData.title;
+      document.getElementById("officeProgramDesc").textContent = aiToolsData.overview;
+      document.getElementById("officeSkillsList").innerHTML = aiToolsData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(aiToolsData);
+    }
+  }else if (courseId === "c_premiere_video") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const premiereData = window.premiereCurriculumDB ? window.premiereCurriculumDB.main : null;
+    if (premiereData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = premiereData.title;
+      document.getElementById("officeProgramDesc").textContent = premiereData.overview;
+      document.getElementById("officeSkillsList").innerHTML = premiereData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(premiereData);
+    }
+  }else if (courseId === "c_canva_design") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const canvaData = window.canvaCurriculumDB ? window.canvaCurriculumDB.main : null;
+    if (canvaData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = canvaData.title;
+      document.getElementById("officeProgramDesc").textContent = canvaData.overview;
+      document.getElementById("officeSkillsList").innerHTML = canvaData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(canvaData);
+    }
+  }else if (courseId === "c_computer_windows") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const winData = window.windowsCurriculumDB ? window.windowsCurriculumDB.main : null;
+    if (winData && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = winData.title;
+      document.getElementById("officeProgramDesc").textContent = winData.overview;
+      document.getElementById("officeSkillsList").innerHTML = winData.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(winData);
+    }
+  }
+  
     else {
     if (levelsSection) levelsSection.classList.add("hidden");
     if (languagePortals) languagePortals.classList.add("hidden");
@@ -3387,7 +3985,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (heroUserCta) heroUserCta.classList.add("hidden");
     }
   });
+window.searchCoursesLive = function() {
+  const q = document.getElementById("courseSearchInput").value.toLowerCase().trim();
+  const container = document.getElementById("coursesSlider");
+  if (!container) return;
 
+  const cards = container.querySelectorAll("article");
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    card.style.display = (!q || text.includes(q)) ? "flex" : "none";
+  });
+};
   // 1. الدخول عبر Google
   window.handleGoogleSignIn = async function() {
     try {
