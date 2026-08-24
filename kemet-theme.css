@@ -225,3 +225,77 @@ h1, h2, h3, .brand-font {
   color: var(--obsidian-darkest);
   transform: translateY(-4px) scale(1.08);
 }
+/* ========================================================
+   ATLAS × KEMET HIGH-CONTRAST LUXURY ENGINE
+======================================================== */
+:root {
+  --gold-light: #F3DC9B;
+  --gold: #C9A84C;
+  --gold-dark: #A07930;
+  --obsidian-darkest: #070503;
+  --obsidian-dark: #0D0A05;
+  --obsidian: #1A1209;
+  --obsidian-light: #2A2015;
+  --papyrus-white: #FFFFFF;
+  --papyrus-light: #FAF0DC;
+  --papyrus: #F5E6C8;
+  --papyrus-dark: #D1C4A5;
+  --sand: #D4A853;
+  --border-gold: #503D17;
+  --border-gold-subtle: rgba(201, 168, 76, 0.35);
+  --trans: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background: radial-gradient(circle at 50% 15%, rgba(201, 168, 76, 0.15) 0%, transparent 60%),
+              var(--obsidian-darkest) !important;
+  color: var(--papyrus-white) !important;
+  font-family: 'Alexandria', sans-serif !important;
+}
+
+h1, h2, h3 {
+  font-family: 'Amiri', serif !important;
+  color: var(--papyrus-light) !important;
+}
+
+/* Primary Luxury Gold Button */
+.kemet-btn-primary, .bg-brand {
+  background: linear-gradient(135deg, #A07930 0%, #C9A84C 50%, #E8C97A 100%) !important;
+  color: #070503 !important;
+  font-weight: 800 !important;
+  font-size: 0.9rem !important;
+  padding: 12px 28px !important;
+  border-radius: 30px !important;
+  border: 1px solid #E8C97A !important;
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4) !important;
+  transition: var(--trans) !important;
+}
+
+.kemet-btn-primary:hover, .bg-brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(201, 168, 76, 0.7) !important;
+  filter: brightness(1.1);
+}
+
+/* Luxury Cards */
+.kemet-card-hover, #coursesSlider article {
+  background: linear-gradient(145deg, #241a10 0%, #130d07 100%) !important;
+  border: 1px solid var(--border-gold-subtle) !important;
+  border-radius: 20px !important;
+  transition: var(--trans);
+}
+
+.kemet-card-hover:hover, #coursesSlider article:hover {
+  border-color: var(--gold) !important;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(201, 168, 76, 0.25) !important;
+}
+
+/* Golden Lines */
+.kemet-gold-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+  margin: 3rem auto;
+  opacity: 0.5;
+}
