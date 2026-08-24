@@ -234,43 +234,42 @@
   </div>
 </section>
 
-<!-- ============ TRACKS & FIELDS SECTION ============ -->
-<section id="years" class="w-full px-4 sm:px-6 lg:px-10 py-12 border-b border-theme">
-  <div class="w-full grid lg:grid-cols-12 gap-8 items-center">
-    
-    <div class="lg:col-span-4 text-center lg:text-right space-y-3">
-      <h2 class="text-2xl sm:text-3xl font-black text-main">المسارات التعليمية</h2>
-      <p class="text-xs sm:text-sm text-muted leading-relaxed">
-        اختر التخصص المطلوب للبدء في دراسة المراحل المعتمدة من التأسيس إلى المستويات المتقدمة.
-      </p>
+<section id="years" class="w-full px-4 sm:px-6 lg:px-10 py-12">
+  <div class="kemet-section-header">
+    <span class="eyebrow">المسارات المعتمدة</span>
+    <h2>المسارات والتخصصات التعليمية</h2>
+  </div>
+
+  <div class="w-full grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+    <!-- مسار 1 -->
+    <div class="kemet-card-hover p-8 rounded-3xl flex flex-col justify-between space-y-5">
+      <div>
+        <span class="text-xs font-mono font-bold" style="color: var(--gold);">01 / TECH & SECURITY</span>
+        <h3 class="text-2xl font-bold mt-2" style="color: var(--papyrus-light); font-family: 'Amiri', serif;">البرمجة والأمن السيبراني</h3>
+        <p class="text-xs leading-relaxed mt-2" style="color: #BFAE84;">تطوير الويب المتكامل، بايثون، الذكاء الاصطناعي، وتحليل البيانات الشامل.</p>
+      </div>
+      <button onclick="filterCourses('tech')" class="inline-flex items-center gap-2 text-xs font-bold transition cursor-pointer" style="color: var(--gold-light);">
+        <span>استعراض المقررات التقنية</span>
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
     </div>
 
-    <div class="lg:col-span-8 grid sm:grid-cols-2 gap-4">
-      <div class="p-6 rounded-2xl bg-surface border border-theme flex flex-col justify-between space-y-4">
-        <div>
-          <span class="text-xs font-bold text-cyan-400 font-mono">01 / TECH & SECURITY</span>
-          <h3 class="text-base font-bold text-main mt-1">البرمجة والأمن السيبراني</h3>
-          <p class="text-xs text-muted mt-1.5 leading-relaxed">تطوير الويب المتكامل، بايثون، الذكاء الاصطناعي، وتحليل البيانات الشامل.</p>
-        </div>
-        <button onclick="filterCourses('tech')" class="text-xs font-bold text-cyan-400 hover:underline text-start cursor-pointer">
-          استعراض المقررات التقنية ←
-        </button>
+    <!-- مسار 2 -->
+    <div class="kemet-card-hover p-8 rounded-3xl flex flex-col justify-between space-y-5">
+      <div>
+        <span class="text-xs font-mono font-bold" style="color: var(--gold);">02 / LANGUAGES & SUITE</span>
+        <h3 class="text-2xl font-bold mt-2" style="color: var(--papyrus-light); font-family: 'Amiri', serif;">اللغات الأجنبية وحزم Office</h3>
+        <p class="text-xs leading-relaxed mt-2" style="color: #BFAE84;">الإنجليزية والألمانية من A1 إلى C1، وحزمة برمجيات Microsoft Office المتقدمة.</p>
       </div>
-
-      <div class="p-6 rounded-2xl bg-surface border border-theme flex flex-col justify-between space-y-4">
-        <div>
-          <span class="text-xs font-bold text-emerald-400 font-mono">02 / LANGUAGES & SUITE</span>
-          <h3 class="text-base font-bold text-main mt-1">اللغات الأجنبية وحزم Office</h3>
-          <p class="text-xs text-muted mt-1.5 leading-relaxed">الإنجليزية والألمانية من A1 إلى C1، وحزمة برمجيات Microsoft Office المتقدمة.</p>
-        </div>
-        <button onclick="filterCourses('lang_office')" class="text-xs font-bold text-emerald-400 hover:underline text-start cursor-pointer">
-          استعراض مسارات اللغات ←
-        </button>
-      </div>
+      <button onclick="filterCourses('lang_office')" class="inline-flex items-center gap-2 text-xs font-bold transition cursor-pointer" style="color: var(--gold-light);">
+        <span>استعراض مسارات اللغات</span>
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
     </div>
-
   </div>
 </section>
+
+<div class="kemet-gold-line"></div>
 
 <!-- ============ COURSES & SLIDER SECTION ============ -->
 <section id="courses" class="w-full px-4 sm:px-6 lg:px-10 py-12 border-b border-slate-800 relative">
@@ -281,11 +280,12 @@
         <h2 class="text-2xl sm:text-4xl font-black mt-1 text-theme-main">الكورسات والمسارات المتاحة</h2>
       </div>
 
-      <div id="coursesFilterBar" class="flex items-center gap-1.5 bg-[#111827] p-1.5 rounded-2xl border border-slate-800 flex-wrap">
-        <button onclick="filterCourses('all')" class="filter-tab active px-4 py-2 rounded-xl text-xs font-black transition bg-brand text-white" id="flt-all">الكل</button>
-        <button onclick="filterCourses('tech')" class="filter-tab px-4 py-2 rounded-xl text-xs font-black text-slate-400 transition" id="flt-tech">برمجة وسكيورتي</button>
-        <button onclick="filterCourses('lang_office')" class="filter-tab px-4 py-2 rounded-xl text-xs font-black text-slate-400 transition" id="flt-lang_office">لغات وOffice</button>
-      </div>
+<div id="coursesFilterBar" class="flex items-center gap-2 p-1.5 rounded-2xl border" style="background: var(--obsidian-dark); border-color: var(--border-gold);">
+  <button onclick="filterCourses('all')" class="filter-tab active px-5 py-2 rounded-xl text-xs font-bold transition bg-brand text-black" id="flt-all">الكل</button>
+  <button onclick="filterCourses('tech')" class="filter-tab px-5 py-2 rounded-xl text-xs font-bold transition text-slate-300 hover:text-white" id="flt-tech">برمجة وسكيورتي</button>
+  <button onclick="filterCourses('lang_office')" class="filter-tab px-5 py-2 rounded-xl text-xs font-bold transition text-slate-300 hover:text-white" id="flt-lang_office">لغات وOffice</button>
+</div>
+      
     </div>
 
     <div class="relative group">
@@ -3540,6 +3540,9 @@ document.addEventListener("DOMContentLoaded", () => {
     <span class="text-xs text-slate-300 font-bold mt-3 bg-black/60 px-4 py-1.5 rounded-full border border-white/10">🔍 اضغط في أي مكان خارج الصورة للإغلاق</span>
   </div>
 </div>
-
+<!-- Floating Back To Top Button -->
+<button class="btn-up_body position-fixed" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="للأعلى">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
 </body>
 </html>
