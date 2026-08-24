@@ -1075,12 +1075,19 @@ document.getElementById("langBtn").addEventListener("click", () => {
   applyLanguage(currentLang === "ar" ? "en" : "ar");
 });
 
-// THEME TOGGLE LOGIC
+// THEME TOGGLE LOGIC WITH LOCALSTORAGE
 const themeBtn = document.getElementById("themeBtn");
 if (themeBtn) {
   themeBtn.addEventListener("click", () => {
     document.body.classList.toggle("light");
+    const isLight = document.body.classList.contains("light");
+    localStorage.setItem("atlas_theme", isLight ? "light" : "dark");
   });
+}
+
+// تفعيل الثيم المحفوظ عند فتح الموقع
+if (localStorage.getItem("atlas_theme") === "light") {
+  document.body.classList.add("light");
 }
 
 window.toggleDrawer = function() {

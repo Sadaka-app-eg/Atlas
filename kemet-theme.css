@@ -299,3 +299,75 @@ h1, h2, h3 {
   margin: 3rem auto;
   opacity: 0.5;
 }
+/* ═══════════════════════════════════════════════════════════════
+   KEMET LUXURY LIGHT THEME (PAPYRUS & WARM GOLD)
+   ═══════════════════════════════════════════════════════════════ */
+
+body.light {
+  background: 
+    radial-gradient(circle at 50% 15%, rgba(201, 168, 76, 0.2) 0%, transparent 60%),
+    #F4ECD8 !important;
+  color: #1A1209 !important;
+}
+
+body.light header#mainNavbar {
+  background: rgba(244, 236, 216, 0.94) !important;
+  border-bottom: 1px solid rgba(160, 121, 48, 0.3) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+body.light h1, 
+body.light h2, 
+body.light h3,
+body.light .text-white,
+body.light .kemet-hero-title {
+  color: #1A1209 !important;
+  text-shadow: none !important;
+}
+
+body.light p,
+body.light .text-muted,
+body.light .text-slate-400 {
+  color: #5C4A32 !important;
+}
+
+body.light .kemet-card-hover,
+body.light #coursesSlider article,
+body.light .level-capsule-btn,
+body.light .bg-surface,
+body.light .bg-elevated {
+  background: #FAF4E6 !important;
+  border-color: rgba(160, 121, 48, 0.3) !important;
+  box-shadow: 0 10px 30px rgba(80, 61, 23, 0.08) !important;
+}
+
+body.light .kemet-card-hover:hover,
+body.light #coursesSlider article:hover {
+  border-color: #A07930 !important;
+  box-shadow: 0 15px 35px rgba(160, 121, 48, 0.2) !important;
+}
+
+body.light .theme-toggle-pill {
+  background: #E8D5A3 !important;
+  border-color: #A07930 !important;
+}
+
+body.light .theme-toggle-thumb {
+  transform: translateX(20px);
+  background: #1A1209 !important;
+}
+
+html[dir="rtl"] body.light .theme-toggle-thumb {
+  transform: translateX(-20px);
+}
+
+body.light #drawer {
+  background: #FAF4E6 !important;
+  border-color: #C9A84C !important;
+}
+
+body.light .kemet-btn-secondary {
+  background: #E8D5A3 !important;
+  color: #1A1209 !important;
+  border-color: #C9A84C !important;
+}
