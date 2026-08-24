@@ -1,158 +1,479 @@
-/* ========================================================
-   ATLAS | KEMET ULTRA LUXURY ENGINE
-======================================================== */
+/* ═══════════════════════════════════════════════════════════════
+   ATLAS × KEMET MASTER ARCHITECTURE (ULTRA LUXURY EDITION)
+   ═══════════════════════════════════════════════════════════════ */
+
 :root {
+  /* Royal Egyptian Gold Palette */
   --gold-light: #E8C97A;
   --gold: #C9A84C;
   --gold-dark: #A07930;
+  --gold-glow: rgba(201, 168, 76, 0.45);
+  --gold-subtle: rgba(201, 168, 76, 0.12);
+
+  /* Deep Royal Lapis */
+  --lapis-light: #2E6FA8;
+  --lapis: #1F4E79;
+  --lapis-dark: #0F2842;
+  --lapis-glow: rgba(31, 78, 121, 0.4);
+
+  /* Obsidian & Charcoal Surfaces */
+  --obsidian-darkest: #070503;
   --obsidian-dark: #0D0A05;
   --obsidian: #1A1209;
   --obsidian-light: #2A2015;
-  --papyrus: #F5E6C8;
+  --obsidian-card: #1E160D;
+  --obsidian-border: #3A2B15;
+
+  /* Papyrus & Ancient Sand Texts */
+  --papyrus-white: #FFFDF9;
   --papyrus-light: #FAF0DC;
-  --papyrus-dark: rgba(250, 240, 220, 0.6);
-  --sand: #D4A853;
+  --papyrus: #F5E6C8;
+  --papyrus-dark: #C4B598;
   --sand-light: #E8D5A3;
-  --border-gold: #503d17;
-  --border-gold-subtle: rgba(201, 168, 76, 0.25);
+  --sand: #D4A853;
+  --sand-dark: #B8892E;
+
+  /* Structural Variables */
+  --border-gold: #503D17;
+  --border-gold-subtle: rgba(201, 168, 76, 0.22);
+  --border-gold-active: rgba(232, 201, 122, 0.7);
+  --border-radius-card: 24px;
+  --border-radius-btn: 14px;
   --trans: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --trans-slow: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Luxury Background with Gradient Radial & Noise Feel */
+/* ═══════════════════════════════════════════════════════════════
+   1. BASE STYLING & ANIMATED BACKGROUNDS
+   ═══════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: 
-    radial-gradient(circle at 50% 10%, rgba(201, 168, 76, 0.12) 0%, transparent 60%),
-    radial-gradient(circle at 80% 50%, rgba(31, 78, 121, 0.08) 0%, transparent 50%),
-    var(--obsidian-dark) !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--obsidian-darkest) !important;
   color: var(--papyrus) !important;
   font-family: 'Alexandria', sans-serif !important;
+  line-height: 1.7;
   overflow-x: hidden;
+  position: relative;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(201, 168, 76, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 10% 40%, rgba(31, 78, 121, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(184, 137, 46, 0.1) 0%, transparent 50%),
+    linear-gradient(180deg, var(--obsidian-darkest) 0%, #0c0905 100%) !important;
+  background-attachment: fixed !important;
 }
 
-/* Royal Headings Typography */
-h1, h2, h3, .brand-font {
+/* Typography Hierarchy */
+h1, h2, h3, .brand-font, .kemet-title {
   font-family: 'Amiri', serif !important;
+  font-weight: 700;
   letter-spacing: 0.5px;
+  color: var(--papyrus-light);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Scroll Progress Bar at very top */
+.num-font {
+  font-family: 'Merriweather', 'Plus Jakarta Sans', monospace, sans-serif !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   2. ROYAL SCROLLBAR & PROGRESS BAR
+   ═══════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--obsidian-darkest);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--gold-dark), var(--border-gold));
+  border-radius: 6px;
+  border: 2px solid var(--obsidian-darkest);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+}
+
 #scrollProgress {
   position: fixed;
   top: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold));
   z-index: 9999;
-  box-shadow: 0 0 10px var(--gold);
+  box-shadow: 0 0 12px var(--gold-glow);
+  transition: width 0.1s ease-out;
 }
 
-/* Elegant Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--obsidian-dark); }
-::-webkit-scrollbar-thumb { 
-  background: linear-gradient(to bottom, var(--gold-dark), #503d17); 
-  border-radius: 4px; 
-}
-::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+/* ═══════════════════════════════════════════════════════════════
+   3. LUXURY KEYFRAME ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
 
-/* Golden Divider Line from Kemet */
+@keyframes goldPulseGlow {
+  0% { box-shadow: 0 0 15px rgba(201, 168, 76, 0.2); }
+  50% { box-shadow: 0 0 35px rgba(201, 168, 76, 0.5); }
+  100% { box-shadow: 0 0 15px rgba(201, 168, 76, 0.2); }
+}
+
+@keyframes royalFadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes goldShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-fade-up {
+  animation: royalFadeUp 0.8s var(--trans) both;
+}
+
+.animate-float {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   4. NAVIGATION BAR (KEMET POLISHED GLASS)
+   ═══════════════════════════════════════════════════════════════ */
+
+header#mainNavbar {
+  background: rgba(13, 10, 5, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid var(--border-gold-subtle) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  transition: var(--trans);
+}
+
+header#mainNavbar a, header#mainNavbar button {
+  transition: var(--trans);
+}
+
+header#mainNavbar a:hover {
+  color: var(--gold-light) !important;
+}
+
+#drawer {
+  background: rgba(26, 18, 9, 0.96) !important;
+  backdrop-filter: blur(25px) !important;
+  border: 1px solid var(--border-gold) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(201, 168, 76, 0.15) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   5. SECTIONS, DIVIDERS & SECTION HEADERS
+   ═══════════════════════════════════════════════════════════════ */
+
 .kemet-gold-line {
   width: 100%;
   height: 1px;
-  background: linear-gradient(to left, transparent, var(--gold), transparent);
-  margin: 3rem 0;
-  opacity: 0.6;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+  margin: 3.5rem auto;
+  opacity: 0.5;
+  border-radius: 99px;
 }
 
-/* Section Title Scaffolding */
 .kemet-section-header {
   text-align: center;
   position: relative;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
+
 .kemet-section-header .eyebrow {
   color: var(--gold);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-.kemet-section-header h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  color: var(--papyrus-light);
   font-weight: 700;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  position: relative;
 }
+
+.kemet-section-header h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--papyrus-light);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.kemet-section-header p {
+  color: var(--papyrus-dark);
+  font-size: 0.95rem;
+  max-width: 600px;
+  margin: 0.75rem auto 0;
+}
+
 .kemet-section-header::after {
   content: "";
   position: absolute;
-  bottom: -15px;
+  bottom: -16px;
   left: 50%;
   transform: translateX(-50%);
-  height: 1px;
-  width: 120px;
+  width: 140px;
+  height: 2px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
-/* Luxury Cards with Border Glow */
-.kemet-card-hover {
-  background: linear-gradient(135deg, rgba(42, 32, 21, 0.85), rgba(26, 18, 9, 0.95)) !important;
+/* ═══════════════════════════════════════════════════════════════
+   6. ROYAL CARDS & CONTAINERS (GLOW + BORDERS)
+   ═══════════════════════════════════════════════════════════════ */
+
+.bg-surface, 
+.bg-elevated, 
+.kemet-card-hover,
+.resource-portal-card,
+#coursesSlider article {
+  background: linear-gradient(145deg, rgba(42, 32, 21, 0.85), rgba(26, 18, 9, 0.95)) !important;
   border: 1px solid var(--border-gold-subtle) !important;
-  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius-card) !important;
+  backdrop-filter: blur(14px);
   transition: var(--trans);
   position: relative;
-}
-.kemet-card-hover:hover {
-  transform: translateY(-6px) scale(1.01);
-  border-color: var(--gold) !important;
-  box-shadow: 0 10px 40px rgba(201, 168, 76, 0.22);
+  overflow: hidden;
 }
 
-/* Royal Golden Buttons */
-.bg-brand, .bg-blue-600 {
-  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%) !important;
-  color: var(--obsidian-dark) !important;
-  font-weight: 800 !important;
-  border: 1px solid var(--gold-light) !important;
-  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.25) !important;
+/* Border Glow on Hover */
+.bg-surface:hover,
+.bg-elevated:hover,
+.kemet-card-hover:hover,
+.resource-portal-card:hover,
+#coursesSlider article:hover {
+  border-color: var(--gold) !important;
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 30px rgba(201, 168, 76, 0.22) !important;
+}
+
+/* Ambient Card Corner Highlights */
+.kemet-card-hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 201, 122, 0.4), transparent);
+  pointer-events: none;
+}
+
+/* Level Capsules */
+.level-capsule-btn {
+  background: var(--obsidian) !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 16px !important;
+  padding: 0.85rem 1.2rem !important;
   transition: var(--trans) !important;
 }
-.bg-brand:hover, .bg-blue-600:hover {
+
+.level-capsule-btn:hover {
+  background: var(--obsidian-light) !important;
+  border-color: var(--gold-light) !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 30px rgba(201, 168, 76, 0.5) !important;
-  filter: brightness(1.1);
 }
 
-/* Badges & Pills */
-.kemet-badge {
-  background: var(--obsidian-dark);
-  color: var(--gold-light);
-  border: 1px solid var(--border-gold);
-  padding: 4px 12px;
-  border-radius: 9999px;
-  font-size: 0.75rem;
+.level-capsule-btn.active {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.25), var(--obsidian-light)) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.3) !important;
 }
 
-/* Floating Scroll to top Button */
+.level-capsule-btn.active span:first-child {
+  color: var(--gold-light) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   7. ROYAL GOLDEN BUTTONS & CTAs
+   ═══════════════════════════════════════════════════════════════ */
+
+.bg-brand, 
+.bg-blue-600,
+#loginSubmitBtn,
+#registerSubmitBtn,
+#pkgActionBtn,
+.filter-tab.active {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%) !important;
+  color: var(--obsidian-darkest) !important;
+  font-weight: 800 !important;
+  border: 1px solid var(--gold-light) !important;
+  border-radius: var(--border-radius-btn) !important;
+  box-shadow: 0 4px 18px rgba(201, 168, 76, 0.28) !important;
+  transition: var(--trans) !important;
+  text-shadow: none !important;
+}
+
+.bg-brand:hover, 
+.bg-blue-600:hover,
+#loginSubmitBtn:hover,
+#registerSubmitBtn:hover,
+#pkgActionBtn:hover {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, #FFF3D6 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 30px rgba(201, 168, 76, 0.55) !important;
+  color: #000000 !important;
+}
+
+/* Secondary Golden Outline Button */
+.btn-gold-outline {
+  background: transparent !important;
+  border: 1px solid var(--gold) !important;
+  color: var(--gold-light) !important;
+  border-radius: var(--border-radius-btn) !important;
+  transition: var(--trans) !important;
+}
+
+.btn-gold-outline:hover {
+  background: var(--gold-subtle) !important;
+  border-color: var(--gold-light) !important;
+  color: var(--papyrus-white) !important;
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.25) !important;
+}
+
+/* Filter Bar Buttons */
+#coursesFilterBar {
+  background: var(--obsidian-dark) !important;
+  border: 1px solid var(--border-gold) !important;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.filter-tab {
+  color: var(--sand-light) !important;
+  border: 1px solid transparent;
+}
+
+.filter-tab:hover {
+  color: var(--papyrus-white) !important;
+  border-color: var(--border-gold-subtle);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   8. INPUTS, FORMS & AUTHENTICATION MODAL
+   ═══════════════════════════════════════════════════════════════ */
+
+input, select, textarea {
+  background: rgba(13, 10, 5, 0.75) !important;
+  border: 1px solid var(--border-gold) !important;
+  color: var(--papyrus-light) !important;
+  border-radius: 12px !important;
+  transition: var(--trans);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.3) !important;
+  outline: none !important;
+}
+
+input::placeholder {
+  color: rgba(196, 181, 152, 0.45) !important;
+}
+
+#authSection > div.w-full {
+  background: linear-gradient(145deg, #1f170e, #0e0a05) !important;
+  border: 1px solid var(--border-gold) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(201, 168, 76, 0.18) !important;
+}
+
+.auth-nav-bg {
+  background: var(--obsidian-dark) !important;
+  border: 1px solid var(--border-gold-subtle);
+}
+
+.auth-tab.active {
+  background: var(--obsidian-light) !important;
+  color: var(--gold-light) !important;
+  border: 1px solid var(--gold);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   9. SKILLS TILES & LANGUAGE HUBS
+   ═══════════════════════════════════════════════════════════════ */
+
+#langCardsGrid article {
+  border: 1px solid var(--border-gold-subtle) !important;
+  background: linear-gradient(145deg, #241a10, #130d07) !important;
+}
+
+#langCardsGrid article:hover {
+  border-color: var(--gold) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(201, 168, 76, 0.25) !important;
+}
+
+#langCardsGrid article h3 {
+  font-family: 'Amiri', serif !important;
+  color: var(--papyrus-light) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   10. VIDEO PLAYER & LECTURES LIST
+   ═══════════════════════════════════════════════════════════════ */
+
+#videoPlayerContainer {
+  border: 2px solid var(--border-gold) !important;
+  border-radius: var(--border-radius-card) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(201, 168, 76, 0.15) !important;
+}
+
+#lessonsList > div {
+  background: linear-gradient(90deg, #1b130a, #130d07) !important;
+  border: 1px solid var(--border-gold-subtle) !important;
+  border-radius: 16px !important;
+  transition: var(--trans);
+}
+
+#lessonsList > div:hover {
+  border-color: var(--gold) !important;
+  background: linear-gradient(90deg, #261b0f, #181109) !important;
+  transform: translateX(-4px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   11. BACK TO TOP BUTTON
+   ═══════════════════════════════════════════════════════════════ */
+
 .btn-up_body {
+  position: fixed !important;
   bottom: 25px;
   right: 25px;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: var(--obsidian-light);
-  border: 1px solid var(--gold);
+  border: 1.5px solid var(--gold);
   color: var(--gold);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 0 25px rgba(201, 168, 76, 0.3);
+  box-shadow: 0 0 25px rgba(201, 168, 76, 0.35);
   transition: var(--trans);
   z-index: 999;
 }
+
 .btn-up_body:hover {
   background: var(--gold);
-  color: var(--obsidian-dark);
-  transform: translateY(-4px);
+  color: var(--obsidian-darkest);
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 0 35px rgba(201, 168, 76, 0.6);
 }
