@@ -5,10 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ATLAS | منصة أطلس التعليمية الشاملة للبرمجة واللغات والتقنية</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Google Fonts (Amiri + Alexandria + Merriweather) -->
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;800&family=Amiri:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Kemet Theme Stylesheet -->
+<link rel="stylesheet" href="./kemet-theme.css">
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
@@ -201,19 +205,17 @@
         <img src="atlas.png" alt="منصة أطلس" class="w-full h-auto object-cover" onerror="this.src='atlas.jpg'" />
       </div>
     </div>
+<div class="mb-3 text-center lg:text-right">
+  <span class="text-xs uppercase tracking-widest font-bold" style="color: var(--gold);">𓇳 𓋹 𓏏 مسارات تطبيقية مؤهلة لسوق العمل</span>
+</div>
 
-    <div class="w-full lg:w-7/12 text-center lg:text-right space-y-5">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-800/80 border border-slate-700 text-xs text-cyan-400 font-semibold">
-        <span>مسارات تطبيقية مؤهلة لسوق العمل</span>
-      </div>
+<h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight" style="color: var(--papyrus); text-shadow: 0 0 30px rgba(201, 168, 76, 0.3);">
+  التدريب العملي الشامل في <span style="color: var(--gold);">البرمجة واللغات والتقنية</span>
+</h1>
 
-      <h1 class="text-3xl sm:text-5xl font-black text-main leading-tight">
-        التدريب العملي الشامل في <span class="text-cyan-400">البرمجة واللغات</span>
-      </h1>
-
-      <p class="text-sm sm:text-base text-muted font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
-        مناهج مهيكلة، مشاريع حقيقية خطوة بخطوة، وبنوك مصطلحات واختبارات تقييمية تضمن لك الجاهزية المهنية.
-      </p>
+<p class="text-sm sm:text-base font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0 mt-3" style="color: #BFAE84;">
+  مناهج مهيكلة، مشاريع حقيقية خطوة بخطوة، وبنوك مصطلحات واختبارات تقييمية تضمن لك الجاهزية المهنية لسوق العمل الحديث.
+</p>
 
       <div class="pt-2 flex justify-center lg:justify-start">
         <div id="heroGuestCta">
@@ -937,62 +939,66 @@
   </div>
 </div>
 
-<!-- ============ FOOTER ============ -->
-<footer id="mainFooter" class="bg-slate-900 text-white border-t border-slate-800 pt-10 pb-8 px-4 sm:px-6">
-  <div class="w-full max-w-[1550px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8 text-start">
-    
-    <div class="col-span-2 md:col-span-1 flex flex-col items-start gap-2">
-      <div class="flex items-center gap-2">
-        <img src="logo.png" class="w-8 h-8 object-contain" alt="ATLAS">
-        <span class="font-black text-base md:text-lg text-cyan-300" data-i18n="brand">ATLAS ACADEMY</span>
+<!-- ============ KEMET LUXURY FOOTER ============ -->
+<footer id="mainFooter" class="kemet-footer pt-12 pb-6" style="background-color: var(--obsidian-dark); border-top: 2px solid var(--border-gold);">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-start">
+
+      <!-- BRAND -->
+      <div class="md:col-span-1 space-y-3">
+        <h2 class="brand-name text-3xl font-black" style="color: var(--gold); font-family: 'Amiri', serif; letter-spacing: 2px;">ATLAS</h2>
+        <p class="text-sm font-semibold" style="color: var(--sand);">رحلة احتراف البرمجة والتقنية واللغات</p>
+        <div style="width: 70%; height: 1px; background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        <p class="text-xs leading-relaxed" style="color: #BFAE84;">منصة تعليمية متخصصة تهدف لتمكين الشباب العربي من مهارات المستقبل وسوق العمل التطبيقي.</p>
       </div>
-      <p class="text-[11px] md:text-xs text-slate-400 font-semibold leading-5 mt-1 max-w-xs" data-i18n="foot_about">
-        المنصة التعليمية الأولى المتخصصة في تقديم مسارات برمجية ولغوية وتطبيقية تؤهلك لسوق العمل.
-      </p>
-    </div>
 
-    <div>
-      <h4 class="font-black text-xs uppercase tracking-wider text-cyan-300 mb-3" data-i18n="foot_pages">الصفحات</h4>
-      <ul class="flex flex-col gap-2 text-[11px] md:text-xs text-slate-300 font-bold">
-        <li><a href="#hero" class="hover:text-cyan-300 transition" data-i18n="nav_home">الرئيسية</a></li>
-        <li><a href="#years" class="hover:text-cyan-300 transition" data-i18n="nav_years">المسارات التقنية</a></li>
-        <li><a href="#courses" class="hover:text-cyan-300 transition" data-i18n="nav_courses">الكورسات والمقررات</a></li>
-      </ul>
-    </div>
+      <!-- مسارات أطلس -->
+      <div class="space-y-3">
+        <h3 class="text-sm font-bold pb-2 relative" style="color: var(--gold-light); font-family: 'Amiri', serif;">
+          المسارات التعليمية
+        </h3>
+        <ul class="space-y-2 text-xs" style="color: var(--sand-light);">
+          <li><a href="#courses" onclick="filterCourses('tech')" class="hover:text-white transition">— البرمجة والأمن السيبراني</a></li>
+          <li><a href="#courses" onclick="filterCourses('lang_office')" class="hover:text-white transition">— اللغات وحزم Office</a></li>
+          <li><a href="#courses" onclick="filterCourses('all')" class="hover:text-white transition">— كافة التخصصات المتاحة</a></li>
+        </ul>
+      </div>
 
-    <div>
-      <h4 class="font-black text-xs uppercase tracking-wider text-cyan-300 mb-3" data-i18n="foot_social">السوشيال ميديا</h4>
-      <ul class="flex flex-col gap-2 text-[11px] md:text-xs text-slate-300 font-bold">
-        <li><a href="#" target="_blank" class="hover:text-cyan-300 transition" data-i18n="foot_fb">فيسبوك</a></li>
-        <li><a href="#" target="_blank" class="hover:text-cyan-300 transition" data-i18n="foot_yt">يوتيوب</a></li>
-        <li><a href="#" target="_blank" class="hover:text-cyan-300 transition" data-i18n="foot_li">لينكد إن</a></li>
-      </ul>
-    </div>
+      <!-- روابط سريعة -->
+      <div class="space-y-3">
+        <h3 class="text-sm font-bold pb-2 relative" style="color: var(--gold-light); font-family: 'Amiri', serif;">
+          روابط هامة
+        </h3>
+        <ul class="space-y-2 text-xs" style="color: var(--sand-light);">
+          <li><a href="#hero" class="hover:text-white transition">— الرئيسية</a></li>
+          <li><a href="#features" class="hover:text-white transition">— مميزات المنصة</a></li>
+          <li><a href="#honors" class="hover:text-white transition">— إحصائيات مجتمع أطلس</a></li>
+        </ul>
+      </div>
 
-    <div class="col-span-2 md:col-span-1 flex flex-col items-start gap-2.5">
-      <h4 class="font-black text-xs uppercase tracking-wider text-cyan-300 mb-1" data-i18n="foot_contact">تواصل معنا</h4>
-      <a href="https://t.me/Atlas_Academy" target="_blank" rel="noopener" class="group relative overflow-hidden w-full max-w-[240px] p-2.5 rounded-2xl bg-slate-800/80 hover:bg-[#1777A3]/40 text-white transition duration-300 border border-slate-700 hover:border-cyan-400/50 flex items-center justify-between shadow-lg">
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl overflow-hidden border border-cyan-400/40 shrink-0 bg-[#0A0F1D] p-0.5">
-            <img src="image/support.png" alt="الدعم" class="w-full h-full object-cover rounded-lg" onerror="this.src='support.png'" />
+      <!-- تواصل معنا -->
+      <div class="space-y-3">
+        <h3 class="text-sm font-bold pb-2 relative" style="color: var(--gold-light); font-family: 'Amiri', serif;">
+          فريق الدعم الفني
+        </h3>
+        <a href="https://t.me/Atlas_Academy" target="_blank" rel="noopener" class="p-3 rounded-2xl flex items-center justify-between border transition" style="background: var(--obsidian-light); border-color: var(--border-gold-subtle);">
+          <div class="flex items-center gap-3">
+            <span class="text-xl">💬</span>
+            <div>
+              <span class="block text-xs font-bold text-white">تيم الدعم الفني</span>
+              <span class="block text-[10px] font-mono" style="color: var(--gold);">@Atlas_Academy</span>
+            </div>
           </div>
-          <div>
-            <span class="block text-xs font-black text-slate-100" data-i18n="foot_support_team">تيم الدعم الفني</span>
-            <span class="block text-[10px] text-cyan-400 font-bold dir-ltr">@Atlas_Academy</span>
-          </div>
-        </div>
-        <div class="w-6 h-6 rounded-lg bg-[#229ED9] flex items-center justify-center text-white shrink-0 shadow">
-          <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.97 9.28c-.15.67-.54.83-1.1.5l-3.02-2.23-1.46 1.4c-.16.16-.3.3-.61.3l.22-3.08 5.6-5.06c.24-.22-.05-.34-.37-.14l-6.92 4.36-2.99-.93c-.65-.2-.66-.65.14-.97l11.7-4.51c.54-.2 1.02.13.84.88z"/></svg>
-        </div>
-      </a>
+          <span class="text-xs" style="color: var(--gold);">←</span>
+        </a>
+      </div>
+
     </div>
 
-  </div>
-
-  <div class="w-full max-w-[1550px] mx-auto border-t border-slate-800 pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500 font-semibold text-center">
-    <div data-i18n="foot_rights">جميع الحقوق محفوظة © 2026 ATLAS ACADEMY</div>
-    <div class="font-mono text-xs font-bold text-slate-400 select-none">
-      &lt;Developed by="<a href="https://wa.me/201101579399" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-black transition">Ahmed Mohamed</a>" /&gt;
+    <!-- BOTTOM BAR -->
+    <div class="pt-6 mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs border-t" style="border-color: var(--border-gold-subtle); color: var(--sand-light);">
+      <span>© 2026 ATLAS ACADEMY — جميع الحقوق محفوظة</span>
+      <span class="font-mono">تصميم وتطوير بواسطة <strong style="color: var(--gold);">Ahmed Mohamed</strong></span>
     </div>
   </div>
 </footer>
@@ -1382,34 +1388,35 @@ function renderCatalog() {
     const badgeText = item.badge ? item.badge[lang] : "";
     const priceText = `${item.price} ${isEn ? 'EGP' : 'ج.م'}`;
 
-    return `
-      <article class="min-w-[290px] md:min-w-[340px] snap-start rounded-2xl border ${isEnrolled ? 'border-emerald-500/40 bg-emerald-950/10' : 'border-theme bg-surface'} p-3 flex flex-col justify-between transition hover:border-slate-600">
-        <div onclick="openImageLightbox('${item.img}')" class="rounded-xl overflow-hidden relative aspect-[4/3] bg-black cursor-pointer" title="معاينة البوستر">
-          ${isEnrolled ? `<span class="absolute top-2.5 start-2.5 z-10 text-[10px] font-bold bg-emerald-600 text-white px-2 py-0.5 rounded shadow">مشترك ومفعّل ✓</span>` : (badgeText ? `<span class="absolute top-2.5 start-2.5 z-10 text-[10px] font-bold bg-slate-900/90 text-slate-200 border border-slate-700 px-2 py-0.5 rounded">${badgeText}</span>` : "")}
-          <img src="${item.img}" class="w-full h-full object-cover transition duration-200 hover:scale-105" onerror="this.style.display='none'" />
+return `
+      <article class="kemet-card-hover min-w-[290px] md:min-w-[340px] snap-start rounded-3xl p-4 flex flex-col justify-between" style="background: var(--obsidian-light);">
+        <div onclick="openImageLightbox('${item.img}')" class="rounded-2xl overflow-hidden relative aspect-[4/3] bg-black cursor-pointer border border-[#503d17]" title="معاينة البوستر">
+          ${isEnrolled ? `<span class="absolute top-2.5 start-2.5 z-10 text-[11px] font-bold bg-emerald-700 text-white px-2.5 py-1 rounded-full shadow">مشترك ومفعّل ✓</span>` : (badgeText ? `<span class="absolute top-2.5 start-2.5 z-10 text-[11px] font-bold px-2.5 py-1 rounded-full" style="background: var(--obsidian-dark); color: var(--gold); border: 1px solid var(--gold);">${badgeText}</span>` : "")}
+          <img src="${item.img}" class="w-full h-full object-cover transition duration-300 hover:scale-105" onerror="this.style.display='none'" />
         </div>
-        <div class="p-2.5 flex-1 flex flex-col justify-between space-y-3 mt-2">
+        
+        <div class="p-2 flex-1 flex flex-col justify-between space-y-3 mt-3">
           <div>
-            <div class="flex items-center justify-between text-[11px] text-muted">
+            <div class="flex items-center justify-between text-xs" style="color: var(--gold-dark);">
               <span>${categoryText}</span>
-              <span class="font-bold ${isEnrolled ? 'text-emerald-400' : 'text-main'} font-mono">${isEnrolled ? 'تم الاشتراك' : priceText}</span>
+              <span class="font-bold text-sm font-mono" style="color: var(--gold-light);">${isEnrolled ? 'تم الاشتراك' : priceText}</span>
             </div>
-            <h3 class="font-bold text-sm text-main mt-1">${titleText}</h3>
-            <p class="text-xs text-muted line-clamp-2 mt-1">${descText}</p>
+            <h3 class="font-bold text-base mt-1.5" style="color: var(--papyrus); font-family: 'Amiri', serif;">${titleText}</h3>
+            <p class="text-xs line-clamp-2 mt-1" style="color: #BFAE84;">${descText}</p>
           </div>
           
-          <div class="pt-1">
+          <div class="pt-2">
             ${isEnrolled ? `
-              <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white shadow-lg transition cursor-pointer text-center">
-                متابعة الدراسة الآن ←
+              <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-brand text-xs font-bold transition cursor-pointer text-center">
+                متابعة دراسة المسار ←
               </button>
             ` : `
               <div class="grid grid-cols-2 gap-2">
-                <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-elevated hover:bg-slate-700 border border-theme text-xs font-bold text-main transition cursor-pointer text-center">
+                <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl text-xs font-bold transition cursor-pointer text-center" style="background: var(--obsidian); border: 1px solid var(--border-gold); color: var(--sand-light);">
                   ${isEn ? 'Syllabus' : 'استعراض المحتوى'}
                 </button>
-                <button onclick="openPaymentModal('${item.id}', '${titleText.replace(/'/g, "\\'")}', '${priceText}')" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white shadow-lg transition cursor-pointer text-center">
-                  ${isEn ? 'Enroll Now' : 'اشترك في الكورس'}
+                <button onclick="openPaymentModal('${item.id}', '${titleText.replace(/'/g, "\\'")}', '${priceText}')" class="w-full py-2.5 rounded-xl bg-brand text-xs font-bold transition cursor-pointer text-center">
+                  ${isEn ? 'Enroll Now' : 'اشترك الآن'}
                 </button>
               </div>
             `}
