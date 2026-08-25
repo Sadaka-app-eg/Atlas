@@ -1146,6 +1146,21 @@ window.catalogData = {
     img: "image/c_computer_windows.png",
     lessons: []
   },
+  // موسوعة لغات البرمجة الشاملة (Programming Languages Hub)
+  c_programming_languages: {
+    id: "c_programming_languages",
+    type: "single",
+    year: "tech",
+    code: { ar: "لغات البرمجة", en: "Code Hub" },
+    category: { ar: "لغات البرمجة وتطوير النظم • موسوعة شاملة", en: "Programming Languages & CS Core" },
+    title: { ar: "موسوعة لغات البرمجة الشاملة (Programming Languages Hub)", en: "Complete Programming Languages Hub" },
+    desc: { ar: "مسار موحد ومتكامل يضم كافة لغات البرمجة من الصفر للاحتراف (Python, C++, Java, JavaScript, C#, PHP, Dart, Go, Rust, Kotlin). ابدأ مع بايثون (152 محاضرة كاملة + كورس مجمع 5 ساعات).", en: "All-in-One Programming Hub: Complete curriculums for Python (152 Lectures + 5h Crash Course), C++, Java, JS, C#, PHP, Dart & more." },
+    badge: { ar: "المسار الأضخم 👑", en: "Master Hub 👑" },
+    price: "150",
+    oldPrice: "400",
+    img: "image/pkg_fullstack.png",
+    lessons: []
+  },
     // 7. مسار حزمة البرمجيات المكتبية
   c_office_suite: {
     id: "c_office_suite",
@@ -1620,7 +1635,21 @@ window.courseLevelsDB = {
     { id: "word", name: "Microsoft Word", sub: "معالجة النصوص والأبحاث" },
     { id: "excel", name: "Microsoft Excel", sub: "الجداول والتحليل المالي" },
     { id: "powerpoint", name: "PowerPoint", sub: "العروض التقديمية التفاعلية" }
-  ]
+  ],
+  c_programming_languages: [
+    { id: "lang_python", name: "Python 🐍", sub: "دورة الزيرو (152 محاضرة) + كورس مجمع 5 ساعات" },
+    { id: "lang_cpp", name: "C++ ⚙️", sub: "الأساسيات والـ OOP وهياكل البيانات وحل المشكلات" },
+    { id: "lang_java", name: "Java ☕", sub: "التأسيس والبرمجة كائنية التوجه وتطبيقات Enterprise" },
+    { id: "lang_javascript", name: "JavaScript 🌐", sub: "لغة الويب التفاعلية ومحركات المتصفحات و ES6+" },
+    { id: "lang_csharp", name: "C# (.NET) 🔷", sub: "تطوير تطبيقات الويب وسطح المكتب ومحرك Unity" },
+    { id: "lang_php", name: "PHP & MySQL 🐘", sub: "تطوير وبرمجة الواجهات الخلفية وقواعد البيانات" },
+    { id: "lang_dart", name: "Dart 🎯", sub: "لغة بناء تطبيقات الموبايل مع إطار Flutter" },
+    { id: "lang_sql", name: "SQL 🗄️", sub: "إدارة واستعلام قواعد البيانات العلاقية وإدارتها" },
+    { id: "lang_golang", name: "Go (Golang) 🐹", sub: "الأنظمة السحابية عالية الأداء والتوازي" },
+    { id: "lang_rust", name: "Rust 🦀", sub: "أمان الذاكرة وبرمجة النظم منخفضة المستوى" },
+    { id: "lang_kotlin", name: "Kotlin 📱", sub: "التطوير الحديث لتطبيقات أندرويد الأصلية" },
+    { id: "lang_swift", name: "Swift 🍎", sub: "تطوير وبرمجة تطبيقات iOS و macOS" }
+  ],
 };
 window.devopsCurriculumDB = {
   main: {
@@ -1737,6 +1766,398 @@ window.cloudCurriculumDB = {
       { title: "79. [40] AZ 104 Azure Backup: Introduction to Protecting Your Cloud Data", videoUrl: "https://www.youtube.com/watch?v=r3o1WIHCI5o", desc: "حماية البيانات وإنشاء النسخ الاحتياطية بـ Azure Backup." },
       { title: "80. [41] AZ 104 Azure Site Recovery: Disaster Recovery Planning & Setup", videoUrl: "https://www.youtube.com/watch?v=jKj8Y5HG76Y", desc: "خطة التعافي من الكوارث وإدارة جاهزية الأعمال." }
     ]
+  }
+};
+window.programmingLanguagesDB = {
+  // مسار بايثون الكامل (152 محاضرة + تلخيص 5 ساعات)
+  lang_python: {
+    title: "مسار احتراف لغة بايثون الشامل (Mastering Python - Elzero Web School)",
+    overview: "المرجع العربي الأضخم لتعلم لغة Python من الصفر حتى الاحتراف مع أسامة الزيرو (152 محاضرة مفصلة) متضمنة كافة الأنواع، الدوال، الـ Decorators، الـ OOP، التعامل مع قواعد البيانات SQLite، إطار Flask، مكتبة Numpy، والـ Web Scraping، ويختتم المسار بكورس مجمع مدته 5 ساعات للمراجعة والتطبيق العملي.",
+    keySkills: ["Python Core Syntax", "Data Structures (Lists, Tuples, Sets, Dicts)", "OOP & Magic Methods", "Database & SQLite", "Web Scraping & Flask", "Numpy & Virtual Environments"],
+    lectures: [
+      { title: "001. تعلم لغة Python درس 001# - مقدمة عن الدورة وما هي لغة Python", videoUrl: "https://www.youtube.com/watch?v=mvZHDpCHphk", desc: "" },
+      { title: "002. تعلم لغة Python درس 002# - ماذا تحتاج لتبدأ التعلم بشكل سليم ؟", videoUrl: "https://www.youtube.com/watch?v=02a5T6ktx8M", desc: "" },
+      { title: "003. تعلم لغة Python درس 003# - بنية الكود وكتابة أول تطبيق بسيط لك", videoUrl: "https://www.youtube.com/watch?v=xiMHoMVWdI4", desc: "" },
+      { title: "004. تعلم لغة Python درس 004# - نظام التعليقات", videoUrl: "https://www.youtube.com/watch?v=YsENRLNaYug", desc: "" },
+      { title: "005. تعلم لغة Python درس 005# - كيفية التعامل مع البيانات في لغة Python", videoUrl: "https://www.youtube.com/watch?v=zlkIcCHj3Dg", desc: "" },
+      { title: "006. تعلم لغة Python درس 006# - نظرة عامة على بعض أنواع البيانات", videoUrl: "https://www.youtube.com/watch?v=43lT7k0Zws0", desc: "" },
+      { title: "007. تعلم لغة Python درس 007# - المتغيرات الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=hQnZxqp3Q0Y", desc: "" },
+      { title: "008. تعلم لغة Python درس 008# - المتغيرات الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=U0307lBCiDk", desc: "" },
+      { title: "009. تعلم لغة Python درس 009# - أحرف ال Escaping وكيفية التعامل معها", videoUrl: "https://www.youtube.com/watch?v=cr2Nk2E0f5A", desc: "" },
+      { title: "010. تعلم لغة Python درس 010# - ربط النصوص Concatenation وبعض التمارين", videoUrl: "https://www.youtube.com/watch?v=7I_fUo5mO-U", desc: "" },
+      { title: "011. تعلم لغة Python درس 011# - كل ما يخص ال Strings", videoUrl: "https://www.youtube.com/watch?v=j0Wktr70Cgw", desc: "" },
+      { title: "012. تعلم لغة Python درس 012# - تعلم كيفية أخذ شريحة والتعامل مع ال Index في ال Strings", videoUrl: "https://www.youtube.com/watch?v=PEp4oqzthnw", desc: "" },
+      { title: "013. تعلم لغة Python درس 013# - ال Methods الخاصة بال Strings الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=HmDLsnLgt0M", desc: "" },
+      { title: "014. تعلم لغة Python درس 014# - ال Methods الخاصة بال Strings الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=doDJDkUOEJQ", desc: "" },
+      { title: "015. تعلم لغة Python درس 015# - ال Methods الخاصة بال Strings الجزء الثالث", videoUrl: "https://www.youtube.com/watch?v=kgb96E9ogUw", desc: "" },
+      { title: "016. تعلم لغة Python درس 016# - ال Methods الخاصة بال Strings الجزء الرابع", videoUrl: "https://www.youtube.com/watch?v=jbV9d9H-udY", desc: "" },
+      { title: "017. تعلم لغة Python درس 017# - تنسيق النصوص بالطريقة القديمة Strings Formatting", videoUrl: "https://www.youtube.com/watch?v=m_OUIywn_XE", desc: "" },
+      { title: "018. تعلم لغة Python درس 018# - تنسيق النصوص بالطرق الجديدة Strings Formatting", videoUrl: "https://www.youtube.com/watch?v=nn4qN90A7X4", desc: "" },
+      { title: "019. تعلم لغة Python درس 019# - الأرقام Numbers", videoUrl: "https://www.youtube.com/watch?v=x7fFnKVAzDI", desc: "" },
+      { title: "020. تعلم لغة Python درس 020# - مشغلات العمليات الحسابية Arithmetic Operators", videoUrl: "https://www.youtube.com/watch?v=prv7cVm2dxE", desc: "" },
+      { title: "021. تعلم لغة Python درس 021# - القوائم Lists", videoUrl: "https://www.youtube.com/watch?v=EpZH9JozUzA", desc: "" },
+      { title: "022. تعلم لغة Python درس 022# - ال Methods الخاصة بالقوائم Lists الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=b5cFjJ278Vk", desc: "" },
+      { title: "023. تعلم لغة Python درس 023# - ال Methods الخاصة بالقوائم Lists الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=pP0QJbJalik", desc: "" },
+      { title: "024. تعلم لغة Python درس 024# - الصفوف Tuples وال Methods الخاصة بها الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=gwKxpFG_h_8", desc: "" },
+      { title: "025. تعلم لغة Python درس 025# - الصفوف Tuples وال Methods الخاصة بها الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=MDR7c5ozo7I", desc: "" },
+      { title: "026. تعلم لغة Python درس 026# - تعلم ال Set", videoUrl: "https://www.youtube.com/watch?v=PSc6QX4Py7k", desc: "" },
+      { title: "027. تعلم لغة Python درس 027# - تعلم ال Methods الخاصة بال Set الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=N06_D5wWobg", desc: "" },
+      { title: "028. تعلم لغة Python درس 028# - تعلم ال Methods الخاصة بال Set الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=o8pr--y5vuU", desc: "" },
+      { title: "029. تعلم لغة Python درس 029# - تعلم ال Methods الخاصة بال Set الجزء الثالث", videoUrl: "https://www.youtube.com/watch?v=rs9eebZpcaE", desc: "" },
+      { title: "030. تعلم لغة Python درس 030# - شرح القاموس Dictionary", videoUrl: "https://www.youtube.com/watch?v=BQ7jFrysbQU", desc: "" },
+      { title: "031. تعلم لغة Python درس 031# - شرح ال Methods الخاص بال Dictionary الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=oNLaNJrU8r8", desc: "" },
+      { title: "032. تعلم لغة Python درس 032# - شرح ال Methods الخاص بال Dictionary الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=rgOdxQa830Q", desc: "" },
+      { title: "033. تعلم لغة Python درس 033# - نوع البيانات Boolean", videoUrl: "https://www.youtube.com/watch?v=eDmGoHk1Y8k", desc: "" },
+      { title: "034. تعلم لغة Python درس 034# - شرح ال Operators الخاصة بال Boolean", videoUrl: "https://www.youtube.com/watch?v=zN6ZYGSBKbM", desc: "" },
+      { title: "035. تعلم لغة Python درس 035# - شرح ال Assignments Operators", videoUrl: "https://www.youtube.com/watch?v=mvyEHxIX_lE", desc: "" },
+      { title: "036. تعلم لغة Python درس 036# - شرح ال Comparison Operators", videoUrl: "https://www.youtube.com/watch?v=bBxO141Jq6I", desc: "" },
+      { title: "037. تعلم لغة Python درس 037# - شرح تحويل أنواع البيانات Type Conversion", videoUrl: "https://www.youtube.com/watch?v=j26DuY69HYA", desc: "" },
+      { title: "038. تعلم لغة Python درس 038# - مدخلات المستخدم User Input", videoUrl: "https://www.youtube.com/watch?v=2EY1CCnByK4", desc: "" },
+      { title: "039. تعلم لغة Python درس 039# - تدريبات عملية - إستخراج مقاطع الأيميل Email Slice", videoUrl: "https://www.youtube.com/watch?v=jQVMF7kEzvI", desc: "" },
+      { title: "040. تعلم لغة Python درس 040# - تدريبات عملية - عمرك الكامل بالتفصيل Your Age Full Details", videoUrl: "https://www.youtube.com/watch?v=S6dhvob-4DM", desc: "" },
+      { title: "041. تعلم لغة Python درس 041# - التحكم بال Flow تعلم If, Elif, Else", videoUrl: "https://www.youtube.com/watch?v=v8ZehXS3XF0", desc: "" },
+      { title: "042. تعلم لغة Python درس 042# - التحكم بال Flow تعلم If داخل If وتمارين على Nested If", videoUrl: "https://www.youtube.com/watch?v=W6KsrqVvg2E", desc: "" },
+      { title: "043. تعلم لغة Python درس 043# - التحكم بال Flow تعلم If المختصرة Ternary If", videoUrl: "https://www.youtube.com/watch?v=1E7z7r61b2s", desc: "" },
+      { title: "044. تعلم لغة Python درس 044# - تطبيق حساب العمر النسخة المتقدمة مع التمارين", videoUrl: "https://www.youtube.com/watch?v=MpO84gVARdE", desc: "" },
+      { title: "045. تعلم لغة Python درس 045# - شرح ال Membership Operators", videoUrl: "https://www.youtube.com/watch?v=FGnMK1y9TkE", desc: "" },
+      { title: "046. تعلم لغة Python درس 046# - تطبيق عملي للتحكم في العضويات", videoUrl: "https://www.youtube.com/watch?v=r9MaqQ0Iis0", desc: "" },
+      { title: "047. تعلم لغة Python درس 047# - التكرار Loop بواسطة While + Else", videoUrl: "https://www.youtube.com/watch?v=A0oBGPSUbeI", desc: "" },
+      { title: "048. تعلم لغة Python درس 048# - التكرار Loop بواسطة While تمرينات", videoUrl: "https://www.youtube.com/watch?v=9rU2fImqSR4", desc: "" },
+      { title: "049. تعلم لغة Python درس 049# - التكرار Loop بواسطة While تمرينات لعمل Bookmark Manager", videoUrl: "https://www.youtube.com/watch?v=jRGJjckgSlA", desc: "" },
+      { title: "050. تعلم لغة Python درس 050# - التكرار Loop بواسطة While تمرينات لعمل Password Guess", videoUrl: "https://www.youtube.com/watch?v=7NIcsmfHIrg", desc: "" },
+      { title: "051. تعلم لغة Python درس 051# - التكرار Loop and Else", videoUrl: "https://www.youtube.com/watch?v=4YolrVX6f1Q", desc: "" },
+      { title: "052. تعلم لغة Python درس 052# - التكرار Loop وتمارين عليه", videoUrl: "https://www.youtube.com/watch?v=9JJDDKj_tGA", desc: "" },
+      { title: "053. تعلم لغة Python درس 053# - التكرار Loop وشرح وضع تكرار داخل تكرار", videoUrl: "https://www.youtube.com/watch?v=x_GyjV2Nb6k", desc: "" },
+      { title: "054. تعلم لغة Python درس 054# - شرح Break و Continue و Pass", videoUrl: "https://www.youtube.com/watch?v=KtjJxOr5sp0", desc: "" },
+      { title: "055. تعلم لغة Python درس 055# - شرح عمل Loop ل Advanced Dictionary", videoUrl: "https://www.youtube.com/watch?v=zTLmupb3cKg", desc: "" },
+      { title: "056. تعلم لغة Python درس 056# - شرح ال Function + Return", videoUrl: "https://www.youtube.com/watch?v=Izwd_n-Ufqo", desc: "" },
+      { title: "057. تعلم لغة Python درس 057# - شرح ال Function Parameters + Arguments", videoUrl: "https://www.youtube.com/watch?v=CCMKMBGUxkc", desc: "" },
+      { title: "058. تعلم لغة Python درس 058# - شرح عمل Pack و Unpack لل Function Arguments", videoUrl: "https://www.youtube.com/watch?v=61i7VvPLVns", desc: "" },
+      { title: "059. تعلم لغة Python درس 059# - شرح ال Parameters الإفتراضية لل Function", videoUrl: "https://www.youtube.com/watch?v=BNXasw_j4sY", desc: "" },
+      { title: "060. تعلم لغة Python درس 060# - شرح ال Packing و Unpacking لل Function Arguments", videoUrl: "https://www.youtube.com/watch?v=pMeKs94OrxQ", desc: "" },
+      { title: "061. تعلم لغة Python درس 061# - تمارين على ال Packing و Unpacking لل Function Arguments", videoUrl: "https://www.youtube.com/watch?v=7o58LMti2po", desc: "" },
+      { title: "062. تعلم لغة Python درس 062# - شرح ال Function Scope", videoUrl: "https://www.youtube.com/watch?v=VQHLn1wuDBw", desc: "" },
+      { title: "063. تعلم لغة Python درس 063# - شرح ال Function Recursion", videoUrl: "https://www.youtube.com/watch?v=zFVdMyr6CIo", desc: "" },
+      { title: "064. تعلم لغة Python درس 064# - شرح ال Lambda Function", videoUrl: "https://www.youtube.com/watch?v=oNp5wwu9S7c", desc: "" },
+      { title: "065. تعلم لغة Python درس 065# - التعامل مع الملفات الجزء الأول - مقدمة", videoUrl: "https://www.youtube.com/watch?v=6TFJs9uzEjI", desc: "" },
+      { title: "066. تعلم لغة Python درس 066# - التعامل مع الملفات الجزء الثاني - قراءة الملفات", videoUrl: "https://www.youtube.com/watch?v=9ZU9FQQbOYE", desc: "" },
+      { title: "067. تعلم لغة Python درس 067# - التعامل مع الملفات الجزء الثالث - الكتابة والإضافة على الملفات", videoUrl: "https://www.youtube.com/watch?v=FBcElrNaiZQ", desc: "" },
+      { title: "068. تعلم لغة Python درس 068# - التعامل مع الملفات الجزء الرابع - معلومات مهمة", videoUrl: "https://www.youtube.com/watch?v=wwe40Ngpp3A", desc: "" },
+      { title: "069. تعلم لغة Python درس 069# - شرح ال Built In Function الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=-PfCcZ2Q_MI", desc: "" },
+      { title: "070. تعلم لغة Python درس 070# - شرح ال Built In Function الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=2ed3aomFliA", desc: "" },
+      { title: "071. تعلم لغة Python درس 071# - شرح ال Built In Function الجزء الثالث", videoUrl: "https://www.youtube.com/watch?v=XRw7mArOyok", desc: "" },
+      { title: "072. تعلم لغة Python درس 072# - شرح ال Built In Functions الجزء الرابع شرح Map", videoUrl: "https://www.youtube.com/watch?v=JvbLI0z8t8c", desc: "" },
+      { title: "073. تعلم لغة Python درس 073# - شرح ال Built In Functions الجزء الخامس شرح Filter", videoUrl: "https://www.youtube.com/watch?v=0Zmdu7OgVl0", desc: "" },
+      { title: "074. تعلم لغة Python درس 074# - شرح ال Built In Functions الجزء السادس شرح Reduce", videoUrl: "https://www.youtube.com/watch?v=bgV0RHfRhB4", desc: "" },
+      { title: "075. تعلم لغة Python درس 075# - شرح ال Built In Functions الجزء السابع", videoUrl: "https://www.youtube.com/watch?v=nS-uled9biI", desc: "" },
+      { title: "076. تعلم لغة Python درس 076# - الجزء الأول مقدمة والتعرف على Built In Modules", videoUrl: "https://www.youtube.com/watch?v=z7g9gCYYLiU", desc: "" },
+      { title: "077. تعلم لغة Python درس 077# - الجزء الثاني إنشاء Module", videoUrl: "https://www.youtube.com/watch?v=tyOULB29Hs8", desc: "" },
+      { title: "078. تعلم لغة Python درس 078# - الجزء الثالث - عمل Install ل External Packages", videoUrl: "https://www.youtube.com/watch?v=aA96q7oBdVk", desc: "" },
+      { title: "079. تعلم لغة Python درس 079# - التاريخ والوقت - مقدمة", videoUrl: "https://www.youtube.com/watch?v=NH7Qd1_IGqM", desc: "" },
+      { title: "080. تعلم لغة Python درس 080# - التاريخ والوقت - تنسيق التاريخ", videoUrl: "https://www.youtube.com/watch?v=Qa6p-eQ7k0U", desc: "" },
+      { title: "081. تعلم لغة Python درس 081# - الفرق بين ال Iterable وال Iterator", videoUrl: "https://www.youtube.com/watch?v=MwBk42xwjjA", desc: "" },
+      { title: "082. تعلم لغة Python درس 082# - تعلم ال Generators", videoUrl: "https://www.youtube.com/watch?v=QNN3w7Na7HA", desc: "" },
+      { title: "083. تعلم لغة Python درس 083# - مقدمة عن ال Decorators", videoUrl: "https://www.youtube.com/watch?v=BnBJVh1DBGw", desc: "" },
+      { title: "084. تعلم لغة Python درس 084# - ال Decorators عمل Function With Parameters", videoUrl: "https://www.youtube.com/watch?v=ZVCPwfyAcBE", desc: "" },
+      { title: "085. تعلم لغة Python درس 085# - ال Decorators تدريب عملي على ال Speed Test", videoUrl: "https://www.youtube.com/watch?v=WQk_j8KMExY", desc: "" },
+      { title: "086. تعلم لغة Python درس 086# - تدريب على عمل Loop لأكثر من Iteration بإستخدام zip", videoUrl: "https://www.youtube.com/watch?v=Z1gwFze9e94", desc: "" },
+      { title: "087. تعلم لغة Python درس 087# - تدريب على التلاعب بالصور بواسطة Pillow", videoUrl: "https://www.youtube.com/watch?v=mwmyhIzfkl4", desc: "" },
+      { title: "088. تعلم لغة Python درس 088# - ال DocStrings والفرق بين ال Commenting وال Documenting", videoUrl: "https://www.youtube.com/watch?v=6skfWbMu9MY", desc: "" },
+      { title: "089. تعلم لغة Python درس 089# - تنصيب ال PyLint لفحص ال Code وكتابة Code سليم", videoUrl: "https://www.youtube.com/watch?v=YvqKqam_3zY", desc: "" },
+      { title: "090. تعلم لغة Python درس 090# - التعامل مع Errors ورفع ال Exceptions", videoUrl: "https://www.youtube.com/watch?v=5umR9zAidoc", desc: "" },
+      { title: "091. تعلم لغة Python درس 091# - التعامل مع ال Exceptions وشرح Try, Except, Else, Finally", videoUrl: "https://www.youtube.com/watch?v=LBf_8txij3I", desc: "" },
+      { title: "092. تعلم لغة Python درس 092# - التعامل مع ال Exceptions وعمل مثال متقدم", videoUrl: "https://www.youtube.com/watch?v=RjkKwZ-p7YU", desc: "" },
+      { title: "093. تعلم لغة Python درس 093# - كيفية عمل Debugging لل Code", videoUrl: "https://www.youtube.com/watch?v=U2ePyJsiVdw", desc: "" },
+      { title: "094. تعلم لغة Python درس 094# - شرح ال Type Hinting", videoUrl: "https://www.youtube.com/watch?v=J_e-r7NcwPU", desc: "" },
+      { title: "095. تعلم لغة Python درس 095# - تعلم Regular Expressions الجزء الأول - مقدمة", videoUrl: "https://www.youtube.com/watch?v=QrYB2S1IZKo", desc: "" },
+      { title: "096. تعلم لغة Python درس 096# - تعلم Regular Expressions الجزء الثاني - ال Quantifiers", videoUrl: "https://www.youtube.com/watch?v=3B8qYBBml68", desc: "" },
+      { title: "097. تعلم لغة Python درس 097# - تعلم Regular Expressions الجزء الثالث - تمرينات على Characters Classes", videoUrl: "https://www.youtube.com/watch?v=MnIPbqYoOaI", desc: "" },
+      { title: "098. تعلم لغة Python درس 098# - تعلم Regular Expressions نمط ال Email وال Assertions", videoUrl: "https://www.youtube.com/watch?v=bxssGTLjktA", desc: "" },
+      { title: "099. تعلم لغة Python درس 099# - تعلم Regular Expressions تعلم Logical Or وال Escaping", videoUrl: "https://www.youtube.com/watch?v=CD8HsbCG-T8", desc: "" },
+      { title: "100. تعلم لغة Python درس 100# - تعلم Regular Expressions موديول Re والبحث", videoUrl: "https://www.youtube.com/watch?v=UKA-3O7XwPs", desc: "" },
+      { title: "101. تعلم لغة Python درس 101# - تعلم Regular Expressions موديول Re وإستعمال Split و Sub", videoUrl: "https://www.youtube.com/watch?v=ZGizsqwe4ps", desc: "" },
+      { title: "102. تعلم لغة Python درس 102# - تعلم Regular Expressions تمرينات على ال Groups وال Flags", videoUrl: "https://www.youtube.com/watch?v=MLb7pPOEJlg", desc: "" },
+      { title: "103. تعلم لغة Python درس 103# - ال OOP الجزء 1 - مقدمة", videoUrl: "https://www.youtube.com/watch?v=V7WP_402HE0", desc: "" },
+      { title: "104. تعلم لغة Python درس 104# - ال OOP الجزء 2 - ال Syntax الخاص بال Class ومعلومات مهمة", videoUrl: "https://www.youtube.com/watch?v=Sphiyp42cp0", desc: "" },
+      { title: "105. تعلم لغة Python درس 105# - ال OOP الجزء 3 - ال Instance Attributes + Methods الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=YNm5Go1NM9M", desc: "" },
+      { title: "106. تعلم لغة Python درس 106# - ال OOP الجزء 4 - ال Instance Attributes + Methods الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=ImXpb95dXGc", desc: "" },
+      { title: "107. تعلم لغة Python درس 107# - ال OOP الجزء 5 - ال Class Attributes", videoUrl: "https://www.youtube.com/watch?v=48OyTbNlveE", desc: "" },
+      { title: "108. تعلم لغة Python درس 108# - ال OOP الجزء 6 - ال Class Methods And Static Methods", videoUrl: "https://www.youtube.com/watch?v=GQVGcJblo6U", desc: "" },
+      { title: "109. تعلم لغة Python درس 109# - ال OOP الجزء 7 - ال Magic Methods", videoUrl: "https://www.youtube.com/watch?v=dz78-WPduag", desc: "" },
+      { title: "110. تعلم لغة Python درس 110# - ال OOP الجزء 8 - نظام الوراثة Inheritance", videoUrl: "https://www.youtube.com/watch?v=f3Dg6gxkL-0", desc: "" },
+      { title: "111. تعلم لغة Python درس 111# - ال OOP الجزء 9 - نظام الوراثة Inheritance المتعدد و Method Override", videoUrl: "https://www.youtube.com/watch?v=OwfiogOFIF4", desc: "" },
+      { title: "112. تعلم لغة Python درس 112# - ال OOP الجزء 10 - نظام تعدد الأوجه Polymorphism", videoUrl: "https://www.youtube.com/watch?v=eaGhE6EpmBI", desc: "" },
+      { title: "113. تعلم لغة Python درس 113# - ال OOP الجزء 11 - نظام التغليف Encapsulation", videoUrl: "https://www.youtube.com/watch?v=_zJ1nQto7Mw", desc: "" },
+      { title: "114. تعلم لغة Python درس 114# - ال OOP الجزء 12 - ال Getters + Setters", videoUrl: "https://www.youtube.com/watch?v=vsOcbPE_Ih4", desc: "" },
+      { title: "115. تعلم لغة Python درس 115# - ال OOP الجزء 13 - ال Property Decorator", videoUrl: "https://www.youtube.com/watch?v=UgpyNxNiPRg", desc: "" },
+      { title: "116. تعلم لغة Python درس 116# - ال OOP الجزء 14 - التجريد Abstract Base Class", videoUrl: "https://www.youtube.com/watch?v=bRHRoB28sxk", desc: "" },
+      { title: "117. تعلم لغة Python درس 117# - قواعد البيانات - مقدمة عن قواعد البيانات", videoUrl: "https://www.youtube.com/watch?v=7F_4DYQG6LM", desc: "" },
+      { title: "118. تعلم لغة Python درس 118# - قواعد البيانات - إنشاء قواعد البيانات والإتصال بها", videoUrl: "https://www.youtube.com/watch?v=UokVrMqeu4o", desc: "" },
+      { title: "119. تعلم لغة Python درس 119# - قواعد البيانات - إدخال البيانات في قاعدة البيانات", videoUrl: "https://www.youtube.com/watch?v=JCjGtiKCYO4", desc: "" },
+      { title: "120. تعلم لغة Python درس 120# - قواعد البيانات SQLite - جلب البيانات من قاعدة البيانات", videoUrl: "https://www.youtube.com/watch?v=vYkNQmwGTpQ", desc: "" },
+      { title: "121. تعلم لغة Python درس 121# - قواعد البيانات SQLite - تدريبات على كل ما سبق", videoUrl: "https://www.youtube.com/watch?v=4dhxFHgsLyY", desc: "" },
+      { title: "122. تعلم لغة Python درس 122# - قواعد البيانات SQLite - تحديث وحذف البيانات من قاعدة البيانات", videoUrl: "https://www.youtube.com/watch?v=8B9EZt-4980", desc: "" },
+      { title: "123. تعلم لغة Python درس 123# - قواعد البيانات - SQLite إنشاء تطبيق للمهارات الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=vcy5y04okBA", desc: "" },
+      { title: "124. تعلم لغة Python درس 124# - قواعد البيانات - SQLite إنشاء تطبيق للمهارات الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=hJjY4vzrduE", desc: "" },
+      { title: "125. تعلم لغة Python درس 125# - قواعد البيانات - SQLite إنشاء تطبيق للمهارات الجزء الثالث", videoUrl: "https://www.youtube.com/watch?v=Bi5BMs9fc80", desc: "" },
+      { title: "126. تعلم لغة Python درس 126# - قواعد البيانات - SQLite إنشاء تطبيق للمهارات الجزء الرابع", videoUrl: "https://www.youtube.com/watch?v=4yI-WVndsuY", desc: "" },
+      { title: "127. تعلم لغة Python درس 127# - قواعد البيانات - SQLite معلومات هامة جدا", videoUrl: "https://www.youtube.com/watch?v=DgaGUpb7ttQ", desc: "" },
+      { title: "128. تعلم لغة Python درس 128# - دروس متقدمة - تعرف على __name__ و \"__main__\"", videoUrl: "https://www.youtube.com/watch?v=lnMZZ4Ql-FU", desc: "" },
+      { title: "129. تعلم لغة Python درس 129# - دروس متقدمة - معرفة وقت تنفيذ ال Code بواسطة Timeit", videoUrl: "https://www.youtube.com/watch?v=4tKWqrBiLjo", desc: "" },
+      { title: "130. تعلم لغة Python درس 130# - دروس متقدمة - إضافة ال Logging لل Code ألخاص بك", videoUrl: "https://www.youtube.com/watch?v=VwDzQKfYs_k", desc: "" },
+      { title: "131. تعلم لغة Python درس 131# - دروس متقدمة - إختبار الواحدات بواسطة Unittest", videoUrl: "https://www.youtube.com/watch?v=7qDuqwRYEhI", desc: "" },
+      { title: "132. تعلم لغة Python درس 132# - دروس متقدمة - تطبيق عملي لإنشاء Random Serial Numbers", videoUrl: "https://www.youtube.com/watch?v=GW78NkdM7bU", desc: "" },
+      { title: "133. تعلم لغة Python درس 133# - Flask - مقدمة عن Flask وإنشاء صفحتك الأولى", videoUrl: "https://www.youtube.com/watch?v=Ze_lPWFQmXI", desc: "" },
+      { title: "134. تعلم لغة Python درس 134# - Flask - إنشاء ملفات ال HTML", videoUrl: "https://www.youtube.com/watch?v=07qgoQngK2Q", desc: "" },
+      { title: "135. تعلم لغة Python درس 135# - Flask - إنشاء وإستخدام ال Templates الخاصة بال HTML", videoUrl: "https://www.youtube.com/watch?v=LeQaQde-RZc", desc: "" },
+      { title: "136. تعلم لغة Python درس 136# - Flask - تعلم Jinja Template", videoUrl: "https://www.youtube.com/watch?v=VdANhdo9pTo", desc: "" },
+      { title: "137. تعلم لغة Python درس 137# - Flask - عمل Advanced CSS Task بواسطة Jinja Template", videoUrl: "https://www.youtube.com/watch?v=CP8gG1gDbAw", desc: "" },
+      { title: "138. تعلم لغة Python درس 138# - Flask - عمل قائمة المهارات من List", videoUrl: "https://www.youtube.com/watch?v=7lFHUe-yQpI", desc: "" },
+      { title: "139. تعلم لغة Python درس 139# - Flask - تنسيق التطبيق كاملا بلغة CSS", videoUrl: "https://www.youtube.com/watch?v=mciHTWGhh4w", desc: "" },
+      { title: "140. تعلم لغة Python درس 140# - Flask - إضافة ملفات ال JavaScript", videoUrl: "https://www.youtube.com/watch?v=KdctidbJBtQ", desc: "" },
+      { title: "141. تعلم لغة Python درس 141# - تعلم Web Scraping وكيف تتحكم في المتصفح بواسطة Selenium", videoUrl: "https://www.youtube.com/watch?v=rovYCAv8_tU", desc: "" },
+      { title: "142. تعلم لغة Python درس 142# - Numpy - مقدمة عن ال Numpy", videoUrl: "https://www.youtube.com/watch?v=AFIaWjcUgW8", desc: "" },
+      { title: "143. تعلم لغة Python درس 143# - Numpy - إنشاء المصفوفات", videoUrl: "https://www.youtube.com/watch?v=vGJxavinB9M", desc: "" },
+      { title: "144. تعلم لغة Python درس 144# - Numpy - مقارنة مكان البيانات ونوعها", videoUrl: "https://www.youtube.com/watch?v=5rkKhsdJ0UU", desc: "" },
+      { title: "145. تعلم لغة Python درس 145# - Numpy - مقارنة الأداء وإستخدام الذاكرة", videoUrl: "https://www.youtube.com/watch?v=koMDndoAvCc", desc: "" },
+      { title: "146. تعلم لغة Python درس 146# - Numpy - تقطيع المصفوفات", videoUrl: "https://www.youtube.com/watch?v=EJ_TW1qiFI0", desc: "" },
+      { title: "147. تعلم لغة Python درس 147# - Numpy - أنواع البيانات والتحكم في المصفوفات", videoUrl: "https://www.youtube.com/watch?v=630vRn-VzsM", desc: "" },
+      { title: "148. تعلم لغة Python درس 148# - Numpy - ال Arithmetic وبعض العمليات المفيدة", videoUrl: "https://www.youtube.com/watch?v=QbHFEo-YAPU", desc: "" },
+      { title: "149. تعلم لغة Python درس 149# - Numpy - ال Shape وال ReShape للمصفوفات", videoUrl: "https://www.youtube.com/watch?v=6gmakP7c_UQ", desc: "" },
+      { title: "150. تعلم لغة Python درس 150# - بيئة العمل الإفتراضية Virtual Environment الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=RSZEZ3WJn18", desc: "" },
+      { title: "151. تعلم لغة Python درس 151# - بيئة العمل الإفتراضية Virtual Environment الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=holkKfN7qhY", desc: "" },
+      { title: "152. تعلم لغة Python درس 152# - نهاية الدورة التعليمية والمصادر", videoUrl: "https://www.youtube.com/watch?v=OwV5R8Qy1e4", desc: "" },
+      { title: "153. تعلم Python من الصفر إلى الاحتراف 🐍 | كورس كامل (5 ساعات) للمبتدئين — كورس في البرمجة", videoUrl: "https://youtu.be/b8FqNGhya3U", desc: "الماستركلاس التلخيصي الشامل: مراجعة كاملة مدتها 5 ساعات تجمع كل ما تعلمته في لغة بايثون للتطبيق السريع وتثبيت المفاهيم البرمجية." }
+    ]
+  },
+
+
+
+  // مسار Java (جاهز لإضافة الفيديوهات)
+  lang_java: {
+    title: "مسار احتراف لغة جافا (Java Enterprise & OOP)",
+    overview: "تعلم لغة Java من الصفر لتطوير تطبيقات الأعمال الكبرى، الأندرويد، وهياكل البيانات.",
+    keySkills: ["Java Syntax", "OOP Concepts", "Exception Handling & Collections", "Java Multithreading"],
+    lectures: []
+  },
+
+  // مسار JavaScript (جاهز لإضافة الفيديوهات)
+  lang_javascript: {
+    title: "مسار احتراف لغة جافاسكريبت (JavaScript Modern ES6+)",
+    overview: "تعلم لغة الويب الأولى لتطوير واجهات المستخدم التفاعلية والباك إند بـ Node.js.",
+    keySkills: ["DOM Manipulation", "Modern ES6+ Features", "Asynchronous JS & Promises", "Fetch API & JSON"],
+    lectures: []
+  },
+
+// ═══════════════════════════════════════════════════════════════
+  // 1. مسار لغة C++ (78 محاضرة + كورس مجمع 5 ساعات)
+  // ═══════════════════════════════════════════════════════════════
+  lang_cpp: {
+    title: "مسار احتراف لغة C++ وحل المشكلات (Fundamentals of Programming With C++)",
+    overview: "المرجع التأسيسي الشامل للبرمجة بلغة C++ مع أسامة الزيرو (78 محاضرة تفصيلية): يشمل الـ Syntax، الذاكرة وإدارة الـ Pointers، المصفوفات والـ Vectors، الدوال وتعدد التحميل (Overloading)، وينتهي بماستركلاس مجمع مدته 5 ساعات للتطبيق الشامل وحل المسائل البرمجية.",
+    keySkills: ["C++ Syntax & Data Types", "Pointers & Memory Allocation", "Vectors & STL Containers", "Control Flow & Loops", "Functions & Recursion", "Problem Solving Foundation"],
+    lectures: [
+      { title: "001. [Arabic] Fundamentals Of Programming With C++ #001 - Important Introduction About The Course", videoUrl: "https://www.youtube.com/watch?v=XDuWyYxksXU", desc: "" },
+      { title: "002. [Arabic] Fundamentals Of Programming With C++ #002 - Why C++ Language", videoUrl: "https://www.youtube.com/watch?v=jOUb09iiO20", desc: "" },
+      { title: "003. [Arabic] Fundamentals Of Programming With C++ #003 - Install VSC Editor, Compiler And Debugger", videoUrl: "https://www.youtube.com/watch?v=R-Hu5rdn-vc", desc: "" },
+      { title: "004. [Arabic] Fundamentals Of Programming With C++ #004 - Install Visual Studio And Answer Questions", videoUrl: "https://www.youtube.com/watch?v=RWtT07Id-n4", desc: "" },
+      { title: "005. [Arabic] Fundamentals Of Programming With C++ #005 - How The C++ Works", videoUrl: "https://www.youtube.com/watch?v=FVV4kTy0dJg", desc: "" },
+      { title: "006. [Arabic] Fundamentals Of Programming With C++ #006 - Preprocessing, Compiling And Linking", videoUrl: "https://www.youtube.com/watch?v=1K1sET8dDrI", desc: "" },
+      { title: "007. [Arabic] Fundamentals Of Programming With C++ #007 - C++ Language Syntax", videoUrl: "https://www.youtube.com/watch?v=NeHu899_uYA", desc: "" },
+      { title: "008. [Arabic] Fundamentals Of Programming With C++ #008 - Comments And Use Cases", videoUrl: "https://www.youtube.com/watch?v=6UoFcvARKI4", desc: "" },
+      { title: "009. [Arabic] Fundamentals Of Programming With C++ #009 - Variables Basic Knowledge", videoUrl: "https://www.youtube.com/watch?v=R2zqj_52WwU", desc: "" },
+      { title: "010. [Arabic] Fundamentals Of Programming With C++ #010 - Variables Naming Rules And Best Practices", videoUrl: "https://www.youtube.com/watch?v=A6B4tlaPapo", desc: "" },
+      { title: "011. [Arabic] Fundamentals Of Programming With C++ #011 - Variables Advanced Knowledge", videoUrl: "https://www.youtube.com/watch?v=J_vnlD5Ca-U", desc: "" },
+      { title: "012. [Arabic] Fundamentals Of Programming With C++ #012 - Variables Scope", videoUrl: "https://www.youtube.com/watch?v=HHl6YF6GUhw", desc: "" },
+      { title: "013. [Arabic] Fundamentals Of Programming With C++ #013 - Variables - Constant Variable", videoUrl: "https://www.youtube.com/watch?v=zBhT544Xy0o", desc: "" },
+      { title: "014. [Arabic] Fundamentals Of Programming With C++ #014 - Calculate Your Age Application", videoUrl: "https://www.youtube.com/watch?v=cS0tbixHmdI", desc: "" },
+      { title: "015. [Arabic] Fundamentals Of Programming With C++ #015 - Escape Sequences Characters", videoUrl: "https://www.youtube.com/watch?v=7hM-MBheZ-w", desc: "" },
+      { title: "016. [Arabic] Fundamentals Of Programming With C++ #016 - Data Types - What Is Data ?", videoUrl: "https://www.youtube.com/watch?v=BibCqAo5ZsQ", desc: "" },
+      { title: "017. [Arabic] Fundamentals Of Programming With C++ #017 - Data Types, Sizes And Memory", videoUrl: "https://www.youtube.com/watch?v=MrwqesK64aU", desc: "" },
+      { title: "018. [Arabic] Fundamentals Of Programming With C++ #018 - Data Types - Integer", videoUrl: "https://www.youtube.com/watch?v=739Wvc6XqDM", desc: "" },
+      { title: "019. [Arabic] Fundamentals Of Programming With C++ #019 - Data Types - Float And Double", videoUrl: "https://www.youtube.com/watch?v=8efyLVOfd4E", desc: "" },
+      { title: "020. [Arabic] Fundamentals Of Programming With C++ #020 - Data Types - Char And ASCII", videoUrl: "https://www.youtube.com/watch?v=BIQplCgmB2o", desc: "" },
+      { title: "021. [Arabic] Fundamentals Of Programming With C++ #021 - Data Types - Bool And Void", videoUrl: "https://www.youtube.com/watch?v=rqXv-mKqw5Y", desc: "" },
+      { title: "022. [Arabic] Fundamentals Of Programming With C++ #022 - Data Types - Modifiers And Type Alias", videoUrl: "https://www.youtube.com/watch?v=ZX2DLrnCR3w", desc: "" },
+      { title: "023. [Arabic] Fundamentals Of Programming With C++ #023 - Data Types - Type Conversion", videoUrl: "https://www.youtube.com/watch?v=N68m5IxR_zw", desc: "" },
+      { title: "024. [Arabic] Fundamentals Of Programming With C++ #024 - Operators - Arithmetic Operators", videoUrl: "https://www.youtube.com/watch?v=AQyni1r43T0", desc: "" },
+      { title: "025. [Arabic] Fundamentals Of Programming With C++ #025 - Operators - Assignment Operators", videoUrl: "https://www.youtube.com/watch?v=nCO0KZ67b1Q", desc: "" },
+      { title: "026. [Arabic] Fundamentals Of Programming With C++ #026 - Operators - Increment And Decrement Operators", videoUrl: "https://www.youtube.com/watch?v=RWVrMQpvVxU", desc: "" },
+      { title: "027. [Arabic] Fundamentals Of Programming With C++ #027 - Operators - Comparison Operators", videoUrl: "https://www.youtube.com/watch?v=xpznDlbgQPM", desc: "" },
+      { title: "028. [Arabic] Fundamentals Of Programming With C++ #028 - Operators - Logical Operators", videoUrl: "https://www.youtube.com/watch?v=41v0w8BjJms", desc: "" },
+      { title: "029. [Arabic] Fundamentals Of Programming With C++ #029 - Operators - Precedence", videoUrl: "https://www.youtube.com/watch?v=e0Gz1_ceuMU", desc: "" },
+      { title: "030. [Arabic] Fundamentals Of Programming With C++ #030 - Control Flow - If Condition Introduction", videoUrl: "https://www.youtube.com/watch?v=QmUR0ZIrXQA", desc: "" },
+      { title: "031. [Arabic] Fundamentals Of Programming With C++ #031 - Control Flow - If, Else If, Else", videoUrl: "https://www.youtube.com/watch?v=l67qWVYe-xo", desc: "" },
+      { title: "032. [Arabic] Fundamentals Of Programming With C++ #032 - Control Flow - Nested If Conditions", videoUrl: "https://www.youtube.com/watch?v=Ps0xSAXmULA", desc: "" },
+      { title: "033. [Arabic] Fundamentals Of Programming With C++ #033 - Control Flow - Ternary Conditional Operator", videoUrl: "https://www.youtube.com/watch?v=Ang11UuVE30", desc: "" },
+      { title: "034. [Arabic] Fundamentals Of Programming With C++ #034 - Control Flow - Nested Ternary Operator", videoUrl: "https://www.youtube.com/watch?v=8ptGpQ_2Np8", desc: "" },
+      { title: "035. [Arabic] Fundamentals Of Programming With C++ #035 - Condition Trainings - Create Four Application", videoUrl: "https://www.youtube.com/watch?v=KWRFfCToxiY", desc: "" },
+      { title: "036. [Arabic] Fundamentals Of Programming With C++ #036 - Control Flow - Switch Case", videoUrl: "https://www.youtube.com/watch?v=OK1uu-axN0E", desc: "" },
+      { title: "037. [Arabic] Fundamentals Of Programming With C++ #037 - Switch Training - Create Three Application", videoUrl: "https://www.youtube.com/watch?v=w8WnxLZmctg", desc: "" },
+      { title: "038. [Arabic] Fundamentals Of Programming With C++ #038 - Array - What Is Array ?", videoUrl: "https://www.youtube.com/watch?v=NWP1cTeDFVY", desc: "" },
+      { title: "039. [Arabic] Fundamentals Of Programming With C++ #039 - Array - Access Elements & Memory Location", videoUrl: "https://www.youtube.com/watch?v=4DkdiXp5rYw", desc: "" },
+      { title: "040. [Arabic] Fundamentals Of Programming With C++ #040 - Array - Add And Update Elements", videoUrl: "https://www.youtube.com/watch?v=4v5hDgUDK9Q", desc: "" },
+      { title: "041. [Arabic] Fundamentals Of Programming With C++ #041 - Array - Two Dimensional Array", videoUrl: "https://www.youtube.com/watch?v=2pG43LVr_Sw", desc: "" },
+      { title: "042. [Arabic] Fundamentals Of Programming With C++ #042 - Array - Class Array", videoUrl: "https://www.youtube.com/watch?v=dNCryC9CzQQ", desc: "" },
+      { title: "043. [Arabic] Fundamentals Of Programming With C++ #043 - Array - Methods Discussions", videoUrl: "https://www.youtube.com/watch?v=lylQR-hFV-M", desc: "" },
+      { title: "044. [Arabic] Fundamentals Of Programming With C++ #044 - Array Trainings - Guess The Number Game", videoUrl: "https://www.youtube.com/watch?v=Ne7RthIdaok", desc: "" },
+      { title: "045. [Arabic] Fundamentals Of Programming With C++ #045 - String - What Is A String", videoUrl: "https://www.youtube.com/watch?v=oyYC2dOekeU", desc: "" },
+      { title: "046. [Arabic] Fundamentals Of Programming With C++ #046 - String - Concatenating", videoUrl: "https://www.youtube.com/watch?v=PJeNjjQcrG8", desc: "" },
+      { title: "047. [Arabic] Fundamentals Of Programming With C++ #047 - Loop With For", videoUrl: "https://www.youtube.com/watch?v=_eYTdzypBIY", desc: "" },
+      { title: "048. [Arabic] Fundamentals Of Programming With C++ #048 - Loop With For - Advanced Syntax", videoUrl: "https://www.youtube.com/watch?v=p0pCO7gPfmQ", desc: "" },
+      { title: "049. [Arabic] Fundamentals Of Programming With C++ #049 - Loop With For - Advanced Trainings", videoUrl: "https://www.youtube.com/watch?v=DoY-G3Fwy4g", desc: "" },
+      { title: "050. [Arabic] Fundamentals Of Programming With C++ #050 - Loop With For - Nested Loop", videoUrl: "https://www.youtube.com/watch?v=ykpDu3swciM", desc: "" },
+      { title: "051. [Arabic] Fundamentals Of Programming With C++ #051 - Loop With While", videoUrl: "https://www.youtube.com/watch?v=pbu11F6X9Yg", desc: "" },
+      { title: "052. [Arabic] Fundamentals Of Programming With C++ #052 - Loop With Do While", videoUrl: "https://www.youtube.com/watch?v=3ESx17kVUKo", desc: "" },
+      { title: "053. [Arabic] Fundamentals Of Programming With C++ #053 - Loop - Break, Continue", videoUrl: "https://www.youtube.com/watch?v=5rtyV-WOIpA", desc: "" },
+      { title: "054. [Arabic] Fundamentals Of Programming With C++ #054 - Loop Training Create Three Apps", videoUrl: "https://www.youtube.com/watch?v=q2BVplB0RgI", desc: "" },
+      { title: "055. [Arabic] Fundamentals Of Programming With C++ #055 - Function - Introduction", videoUrl: "https://www.youtube.com/watch?v=Gkg8NmfUCjg", desc: "" },
+      { title: "056. [Arabic] Fundamentals Of Programming With C++ #056 - Function With Parameter", videoUrl: "https://www.youtube.com/watch?v=MBvixzJw2sQ", desc: "" },
+      { title: "057. [Arabic] Fundamentals Of Programming With C++ #057 - Function With Parameter Training", videoUrl: "https://www.youtube.com/watch?v=wOBMuQUlKNY", desc: "" },
+      { title: "058. [Arabic] Fundamentals Of Programming With C++ #058 - Function Parameter Default Value", videoUrl: "https://www.youtube.com/watch?v=qBojueEZxjs", desc: "" },
+      { title: "059. [Arabic] Fundamentals Of Programming With C++ #059 - Function - Passing Array As Parameter", videoUrl: "https://www.youtube.com/watch?v=kApYul6wN3A", desc: "" },
+      { title: "060. [Arabic] Fundamentals Of Programming With C++ #060 - Function - Return Statement + Void", videoUrl: "https://www.youtube.com/watch?v=2NPd8KgneBQ", desc: "" },
+      { title: "061. [Arabic] Fundamentals Of Programming With C++ #061 - Function - Forward Declaration", videoUrl: "https://www.youtube.com/watch?v=ErBDovJ3eTk", desc: "" },
+      { title: "062. [Arabic] Fundamentals Of Programming With C++ #062 - Built-In Functions - Math Functions", videoUrl: "https://www.youtube.com/watch?v=wyFLcNCCaas", desc: "" },
+      { title: "063. [Arabic] Fundamentals Of Programming With C++ #063 - Built-In Functions - Training - Create 2 Apps", videoUrl: "https://www.youtube.com/watch?v=AU_wSvenbI8", desc: "" },
+      { title: "064. [Arabic] Fundamentals Of Programming With C++ #064 - Built-In Functions - Training - Create 3 Apps", videoUrl: "https://www.youtube.com/watch?v=bpXRvo4IH-0", desc: "" },
+      { title: "065. [Arabic] Fundamentals Of Programming With C++ #065 - Function Overloading", videoUrl: "https://www.youtube.com/watch?v=I_AzDYyhlMU", desc: "" },
+      { title: "066. [Arabic] Fundamentals Of Programming With C++ #066 - Function Recursion", videoUrl: "https://www.youtube.com/watch?v=djgs6PnNl2w", desc: "" },
+      { title: "067. [Arabic] Fundamentals Of Programming With C++ #067 - Vector - What Is Vector", videoUrl: "https://www.youtube.com/watch?v=55MRxgVOkMo", desc: "" },
+      { title: "068. [Arabic] Fundamentals Of Programming With C++ #068 - Vector Versus Array", videoUrl: "https://www.youtube.com/watch?v=OIJsJrNJKUc", desc: "" },
+      { title: "069. [Arabic] Fundamentals Of Programming With C++ #069 - Vector - Access, Add, Update And Delete", videoUrl: "https://www.youtube.com/watch?v=QSmQylbugAg", desc: "" },
+      { title: "070. [Arabic] Fundamentals Of Programming With C++ #070 - Vector - Functions", videoUrl: "https://www.youtube.com/watch?v=JrPhJtFuwqU", desc: "" },
+      { title: "071. [Arabic] Fundamentals Of Programming With C++ #071 - Vector - Iterator And Why To Use", videoUrl: "https://www.youtube.com/watch?v=_RE-naCqphE", desc: "" },
+      { title: "072. [Arabic] Fundamentals Of Programming With C++ #072 - Vector - Traversing With Iterator", videoUrl: "https://www.youtube.com/watch?v=DgJqgq5Is0Y", desc: "" },
+      { title: "073. [Arabic] Fundamentals Of Programming With C++ #073 - Vector - Loop With Iterator And Ranged Loop", videoUrl: "https://www.youtube.com/watch?v=RoKGZi4ArFo", desc: "" },
+      { title: "074. [Arabic] Fundamentals Of Programming With C++ #074 - Vector - Use Iterator To Count, Sort & Reverse", videoUrl: "https://www.youtube.com/watch?v=Qm14ePexV10", desc: "" },
+      { title: "075. [Arabic] Fundamentals Of Programming With C++ #075 - Pointers - What Are Pointers ?", videoUrl: "https://www.youtube.com/watch?v=s6sb23dglxs", desc: "" },
+      { title: "076. [Arabic] Fundamentals Of Programming With C++ #076 - Pointers - Pointing To Array", videoUrl: "https://www.youtube.com/watch?v=9ALw6qoCvk8", desc: "" },
+      { title: "077. [Arabic] Fundamentals Of Programming With C++ #077 - Pointers - Void And Wild Pointer And Null", videoUrl: "https://www.youtube.com/watch?v=9ZE8HAHyp4I", desc: "" },
+      { title: "078. [Arabic] Fundamentals Of Programming With C++ #078 - Pointers - Arithmetic And Array", videoUrl: "https://www.youtube.com/watch?v=Mlo7_fUG4N0", desc: "" },
+      { title: "079. تعلم لغة سي بلس بلس في 300 دقيقة | C++ Crash Course (5 ساعات مجمعة)", videoUrl: "https://youtu.be/35qTqtpQMxg", desc: "الماستركلاس التلخيصي الشامل: مراجعة متكاملة لكافة مفاهيم لغة C++ في فيديو واحد للتطبيق العملي وتثبيت المفاهيم البرمجية." }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // 2. مسار لغة C# (53 محاضرة + مشروع POS + كورس مجمع 3 ساعات)
+  // ═══════════════════════════════════════════════════════════════
+  lang_csharp: {
+    title: "مسار احتراف لغة سي شارب وتطبيقات دوت نت (C# & .NET MasterClass)",
+    overview: "دورة شاملة ومكثفة مع أحمد محمدي لشرح لغة C# من الصفر وحتى المفاهيم المتقدمة: المتغيرات، الجمل الشرطية، البرمجة الكائنية OOP، الفئات المجردة والواجهات (Interfaces)، التفويض (Delegates)، الـ Generics، مشروع عملي كامل لبناء نظام كاشير POS، ويختتم بماستركلاس مجمع مدته 3 ساعات مع قناة CodeRK.",
+    keySkills: ["C# Syntax & Data Types", "Object-Oriented Programming (OOP)", "Interfaces & Abstract Classes", "Delegates & Events", "Generics & Collections", "POS System Project"],
+    lectures: [
+      { title: "001. 01 كورس تعلم البرمجة بإستخدام سي شارب Introduction in C# complete course", videoUrl: "https://www.youtube.com/watch?v=CxGTRLkXUYg", desc: "" },
+      { title: "002. 02 تهيئة بيئة العمل و تنصيب برنامج فيجوال إستوديو Install and config Visual Studio", videoUrl: "https://www.youtube.com/watch?v=NQE7UMZc0tE", desc: "" },
+      { title: "003. 03 بناء أول برنامج بإستخدام سي شارب Creating Your First C# Hello world App", videoUrl: "https://www.youtube.com/watch?v=eKo7wvCnvjM", desc: "" },
+      { title: "004. 04 إدخال و إخراج القيم في التطبيقات Reading and writing values from console", videoUrl: "https://www.youtube.com/watch?v=ji4Sz529lhA", desc: "" },
+      { title: "005. 05 المتغيرات و أنوعها في لغة السي شارب Data types and variables in c#", videoUrl: "https://www.youtube.com/watch?v=mhZH1EuIM9E", desc: "" },
+      { title: "006. 06 المتغيرات النصية في لغة السي شارب String type in c#", videoUrl: "https://www.youtube.com/watch?v=RVJ2C_I9Myo", desc: "" },
+      { title: "007. 07 المعاملات و إسناد القيم في السي شارب Common Operators in c# lang", videoUrl: "https://www.youtube.com/watch?v=L9ZEdKXhAOI", desc: "" },
+      { title: "008. 08 المتغيرات التي تقبل قيم فارغه في سي شارب Nullable Types in C# lang", videoUrl: "https://www.youtube.com/watch?v=PXIkCbaqxTM", desc: "" },
+      { title: "009. 09 التحويل بين أنواع المتغيرات في سي شارب Data Types conversion in C# lang", videoUrl: "https://www.youtube.com/watch?v=MZns_z4pUtg", desc: "" },
+      { title: "010. 10 إنشاء المصفوفات في لغة السي شارب Arrays in C# lang", videoUrl: "https://www.youtube.com/watch?v=UHieHtLoNGY", desc: "" },
+      { title: "011. 11 التعليقات و تنحية الكود في لغة سي شارب Comments in c# lang", videoUrl: "https://www.youtube.com/watch?v=kMQpWCgEmh0", desc: "" },
+      { title: "012. 12 إستخدام الجمل الشرطية في لغة السي شارب If statement in C# lang", videoUrl: "https://www.youtube.com/watch?v=eKHnhDphudM", desc: "" },
+      { title: "013. 13 إستخدام قواعد الإختيار من متعدد في لغة السي شارب switch statement in C# lang", videoUrl: "https://www.youtube.com/watch?v=RGHjgwKr0yw", desc: "" },
+      { title: "014. 14 إستخدام الدوال التكرارية في لغة السي شارب using Loops while and do while in C# lang", videoUrl: "https://www.youtube.com/watch?v=a7aYaRNRo2o", desc: "" },
+      { title: "015. 15 الدوال التكرارية من النوع الموجة في لغة السي شارب for and foreach loops in c# lang", videoUrl: "https://www.youtube.com/watch?v=ZedaRG76t6A", desc: "" },
+      { title: "016. 16 إستخدام الدوال الإجرائية في لغة السي شارب Using Methods in C# lang", videoUrl: "https://www.youtube.com/watch?v=BFVWr8xW6Bs", desc: "" },
+      { title: "017. 17 تعلم إرسال القيم إلي الدوال مع لغة السي شارب passing by value & by reference in parameters", videoUrl: "https://www.youtube.com/watch?v=8w7z7gj3q9E", desc: "" },
+      { title: "018. 18 إستخدام المساحات الخاصة بالأسماء و التعريفات في سي شارب Namespaces in C# lang", videoUrl: "https://www.youtube.com/watch?v=HKrTaalDrD4", desc: "" },
+      { title: "019. 19 إستخدام الفئات في لغة السي شارب Introduction to classes in C# lang", videoUrl: "https://www.youtube.com/watch?v=Uv-QtsxWpao", desc: "" },
+      { title: "020. 20 الدوال الثابتة و الدوال المرجعية في سي شارب Static and instance class members", videoUrl: "https://www.youtube.com/watch?v=YF3tt740qVI", desc: "" },
+      { title: "021. 21 الوراثة في لغة السي شارب Inheritance in c# lang", videoUrl: "https://www.youtube.com/watch?v=Yu9XP4rmM8E", desc: "" },
+      { title: "022. 22 التظليل و الإخفاء للدوال في السي شارب Method hiding and shadowing in c# lang", videoUrl: "https://www.youtube.com/watch?v=OAzAl1vASm4", desc: "" },
+      { title: "023. 23 شرح تعدد الواجهات و إعادة القيادة في السي شارب Polymorphism & overriding in c#", videoUrl: "https://www.youtube.com/watch?v=YMzqbssyX-s", desc: "" },
+      { title: "024. 24 الفرق بين إخفاء الدوال و إعادة القيادة Method overriding VS Method hiding", videoUrl: "https://www.youtube.com/watch?v=0hPtD3UsS2w", desc: "" },
+      { title: "025. 25 إعادة القيادة في لغة السي شارب Method overloading in c# lang", videoUrl: "https://www.youtube.com/watch?v=WrhrQe800rk", desc: "" },
+      { title: "026. 26 إستخدام الخصائص في لغة السي شارب Using Properties in C# lang", videoUrl: "https://www.youtube.com/watch?v=E7Y27NPSZaY", desc: "" },
+      { title: "027. 27 إستخدام البنايات البرمجية في لغه السي شارب Using Structs in C# lang", videoUrl: "https://www.youtube.com/watch?v=yayrmasHIFM", desc: "" },
+      { title: "028. 28 الواجهات و توظيفها في كود السي شارب Using Interfaces in c# lang", videoUrl: "https://www.youtube.com/watch?v=LucrAzuZ04o", desc: "" },
+      { title: "029. 29 حل مشكلة تشابة اسماء الدوال في الواجهات Explicit interfaces implementation", videoUrl: "https://www.youtube.com/watch?v=iM332OThG3I", desc: "" },
+      { title: "030. 30 إستخدام الفئات المجردة في سي شارب Abstract classes in c# lang", videoUrl: "https://www.youtube.com/watch?v=ZZkq6i1ccpA", desc: "" },
+      { title: "031. 31 حلقة خاصة للإجابة علي تساؤلات المتابعين Special episode for answering the Followers questions", videoUrl: "https://www.youtube.com/watch?v=bh7NynVKyjc", desc: "" },
+      { title: "032. 32 إستخدام الخصائص في لغة السي شارب الدرس الثاني Using Properties in C# lang part II", videoUrl: "https://www.youtube.com/watch?v=924427uJKgk", desc: "" },
+      { title: "033. 33 إستخدام دوال التفويض في لغة السي شارب Delegates in c# lang", videoUrl: "https://www.youtube.com/watch?v=th0KmnAo7H0", desc: "" },
+      { title: "034. 34 الإستخدام المتعدد لدوال التفويض في السي شارب Multicast Delegates in C# lang", videoUrl: "https://www.youtube.com/watch?v=huVxLtY-ofQ", desc: "" },
+      { title: "035. 35 تتبع حركة الاكواد في فيجوال إستوديوا Code debugging in Microsoft Visual Studio", videoUrl: "https://www.youtube.com/watch?v=FFuDYbjrKpo", desc: "" },
+      { title: "036. 36 تتبع الأخطاء البرمجية و معالجتها في سي شارب Exception Handling in C# lang", videoUrl: "https://www.youtube.com/watch?v=mPvGD-VQV7M", desc: "" },
+      { title: "037. 37 عمل متتبع أخطاء خاص في لغه سي شارب Custom Exceptions in C# lang", videoUrl: "https://www.youtube.com/watch?v=DT_wicKtmWo", desc: "" },
+      { title: "038. 38 إستخدام فئات التعدادات في سي شارب Using Enums in c# lang", videoUrl: "https://www.youtube.com/watch?v=52f0oukgU34", desc: "" },
+      { title: "039. 39 مفاتيح الوصول في لغة السي شارب Access Modifiers in C# lang", videoUrl: "https://www.youtube.com/watch?v=WKYXvFEFyLI", desc: "" },
+      { title: "040. 40 إستخدام مفاتيح الوصول من المكتبات الخارجية External Access Modifiers from libraries", videoUrl: "https://www.youtube.com/watch?v=HgrjeIhx_gk", desc: "" },
+      { title: "041. 41 إستخدام صفات الدوال في سي شارب Attributes in C# lang", videoUrl: "https://www.youtube.com/watch?v=RsY_q6_yF7I", desc: "" },
+      { title: "042. 42 خاصية الإنعكاس في لغة السي شارب Reflection in C# lang", videoUrl: "https://www.youtube.com/watch?v=Zx_Uvw0l6k0", desc: "" },
+      { title: "043. 43 الربط المتأخر باستخدام الانعكاس Late binding using reflection", videoUrl: "https://www.youtube.com/watch?v=LRVkvEHxRvw", desc: "" },
+      { title: "044. 44 بعض خصائص الكائنات في سي شارب Objects in C# lang", videoUrl: "https://www.youtube.com/watch?v=vnRag2Frej4", desc: "" },
+      { title: "045. 45 الفرق بين فئات الإستخدام النصي String VS StringBuilder", videoUrl: "https://www.youtube.com/watch?v=SDXcMSdZ9Y4", desc: "" },
+      { title: "046. 46 التطبيع في لغة السي شارب Generics in C# lang", videoUrl: "https://www.youtube.com/watch?v=xvZht4UXgRY", desc: "" },
+      { title: "047. 47 الفئات المجزئة أو الموزعة Partial classes in c# lang", videoUrl: "https://www.youtube.com/watch?v=oA9qblIQaw0", desc: "" },
+      { title: "048. 48 الدوال المجزئة في لغه السي شارب Partial methods in c# lang", videoUrl: "https://www.youtube.com/watch?v=V-DjXkmeoj4", desc: "" },
+      { title: "049. 49 إستخدام الفهارس في لغة سي شارب Indexers in c# lang", videoUrl: "https://www.youtube.com/watch?v=-w0OdKVlXQ8", desc: "" },
+      { title: "050. 50 إعادة قيادة الفهارس في لغة سي شارب Overloading indexers in c# lang", videoUrl: "https://www.youtube.com/watch?v=AOgxvDwLaQo", desc: "" },
+      { title: "051. 51 قصاصات التعليمات البرمجية في فيجوال ستوديو Code snippets in visual studio", videoUrl: "https://www.youtube.com/watch?v=xqwjr0A7dL8", desc: "" },
+      { title: "052. 52 ماذا بعد تعلم لغة السي شارب What after learning the language of C Sharp", videoUrl: "https://www.youtube.com/watch?v=dBmJq0pv_i4", desc: "" },
+      { title: "053. كورس بناء تطبيق كاشير كامل من الألف ألي الياء Complete POS System With C# lang", videoUrl: "https://www.youtube.com/watch?v=56kBPJRuoRg", desc: "" },
+      { title: "054. تعلم سي شارب في فيديو واحد | C# (حصري) 3 ساعات فقط - CodeRK", videoUrl: "https://youtu.be/ELglVujXcNQ", desc: "الماستركلاس التلخيصي الشامل للغة C#: مراجعة مكثفة وسريعة لمدة 3 ساعات تجمع كافة الأساسيات البرمجية للتطبيق والتحضير للمشاريع." }
+    ]
+  },
+
+  // مسار PHP & MySQL (جاهز لإضافة الفيديوهات)
+  lang_php: {
+    title: "مسار تطوير الويب الخلفي بلغة PHP وقواعد بيانات MySQL",
+    overview: "بناء وإدارة مواقع الويب الديناميكية، لوحات التحكم، والتعامل مع قواعد البيانات.",
+    keySkills: ["PHP Core Syntax", "MySQL Relational DB", "Sessions & Cookies", "CRUD Operations & Security"],
+    lectures: []
+  },
+
+  // مسار Dart (جاهز لإضافة الفيديوهات)
+  lang_dart: {
+    title: "مسار لغة Dart وبرمجة تطبيقات الموبايل",
+    overview: "التأسيس في لغة Dart للانطلاق القوي في بناء تطبيقات الموبايل مع Flutter.",
+    keySkills: ["Dart Fundamentals", "Null Safety", "Asynchronous Dart", "OOP with Dart"],
+    lectures: []
+  },
+
+  // مسار SQL (جاهز لإضافة الفيديوهات)
+  lang_sql: {
+    title: "مسار استعلام وإدارة قواعد البيانات SQL",
+    overview: "إتقان كتابة الاستعلامات المعقدة، الـ Joins، والـ Subqueries لإدارة البيانات.",
+    keySkills: ["Data Definition (DDL)", "Data Manipulation (DML)", "Complex Joins", "Aggregations & Indexing"],
+    lectures: []
+  },
+
+  // مسار Go (جاهز لإضافة الفيديوهات)
+  lang_golang: {
+    title: "مسار لغة Go للأنظمة السحابية والخدمات المصغرة",
+    overview: "بناء الخدمات المصغرة Microservices والأنظمة السحابية عالية السرعة والأداء.",
+    keySkills: ["Go Concurrency (Goroutines)", "Channels & Structs", "REST APIs in Go", "Cloud Native Tooling"],
+    lectures: []
+  },
+
+  // مسار Rust (جاهز لإضافة الفيديوهات)
+  lang_rust: {
+    title: "مسار لغة Rust لبرمجة النظم وأمان الذاكرة",
+    overview: "تعلم أحدث لغات برمجة النظم ذات الأداء الفائق وبدون Garbage Collector.",
+    keySkills: ["Ownership & Borrowing", "Memory Safety", "Concurrency without Fear", "Systems Programming"],
+    lectures: []
+  },
+
+  // مسار Kotlin (جاهز لإضافة الفيديوهات)
+  lang_kotlin: {
+    title: "مسار لغة Kotlin لتطبيقات الأندرويد الحديثة",
+    overview: "اللغة الرسمية الأولى المعتمدة من جوجل لبناء تطبيقات أندرويد الحديثة.",
+    keySkills: ["Kotlin Syntax", "Coroutines & Flow", "Android Jetpack Integration", "Modern Clean Architecture"],
+    lectures: []
+  },
+
+  // مسار Swift (جاهز لإضافة الفيديوهات)
+  lang_swift: {
+    title: "مسار لغة Swift وتطبيقات منظومة Apple",
+    overview: "بناء تطبيقات iOS و iPadOS و macOS باستخدام لغة Swift وواجهات SwiftUI.",
+    keySkills: ["Swift Protocols & Generics", "SwiftUI Layouts", "Combine Framework", "App Store Guidelines"],
+    lectures: []
   }
 };
 
@@ -3432,13 +3853,14 @@ window.selectCourseLevel = function(courseId, levelId) {
   const officeCard = document.getElementById("officeOverviewCard");
   const languagePortals = document.getElementById("languageSkillsPortals");
 
-if (courseId === "c_office_suite" || courseId === "c_web_dev" || courseId === "c_photoshop_mastery" || courseId === "c_ai_automation") {
+if (courseId === "c_office_suite" || courseId === "c_web_dev" || courseId === "c_photoshop_mastery" || courseId === "c_ai_automation" || courseId === "c_programming_languages") {
     if (languagePortals) languagePortals.classList.add("hidden");
     let db = null;
     if (courseId === "c_web_dev") db = window.webCurriculumDB;
     else if (courseId === "c_office_suite") db = window.officeCurriculumDB;
     else if (courseId === "c_photoshop_mastery") db = window.photoshopCurriculumDB;
     else if (courseId === "c_ai_automation") db = window.aiAutomationCurriculumDB;
+    else if (courseId === "c_programming_languages") db = window.programmingLanguagesDB;
 
     const data = db ? db[levelId] : null;
     if (data && officeCard) {
@@ -3450,7 +3872,8 @@ if (courseId === "c_office_suite" || courseId === "c_web_dev" || courseId === "c
       officeCard.classList.remove("hidden");
       renderLevelDetails(data);
     }
-  } else if (courseId === "c_deutsch_all") {
+  } 
+  else if (courseId === "c_deutsch_all") {
     if (officeCard) officeCard.classList.add("hidden");
     if (languagePortals) { languagePortals.classList.remove("hidden"); languagePortals.classList.add("grid"); }
     const data = window.deutschMasterCurriculum ? window.deutschMasterCurriculum[levelId] : null;
@@ -3502,8 +3925,7 @@ window.openCourseView = function(courseId) {
   if (courseLevels && courseLevels.length > 0) {
     if (levelsSection) levelsSection.classList.remove("hidden");
     if (languagePortals) {
-if (courseId === "c_office_suite" || courseId === "c_web_dev" || courseId === "c_photoshop_mastery" || courseId === "c_ai_automation") {  
-
+if (courseId === "c_office_suite" || courseId === "c_web_dev" || courseId === "c_photoshop_mastery" || courseId === "c_ai_automation" || courseId === "c_programming_languages") {
         languagePortals.classList.add("hidden");
       } else {
         languagePortals.classList.remove("hidden");
