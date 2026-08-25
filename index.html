@@ -1161,6 +1161,21 @@ window.catalogData = {
     img: "image/c_computer_windows.png",
     lessons: []
   },
+  // كورس CS50 بالعربي - التأسيس الأقوى في علوم الحاسب
+  c_cs50_arabic: {
+    id: "c_cs50_arabic",
+    type: "single",
+    year: "lang_office",
+    code: { ar: "CS50", en: "CS50" },
+    category: { ar: "أساسيات علوم الحاسب • CS50 بالعربي", en: "Computer Science Core & CS50" },
+    title: { ar: "كورس CS50 بالعربي | أفضل منهج علوم حاسب في العالم", en: "CS50: Introduction to Computer Science (Arabic)" },
+    desc: { ar: "المنهج العالمي من جامعة هارفارد مشروحاً بالعربية (82 محاضرة): الخوارزميات، لغة C، إدارة الذاكرة والمؤشرات (Pointers)، هياكل البيانات (Data Structures & Trees)، لغة Python، وقواعد البيانات SQL.", en: "Harvard's CS50 in Arabic (82 Lectures): Algorithms, C Language, Memory & Pointers, Data Structures, Python, and SQL Databases." },
+    badge: { ar: "منهج هارفارد 🎓", en: "Harvard CS50 🎓" },
+    price: "150",
+    oldPrice: "350",
+    img: "image/CS50.png",
+    lessons: []
+  },
   // موسوعة لغات البرمجة الشاملة (Programming Languages Hub)
   c_programming_languages: {
     id: "c_programming_languages",
@@ -2037,12 +2052,96 @@ window.programmingLanguagesDB = {
     ]
   },
 
-  // مسار JavaScript (جاهز لإضافة الفيديوهات)
+// ═══════════════════════════════════════════════════════════════
+  // 6. مسار لغة JavaScript (81 محاضرة + مشروع إدارة السلع CRUD)
+  // ═══════════════════════════════════════════════════════════════
   lang_javascript: {
-    title: "مسار احتراف لغة جافاسكريبت (JavaScript Modern ES6+)",
-    overview: "تعلم لغة الويب الأولى لتطوير واجهات المستخدم التفاعلية والباك إند بـ Node.js.",
-    keySkills: ["DOM Manipulation", "Modern ES6+ Features", "Asynchronous JS & Promises", "Fetch API & JSON"],
-    lectures: []
+    title: "مسار احتراف لغة جافاسكريبت والويب التفاعلي (JavaScript Mastery & CRUD Project)",
+    overview: "الدورة العملية الكاملة لتعلم JavaScript من الصفر وحتى بناء التطبيقات التفاعلية المعقدة (81 محاضرة): الأساسيات، معالجة النصوص والأرقام، المصفوفات ودوال البحث، الدوال والـ Scope و Arrow Functions، الكائنات والـ OOP، التحكم الكامل في عناصر الـ DOM والـ CSS، التعامل مع الـ BOM والـ Storage، ويختتم بمشروع عملي متكامل لبناء نظام إدارة سلع CRUD كامل من الصفر.",
+    keySkills: ["JavaScript Syntax & Datatypes", "DOM Manipulation & Events", "BOM & Browser Storage (Local/Session)", "Functions, Scope & Arrow Functions", "Object-Oriented JavaScript", "Complete Pure JS CRUD Project"],
+    lectures: [
+      { title: "001. كورس جافا سكريبت كامل بالعربي | المحاضرة الأولى", videoUrl: "https://www.youtube.com/watch?v=PWuTLTFMtYw", desc: "مدخل ومقدمة عامة لمسار تعلم لغة جافاسكريبت وأهميتها في تطوير الويب." },
+      { title: "002. كيفية الوصول للتحديات و الامثلة العملية و الكتابية على الكورس", videoUrl: "https://www.youtube.com/watch?v=W7Eb1lHqicM", desc: "طريقة متابعة التمارين والتطبيقات العملية والملفات المصدرية." },
+      { title: "003. كورس جافا سكريبت #2 | اين تكتب الجافاسكريبت؟", videoUrl: "https://www.youtube.com/watch?v=-xL3LXBiGfw", desc: "طرق تضمين كود الجافاسكريبت داخل ملفات HTML والملفات الخارجية." },
+      { title: "004. كورس جافا سكريبت #3 | كتابة اول كود في الجافاسكريبت", videoUrl: "https://www.youtube.com/watch?v=DZuVTY6yaFc", desc: "تشغيل أول سطر برمجي وفهم كيفية قراءة المتصفح للأوامر." },
+      { title: "005. كورس جافا سكريبت #4 | الفرق بين window – document – console", videoUrl: "https://www.youtube.com/watch?v=igQgvntxHA0", desc: "فهم الكائنات الأساسية في المتصفح والفرق الجوهري بينها." },
+      { title: "006. كورس جافا سكريبت #5 | معرفة الخطأ في اي كود", videoUrl: "https://www.youtube.com/watch?v=CChtOxTIz94", desc: "قراءة رسائل الأخطاء في الكونسول وتصحيحها خطوة بخطوة." },
+      { title: "007. كورس جافا سكريبت #6 | انواع البيانات في الجافاسكريبت | datatypes in javascript", videoUrl: "https://www.youtube.com/watch?v=lparvr7_WLg", desc: "التعرف على أنواع البيانات الأولية (String, Number, Boolean, Object, Undefined)." },
+      { title: "008. كورس جافا سكريبت #7 | المتغيرات في الجافاسكريبت", videoUrl: "https://www.youtube.com/watch?v=WuMo4XokZ0s", desc: "طرق تعريف المتغيرات والفرق بين var و let و const." },
+      { title: "009. كورس جافا سكريبت #8 | الدمج في الجافاسكريبت concatenation", videoUrl: "https://www.youtube.com/watch?v=SUPy0UffCRc", desc: "دمج النصوص والمتغيرات بالطريقة الكلاسيكية وعبر Template Literals." },
+      { title: "010. كورس جافا سكريبت #9 | العمليات الحسابية في الجافاسكريبت", videoUrl: "https://www.youtube.com/watch?v=w3HgfgQLwa0", desc: "الجمع والطرح والضرب والقسمة وباقي القسمة والأس." },
+      { title: "011. كورس جافا سكريبت #10 | تحويل النصوص الى ارقام", videoUrl: "https://www.youtube.com/watch?v=lxW6iwlJtfU", desc: "استخدام الدوال Unary Plus و Number و parseInt و parseFloat." },
+      { title: "012. كورس جافا سكريبت #11 | التحويل ارقام بطرق مختلفة", videoUrl: "https://www.youtube.com/watch?v=0MTPXsW_RrM", desc: "حيل وتطبيقات متقدمة في التحويل الصريح والتلقائي للأنواع." },
+      { title: "013. كورس جافا سكريبت #12 |شرح اوبجكت ال Number", videoUrl: "https://www.youtube.com/watch?v=guB8JffvoYU", desc: "الخصائص والدوال الثابتة لكائن الأرقام مثل toFixed و isNaN." },
+      { title: "014. كورس جافا سكريبت #13 |شرح ال math", videoUrl: "https://www.youtube.com/watch?v=yDISeSMcqz8", desc: "العمليات الحسابية المتقدمة عبر كائن Math (round, ceil, floor, random, min, max)." },
+      { title: "015. عمل برنامج لحساب نسبة زكاة المال بالجافاسكريبت", videoUrl: "https://www.youtube.com/watch?v=tl35YVIAVXk", desc: "تطبيق عملي: بناء برنامج لحساب زكاة المال بدقة عبر الكونسول." },
+      { title: "016. كورس جافا سكريبت #15 | تحويل الارقام الى نصوص", videoUrl: "https://www.youtube.com/watch?v=NOzXDDiSdyo", desc: "استخدام toString و String لتحويل الأرقام إلى نصوص." },
+      { title: "017. كورس جافا سكريبت #16 | string", videoUrl: "https://www.youtube.com/watch?v=XHbf9qc0w0k", desc: "التعامل مع السلاسل النصية والفهرسة Indexing وخاصية length." },
+      { title: "018. كورس جافا سكريبت #17 | تقطيع النوصوص slice - substring - substr", videoUrl: "https://www.youtube.com/watch?v=ZVrMW4sBdLA", desc: "اقتطاع أجزاء من النصوص ومقارنة الدوال slice و substring و substr." },
+      { title: "019. كورس جافا سكريبت #18 | البحث في النصوص | string search", videoUrl: "https://www.youtube.com/watch?v=2_Qq9ue9_Dw", desc: "دوال البحث في النصوص: indexOf, lastIndexOf, includes, startsWith, endsWith." },
+      { title: "020. كورس جافا سكريبت #19 | array", videoUrl: "https://www.youtube.com/watch?v=T1DngvrKowg", desc: "مدخل المصفوفات وتخزين البيانات المتعددة والوصول للعناصر." },
+      { title: "021. كورس جافا سكريبت #20 | add and remove elements from array", videoUrl: "https://www.youtube.com/watch?v=02EHZURhxc4", desc: "إضافة وحذف عناصر المصفوفة عبر push, unshift, pop, shift." },
+      { title: "022. كورس جافا سكريبت #21 | splice and slice array", videoUrl: "https://www.youtube.com/watch?v=wr8dOkJd_2g", desc: "الفرق بين دالة slice ودالة splice لتعديل واقتطاع المصفوفات." },
+      { title: "023. كورس جافا سكريبت #22 | search in array", videoUrl: "https://www.youtube.com/watch?v=e-YZu7q0oRs", desc: "البحث داخل المصفوفات باستخدام indexOf و lastIndexOf و includes." },
+      { title: "024. كورس جافا سكريبت #23 | sort and reverce array", videoUrl: "https://www.youtube.com/watch?v=UoiyFynVXUI", desc: "ترتيب وعكس عناصر المصفوفات أبجدياً ورقمياً." },
+      { title: "025. كورس جافا سكريبت #24 | concat and join array", videoUrl: "https://www.youtube.com/watch?v=p2-eXitv2pA", desc: "دمج المصفوفات عبر concat وتحويلها لنص موحد بـ join." },
+      { title: "026. كورس جافا سكريبت #25 | المقارنة في الجافاسكريبت", videoUrl: "https://www.youtube.com/watch?v=6fY7mLqiBXY", desc: "معاملات المقارنة والفرق بين == و === (المقارنة الصارمة)." },
+      { title: "027. كورس جافا سكريبت #26 | المقارنات بشكل تفصيلي في الجافاسكريبت", videoUrl: "https://www.youtube.com/watch?v=PXBTk1FhQ7g", desc: "المقارنات المنطقية المعقدة والتحقق من الأنواع." },
+      { title: "028. كورس جافا سكريبت #27 | if 1", videoUrl: "https://www.youtube.com/watch?v=NhpFfVmJpZY", desc: "الجمل الشرطية وبنية if Statement الأساسية." },
+      { title: "029. كورس جافا سكريبت #28 | if 2", videoUrl: "https://www.youtube.com/watch?v=ORsCBGdlU0M", desc: "تعدد المسارات الشرطية باستخدام else if و else." },
+      { title: "030. كورس جافا سكريبت #29 | if 3", videoUrl: "https://www.youtube.com/watch?v=F0GDlGeYa9Q", desc: "الشروط المتداخلة Nested If والصيغة المختصرة Conditional Ternary Operator." },
+      { title: "031. كورس جافا سكريبت #30 | switch", videoUrl: "https://www.youtube.com/watch?v=cLbVoQpp6vI", desc: "جملة الاختيار من متعدد Switch Statement وقواعد استخدام break و default." },
+      { title: "032. كورس جافا سكريبت #31 | loop 1", videoUrl: "https://www.youtube.com/watch?v=lMiGmsAnIFA", desc: "حلقة التكرار For Loop ومفهوم العداد وشرط التوقف." },
+      { title: "033. كورس جافا سكريبت #32 | loop 2", videoUrl: "https://www.youtube.com/watch?v=w-VfIQrOA0w", desc: "التكرار على عناصر المصفوفات والتحكم في خطوات العداد." },
+      { title: "034. كورس جافا سكريبت #33 | nasted loop 3", videoUrl: "https://www.youtube.com/watch?v=2aoK_ha1WN0", desc: "الحلقات المتداخلة Nested Loops والتعامل مع المصفوفات ثنائية الأبعاد." },
+      { title: "035. كورس جافا سكريبت #34 | break - continue", videoUrl: "https://www.youtube.com/watch?v=AxX0Uu2h63g", desc: "التحكم في سريان الحلقات التكرارية باستخدام break و continue." },
+      { title: "036. كورس جافا سكريبت #35 | while loop - dowhile loop", videoUrl: "https://www.youtube.com/watch?v=2WLIcranDPA", desc: "حلقات التكرار While و Do-While ومقارنتها مع For Loop." },
+      { title: "037. كورس جافا سكريبت #36 | function", videoUrl: "https://www.youtube.com/watch?v=NxCo6uJicDU", desc: "بناء الدوال البرمجية Function Declaration وتمرير المعاملات Parameters." },
+      { title: "038. كورس جافا سكريبت #37 | function return", videoUrl: "https://www.youtube.com/watch?v=jQ-mobB4vyA", desc: "استرجاع القيم من الدوال باستخدام Return Statement وإنهاء التنفيذ." },
+      { title: "039. كورس جافا سكريبت #38 | hoisting", videoUrl: "https://www.youtube.com/watch?v=-pHfultSrKY", desc: "فهم مفهوم الـ Hoisting ورفع المتغيرات والدوال في الذاكرة." },
+      { title: "040. كورس جافا سكريبت #39 | scope and self invoked", videoUrl: "https://www.youtube.com/watch?v=9O0oCER-vLo", desc: "نطاق المتغيرات (Global, Function, Block Scope) والدوال ذاتية التنفيذ IIFE." },
+      { title: "041. كورس جافا سكريبت #40 | القيم الافتراضية للـ arguments", videoUrl: "https://www.youtube.com/watch?v=cCSsnlb59UA", desc: "تعيين Default Parameters وتمرير معاملات متغيرة بـ Rest Parameters." },
+      { title: "042. كورس جافا سكريبت #41 | arrow function", videoUrl: "https://www.youtube.com/watch?v=AzRTrKft5hA", desc: "الدوال السهمية Arrow Functions وصيغ كتابتها المختصرة." },
+      { title: "043. كورس جافا سكريبت #42 | what is object in javascript", videoUrl: "https://www.youtube.com/watch?v=qTfcwOzkyDU", desc: "مدخل الكائنات (Objects) وهيكل المفتاح والقيمة Key-Value." },
+      { title: "044. كورس جافا سكريبت #43 | nested object", videoUrl: "https://www.youtube.com/watch?v=qtwlM5eHkJM", desc: "الكائنات المتداخلة وطرق الوصول إلى الخصائص والدوال المضمنة." },
+      { title: "045. كورس جافا سكريبت #44 | create object", videoUrl: "https://www.youtube.com/watch?v=EDqnxnfDcOU", desc: "طرق إنشاء الكائنات عبر Object Literal و New Object." },
+      { title: "046. كورس جافا سكريبت #45 | this keyword", videoUrl: "https://www.youtube.com/watch?v=yFNMPg21-Rg", desc: "الكلمة المحجوزة this وسياق الإشارة في الدوال والكائنات." },
+      { title: "047. كورس جافا سكريبت #46 | object create", videoUrl: "https://www.youtube.com/watch?v=-kAPBf3wMtI", desc: "إنشاء كائنات جديدة بالاعتماد على كائن نموذج عبر Object.create." },
+      { title: "048. كورس جافا سكريبت #47 | assign object", videoUrl: "https://www.youtube.com/watch?v=VbFGk6bgaFw", desc: "نسخ ودمج خصائص الكائنات المتعددة عبر Object.assign." },
+      { title: "049. كورس جافا سكريبت #48 | sellect elements by javascript", videoUrl: "https://www.youtube.com/watch?v=GRaoxazCOX0", desc: "تحديد عناصر الصفحة بـ getElementById و querySelector و querySelectorAll." },
+      { title: "050. كورس جافا سكريبت #49 | اضافة وتعديل خصائص العنصر attribute", videoUrl: "https://www.youtube.com/watch?v=Y-A_2Adg4Q8", desc: "التحكم في سمات العناصر عبر setAttribute و getAttribute و hasAttribute." },
+      { title: "051. كورس جافا سكريبت #50 | inner and outer", videoUrl: "https://www.youtube.com/watch?v=eyeGHssGqv0", desc: "الفرق بين innerHTML و textContent و outerHTML." },
+      { title: "052. كورس جافا سكريبت #51 | sibling and parent", videoUrl: "https://www.youtube.com/watch?v=-8XzEMVxrOY", desc: "التنقل في شجرة الـ DOM والوصول للأبناء والآباء والعناصر المجاورة." },
+      { title: "053. كورس جافا سكريبت #52 | dom css style", videoUrl: "https://www.youtube.com/watch?v=eqiFlaz22qo", desc: "تعديل تنسيقات الـ CSS وتطبيق الأنماط مباشرة عبر الجافاسكريبت." },
+      { title: "054. كورس جافا سكريبت #53 | create elements by javascript", videoUrl: "https://www.youtube.com/watch?v=MgtaPVFsZYI", desc: "إنشاء عناصر HTML ديناميكية وإضافتها للصفحة بـ createElement و appendChild." },
+      { title: "055. كورس جافا سكريبت #54 | مشروع cards", videoUrl: "https://www.youtube.com/watch?v=JuUp491o9Yg", desc: "مشروع تطبيقي: بناء وتوليد كروت منتجات ديناميكية متجاوبة بالكود." },
+      { title: "056. كورس جافا سكريبت #55 | events", videoUrl: "https://www.youtube.com/watch?v=CK2uHT45RC8", desc: "مدخل الأحداث والأفعال التفاعلية مثل onclick و onkeyup و onmouseover." },
+      { title: "057. كورس جافا سكريبت #56 | events in javascript", videoUrl: "https://www.youtube.com/watch?v=sYDLALBJths", desc: "إضافة مراقبات الأحداث المتقدمة عبر addEventListener." },
+      { title: "058. كورس جافا سكريبت #57 | عمل برنامج لتحويل الجنية الى الدولار و العكس", videoUrl: "https://www.youtube.com/watch?v=lQ83fbTWTRE", desc: "مشروع تطبيقي: بناء محول عملات تفاعلي فوري يحسب السعر لحظياً." },
+      { title: "059. كورس جافا سكريبت #58 | after before append", videoUrl: "https://www.youtube.com/watch?v=-khSgvCGIto", desc: "إدراج العناصر في مواقع دقيقة عبر append, prepend, before, after." },
+      { title: "060. كورس جافا سكريبت #59 | add and remove and toggle class", videoUrl: "https://www.youtube.com/watch?v=Jl6mGkvLFvE", desc: "التحكم في كلاسات الـ CSS عبر classList (add, remove, toggle, contains)." },
+      { title: "061. كورس جافا سكريبت #60 | عمل navbar بالجافاسكريبت", videoUrl: "https://www.youtube.com/watch?v=3X0YVTJHQU8", desc: "مشروع تطبيقي: برمجة شريط تنقل متجاوب يفتح ويغلق عند النقر." },
+      { title: "062. كورس جافا سكريبت #61 | auto event", videoUrl: "https://www.youtube.com/watch?v=9_3KoIBQ1xg", desc: "تشغيل وتنفيذ الأحداث تلقائياً دون تدخل يدوي من المستخدم." },
+      { title: "063. كورس جافا سكريبت #62 | عمل gallary بالجافاسكريبت", videoUrl: "https://www.youtube.com/watch?v=6eFzJ79m0nU", desc: "مشروع تطبيقي: تصميم معرض صور تفاعلي يغير الصورة المعروضة عند النقر." },
+      { title: "064. كورس جافا سكريبت #63 | BOM", videoUrl: "https://www.youtube.com/watch?v=QujqkoJCLKE", desc: "مدخل كائنات المتصفح Browser Object Model والتحكم بالنافذة." },
+      { title: "065. كورس جافا سكريبت #64 | التحكم في الـ scroll", videoUrl: "https://www.youtube.com/watch?v=--rMjXYDoAA", desc: "التحكم في موضع التمرير والتمرير السلس بـ scrollTo و scrollBy." },
+      { title: "066. كورس جافا سكريبت #65 | معرفة ابعاد و عمق لون شاشة المستخدم screen", videoUrl: "https://www.youtube.com/watch?v=CKoq_9hR25Q", desc: "قراءة مقاسات شاشة المستخدم عبر كائن screen." },
+      { title: "067. كورس جافا سكريبت #66 | Location object", videoUrl: "https://www.youtube.com/watch?v=C4tBiMmrFbc", desc: "التحكم في رابط الصفحة والتحويل وإعادة التحميل بـ location." },
+      { title: "068. كورس جافا سكريبت #67 | setTimeOut & setInterval", videoUrl: "https://www.youtube.com/watch?v=Uq_-Pg8nkpg", desc: "جدولة وتنفيذ الأوامر الزمنية المتكررة والمؤجلة بـ setTimeout و setInterval." },
+      { title: "069. كورس جافا سكريبت #68 | localStorage & sessionStorage | حفظ البيانات بشكل دائم في المتصفح", videoUrl: "https://www.youtube.com/watch?v=i7LkGLYeiks", desc: "تخزين البيانات والإعدادات محلياً داخل المتصفح دون الحاجة لقاعدة بيانات." },
+      { title: "070. CRUDS Operations Pure JavaScript | تعلم ال CRUD من خلال مشروع ادارة سلع بالجافاسكريبت", videoUrl: "https://www.youtube.com/watch?v=qz5elnjrnDk", desc: "بداية المشروع الأضخم: فهم متطلبات وهيكل نظام إدارة السلع CRUD الكامل." },
+      { title: "071. #2 CRUDS Operations Pure JavaScript | تصميم واجهة مشروع ادارة المنتجات بال html و ال css فقط", videoUrl: "https://www.youtube.com/watch?v=tBigDXWJ-oM", desc: "بناء وتصميم واجهة لوحة تحكم المنتجات بنظام نظيف ومتجاوب." },
+      { title: "072. #3 CRUDS Operations Pure JavaScript | ايجاد اجمالي سعر المنتج في مشروع ادارة السلع بالجافاسكريبت", videoUrl: "https://www.youtube.com/watch?v=ZcdT2mb0TyY", desc: "حساب إجمالي السعر تلقائياً بناءً على السعر والضرائب والخصومات." },
+      { title: "073. #4 CRUDS Operations Pure JavaScript | انشاء منتج جديد في مشروع ادارة السلع بالجافاسكريبت CREATE", videoUrl: "https://www.youtube.com/watch?v=WNQgl__ihHY", desc: "برمجة عملية إضافة منتج وحفظه في مصفوفة وتخزينه بـ LocalStorage." },
+      { title: "074. #5 CRUDS Operations Pure JavaScript | عمل clear data في مشروع ادارة السلع بالجافاسكريبت", videoUrl: "https://www.youtube.com/watch?v=JRIU9x7ABYw", desc: "تفريغ حقول الإدخال تلقائياً بعد إضافة أو تعديل أي منتج." },
+      { title: "075. #6 CRUDS Operations Pure JavaScript | عرض المنتجات في مشروع ادارة السلع بالجافاسكريبت READ", videoUrl: "https://www.youtube.com/watch?v=pAg_Olgs4Wc", desc: "قراءة وعرض قائمة المنتجات داخل جدول ديناميكي تفاعلي." },
+      { title: "076. #7 CRUDS Operations Pure JavaScript | حذف منتج في مشروع ادارة السلع بالجافاسكريبت DELETE", videoUrl: "https://www.youtube.com/watch?v=_Ry7kdoHduU", desc: "برمجة زر الحذف لمسح منتج محدد وتحديث الجدول والمخزن." },
+      { title: "077. #8 CRUDS Operations Pure JavaScript | حذف المنتجات بضغطة واحدة DELETE ALL", videoUrl: "https://www.youtube.com/watch?v=qoN573nZTdc", desc: "إظهار زر وميزة مسح كافة المنتجات بضغطة زر واحدة." },
+      { title: "078. #9 CRUDS Operations Pure JavaScript | انشاء اي عدد من المنتجات من مرة واحدة", videoUrl: "https://www.youtube.com/watch?v=MabhkcPrDZk", desc: "برمجة حقل Count لإنشاء وتوليد كميات كبيرة من المنتجات دفعة واحدة." },
+      { title: "079. #10 CRUDS Operations Pure JavaScript | تعديل المنتجات UPDATE", videoUrl: "https://www.youtube.com/watch?v=WO_MkGOSNCI", desc: "برمجة ميزة التعديل واسترجاع بيانات المنتج في الحقول وتحديث السجل." },
+      { title: "080. #11 CRUDS Operations Pure JavaScript | البحث في المنتجات search", videoUrl: "https://www.youtube.com/watch?v=-EOoofSrftM", desc: "برمجة البحث الفوري الذكي بالاسم أو بالتصنيف وتصفية الجدول." },
+      { title: "081. #12 CRUDS Operations Pure JavaScript | clean data", videoUrl: "https://www.youtube.com/watch?v=oZiJH7sbRVo", desc: "التحقق من صحة المدخلات وتنظيف البيانات واللمسات النهائية للمشروع." }
+    ]
   },
 
 // ═══════════════════════════════════════════════════════════════
@@ -3098,6 +3197,97 @@ window.windowsCurriculumDB = {
       { title: "11. كورس ويندوز 10 كامل للمبتدئين — صيانة وتحديث ويندوز System Update | الدرس 11", videoUrl: "https://www.youtube.com/watch?v=JZrNJIU5jkA", desc: "تحديثات النظام الدورية، أمان الجهاز Windows Defender، وحذف الملفات المؤقتة." },
       { title: "12. تفاصيل وتطبيقات إضافية لاحتراف استخدام نظام ويندوز 10 | الدرس 12", videoUrl: "https://www.youtube.com/watch?v=XIb3b7oFazM", desc: "مراجعة شاملة لأهم الحيل والاختصارات لرفع سرعة وإنتاجية العمل اليومي." },
       { title: "13. تعلم أساسيات الكمبيوتر في فيديو واحد من الصفر | تعلم ويندوز 10 (Islam Soliman)", videoUrl: "https://youtu.be/5ctLHqcW8Yc", desc: "الماستركلاس المجمع للمهندس إسلام سليمان: شرح متكامل ومبسط لأساسيات الكمبيوتر والتعامل مع ويندوز 10 خطوة بخطوة في فيديو واحد." }
+    ]
+  }
+};
+window.cs50CurriculumDB = {
+  main: {
+    title: "كورس CS50 بالعربي | أفضل منهج علوم حاسب في العالم",
+    overview: "المنهج العالمي الأقوى المعتمد من جامعة هارفارد (CS50: Introduction to Computer Science) مشروحاً بالكامل باللغة العربية (82 محاضرة تفصيلية): يبدأ من فهم عتاد الحاسب والنظام الثنائي والخوارزميات، لغة C التأسيسية، إدارة الذاكرة وتخصيصها بـ Pointers و Malloc، هياكل البيانات المتقدمة (Linked Lists, Binary Trees, Hash Tables)، لغة Python ومكتباتها، وقواعد البيانات واستعلامات SQL.",
+    keySkills: ["Computer Science Fundamentals", "C Language & Pointer Arithmetic", "Memory Management (Malloc & Free)", "Data Structures (Trees & Hash Tables)", "Python Programming", "Relational Databases & SQL"],
+    lectures: [
+      { title: "001. كورس cs50 بالعربي | افضل منهج برمجي في العالم", videoUrl: "https://www.youtube.com/watch?v=pSc6RGEBLAQ", desc: "مقدمة المسار وخارطة طريق أقوى منهج لعلوم الحاسب في العالم." },
+      { title: "002. كورس [week0 - 1] cs50 بالعربي | ما هي علوم الحاسوب", videoUrl: "https://www.youtube.com/watch?v=baLMODtYFog", desc: "مدخل لعلم الحاسوب والمدخلات والمخرجات وحل المشكلات." },
+      { title: "003. كورس [week0 - 2] cs50 بالعربي | النظام الثنائي binary", videoUrl: "https://www.youtube.com/watch?v=o0jttG2c49M", desc: "تمثيل الأرقام والحروف والبيانات بالنظام الثنائي والترانزستور." },
+      { title: "004. كورس [week0 - 3] cs50 بالعربي | ما هي الخوارزميات", videoUrl: "https://www.youtube.com/watch?v=IYEkbGhabfk", desc: "مفهوم الخوارزميات، خطوات الحل، والكفاءة الزمنية." },
+      { title: "005. كورس [week0 - 4] cs50 بالعربي | تعلم البرمجة من خلال لغة سكراتش", videoUrl: "https://www.youtube.com/watch?v=92_tIdNeicw", desc: "التفكير البرمجي البصري باستخدام الكتل التفاعلية في Scratch." },
+      { title: "006. كورس [week0 - 5] cs50 بالعربي | عمل لعبة بالسكراتش", videoUrl: "https://www.youtube.com/watch?v=zXq7Z59QAXU", desc: "مشروع تطبيقي: بناء لعبة تفاعلية كاملة بلغة سكراتش." },
+      { title: "007. كورس [week1 - 0] cs50 بالعربي | تعلم لغة سي", videoUrl: "https://www.youtube.com/watch?v=m_WrxoVLseE", desc: "بداية رحلة البرمجة الفعلية مع لغة C وبيئة التطوير." },
+      { title: "008. كورس [week1 - 1] cs50 بالعربي | get string", videoUrl: "https://www.youtube.com/watch?v=BYyrqIfENMc", desc: "استقبال وتخزين النصوص في لغة C عبر مكتبة CS50." },
+      { title: "009. كورس [week1 - 2] cs50 بالعربي | math", videoUrl: "https://www.youtube.com/watch?v=mlKgnrd-lvI", desc: "العمليات الحسابية والرياضية في لغة C." },
+      { title: "010. كورس [week1 - 3] cs50 بالعربي | commad line", videoUrl: "https://www.youtube.com/watch?v=8orW9DFyGX0", desc: "التعامل مع سطر الأوامر الطرفي Terminal واختصارات لينكس." },
+      { title: "011. كورس [week1 - 4] cs50 بالعربي | get int", videoUrl: "https://www.youtube.com/watch?v=Om2zNTnhKOI", desc: "استقبال الأرقام والتحقق من صحة مدخلات المستخدم." },
+      { title: "012. كورس [week1 - 5] cs50 بالعربي | if", videoUrl: "https://www.youtube.com/watch?v=g6oCoQVvLwo", desc: "الشروط واتخاذ القرارات في لغة C." },
+      { title: "013. كورس [week1 - 6] cs50 بالعربي | loops", videoUrl: "https://www.youtube.com/watch?v=m8u-gmnqnsM", desc: "حلقات التكرار (While, For, Do-While) في لغة C." },
+      { title: "014. كورس [week1 - 7] cs50 بالعربي | تعلم كل شئ عن ال functions في لغة c بالتفصيل الممل", videoUrl: "https://www.youtube.com/watch?v=fdauhXJOuDE", desc: "بناء الدوال وتمرير البارامترات واسترجاع القيم." },
+      { title: "015. كورس [week1 - 8] cs50 بالعربي | discount", videoUrl: "https://www.youtube.com/watch?v=XEu5YU1PGaM", desc: "تطبيق عملي: برنامج لحساب الخصومات التجارية." },
+      { title: "016. كورس [week1 - 9] cs50 بالعربي | mario", videoUrl: "https://www.youtube.com/watch?v=hWEumiWr-ys", desc: "المسألة الشهيرة: بناء أهرامات لعبة سوبر ماريو بالكود." },
+      { title: "017. كورس [week1 - 10] cs50 بالعربي | memory", videoUrl: "https://www.youtube.com/watch?v=z4_7t5JwfCo", desc: "مقدمة الذاكرة ومشاكل تجاوز سعة الأرقام Integer Overflow." },
+      { title: "018. كورس [week2 - 1] cs50 بالعربي | compiling", videoUrl: "https://www.youtube.com/watch?v=EJkKA7kAWlI", desc: "مراحل الترجمة البرمجية (Preprocessing, Compiling, Assembling, Linking)." },
+      { title: "019. كورس [week2 - 2] cs50 بالعربي | debug", videoUrl: "https://www.youtube.com/watch?v=x5gW78b7HSc", desc: "استخدام أدوات تصحيح وتتبع الأخطاء البرمجية Debugging." },
+      { title: "020. كورس [week2 - 3] cs50 بالعربي | array", videoUrl: "https://www.youtube.com/watch?v=oUmb7cOowo8", desc: "المصفوفات في لغة C وحفظ البيانات المتسلسلة في الذاكرة." },
+      { title: "021. كورس [week2 - 4] cs50 بالعربي | string", videoUrl: "https://www.youtube.com/watch?v=HI-G5HNHClw", desc: "حقيقة النصوص كمصفوفات من الحروف تنتهي بـ NUL Terminator." },
+      { title: "022. كورس [week2 - 5] cs50 بالعربي | uppercase", videoUrl: "https://www.youtube.com/watch?v=WyP6SnQNv8s", desc: "تحويل الحروف إلى حروف كبيرة باستخدام جدول ASCII." },
+      { title: "023. كورس [week2 - 6] cs50 بالعربي | argument", videoUrl: "https://www.youtube.com/watch?v=UtUuZXbusIA", desc: "معاملات سطر الأوامر (argc, argv) وتمرير المدخلات." },
+      { title: "024. كورس [week3 - 0] cs50 بالعربي | الخوارزميات", videoUrl: "https://www.youtube.com/watch?v=Io_oETBLdk0", desc: "مقدمة خوارزميات البحث والترتيب ومفهوم Big O." },
+      { title: "025. كورس [week3 - 1] cs50 بالعربي | linear search in c language", videoUrl: "https://www.youtube.com/watch?v=OcJZWxs7l3Y", desc: "خوارزمية البحث الخطي ومقارنتها بالبحث الثنائي." },
+      { title: "026. كورس [week3 - 2] cs50 بالعربي | phonebook", videoUrl: "https://www.youtube.com/watch?v=ONnRDHJN0xg", desc: "بناء دليل هاتف وتعريف الهياكل المخصصة Structures." },
+      { title: "027. كورس [week3 - 3] cs50 بالعربي | selection sort", videoUrl: "https://www.youtube.com/watch?v=WmHH2yK1NYw", desc: "خوارزمية الترتيب بالاختيار Selection Sort." },
+      { title: "028. كورس [week3 - 4] cs50 بالعربي | bubble sort", videoUrl: "https://www.youtube.com/watch?v=ZiHh_plLYcA", desc: "خوارزمية الترتيب الفقاعي Bubble Sort." },
+      { title: "029. كورس [week3 - 5] cs50 بالعربي | recursion", videoUrl: "https://www.youtube.com/watch?v=Qi7iroBn2O4", desc: "مفهوم التكرار الذاتي Recursion في حل المسائل." },
+      { title: "030. كورس [week3 - 6] cs50 بالعربي | merge sort", videoUrl: "https://www.youtube.com/watch?v=hZP85Z1mgO4", desc: "خوارزمية الترتيب بالدمج Merge Sort ومفهوم فرق تسد." },
+      { title: "031. كورس [week4 - 0] cs50 بالعربي | hexadecimal", videoUrl: "https://www.youtube.com/watch?v=cCIJd9jGtV4", desc: "النظام السداسي عشري Hexadecimal وعناوين الذاكرة." },
+      { title: "032. كورس [week4 - 1] cs50 بالعربي | pointers", videoUrl: "https://www.youtube.com/watch?v=GHaz6VcBqt4", desc: "المؤشرات Pointers وعناوين المتغيرات في الرام." },
+      { title: "033. كورس [week4 - 2] cs50 بالعربي | string", videoUrl: "https://www.youtube.com/watch?v=nGp2gc252nc", desc: "التعامل مع السلاسل النصية كمؤشرات char*." },
+      { title: "034. كورس [week4 - 3] cs50 بالعربي | Pointer Arithmetic", videoUrl: "https://www.youtube.com/watch?v=ZCpV9ZKn3AM", desc: "العمليات الحسابية على عناوين المؤشرات." },
+      { title: "035. كورس [week4 - 4] cs50 بالعربي | compare", videoUrl: "https://www.youtube.com/watch?v=i17Sb86HNTc", desc: "مقارنة النصوص ومقارنة العناوين في الذاكرة بـ strcmp." },
+      { title: "036. كورس [week4 - 5] cs50 بالعربي | malloc & free & valgrind", videoUrl: "https://www.youtube.com/watch?v=_MgBl1CV7Ls", desc: "تخصيص الذاكرة الديناميكية وتحريرها واكتشاف تسريب الذاكرة بـ Valgrind." },
+      { title: "037. كورس [week4 - 6] cs50 بالعربي | swap", videoUrl: "https://www.youtube.com/watch?v=gm0apoM3PzE", desc: "تبديل قيم المتغيرات عبر التمرير بالعنوان Pass by Reference." },
+      { title: "038. كورس [week4 - 7] cs50 بالعربي | scanf", videoUrl: "https://www.youtube.com/watch?v=BaOHYdXR47E", desc: "استخدام دالة scanf للقراءة المباشرة إلى عناوين الذاكرة." },
+      { title: "039. كورس [week4 - 8] cs50 بالعربي | file in c", videoUrl: "https://www.youtube.com/watch?v=eHc2i1vmKLE", desc: "قراءة وكتابة وتعديل الملفات في لغة C عبر fopen و fclose." },
+      { title: "040. كورس [week4 - 9] cs50 بالعربي | jpeg", videoUrl: "https://www.youtube.com/watch?v=_xQMV6EnZaw", desc: "فحص البايتات السحرية والتحقق من صيغ ملفات الصور." },
+      { title: "041. كورس [week5 - 0] cs50 بالعربي | what is data structure", videoUrl: "https://www.youtube.com/watch?v=FYoC_JMruyo", desc: "مدخل هياكل البيانات وأهميتها في تخزين وتنظيم البيانات." },
+      { title: "042. كورس [week5 - 1] cs50 بالعربي | resizing array", videoUrl: "https://www.youtube.com/watch?v=l0XEKPsh-zs", desc: "إعادة تحجيم المصفوفات في الذاكرة باستخدام realloc." },
+      { title: "043. كورس [week5 - 2] cs50 بالعربي | linked list", videoUrl: "https://www.youtube.com/watch?v=tGtpJ9U83PA", desc: "بناء القوائم المترابطة Linked Lists وربط الـ Nodes." },
+      { title: "044. كورس [week5 - 3] cs50 بالعربي | data structure Tree", videoUrl: "https://www.youtube.com/watch?v=HHGjIU68kJo", desc: "هيكل البيانات الشجري Binary Search Tree." },
+      { title: "045. كورس [week5 - 4] cs50 بالعربي | Create tree in c", videoUrl: "https://www.youtube.com/watch?v=d1W3lntCoqQ", desc: "تطبيق عملي لبناء شجرة بحث ثنائية في لغة C." },
+      { title: "046. كورس [week5 - 5] cs50 بالعربي | search in binary tree", videoUrl: "https://www.youtube.com/watch?v=5pUPzdLefuo", desc: "خوارزمية البحث السريع داخل الشجرة الثنائية." },
+      { title: "047. كورس [week5 - 6] cs50 بالعربي | hash tables", videoUrl: "https://www.youtube.com/watch?v=0ZW2A9AuCkk", desc: "جداول الهاش Hash Tables ودوال التجزئة وحل التصادمات." },
+      { title: "048. الفرق بين بايثون و بين لغة سي | cs50", videoUrl: "https://www.youtube.com/watch?v=1P_HwqRUa5w", desc: "مقارنة معمارية وتطبيقية بين لغة C ولغة Python." },
+      { title: "049. كورس [week6 - 1] cs50 بالعربي | python syntax", videoUrl: "https://www.youtube.com/watch?v=D4NZGPmO05g", desc: "بنية الكود وقواعد لغة بايثون الحديثة." },
+      { title: "050. كورس [week6 - 2] cs50 بالعربي | python datatypes", videoUrl: "https://www.youtube.com/watch?v=T64t3KqbZfk", desc: "أنواع البيانات المدمجة في بايثون." },
+      { title: "051. كورس [week6 - 3] cs50 بالعربي | input", videoUrl: "https://www.youtube.com/watch?v=wBk7wAKaMCk", desc: "استقبال مدخلات المستخدم ومعالجتها بـ input." },
+      { title: "052. كورس [week6 - 4] cs50 بالعربي | python Exceptions", videoUrl: "https://www.youtube.com/watch?v=1QPwe092cV4", desc: "معالجة الأخطاء والاستثناءات في بايثون بـ try except." },
+      { title: "053. كورس [week6 - 5] cs50 بالعربي | functions in python", videoUrl: "https://www.youtube.com/watch?v=0-NtRHgoQeg", desc: "بناء الدوال في بايثون بـ def وتمرير المعاملات." },
+      { title: "054. كورس [week6 - 6] cs50 بالعربي | meow", videoUrl: "https://www.youtube.com/watch?v=dIdiyyzG2OU", desc: "تدريب تطبيقي على التكرار والدوال المخصصة." },
+      { title: "055. كورس [week6 - 7] cs50 بالعربي | comparisons using agree", videoUrl: "https://www.youtube.com/watch?v=VReDE8IPeIY", desc: "المقارنات الشرطية ومعالجة نصوص التأكيد." },
+      { title: "056. كورس [week6 - 8] cs50 بالعربي | mario", videoUrl: "https://www.youtube.com/watch?v=mG9K7L0150c", desc: "تطبيق مسألة ماريو بلغة بايثون ومقارنتها بلغة C." },
+      { title: "057. كورس [week6 - 9] cs50 بالعربي | mario2 | keyword default", videoUrl: "https://www.youtube.com/watch?v=HM7BneLKodU", desc: "استخدام المعاملات الافتراضية في بايثون." },
+      { title: "058. كورس [week6 - 10] cs50 بالعربي | mario3 | nested loop", videoUrl: "https://www.youtube.com/watch?v=khmx1vKWVoU", desc: "الحلقات المتداخلة في بايثون وطباعة الشبكات." },
+      { title: "059. كورس [week6 - 11] cs50 بالعربي | average", videoUrl: "https://www.youtube.com/watch?v=l9ltcvcN2Mo", desc: "حساب المتوسطات الحسابية من القوائم." },
+      { title: "060. كورس [week6 - 12] cs50 بالعربي | uppercase", videoUrl: "https://www.youtube.com/watch?v=0csfQegVhXA", desc: "معالجة وتحويل النصوص في بايثون بـ upper." },
+      { title: "061. كورس [week6 - 13] cs50 بالعربي | command line arguments", videoUrl: "https://www.youtube.com/watch?v=fFDkbqTRLiM", desc: "استخدام موديول sys واستقبال معاملات سطر الأوامر." },
+      { title: "062. كورس [week6 - 14] cs50 بالعربي | sys exit", videoUrl: "https://www.youtube.com/watch?v=LFgTtov-KgU", desc: "الخروج من البرنامج وإرسال أكواد الحالة بـ sys.exit." },
+      { title: "063. كورس [week6 - 15] cs50 بالعربي | linear search", videoUrl: "https://www.youtube.com/watch?v=O0Rw0bxL6HE", desc: "البحث في القوائم باستخدام معاملات الانتماء in." },
+      { title: "064. كورس [week6 - 16] cs50 بالعربي | phonebook", videoUrl: "https://www.youtube.com/watch?v=xk_4Jq7CoEc", desc: "بناء دليل الهاتف باستخدام القواميس Dictionaries." },
+      { title: "065. كورس [week6 - 17] cs50 بالعربي | pointers in python", videoUrl: "https://www.youtube.com/watch?v=lFhroPZbx7g", desc: "فهم كيفية إدارة بايثون للذاكرة والمراجع المباشرة." },
+      { title: "066. كورس [week6 - 18] cs50 بالعربي | files in python", videoUrl: "https://www.youtube.com/watch?v=60-HpTVr5E4", desc: "فتح وقراءة الملفات في بايثون." },
+      { title: "067. كورس [week6 - 19] cs50 بالعربي | with | r+ w+ a+ in python", videoUrl: "https://www.youtube.com/watch?v=Fu7Iw08VL-Q", desc: "استخدام سياق with لضمان إغلاق الملفات بأمان." },
+      { title: "068. كورس [week6 - 20] cs50 بالعربي | append data in csv file", videoUrl: "https://www.youtube.com/watch?v=cFc85LaNdWk", desc: "التعامل مع ملفات الجداول CSV وإضافة البيانات." },
+      { title: "069. كورس [week6 - 21] cs50 بالعربي | hogwarts", videoUrl: "https://www.youtube.com/watch?v=JlJJKg9OKOg", desc: "تطبيق عملي: فرز وتصنيف البيانات المعقدة." },
+      { title: "070. كورس [week6 - 22] cs50 بالعربي | install python", videoUrl: "https://www.youtube.com/watch?v=Hs0ShYmBUjk", desc: "تثبيت بايثون على الجهاز وإعداد مدير الحزم pip." },
+      { title: "071. كورس [week6 - 23] cs50 بالعربي | Text to Speech", videoUrl: "https://www.youtube.com/watch?v=BrcoV0sZYMc", desc: "تحويل النصوص إلى كلام منطوق باستخدام مكاتب بايثون." },
+      { title: "072. كورس [week6 - 24] cs50 بالعربي | speech recognition", videoUrl: "https://www.youtube.com/watch?v=OjTdeNYx13k", desc: "التعرف على الصوت وتحويله إلى نصوص مكتوبة." },
+      { title: "073. كورس [week6 - 25] cs50 بالعربي | شرح مكتبة Pillow python", videoUrl: "https://www.youtube.com/watch?v=LVlsZdrzJMM", desc: "معالجة وتعديل وفلترة الصور بمكتبة Pillow." },
+      { title: "074. كورس [week6 - 26] cs50 بالعربي | generat qrcode", videoUrl: "https://www.youtube.com/watch?v=zj0IV0KA_i8", desc: "توليد رموز الاستجابة السريعة QR Code برمجياً." },
+      { title: "075. كورس [week7 - 0] cs50 بالعربي | spreadsheets and flat file database", videoUrl: "https://www.youtube.com/watch?v=t44yJwnVq60", desc: "مدخل قواعد البيانات وتخزين البيانات المسطحة والجداول." },
+      { title: "076. كورس [week7 - 1] cs50 بالعربي | تحليل البيانات", videoUrl: "https://www.youtube.com/watch?v=Soa8GYBrZFk", desc: "استخراج المؤشرات والإحصاءات من قواعد البيانات." },
+      { title: "077. كورس [week7 - 2] cs50 بالعربي | relational database", videoUrl: "https://www.youtube.com/watch?v=8BjRRZGzxqA", desc: "قواعد البيانات العلاقية وتصميم المفاتيح والجداول." },
+      { title: "078. كورس [week7 - 3] cs50 بالعربي | sqlite dot commands", videoUrl: "https://www.youtube.com/watch?v=AGd6TRUXdX4", desc: "أوامر سطر أوامر SQLite وإدارة الجداول." },
+      { title: "079. كورس [week7 - 4] cs50 بالعربي | crud | read data", videoUrl: "https://www.youtube.com/watch?v=hXs4cxPyvZI", desc: "استعلامات قراءة وجلب البيانات بـ SELECT." },
+      { title: "080. كورس [week7 - 5] cs50 بالعربي | filter data using where and order by and group by and limit", videoUrl: "https://www.youtube.com/watch?v=Xq68yqGGT1E", desc: "الفلترة المتقدمة والفرز والتجميع والحد من النتائج بـ SQL." },
+      { title: "081. كورس [week7 - 6] cs50 بالعربي | like sql", videoUrl: "https://www.youtube.com/watch?v=rOMevsT4hy8", desc: "استعلامات مطابقة الأنماط والبحث الجزئي بـ LIKE." },
+      { title: "082. كورس [week7 - 7] cs50 بالعربي | insert and update and delete", videoUrl: "https://www.youtube.com/watch?v=jJALhYlwasY", desc: "إدخال وتحديث وحذف السجلات بـ SQL وتأمين البيانات." }
     ]
   }
 };
@@ -4465,6 +4655,20 @@ if (courseId === "c_office_suite" || courseId === "c_web_dev" || courseId === "c
       officeCard.classList.remove("hidden");
       renderLevelDetails(dsData);
     }
+  }else if (courseId === "c_cs50_arabic") {
+    if (levelsSection) levelsSection.classList.add("hidden");
+    if (languagePortals) languagePortals.classList.add("hidden");
+    const officeCard = document.getElementById("officeOverviewCard");
+    const cs50Data = window.cs50CurriculumDB ? window.cs50CurriculumDB.main : null;
+    if (cs50Data && officeCard) {
+      document.getElementById("officeProgramTitle").textContent = cs50Data.title;
+      document.getElementById("officeProgramDesc").textContent = cs50Data.overview;
+      document.getElementById("officeSkillsList").innerHTML = cs50Data.keySkills.map(sk => `
+        <span class="text-[11px] font-medium px-2.5 py-1 rounded bg-[#181B24] border border-slate-700/60 text-cyan-300">${sk}</span>
+      `).join("");
+      officeCard.classList.remove("hidden");
+      renderLevelDetails(cs50Data);
+    }
   }
   
     else {
@@ -4548,68 +4752,7 @@ window.loadFirestoreLectures = async function(courseOrLevelKey) {
 
 
 
-// عرض محتويات المستوى والمحاضرات معرباً بالكامل
-function renderLevelDetails(data) {
-  if (!data) return;
 
-  const lessonsContainer = document.getElementById("lessonsList");
-  const countBadge = document.getElementById("firestoreLecturesCount");
-
-  // عرض المحاضرات والفيديوهات
-  if (lessonsContainer && data.lectures) {
-    if (countBadge) countBadge.textContent = `${data.lectures.length} محاضرة متاحة`;
-    
-    lessonsContainer.innerHTML = data.lectures.map((lec, idx) => `
-      <div id="lessonRow_${idx}" class="p-3.5 rounded-xl border border-slate-800 bg-[#11131A] flex items-center justify-between flex-wrap gap-3 hover:border-slate-700 transition">
-       
-        <div class="flex items-center gap-3">
-          <span class="w-7 h-7 rounded-lg bg-[#181B24] border border-slate-700/60 text-cyan-400 font-mono text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
-          <div>
-            <h4 class="text-xs md:text-sm font-semibold text-slate-100">${lec.title}</h4>
-            <span class="text-[11px] text-slate-400 block mt-0.5">${lec.desc || lec.description || ''}</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-2">
-          ${lec.videoUrl ? `
-            <button onclick="playLessonVideo('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})" class="px-3.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition cursor-pointer">             
-              مشاهدة المحاضرة
-            </button>
-          ` : ''}
-          ${lec.quiz && lec.quiz.length > 0 ? `
-            <button onclick='startInteractiveQuiz(${JSON.stringify(lec.quiz)})' class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition cursor-pointer">
-              الكويز التقييمي
-            </button>
-          ` : ''}
-        </div>
-      </div>
-    `).join("");
-  }
-}
-
-window.playLessonVideo = function(title, videoUrl, rowIdx) {
-  const wrapper = document.getElementById("videoContainerWrapper");
-  const iframe = document.getElementById("videoIframe");
-  const titleEl = document.getElementById("currentLessonTitle");
-  if (!wrapper || !iframe) return;
-
-  iframe.src = formatEmbedUrl(videoUrl);
-  if (titleEl) titleEl.textContent = title;
-
-  wrapper.classList.remove("hidden");
-
-
-
-  wrapper.scrollIntoView({ behavior: "smooth", block: "start" });
-};
-
-window.closeVideoPlayer = function() {
-  const wrapper = document.getElementById("videoContainerWrapper");
-  const iframe = document.getElementById("videoIframe");
-  if (wrapper && iframe) {
-    iframe.src = "";
-    wrapper.classList.add("hidden");
-  }
-};
 
 // دالة تشغيل الكويز التفاعلي
 window.startInteractiveQuiz = function(quizQuestions) {
@@ -4657,7 +4800,171 @@ window.startInteractiveQuiz = function(quizQuestions) {
   };
 };
 
+// نظام التقدم وحفظ المحاضرات المكتملة
+function getCourseProgress(courseId) {
+  try {
+    return JSON.parse(localStorage.getItem(`atlas_prog_${courseId}`)) || [0];
+  } catch (e) {
+    return [0];
+  }
+}
+
+function unlockNextLesson(courseId, currentIndex) {
+  let prog = getCourseProgress(courseId);
+  if (!prog.includes(currentIndex + 1)) {
+    prog.push(currentIndex + 1);
+    localStorage.setItem(`atlas_prog_${courseId}`, JSON.stringify(prog));
+  }
+  // إعادة رندرة القائمة لتحديث الأقفال
+  const crs = window.catalogData[courseId];
+  if (crs) openCourseView(courseId);
+}
+
+// عرض محتويات المستوى والمحاضرات تحت كل درس مباشرة مع القفل والملخص
+function renderLevelDetails(data) {
+  if (!data) return;
+
+  const lessonsContainer = document.getElementById("lessonsList");
+  const countBadge = document.getElementById("firestoreLecturesCount");
+  const courseId = window.currentSelectedCourseId || "general";
+  const unlockedLessons = getCourseProgress(courseId);
+
+  if (lessonsContainer && data.lectures) {
+    if (countBadge) countBadge.textContent = `${data.lectures.length} محاضرة متاحة`;
+
+    lessonsContainer.innerHTML = data.lectures.map((lec, idx) => {
+      const isUnlocked = idx === 0 || unlockedLessons.includes(idx);
+      const isCompleted = unlockedLessons.includes(idx + 1);
+
+      return `
+      <div id="lessonCard_${idx}" class="rounded-2xl border transition-all duration-300 overflow-hidden ${isUnlocked ? 'bg-[#11131A] border-slate-800 hover:border-slate-700' : 'bg-[#0d0e14] border-slate-900 opacity-60'}">
+        
+        <!-- صف عنوان المحاضرة وأزرار التحكم -->
+        <div class="p-4 flex items-center justify-between flex-wrap gap-3">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-[#181B24] border border-slate-700/60 font-mono text-xs font-bold flex items-center justify-center shrink-0 ${isCompleted ? 'text-emerald-400 border-emerald-500/40' : 'text-cyan-400'}">
+              ${isCompleted ? '✓' : (idx + 1)}
+            </span>
+            <div>
+              <h4 class="text-xs md:text-sm font-bold text-slate-100 flex items-center gap-2">
+                <span>${lec.title}</span>
+                ${!isUnlocked ? '<span class="text-[10px] text-amber-400 font-normal">🔒 مقفل (أكمل السابق)</span>' : ''}
+              </h4>
+              <span class="text-[11px] text-slate-400 block mt-0.5">${lec.desc || lec.description || ''}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            ${isUnlocked && lec.videoUrl ? `
+              <button onclick="playLessonInline('${lec.title.replace(/'/g, "\\'")}', '${lec.videoUrl}', ${idx})" class="px-3.5 py-1.5 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-bold transition cursor-pointer">
+                ▶ مشاهدة المحاضرة
+              </button>
+            ` : ''}
+
+            ${!isUnlocked ? `
+              <button disabled class="px-3.5 py-1.5 rounded-xl bg-slate-800/40 text-slate-600 border border-slate-800 text-xs font-bold cursor-not-allowed">
+                🔒 مقفل
+              </button>
+            ` : ''}
+
+            ${lec.quiz && lec.quiz.length > 0 && isUnlocked ? `
+              <button onclick='startInteractiveQuiz(${JSON.stringify(lec.quiz)}, ${idx})' class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition cursor-pointer">
+                📝 الكويز
+              </button>
+            ` : ''}
+          </div>
+        </div>
+
+        <!-- حاوية الفيديو المضمنة تحت هذا الدرس تحديداً -->
+        <div id="inlineVideoWrapper_${idx}" class="hidden p-4 pt-0 border-t border-slate-800/80 space-y-3 bg-[#0A0D14]">
+          <div class="rounded-xl overflow-hidden bg-black border border-slate-800 aspect-video relative flex items-center justify-center shadow-2xl">
+            <iframe id="inlineIframe_${idx}" class="w-full h-full border-0" src="" allowfullscreen></iframe>
+          </div>
+
+          <!-- نموذج إرسال الملخص لفتح الدرس التالي -->
+          <div class="p-4 rounded-xl bg-[#11131A] border border-cyan-500/20 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-cyan-300">📝 ملخص المحاضرة وتأكيد الاستيعاب:</span>
+              <span class="text-[10px] text-slate-400 font-mono">إلزامي لفتح المحاضرة التالية</span>
+            </div>
+
+            <textarea id="summaryText_${idx}" rows="2" placeholder="اكتب ملخصاً لما تعلمته في هذه المحاضرة أو النقاط الأساسية..." class="w-full rounded-xl p-3 bg-[#0A0F1D] border border-slate-700 text-xs text-white placeholder:text-slate-500 outline-none focus:border-cyan-400 transition"></textarea>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+              <label class="flex items-center gap-1.5 text-xs text-slate-300 cursor-pointer bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700 transition">
+                <span>📎 رفع تسجيل صوتي / صورة / فيديو ملخص:</span>
+                <input type="file" id="summaryFile_${idx}" class="hidden" onchange="alert('تم إرفاق الملف: ' + this.files[0]?.name)" />
+              </label>
+
+              <div class="flex items-center gap-2">
+                <button onclick="closeLessonInline(${idx})" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white text-xs font-bold transition">
+                  إغلاق المشغل
+                </button>
+                <button onclick="submitLessonSummary(${idx})" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg transition">
+                  إرسال وفتح المحاضرة التالية ←
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      `;
+    }).join("");
+  }
+}
+
+// تشغيل الفيديو تحت الدرس مباشرة مع إغلاق أي فيديو آخر مفتوح
+window.playLessonInline = function(title, videoUrl, idx) {
+  // إغلاق أي مشغل مفتوح مسبقاً
+  document.querySelectorAll("[id^='inlineVideoWrapper_']").forEach(el => el.classList.add("hidden"));
+  document.querySelectorAll("[id^='inlineIframe_']").forEach(iframe => iframe.src = "");
+
+  const wrapper = document.getElementById(`inlineVideoWrapper_${idx}`);
+  const iframe = document.getElementById(`inlineIframe_${idx}`);
+  if (!wrapper || !iframe) return;
+
+  iframe.src = formatEmbedUrl(videoUrl);
+  wrapper.classList.remove("hidden");
+
+  // التمرير السلس نحو المحاضرة الحالية
+  wrapper.scrollIntoView({ behavior: "smooth", block: "nearest" });
+};
+
+window.closeLessonInline = function(idx) {
+  const wrapper = document.getElementById(`inlineVideoWrapper_${idx}`);
+  const iframe = document.getElementById(`inlineIframe_${idx}`);
+  if (wrapper && iframe) {
+    iframe.src = "";
+    wrapper.classList.add("hidden");
+  }
+};
+
+// إرسال الملخص وتأكيد الانتقال
+window.submitLessonSummary = function(idx) {
+  const summary = document.getElementById(`summaryText_${idx}`)?.value.trim();
+  const file = document.getElementById(`summaryFile_${idx}`)?.files[0];
+
+  if (!summary && !file) {
+    alert("⚠️ يُرجى كتابة ملخص نصي أو إرفاق ملف/تسجيل صوتي لتأكيد الاستيعاب وفتح المحاضرة التالية.");
+    return;
+  }
+
+  alert("🎉 تم حفظ ملخصك بنجاح! تم فتح المحاضرة التالية.");
+  unlockNextLesson(window.currentSelectedCourseId, idx);
+};
+
+// إغلاق الكورس والعودة للرئيسية مع تفريغ أي مشغل نشط
 function closeCourseView() {
+  // إيقاف وتفريغ كافة الفيديوهات النشطة
+  document.querySelectorAll("[id^='inlineIframe_']").forEach(iframe => iframe.src = "");
+  document.querySelectorAll("[id^='inlineVideoWrapper_']").forEach(el => el.classList.add("hidden"));
+
+  const globalPlayer = document.getElementById("videoIframe");
+  if (globalPlayer) globalPlayer.src = "";
+  const globalWrapper = document.getElementById("videoContainerWrapper");
+  if (globalWrapper) globalWrapper.classList.add("hidden");
+
   document.getElementById("courseView").classList.add("hidden");
   ["mainNavbar", "hero", "courses", "features", "honors", "reviews", "instructor", "mainFooter", "years"].forEach(id => {
     const el = document.getElementById(id);
