@@ -2502,12 +2502,36 @@ window.programmingLanguagesDB = {
     ]
   },
 
-  // مسار SQL (جاهز لإضافة الفيديوهات)
+// ═══════════════════════════════════════════════════════════════
+  // 7. مسار لغة SQL وقواعد البيانات (20 محاضرة + ماستركلاس 3 ساعات مجمع)
+  // ═══════════════════════════════════════════════════════════════
   lang_sql: {
-    title: "مسار استعلام وإدارة قواعد البيانات SQL",
-    overview: "إتقان كتابة الاستعلامات المعقدة، الـ Joins، والـ Subqueries لإدارة البيانات.",
-    keySkills: ["Data Definition (DDL)", "Data Manipulation (DML)", "Complex Joins", "Aggregations & Indexing"],
-    lectures: []
+    title: "مسار استعلام وإدارة قواعد البيانات SQL & MySQL (Complete Database Mastery)",
+    overview: "المرجع العملي الشامل لإتقان لغة SQL وقواعد بيانات MySQL (20 محاضرة تفصيلية): إنشاء وتعديل الجداول وقواعد البيانات، قيود إدخال البيانات Constraints، المفاتيح الأساسية والأجنبية Primary & Foreign Keys، العلاقات والـ Joins بكافة أنواعها، الـ Views، الإجراءات المخزنة Stored Procedures، الاستعلامات الفرعية Subqueries، وخاتمة بماستركلاس مجمع مدته 3 ساعات لتحليل البيانات مع مازن أناليتكس.",
+    keySkills: ["DDL & DML Commands", "Primary & Foreign Keys", "SQL Joins (Inner, Left, Right, Self)", "Views & Stored Procedures", "Subqueries & Window Functions", "SQL for Data Analysis & CTEs"],
+    lectures: [
+      { title: "001. 1- دليل تثبيت الأدوات اللازمة ومقدمة شاملة لدورة SQL", videoUrl: "https://www.youtube.com/watch?v=f-1Ch5mY1Mc", desc: "تثبيت أدوات بيئة العمل MySQL Server و Workbench ومقدمة عن قواعد البيانات." },
+      { title: "002. 2- تعلم أوامر إنشاء، حذف، وتغيير قواعد البيانات باستخدام MySQL - دورة SQL", videoUrl: "https://www.youtube.com/watch?v=nLN2fLpOjf8", desc: "أوامر إنشاء قواعد البيانات وحذفها وتعديلها (CREATE, DROP, ALTER DATABASE)." },
+      { title: "003. 3- إنشاء وتعديل الجداول بسهولة في MySQL: دليل شامل للمستخدمين المبتدئين", videoUrl: "https://www.youtube.com/watch?v=vhvkYJNrGBI", desc: "بناء الجداول وتحديد الأعمدة وأنواع البيانات وتعديل هيكل الجدول (ALTER TABLE)." },
+      { title: "004. 4- تعلم استخدام SQL في MySQL للتلاعب بالبيانات - دورة SQL", videoUrl: "https://www.youtube.com/watch?v=6ckd2Yn5HfY", desc: "إدخال وتعديل وحذف السجلات (INSERT INTO, UPDATE, DELETE)." },
+      { title: "005. 5- الوقت و التاريخ الحالي في mysql - دورة SQL", videoUrl: "https://www.youtube.com/watch?v=9GWENA5EZpA", desc: "التعامل مع حقول الوقت والتاريخ والدوال الزمنية المدمجة في MySQL." },
+      { title: "006. 6- MySQL Constraint - قيود ادخال البيانات - دورة SQL", videoUrl: "https://www.youtube.com/watch?v=tGZ8M-cXr5s", desc: "تطبيق قيود البيانات لضمان النزاهة (NOT NULL, UNIQUE, CHECK, DEFAULT)." },
+      { title: "007. 7- المفاتيح الرئيسية والزيادة التلقائية في قاعدة بيانات MySQL-primary key-auto increment", videoUrl: "https://www.youtube.com/watch?v=NXRrdB75K-U", desc: "تحديد المفتاح الأساسي Primary Key وتفعيل الترقيم التلقائي AUTO_INCREMENT." },
+      { title: "008. 8- تعلم استخدام Foreign Key في MySQL - دورة SQL", videoUrl: "https://www.youtube.com/watch?v=xToyY3Z1YsA", desc: "إنشاء المفاتيح الأجنبية Foreign Keys وربط الجداول ببعضها بشكل سليم." },
+      { title: "009. 9- دليلك الشامل لفهم العلاقات وال Joins: كيفية تجنب الفوضى وتحسين أداء قاعدة البيانات", videoUrl: "https://www.youtube.com/watch?v=KPqdSAtZPdM", desc: "مفاهيم العلاقات بين الجداول (1:1, 1:N, M:N) ومدخل دمج البيانات بالـ Joins." },
+      { title: "010. 10 - شرح أوامر AND و OR و NOT و Limit و Order by و Wildcards في MySQL", videoUrl: "https://www.youtube.com/watch?v=ovqOKycDZUM", desc: "الفلترة المتقدمة والشروط المركبة وترتيب النتائج والبحث الجزئي بـ Wildcards." },
+      { title: "011. 11 - الدوال المدمجة في قاعدة البيانات MySQL - built-in functions - دورة SQL", videoUrl: "https://www.youtube.com/watch?v=jW4dUJZY37g", desc: "الدوال التجميعية والنصية والرياضية (COUNT, SUM, AVG, MIN, MAX, CONCAT)." },
+      { title: "012. 12- استخدام دالة DISTINCT و UNION في MySQL - دورة SQL", videoUrl: "https://www.youtube.com/watch?v=rFCrAIAj1Hs", desc: "استخراج القيم الفريدة بـ DISTINCT ودمج نتائج الاستعلامات بـ UNION." },
+      { title: "013. 13- كيفية ربط صفوف في جدول واحد باستخدام Self join - MySQL - دورة SQL", videoUrl: "https://www.youtube.com/watch?v=jNg6i9dhelA", desc: "تقنية ربط الجدول بنفسه Self Join لاستخراج العلاقات الهرمية." },
+      { title: "014. 14- إنشاء واستخدام الـ View في MySQL - دورس SQL", videoUrl: "https://www.youtube.com/watch?v=Xbd8xkBFukw", desc: "إنشاء الجداول الافتراضية Views لتبسيط الاستعلامات المعقدة وتأمين البيانات." },
+      { title: "015. 15- الفهارس و الاستعلامات الفرعية في MySQL: كيفية استخدامهم بشكل صحيح وتحسين الأداء", videoUrl: "https://www.youtube.com/watch?v=5I1UZ5uWyDo", desc: "تسريع الاستعلامات بـ Indexes وبناء الاستعلامات الفرعية المتداخلة Subqueries." },
+      { title: "016. 16- تعلم كيفية استخدام Group By في MySQL", videoUrl: "https://www.youtube.com/watch?v=qC7nn6UolDo", desc: "تجميع البيانات واستخراج التقارير الإحصائية بـ GROUP BY و HAVING." },
+      { title: "017. 17- إنشاء إجراءات مخزنة في قاعدة بيانات MySQL - Stored Procedures", videoUrl: "https://www.youtube.com/watch?v=Dty8nFKqnMY", desc: "بناء وتخزين الإجراءات البرمجية Stored Procedures وتمرير البارامترات." },
+      { title: "018. 18- شرح خاصية ON DELETE في MySQL مع أمثلة عملية", videoUrl: "https://www.youtube.com/watch?v=BHD2ePhcbwI", desc: "التحكم في سلوك الحذف المتتالي (CASCADE, SET NULL, RESTRICT)." },
+      { title: "019. 19- اتقن الـ Joins في MySQL بسهولة في 20 دقيقة! | شرح عملي للمبتدئين", videoUrl: "https://www.youtube.com/watch?v=SrbqQtkjoe4", desc: "ورشة تطبيقية سريعة وشاملة لإتقان (INNER, LEFT, RIGHT, FULL OUTER) Joins." },
+      { title: "020. 20- أقوى 8 استعلامات SQL يجب على كل محلل بيانات معرفتها (نوافذ تحليلية، CTE)", videoUrl: "https://www.youtube.com/watch?v=IU4gAZo0XgU", desc: "احتراف الدوال التحليلية Window Functions وتعبيرات الجداول العامة CTEs." },
+{ title: "021. SQL Beginner to Advanced in 2 Hours in (Arabic) - The Engyption Data Nerd", videoUrl: "https://youtu.be/UFsTJ1zanXU", desc: "الماستركلاس التلخيصي الشامل: مراجعة متكاملة ومكثفة لمدة ساعتين تشرح كل شيء عن SQL من الصفر وحتى المستوى المتقدم." }    
+    ]
   },
 
   // مسار Go (جاهز لإضافة الفيديوهات)
