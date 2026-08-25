@@ -576,7 +576,39 @@
         </button>
       </div>
     </div>
+<!-- بانر الفيديو الإرشادي العام للغات البرمجة -->
+    <div id="progHubIntroBanner" class="hidden rounded-2xl border border-amber-500/30 bg-gradient-to-r from-[#1c1408] via-[#120e06] to-[#11131A] p-4 sm:p-5 shadow-lg space-y-3 transition-all">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center text-lg shrink-0">
+            🧭
+          </div>
+          <div>
+            <h3 class="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+              <span>محتار تبدأ بأي لغة؟</span>
+              <span class="text-[10px] font-medium text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">شرح مقارنة اللغات (20 دقيقة)</span>
+            </h3>
+            <p class="text-[11px] text-slate-400 mt-0.5">شرح لكل لغات البرمجة ببساطة... ومتى تستخدم كل واحدة ومميزات كل لغة (Shar7Khaled)</p>
+          </div>
+        </div>
 
+        <button type="button" onclick="toggleProgIntroVideo()" id="progIntroToggleBtn" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-black transition shadow flex items-center gap-1.5 cursor-pointer whitespace-nowrap self-stretch sm:self-auto justify-center">
+          <span>▶ اضغط هنا لمشاهدة المقارنة الشاملة</span>
+        </button>
+      </div>
+
+      <!-- مشغل الفيديو الإرشادي المضمن -->
+      <div id="progIntroVideoContainer" class="hidden pt-3 border-t border-amber-500/20 space-y-2">
+        <div class="rounded-xl overflow-hidden bg-black border border-slate-800 aspect-video relative shadow-2xl">
+          <iframe id="progIntroIframe" class="w-full h-full border-0" src="" allowfullscreen></iframe>
+        </div>
+        <div class="flex justify-end">
+          <button onclick="toggleProgIntroVideo(true)" class="text-xs text-slate-400 hover:text-white px-3 py-1 rounded-lg bg-slate-800 border border-slate-700 transition">
+            إغلاق المشغل ✕
+          </button>
+        </div>
+      </div>
+    </div>
     <!-- شريط المستويات (يظهر فقط لمسارات اللغات) -->
     <div id="courseLevelsSection" class="hidden space-y-3">
       <div class="flex items-center justify-between text-xs">
@@ -1509,6 +1541,27 @@ let currentOpenedPkgId = "pkg_fullstack";
 
 window.currentUserEnrolledCourses = [];
 
+// إدارة الكورسات المثبتة (Pinned Courses)
+function getPinnedCourses() {
+  try {
+    return JSON.parse(localStorage.getItem("atlas_pinned_courses")) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+window.togglePinCourse = function(courseId, event) {
+  if (event) event.stopPropagation();
+  let pinned = getPinnedCourses();
+  if (pinned.includes(courseId)) {
+    pinned = pinned.filter(id => id !== courseId);
+  } else {
+    pinned.unshift(courseId); // إضافته في مقدمة المثبتين
+  }
+  localStorage.setItem("atlas_pinned_courses", JSON.stringify(pinned));
+  renderCatalog();
+};
+
 function renderCatalog() {
   const container = document.getElementById("coursesSlider");
   if (!container) return;
@@ -1521,9 +1574,19 @@ function renderCatalog() {
     return item.year === currentFilter;
   });
 
-  // فرز الكورسات: المشترك بها تظهر أولاً
   const enrolledList = window.currentUserEnrolledCourses || [];
+  const pinnedList = getPinnedCourses();
+
+  // فرز الكورسات: 1. المثبتة أولاً (Pinned) -> 2. المشترك بها -> 3. باقي الكورسات
   items.sort((a, b) => {
+    const aPinned = pinnedList.includes(a.id);
+    const bPinned = pinnedList.includes(b.id);
+    if (aPinned && !bPinned) return -1;
+    if (!aPinned && bPinned) return 1;
+    if (aPinned && bPinned) {
+      return pinnedList.indexOf(a.id) - pinnedList.indexOf(b.id);
+    }
+
     const aEnrolled = enrolledList.includes(a.id);
     const bEnrolled = enrolledList.includes(b.id);
     if (aEnrolled && !bEnrolled) return -1;
@@ -1539,17 +1602,31 @@ function renderCatalog() {
   container.innerHTML = items.map(item => {
     const isPkg = item.type === "package";
     const isEnrolled = enrolledList.includes(item.id);
+    const isPinned = pinnedList.includes(item.id);
     const titleText = typeof item.title === "object" ? item.title[lang] : item.title;
     const categoryText = typeof item.category === "object" ? item.category[lang] : item.category;
     const descText = isPkg ? item.sub[lang] : item.desc[lang];
     const badgeText = item.badge ? item.badge[lang] : "";
     const priceText = `${item.price} ${isEn ? 'EGP' : 'ج.م'}`;
 
-return `
-      <article class="kemet-card-hover min-w-[290px] md:min-w-[340px] snap-start rounded-3xl p-4 flex flex-col justify-between" style="background: var(--obsidian-light);">
-        <div onclick="openImageLightbox('${item.img}')" class="rounded-2xl overflow-hidden relative aspect-[4/3] bg-black cursor-pointer border border-[#503d17]" title="معاينة البوستر">
-          ${isEnrolled ? `<span class="absolute top-2.5 start-2.5 z-10 text-[11px] font-bold bg-emerald-700 text-white px-2.5 py-1 rounded-full shadow">مشترك ومفعّل ✓</span>` : (badgeText ? `<span class="absolute top-2.5 start-2.5 z-10 text-[11px] font-bold px-2.5 py-1 rounded-full" style="background: var(--obsidian-dark); color: var(--gold); border: 1px solid var(--gold);">${badgeText}</span>` : "")}
-          <img src="${item.img}" class="w-full h-full object-cover transition duration-300 hover:scale-105" onerror="this.style.display='none'" />
+    return `
+      <article class="kemet-card-hover min-w-[290px] md:min-w-[340px] snap-start rounded-3xl p-4 flex flex-col justify-between relative transition-all duration-300 ${isPinned ? 'border-2 border-amber-400/80 shadow-[0_0_20px_rgba(251,191,36,0.15)]' : ''}" style="background: var(--obsidian-light);">
+        
+        <!-- بوستر الكورس مع الأوسمة وزر التثبيت 📌 -->
+        <div class="rounded-2xl overflow-hidden relative aspect-[4/3] bg-black border border-[#503d17]">
+          
+          <!-- زر الدبوس التثبيت -->
+          <button type="button" onclick="togglePinCourse('${item.id}', event)" class="absolute top-2.5 end-2.5 z-20 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 shadow-md ${isPinned ? 'bg-amber-400 text-slate-950 scale-110' : 'bg-black/70 text-slate-400 hover:text-amber-300 hover:bg-black/90'}" title="${isPinned ? 'إلغاء التثبيت' : 'تثبيت الكورس في المقدمة'}">
+            <i class="fa-solid fa-thumbtack text-xs transform ${isPinned ? '-rotate-45' : 'rotate-0'}"></i>
+          </button>
+
+          <!-- شارات الكورس -->
+          <div class="absolute top-2.5 start-2.5 z-10 flex flex-col gap-1">
+            ${isPinned ? `<span class="text-[10px] font-black bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full shadow">مثبت 📌</span>` : ''}
+            ${isEnrolled ? `<span class="text-[10px] font-bold bg-emerald-700 text-white px-2 py-0.5 rounded-full shadow">مشترك ومفعّل ✓</span>` : (badgeText ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background: var(--obsidian-dark); color: var(--gold); border: 1px solid var(--gold);">${badgeText}</span>` : '')}
+          </div>
+
+          <img onclick="openImageLightbox('${item.img}')" src="${item.img}" class="w-full h-full object-cover transition duration-300 hover:scale-105 cursor-pointer" onerror="this.style.display='none'" />
         </div>
         
         <div class="p-2 flex-1 flex flex-col justify-between space-y-3 mt-3">
@@ -2534,36 +2611,150 @@ window.programmingLanguagesDB = {
     ]
   },
 
-  // مسار Go (جاهز لإضافة الفيديوهات)
+// ═══════════════════════════════════════════════════════════════
+  // 8. مسار لغة Go (35 محاضرة شاملة - إسلام محمود)
+  // ═══════════════════════════════════════════════════════════════
   lang_golang: {
-    title: "مسار لغة Go للأنظمة السحابية والخدمات المصغرة",
-    overview: "بناء الخدمات المصغرة Microservices والأنظمة السحابية عالية السرعة والأداء.",
-    keySkills: ["Go Concurrency (Goroutines)", "Channels & Structs", "REST APIs in Go", "Cloud Native Tooling"],
-    lectures: []
+    title: "مسار احتراف لغة جو وتطوير النظم والخدمات السحابية (Golang Mastery - Islam Mahmoud)",
+    overview: "المرجع العربي الشامل لتعلم لغة Go (35 محاضرة عملية): يبدأ من التثبيت والمتغيرات والجمل الشرطية والمصفوفات والـ Slices، مروراً بالـ Structs والـ Interfaces، إدارة الأخطاء، وصولاً إلى احتراف التوازي والمعالجة المتزامنة عبر Goroutines و Channels و WaitGroups، وبناء سيرفرات وعملاء HTTP واختبارات Unit Testing.",
+    keySkills: ["Go Syntax, Slices & Maps", "Pointers & Structs", "Interfaces & Error Handling", "Concurrency (Goroutines & Channels)", "HTTP Server & Client", "Unit Testing & Mocking"],
+    lectures: [
+      { title: "001. تعلم البرمجة باستخدام لغة جو - 00 مقدمة", videoUrl: "https://www.youtube.com/watch?v=oGFk3kI-xsQ", desc: "مقدمة عامة عن لغة Go وتاريخها ونقاط قوتها ولماذا تعد الخيار الأول للنظم السحابية." },
+      { title: "002. تعلم البرمجة باستخدام لغة جو - 01 شرح طريقة التنصيب و كتابة اول برنامج", videoUrl: "https://www.youtube.com/watch?v=qdpXE8F7duE", desc: "تثبيت بيئة Go SDK وكتابة وتشغيل أول برنامج Hello World." },
+      { title: "003. تعلم البرمجة باستخدام لغة جو - 02 شرح المتغيرات و الثوابت و القيم", videoUrl: "https://www.youtube.com/watch?v=M2VoTGcSWp8", desc: "تعريف المتغيرات بأنواعها المختلفة والثوابت والتصريح القصير بـ :=." },
+      { title: "004. تعلم البرمجة باستخدام لغة جو - 03 شرح الجمل الشرطية if, if/else & switch", videoUrl: "https://www.youtube.com/watch?v=CsM1jLU4DQ0", desc: "التحكم في تدفق البرنامج عبر الشروط المتعددة و Switch Case." },
+      { title: "005. تعلم البرمجة باستخدام لغة جو - 04 شرح array", videoUrl: "https://www.youtube.com/watch?v=XoLk8elkSSw", desc: "المصفوفات ثابتة الحجم في لغة جو وحفظ البيانات." },
+      { title: "006. تعلم البرمجة باستخدام لغة جو - 05 شرح for loop", videoUrl: "https://www.youtube.com/watch?v=Mx4vQZavlqE", desc: "حلقة التكرار الوحيدة في Go (For Loop) وكافة أشكال استخداماتها." },
+      { title: "007. تعلم البرمجة باستخدام لغة جو - 06 تطوير لعبة XO", videoUrl: "https://www.youtube.com/watch?v=EZtVNOc8bBY", desc: "مشروع تطبيقي: بناء وتطوير لعبة Tic-Tac-Toe كاملة في الكونسول." },
+      { title: "008. تعلم البرمجة باستخدام لغة جو - 07 slices", videoUrl: "https://www.youtube.com/watch?v=Da0cqPTLTtc", desc: "الشرائح الديناميكية Slices ودوال make و append و copy." },
+      { title: "009. تعلم البرمجة باستخدام لغة جو - 08 شرح map", videoUrl: "https://www.youtube.com/watch?v=H66QKd4VEy4", desc: "القواميس Maps وهيكل المفتاح والقيمة وإضافة وحذف العناصر." },
+      { title: "010. تعلم البرمجة باستخدام لغة جو - 09 شرح range", videoUrl: "https://www.youtube.com/watch?v=EUyQZpre0kM", desc: "استخدام range للتكرار الانسيابي على المصفوفات والـ Maps والشرائح." },
+      { title: "011. تعلم البرمجة باستخدام لغة جو - 10 شرح الدوال functions", videoUrl: "https://www.youtube.com/watch?v=QZN5Rjtezpo", desc: "بناء الدوال وتمرير المعاملات وإرجاع قيم متعددة Multiple Returns." },
+      { title: "012. تعلم البرمجة باستخدام لغة جو - 11 شرح pointers", videoUrl: "https://www.youtube.com/watch?v=ApKpXwcW7bE", desc: "المؤشرات وعناوين الذاكرة وتمرير المتغيرات بالعنوان (& / *)." },
+      { title: "013. تعلم البرمجة باستخدام لغة جو - 12 شرح structs", videoUrl: "https://www.youtube.com/watch?v=7r_bOA7xhGs", desc: "الهياكل المخصصة Structs وربط الـ Methods بالـ Receiver." },
+      { title: "014. تعلم البرمجة باستخدام لغة جو - 13 برمجة لعبة كاملة LCR dice game", videoUrl: "https://www.youtube.com/watch?v=dTk7KiwBDGA", desc: "مشروع تطبيقي: بناء لعبة النرد الشهيرة LCR باستخدام الـ Structs والدوال." },
+      { title: "015. تعلم البرمجة باستخدام لغة جو - 14 شرح variable scope", videoUrl: "https://www.youtube.com/watch?v=OiiC3Mk-CPg", desc: "نطاق المتغيرات المحلي والعام والتصدير بالأحرف الكبيرة." },
+      { title: "016. تعلم البرمجة باستخدام لغة جو - 15 شرح interfaces", videoUrl: "https://www.youtube.com/watch?v=w6j8UIpgChk", desc: "الواجهات Interfaces وتطبيق التعددية السلوكية والتجريد بدون وراثة." },
+      { title: "017. تعلم البرمجة باستخدام لغة جو - 16 شرح errors", videoUrl: "https://www.youtube.com/watch?v=MuBZF05fMZU", desc: "التعامل النموذجي مع الأخطاء واستخدام panic و recover و custom errors." },
+      { title: "018. تعلم البرمجة باستخدام لغة جو - 17 شرح packages, files", videoUrl: "https://www.youtube.com/watch?v=w_GRh31Fs4U", desc: "تنظيم المشروع وحزم الـ Packages واستخدام Go Modules." },
+      { title: "019. تعلم البرمجة باستخدام لغة جو - 18 شرح Goroutine", videoUrl: "https://www.youtube.com/watch?v=lUvUBPXzlUk", desc: "مدخل المعالجة المتزامنة والـ Goroutines خفيفة الوزن." },
+      { title: "020. تعلم البرمجة باستخدام لغة جو - 19 شرح waitgroup", videoUrl: "https://www.youtube.com/watch?v=FJFu2JI-Xcc", desc: "مزامنة إنهاء العمليات المتوازية باستخدام sync.WaitGroup." },
+      { title: "021. تعلم البرمجة باستخدام لغة جو - 20 شرح channel", videoUrl: "https://www.youtube.com/watch?v=4ELZo_cIs_Y", desc: "القنوات Channels للتواصل وتمرير البيانات بأمان بين الـ Goroutines." },
+      { title: "022. تعلم البرمجة باستخدام لغة جو - 21 شرح select", videoUrl: "https://www.youtube.com/watch?v=GsjGTcRbHio", desc: "الاستماع المتعدد للقنوات باستخدام جملة select." },
+      { title: "023. تعلم البرمجة باستخدام لغة جو - 22 شرح time.After", videoUrl: "https://www.youtube.com/watch?v=0LBnPjv9Iwk", desc: "ضبط مؤقتات المهلات الزمنية Timeouts للقنوات." },
+      { title: "024. تعلم البرمجة باستخدام لغة جو - 23 شرح time.NewTimer", videoUrl: "https://www.youtube.com/watch?v=LHeXE2NgzSc", desc: "إنشاء وإيقاف المؤقتات الزمنية القابلة للتحكم." },
+      { title: "025. تعلم البرمجة باستخدام لغة جو - 24 شرح time.NewTicker", videoUrl: "https://www.youtube.com/watch?v=HnKSibzKc4o", desc: "تنفيذ المهام الدورية والمجدولة عبر الـ Tickers." },
+      { title: "026. تعلم البرمجة باستخدام لغة جو - 25 شرح image organizer", videoUrl: "https://www.youtube.com/watch?v=p1izzlQ52So", desc: "مشروع تطبيقي: بناء برنامج لأرشفة وتنظيم ملفات الصور تلقائياً." },
+      { title: "027. تعلم البرمجة باستخدام لغة جو - 26 شرح JSON", videoUrl: "https://www.youtube.com/watch?v=XbDtxIbJpNE", desc: "تشفير وفك تشفير هياكل الـ JSON (Marshal & Unmarshal)." },
+      { title: "028. تعلم البرمجة باستخدام لغة جو - 27 شرح read file", videoUrl: "https://www.youtube.com/watch?v=wGVFNVi7c4c", desc: "قراءة نصوص ومحتويات الملفات المخزنة." },
+      { title: "029. تعلم البرمجة باستخدام لغة جو - 28 شرح write file", videoUrl: "https://www.youtube.com/watch?v=KHdIvy8ZDAk", desc: "كتابة وتعديل وإنشاء الملفات عبر os و io." },
+      { title: "030. تعلم البرمجة باستخدام لغة جو - 29 شرح Command line", videoUrl: "https://www.youtube.com/watch?v=xEpIDkZVaV4", desc: "بناء أدوات سطر الأوامر CLI واستقبال الـ Flags." },
+      { title: "031. تعلم البرمجة باستخدام لغة جو - 30 شرح HTTP server", videoUrl: "https://www.youtube.com/watch?v=3mfdXvsBwdk", desc: "بناء خادم ويب عالي السرعة واستقبال الطلبات بـ net/http." },
+      { title: "032. تعلم البرمجة باستخدام لغة جو - 31 شرح HTTP Client", videoUrl: "https://www.youtube.com/watch?v=2D-jerXHA-8", desc: "إرسال طلبات الـ HTTP واستدعاء الـ APIs الخارجية." },
+      { title: "033. تعلم البرمجة باستخدام لغة جو - 32 شرح Unit testing & mock", videoUrl: "https://www.youtube.com/watch?v=Y4PF-llVoeY", desc: "كتابة اختبارات الوحدات بـ testing ومحاكاة البيانات Mocking." },
+      { title: "034. تعلم البرمجة باستخدام لغة جو - 33 شرح signal & exit", videoUrl: "https://www.youtube.com/watch?v=SXS4axfkpY0", desc: "إغلاق السيرفرات بأمان Graceful Shutdown ومعالجة إشارات النظام." },
+      { title: "035. تعلم البرمجة باستخدام لغة جو - 34 نهاية السلسلة, ماذا بعد؟", videoUrl: "https://www.youtube.com/watch?v=zyHzMvXBZVQ", desc: "خاتمة الدورة وخارطة الطريق للتعمق في تطوير الـ Microservices بـ Go." }
+    ]
   },
 
-  // مسار Rust (جاهز لإضافة الفيديوهات)
+  // ═══════════════════════════════════════════════════════════════
+  // 9. مسار لغة Rust (10 محاضرات تطبيقية - GhamzaJd)
+  // ═══════════════════════════════════════════════════════════════
   lang_rust: {
-    title: "مسار لغة Rust لبرمجة النظم وأمان الذاكرة",
-    overview: "تعلم أحدث لغات برمجة النظم ذات الأداء الفائق وبدون Garbage Collector.",
-    keySkills: ["Ownership & Borrowing", "Memory Safety", "Concurrency without Fear", "Systems Programming"],
-    lectures: []
+    title: "مسار لغة رست وبرمجة النظم وأمان الذاكرة (Rust Language Mastery - GhamzaJd)",
+    overview: "دورة عملية وتطبيقية لشرح لغة Rust من الصفر عبر حل تمارين Rustlings: المتغيرات، الدوال، الجمل الشرطية، نظام الملكية والاستعارة (Ownership & Borrowing)، هياكل البيانات والـ Enums، المؤشرات الذكية (Smart Pointers)، الخيوط وتعدد المسارات (Threads & Concurrency)، الـ Macros، وفحص الكود بـ Clippy.",
+    keySkills: ["Rustlings Problem Solving", "Ownership & Borrowing Model", "Memory Safety without GC", "Smart Pointers (Box, Rc, Arc)", "Threads & Concurrency", "Code Linting with Clippy"],
+    lectures: [
+      { title: "001. تعلم لغة Rust - الجزء الأول", videoUrl: "https://www.youtube.com/watch?v=fNyh1Jif6Io", desc: "حل تمارين Rustlings: المتغيرات، الدوال، جمل if، والاختبار التمهيدي الأول." },
+      { title: "002. تعلم لغة Rust - الجزء الثاني", videoUrl: "https://www.youtube.com/watch?v=-1Ze-H77njI", desc: "حل تمارين الشروط المتقدمة وأنواع البيانات الأولية." },
+      { title: "003. تعلم لغة Rust - الجزء الثالث", videoUrl: "https://www.youtube.com/watch?v=GdoA6s_cXVk", desc: "مدخل نظام الملكية الفريد (Ownership) وقواعد نقل الملكية Move Semantics." },
+      { title: "004. تعلم لغة Rust - الجزء الرابع", videoUrl: "https://www.youtube.com/watch?v=UPgFzmC00ew", desc: "الاستعارة والمراجع القابلة وغير القابلة للتعديل (Borrowing & References)." },
+      { title: "005. تعلم لغة Rust - الجزء الخامس", videoUrl: "https://www.youtube.com/watch?v=JUyKFUiARMo", desc: "التعامل مع النصوص Strings والشرائح النصية Slices." },
+      { title: "006. تعلم لغة Rust - الجزء السادس", videoUrl: "https://www.youtube.com/watch?v=N5kX82W7wlA", desc: "الهياكل Structs وتعدادات الـ Enums ومطابقة الأنماط بـ Match." },
+      { title: "007. تعلم لغة Rust - الجزء السابع", videoUrl: "https://www.youtube.com/watch?v=9tghNfZw1p0", desc: "معالجة الأخطاء بـ Option و Result وتطبيق الـ Generics." },
+      { title: "008. تعلم لغة Rust - الجزء الثامن - المؤشرات الذكية (Smart Pointers)", videoUrl: "https://www.youtube.com/watch?v=YO2ONRpNK9k", desc: "إدارة الذاكرة المتقدمة عبر المؤشرات الذكية (Box, Rc, RefCell)." },
+      { title: "009. تعلم لغة Rust - الجزء التاسع - الخيوط والماكرو (Threads and Macro)", videoUrl: "https://www.youtube.com/watch?v=8PChueR6qIw", desc: "تعدد المسارات والخيوط بدون مخاوف Concurrency وكتابة الـ Declarative Macros." },
+      { title: "010. تعلم لغة Rust - الجزء العاشر والأخير - التحويل والتدقيق باستخدام clippy", videoUrl: "https://www.youtube.com/watch?v=e08OVrgitGI", desc: "تحويل الأنواع وفحص وتدقيق جودة الكود البرمجي باستخدام أداة Clippy." }
+    ]
   },
 
-  // مسار Kotlin (جاهز لإضافة الفيديوهات)
+// ═══════════════════════════════════════════════════════════════
+  // 10. مسار لغة Kotlin (الترتيب الصحيح تصاعدياً من 1 إلى 39 + ماستركلاس 2 ساعة)
+  // ═══════════════════════════════════════════════════════════════
   lang_kotlin: {
-    title: "مسار لغة Kotlin لتطبيقات الأندرويد الحديثة",
-    overview: "اللغة الرسمية الأولى المعتمدة من جوجل لبناء تطبيقات أندرويد الحديثة.",
-    keySkills: ["Kotlin Syntax", "Coroutines & Flow", "Android Jetpack Integration", "Modern Clean Architecture"],
-    lectures: []
+    title: "مسار احتراف لغة كوتلن وتطبيقات أندرويد الحديثة (Mastering Kotlin - محمد علي & تكنو U)",
+    overview: "المرجع الشامل لتعلم لغة Kotlin الحديثة لتطوير تطبيقات أندرويد (39 محاضرة مترتبة تصاعدياً من الصفر): تهيئة بيئة العمل، الدالة الرئيسية، أنواع البيانات الأساسية (Int, Float, Boolean, String)، المتغيرات والتفرقة بين val و var، Null Safety، الـ Enum Classes، وصولاً إلى خاتمة المسار وماستركلاس مجمع لمدة ساعتين (تكنو U) للتطبيق الشامل.",
+    keySkills: ["Kotlin Syntax & Main Function", "Variables (val vs var) & Data Types", "Null Safety & Nullable Types", "Lateinit & By Lazy Initialization", "Enum Classes & String Builders", "Android Studio & Environment Setup"],
+    lectures: [
+      { title: "001. ما هي لغة كوتلن (Kotlin) _ استخدامتها _ مميزاتها وهل كوتلن افضل من جافا؟ (1) 😳", videoUrl: "https://www.youtube.com/watch?v=VOhH_5xe1SA", desc: "مدخل ومقدمة عامة حول لغة كوتلن ومميزاتها مقارنة بلغة جافا." },
+      { title: "002. تعلم لغة كوتلن للمبتدئين في البرمجة _ تهيئة بيئة العمل (2) 😳", videoUrl: "https://www.youtube.com/watch?v=6OCbYEpQFA4", desc: "تثبيت الأدوات وتهيئة بيئة العمل لكتابة أول كود كوتلن." },
+      { title: "003. بدائل برنامج اندرويد ستوديو (3) 😳", videoUrl: "https://www.youtube.com/watch?v=laBZD8uVPUU", desc: "استعراض أهم المحررات البديلة لبرنامج Android Studio." },
+      { title: "004. انشاء مشروع على اندرويد ستوديو (4) 😳", videoUrl: "https://www.youtube.com/watch?v=z9pUGVc_7MQ", desc: "إنشاء أول مشروع كوتلن داخل بيئة أندرويد ستوديو." },
+      { title: "005. شرح الدالة الرئيسية في كوتلن (5) 😳", videoUrl: "https://www.youtube.com/watch?v=Kv8hee8JOqo", desc: "فهم أهمية الدالة الأساسية main() ونقطة انطلاق التنفيذ." },
+      { title: "006. مقدمة حول انواع البيانات في كوتلن (6) 😳", videoUrl: "https://www.youtube.com/watch?v=KAHzpgQsIYk", desc: "مدخل لأنواع البيانات وتخزين القيم في الذاكرة." },
+      { title: "007. قانون كتابة انواع البيانات والمتغيرات في كوتلن (7) 😳", videoUrl: "https://www.youtube.com/watch?v=julGHMC3IS0", desc: "القواعد القياسية لكتابة المتغيرات وتسميتها بسلامة." },
+      { title: "008. شرح نوع البيانات Byte في لغة كوتلن (8) 😳", videoUrl: "https://www.youtube.com/watch?v=zPKhmahBCNI", desc: "استخدام نوع البيانات البايت وحجمه التخزيني." },
+      { title: "009. شرح نوع البيانات UByte في لغة كوتلن (9) 😳", videoUrl: "https://www.youtube.com/watch?v=d-0W5PNSWXU", desc: "الأنواع غير الموقعة Unsigned Byte وتطبيقاتها." },
+      { title: "010. شرح نوع البيانات Short في لغة كوتلن (10) 😳", videoUrl: "https://www.youtube.com/watch?v=-ehxA0jGsYY", desc: "التعامل مع نوع البيانات Short الأقصر للأرقام." },
+      { title: "011. شرح نوع البيانات UShort في لغة كوتلن (11) 😳", videoUrl: "https://www.youtube.com/watch?v=ouLBOO0WQ5Y", desc: "نوع البيانات UShort غير الموقع." },
+      { title: "012. شرح نوع البيانات Int في لغة كوتلن (12) 😳", videoUrl: "https://www.youtube.com/watch?v=UfDr4jCXb2w", desc: "النوع الأكثر استخداماً للأرقام الصحيحة Int." },
+      { title: "013. شرح نوع البيانات UInt في لغة كوتلن (13) 😳", videoUrl: "https://www.youtube.com/watch?v=6gW0q6rpeMk", desc: "النوع UInt للأرقام الصحيحة الموجبة المضاعفة." },
+      { title: "014. شرح نوع البيانات Long في لغة كوتلن (14) 😳", videoUrl: "https://www.youtube.com/watch?v=tbXbs2umMN0", desc: "تخزين الأرقام الضخمة باستخدام Long." },
+      { title: "015. شرح نوع البيانات ULong في لغة كوتلن (15) 😳", videoUrl: "https://www.youtube.com/watch?v=Cp-aGaL9g-c", desc: "النوع ULong للأرقام الهائلة غير الموقعة." },
+      { title: "016. شرح نوع البيانات Float في لغة كوتلن (16) 😳", videoUrl: "https://www.youtube.com/watch?v=khpTHj-AkSs", desc: "الأرقام العشرية ذات الدقة المفردة Float." },
+      { title: "017. شرح نوع البيانات Double في لغة كوتلن (17) 😳", videoUrl: "https://www.youtube.com/watch?v=C5q7lzbXZwE", desc: "الأرقام العشرية دقيقة الوصف Double." },
+      { title: "018. شرح نوع البيانات BigDecimal في كوتلن (18) 😳", videoUrl: "https://www.youtube.com/watch?v=mh4bExn391I", desc: "التعامل مع الحسابات المالية الدقيقة عبر BigDecimal." },
+      { title: "019. شرح نوع البيانات BigInteger في كوتلن (19) 😳", videoUrl: "https://www.youtube.com/watch?v=3M69q5SKQGA", desc: "الأرقام الصحيحة ذات الحجم غير المحدود BigInteger." },
+      { title: "020. مقارنة أنواع البيانات الأساسية في كوتلن مقابل النوع BigInteger والنوع BigDecimal من جافا (20) 😳", videoUrl: "https://www.youtube.com/watch?v=9CuzQiM4P_c", desc: "مقارنة الأداء والفرق بين أنواع كوتلن وجافا." },
+      { title: "021. شرح نوع البيانات Char في كوتلن (21) 😳", videoUrl: "https://www.youtube.com/watch?v=lzTA5NDvUus", desc: "تخزين الحروف الفردية باستخدام Char." },
+      { title: "022. شرح نوع البيانات String في كوتلن (22) 😳", videoUrl: "https://www.youtube.com/watch?v=arJva-n3lxA", desc: "السلاسل النصية ومعالجتها في لغة كوتلن." },
+      { title: "023. شرح الكلاس أو الفئة StringBuilder في كوتلن (23) 😳", videoUrl: "https://www.youtube.com/watch?v=IOdlgfqcUBI", desc: "تعديل النصوص بكفاءة عالية عبر StringBuilder." },
+      { title: "024. شرح الكلاس أو الفئة StringBuffer في كوتلن (24) 😳", videoUrl: "https://www.youtube.com/watch?v=9SJdRThDHmI", desc: "التعامل مع النصوص المتزامنة آمنة الخيوط StringBuffer." },
+      { title: "025. شرح نوع البيانات Boolean في كوتلن (25) 😳", videoUrl: "https://www.youtube.com/watch?v=8LacwPiJLrk", desc: "القيم المنطقية (True / False) ومعاملاتها." },
+      { title: "026. شرح نوع البيانات Any في كوتلن (26) 😳", videoUrl: "https://www.youtube.com/watch?v=uFtnGjXh634", desc: "الأصل الجذر لجميع أنواع البيانات في كوتلن Any." },
+      { title: "027. ما فائدة وجود أنواع البيانات Short و Byte و Char في كوتلن؟ (27) 😳", videoUrl: "https://www.youtube.com/watch?v=6mIIuLG5enA", desc: "فهم فلسفة توفير الذاكرة عبر الأنواع المصغرة." },
+      { title: "028. عند استخدام اللاحقة u كيف سيعرف المترجم منها أنني اريد نوع غير موقع (Unsigned) في كوتلن؟ (28) 😳", videoUrl: "https://www.youtube.com/watch?v=J1UdA4wbXXQ", desc: "دلالات اللاحقة u و uu في تعريف الأرقام غير الموقعة." },
+      { title: "029. كيف تفهم الخروج عن مدى التخزين في أنواع البيانات (overflow) في كوتلن (29) 😳", videoUrl: "https://www.youtube.com/watch?v=9nIkWnyFhak", desc: "مشكلة طفح الذاكرة وتجاوز حدود الأرقام (Overflow)." },
+      { title: "030. جميع طرق تعريف المتغيرات في كوتلن (30) 😳", videoUrl: "https://www.youtube.com/watch?v=n12egO90jvc", desc: "ملخص وتصنيف كامل لكافة طرق تعريف المتغيرات." },
+      { title: "031. شرح التهيئة المتأخرة بواسطة (lateinit) في كوتلن (31) 😳", videoUrl: "https://www.youtube.com/watch?v=WjQvppRJH9c", desc: "استخدام lateinit لتأخير تهيئة المتغيرات الكائنية." },
+      { title: "032. شرح دالة التهيئة المتأخرة (by lazy) في كوتلن (32) 😳", videoUrl: "https://www.youtube.com/watch?v=KTvMTAcsHL4", desc: "التهيئة الكسلانة by lazy وتقليل استهلاك الذاكرة." },
+      { title: "033. شرح أنواع البيانات البدائية وأنواع البيانات غير البدائية في كوتلن (33) 😳", videoUrl: "https://www.youtube.com/watch?v=5MKICK31opk", desc: "الفرق بين Primitives و Non-Primitives في الكواليس." },
+      { title: "034. شرح التعامل مع القيم الفارغة (Nullable) في كوتلن (34) 😳", videoUrl: "https://www.youtube.com/watch?v=KQt5cYx5w-4", desc: "إتقان علامة الاستفهام (?) والتعامل الآمن مع Null." },
+      { title: "035. شرح المقارنة الشاملة بين val و var في كوتلن (35) 😳", videoUrl: "https://www.youtube.com/watch?v=VQmNN-iRUtQ", desc: "الفرق الجوهري بين الثابت والمتغير في لغة كوتلن." },
+      { title: "036. شرح نوع البيانات enum class في كوتلن (36) 😳", videoUrl: "https://www.youtube.com/watch?v=7bLzzMaAqB0", desc: "تعريف الثوابت المترابطة عبر Enum Classes." },
+      { title: "037. شرح تعريف متغيرًا دون تحديد نوعه البيانات صراحة في كوتلن (37) 😳", videoUrl: "https://www.youtube.com/watch?v=M6te9XQw67w", desc: "خاصية استنتاج الأنواع Type Inference في كوتلن." },
+      { title: "038. أفهم موضوع التحويل التلقائي إلى int في كوتلن (38) 😳", videoUrl: "https://www.youtube.com/watch?v=vnIcW908waA", desc: "كيف يتعامل المترجم مع العمليات الحسابية للأصناف الصغيرة." },
+      { title: "039. خاتمة دورة / كورس تعلم انواع البيانات الاساسية والاولية في لغة كوتلن 😃", videoUrl: "https://www.youtube.com/watch?v=J2l7Q8xst38", desc: "خاتمة السلسلة التأسيسية لأنواع البيانات في كوتلن." },
+      { title: "040. تعلم لغة كوتلن في فيديو واحد : دليل شامل ومبسط | Kotlin Crash Course (تكنو U)", videoUrl: "https://youtu.be/j1-HJhZRzYo", desc: "🌟 الماستركلاس التلخيصي الشامل: مراجعة متكاملة ومكثفة لمدة ساعتين تشرح كوتلن من الصفر وحتى الاحتراف (متاحة دائماً كمرجع)." }
+    ]
   },
 
-  // مسار Swift (جاهز لإضافة الفيديوهات)
+// ═══════════════════════════════════════════════════════════════
+  // 11. مسار لغة Swift (ماستركلاس مجمع ساعتين ونصف + 17 محاضرة عبدالله خضر)
+  // ═══════════════════════════════════════════════════════════════
   lang_swift: {
-    title: "مسار لغة Swift وتطبيقات منظومة Apple",
-    overview: "بناء تطبيقات iOS و iPadOS و macOS باستخدام لغة Swift وواجهات SwiftUI.",
-    keySkills: ["Swift Protocols & Generics", "SwiftUI Layouts", "Combine Framework", "App Store Guidelines"],
-    lectures: []
+    title: "مسار احتراف لغة سويفت وتطبيقات أبل و iOS (Swift Programming MasterClass - Abdullah Khudher)",
+    overview: "المرجع الشامل لتعلم لغة Swift وتطوير تطبيقات أبل (iOS, macOS, watchOS): يبدأ بماستركلاس مجمع مدته ساعتان ونصف ككورس كامل للتأسيس السريع، يليه المنهج التفصيلي المكون من 17 محاضرة عملية مع الباشمهندس عبدالله خضر، ويشمل: المتغيرات، أنواع البيانات، الشروط والـ Switch، حلقات التكرار، الدوال، الـ Closures، الـ Escaping، الفئات Structures و Classes، القيم الاختيارية Optionals، القواميس Dictionaries، والـ Enums.",
+    keySkills: ["Swift Syntax & Variables", "Control Flow & Loops", "Functions & Closures (@escaping)", "Classes vs Structs", "Optionals Handling", "Dictionaries & Enums"],
+    lectures: [
+      { title: "000. Swift Programming Tutorial for Beginners - Full course | تعلم لغة سويفت للمبتدئين - كورس كامل (عبدالله خضر)", videoUrl: "https://www.youtube.com/watch?v=zjaesZXekc0", desc: "الماستركلاس التلخيصي الشامل: كورس كامل ومكثف مدته ساعتان ونصف يغطي أهم أساسيات لغة Swift وصناعة تطبيقات أبل (متاح دائماً كمرجع)." },
+      { title: "001. Swift Programming Tutorial - 1 : Variables - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=eUB9YPeqiwM", desc: "شرح المتغيرات والثوابت (var و let) وطرق تخزين القيم." },
+      { title: "002. Swift Programming Tutorial - 2 : Data Types - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=-wo8h9R3g48", desc: "أنواع البيانات الأساسية في سويفت (Int, Double, String, Bool)." },
+      { title: "003. Swift Programming Tutorial - 3 : If Statements - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=PN0WL83ry08", desc: "الجمل الشرطية والتحكم في سير تنفيذ الكود." },
+      { title: "004. Swift Programming Tutorial - 4 : Switch Statements - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=WcEgTiJDmZI", desc: "استخدام جملة الاختيار المتعدد Switch Statement." },
+      { title: "005. Swift Programming Tutorial - 5 : For Loop - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=8tqKx7O05QU", desc: "حلقات التكرار For-in والتكرار على المجموعات." },
+      { title: "006. Swift Programming Tutorial - 6 : While Loop - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=VOJXlFqcJ88", desc: "حلقات التكرار الشاملة While و Repeat-While." },
+      { title: "007. Swift Programming Tutorial - 7 : Function 1 - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=u6BNUhi2Ayw", desc: "بناء وتصميم الدوال البرمجية واسترجاع القيم." },
+      { title: "008. Swift Programming Tutorial - 8 : Function 2 - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=J-FIYXqpk7o", desc: "المعاملات المتقدمة وأسماء الوسائط (Argument Labels) في الدوال." },
+      { title: "009. Swift Programming Tutorial - 9 : Array - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=mC2-JDmIJtQ", desc: "المصفوفات (Arrays) وطرق إضافة وحذف واسترجاع العناصر." },
+      { title: "010. Swift Programming Tutorial - 10 : Closure - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=o3w5BEtOxXQ", desc: "الدوال مجهولة الاسم (Closures) واستخداماتها في سويفت." },
+      { title: "011. Swift Programming Tutorial - 11 : @escaping - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=EtO1P45xfdg", desc: "مفهوم الـ Escaping Closures وعمليات التنفيذ غير المتزامن." },
+      { title: "012. Swift Programming Tutorial - 12 : Class - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=qkCbz1EdGjM", desc: "البرمجة كائنية التوجه OOP وبناء الـ Classes في سويفت." },
+      { title: "013. Swift Programming Tutorial - 13 : Struct - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=Mv_HTlc1OjY", desc: "الهياكل (Structs) والفرق الجوهري بينها وبين الكلاسات." },
+      { title: "014. Swift Programming Tutorial - 14 : Optional - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=t35n7Xc9lA0", desc: "القيم الاختيارية (Optionals) وفحص وتفكيك الـ Optional Binding." },
+      { title: "015. Swift Programming Tutorial - 15 : Dictionary - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=MTCHmZb9WDM", desc: "القواميس Dictionaries وهيكل المفتاح والقيمة (Key-Value)." },
+      { title: "016. Swift Programming Tutorial - 16 : Enum - تعلم لغة سويفت بالعربي", videoUrl: "https://www.youtube.com/watch?v=6uSkLIIyMzE", desc: "فئات التعداد (Enums) والقيم المرتبطة بها." }
+    ]
   }
 };
 
@@ -4395,6 +4586,16 @@ window.openCourseView = function(courseId) {
   document.getElementById("crsCategory").textContent = (crs.year === 'tech' ? 'TECH & CYBER' : 'LANGUAGE TRACK');
 
   const isEnrolled = window.currentUserEnrolledCourses && window.currentUserEnrolledCourses.includes(courseId);
+  // إظهار بانر المقارنة الشاملة فقط لمسار موسوعة لغات البرمجة
+  const introBanner = document.getElementById("progHubIntroBanner");
+  if (introBanner) {
+    if (courseId === "c_programming_languages") {
+      introBanner.classList.remove("hidden");
+    } else {
+      introBanner.classList.add("hidden");
+      toggleProgIntroVideo(true); // إيقاف وتشغيل تفريغ الـ iframe
+    }
+  }
   const crsActionBtn = document.getElementById("crsActionBtn");
 
   if (crsActionBtn) {
@@ -4704,7 +4905,26 @@ if (courseId === "c_office_suite" || courseId === "c_web_dev" || courseId === "c
   document.getElementById("courseView").classList.remove("hidden");
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
+// فتح وإغلاق الفيديو الإرشادي العام لمقارنة لغات البرمجة
+window.toggleProgIntroVideo = function(forceClose = false) {
+  const container = document.getElementById("progIntroVideoContainer");
+  const iframe = document.getElementById("progIntroIframe");
+  const btn = document.getElementById("progIntroToggleBtn");
+  if (!container || !iframe) return;
 
+  const isCurrentlyOpen = !container.classList.contains("hidden");
+
+  if (isCurrentlyOpen || forceClose) {
+    iframe.src = "";
+    container.classList.add("hidden");
+    if (btn) btn.innerHTML = "<span>▶ اضغط هنا لمشاهدة المقارنة الشاملة</span>";
+  } else {
+    iframe.src = formatEmbedUrl("https://youtu.be/LtXPYIpr_UE");
+    container.classList.remove("hidden");
+    if (btn) btn.innerHTML = "<span>إخفاء الفيديو ✕</span>";
+    container.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+};
 // دالة جلب المحاضرات المنشورة مع معالجة احترافية لحالة عدم وجود محاضرات
 window.loadFirestoreLectures = async function(courseOrLevelKey) {
   const container = document.getElementById("lessonsList");
@@ -4844,7 +5064,72 @@ function unlockNextLesson(courseId, currentIndex) {
   if (crs) openCourseView(courseId);
 }
 
-// عرض محتويات المستوى والمحاضرات تحت كل درس مباشرة مع القفل والملخص
+// حالة التسجيل الصوتي اللحظي
+let atlasMediaRecorder = null;
+let atlasAudioChunks = [];
+let atlasRecordInterval = null;
+window.currentRecordedAudios = {};
+
+// بدء / إيقاف التسجيل الصوتي بنمط الشات
+window.toggleVoiceRecording = async function(idx) {
+  const recordBtn = document.getElementById(`recordBtn_${idx}`);
+  const statusEl = document.getElementById(`recordStatus_${idx}`);
+  const previewEl = document.getElementById(`audioPreview_${idx}`);
+
+  if (atlasMediaRecorder && atlasMediaRecorder.state === "recording") {
+    // إيقاف التسجيل
+    atlasMediaRecorder.stop();
+    clearInterval(atlasRecordInterval);
+    if (recordBtn) {
+      recordBtn.classList.remove("bg-rose-600", "text-white", "animate-pulse");
+      recordBtn.classList.add("text-slate-400");
+    }
+    return;
+  }
+
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    atlasMediaRecorder = new MediaRecorder(stream);
+    atlasAudioChunks = [];
+
+    atlasMediaRecorder.ondataavailable = (e) => {
+      if (e.data.size > 0) atlasAudioChunks.push(e.data);
+    };
+
+    atlasMediaRecorder.onstop = () => {
+      const audioBlob = new Blob(atlasAudioChunks, { type: "audio/webm" });
+      const audioUrl = URL.createObjectURL(audioBlob);
+      window.currentRecordedAudios[idx] = audioBlob;
+
+      if (previewEl) {
+        previewEl.src = audioUrl;
+        previewEl.classList.remove("hidden");
+      }
+      if (statusEl) statusEl.textContent = "✓ تم تسجيل الصوت بنجاح";
+      stream.getTracks().forEach(track => track.stop());
+    };
+
+    atlasMediaRecorder.start();
+    let sec = 0;
+    if (statusEl) statusEl.textContent = "🔴 جاري التسجيل: 0:00";
+    if (recordBtn) {
+      recordBtn.classList.remove("text-slate-400");
+      recordBtn.classList.add("bg-rose-600", "text-white", "animate-pulse");
+    }
+
+    atlasRecordInterval = setInterval(() => {
+      sec++;
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      if (statusEl) statusEl.textContent = `🔴 جاري التسجيل: ${m}:${s < 10 ? '0' : ''}${s}`;
+    }, 1000);
+
+  } catch (err) {
+    alert("⚠️ تعذر الوصول للمايكروفون. يرجى إعطاء الصلاحية من المتصفح.");
+  }
+};
+
+// عرض محتويات المقرر مع إتاحة المحاضرة الأخيرة دائماً وشريط الإدخال الصوتي
 function renderLevelDetails(data) {
   if (!data) return;
 
@@ -4854,25 +5139,28 @@ function renderLevelDetails(data) {
   const unlockedLessons = getCourseProgress(courseId);
 
   if (lessonsContainer && data.lectures) {
-    if (countBadge) countBadge.textContent = `${data.lectures.length} محاضرة متاحة`;
+    const totalLecs = data.lectures.length;
+    if (countBadge) countBadge.textContent = `${totalLecs} محاضرة متاحة`;
 
     lessonsContainer.innerHTML = data.lectures.map((lec, idx) => {
-      const isUnlocked = idx === 0 || unlockedLessons.includes(idx);
+      // المحاضرة الأولى مفتوحة تلقائياً، والأخيرة دائماً مفتوحة كمرجع شامل
+      const isLastLesson = (idx === totalLecs - 1);
+      const isUnlocked = idx === 0 || isLastLesson || unlockedLessons.includes(idx);
       const isCompleted = unlockedLessons.includes(idx + 1);
 
       return `
       <div id="lessonCard_${idx}" class="rounded-2xl border transition-all duration-300 overflow-hidden ${isUnlocked ? 'bg-[#11131A] border-slate-800 hover:border-slate-700' : 'bg-[#0d0e14] border-slate-900 opacity-60'}">
         
-        <!-- صف عنوان المحاضرة وأزرار التحكم -->
+        <!-- رأس المحاضرة -->
         <div class="p-4 flex items-center justify-between flex-wrap gap-3">
           <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-xl bg-[#181B24] border border-slate-700/60 font-mono text-xs font-bold flex items-center justify-center shrink-0 ${isCompleted ? 'text-emerald-400 border-emerald-500/40' : 'text-cyan-400'}">
-              ${isCompleted ? '✓' : (idx + 1)}
+            <span class="w-8 h-8 rounded-xl bg-[#181B24] border border-slate-700/60 font-mono text-xs font-bold flex items-center justify-center shrink-0 ${isCompleted ? 'text-emerald-400 border-emerald-500/40' : (isLastLesson ? 'text-amber-400 border-amber-500/40' : 'text-cyan-400')}">
+              ${isCompleted ? '✓' : (isLastLesson ? '★' : idx + 1)}
             </span>
             <div>
               <h4 class="text-xs md:text-sm font-bold text-slate-100 flex items-center gap-2">
                 <span>${lec.title}</span>
-                ${!isUnlocked ? '<span class="text-[10px] text-amber-400 font-normal">🔒 مقفل (أكمل السابق)</span>' : ''}
+                ${isLastLesson ? '<span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">🌟 ماستركلاس متاح دائماً</span>' : (!isUnlocked ? '<span class="text-[10px] text-amber-400 font-normal">🔒 مقفل</span>' : '')}
               </h4>
               <span class="text-[11px] text-slate-400 block mt-0.5">${lec.desc || lec.description || ''}</span>
             </div>
@@ -4899,35 +5187,47 @@ function renderLevelDetails(data) {
           </div>
         </div>
 
-        <!-- حاوية الفيديو المضمنة تحت هذا الدرس تحديداً -->
+        <!-- مشغل الفيديو المضمن وشريط الإدخال الجديد -->
         <div id="inlineVideoWrapper_${idx}" class="hidden p-4 pt-0 border-t border-slate-800/80 space-y-3 bg-[#0A0D14]">
           <div class="rounded-xl overflow-hidden bg-black border border-slate-800 aspect-video relative flex items-center justify-center shadow-2xl">
             <iframe id="inlineIframe_${idx}" class="w-full h-full border-0" src="" allowfullscreen></iframe>
           </div>
 
-          <!-- نموذج إرسال الملخص لفتح الدرس التالي -->
-          <div class="p-4 rounded-xl bg-[#11131A] border border-cyan-500/20 space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-cyan-300">📝 ملخص المحاضرة وتأكيد الاستيعاب:</span>
-              <span class="text-[10px] text-slate-400 font-mono">إلزامي لفتح المحاضرة التالية</span>
+          <!-- شريط الملخص والتسجيل بنمط الشات المستدير -->
+          <div class="p-3.5 rounded-2xl bg-[#11131A] border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between px-1">
+              <span class="text-xs font-bold text-slate-300">🎙️ أرسل ملخصك لتثبيت المعلومة وفتح التالي:</span>
+              <span id="recordStatus_${idx}" class="text-[11px] font-mono text-cyan-400"></span>
             </div>
 
-            <textarea id="summaryText_${idx}" rows="2" placeholder="اكتب ملخصاً لما تعلمته في هذه المحاضرة أو النقاط الأساسية..." class="w-full rounded-xl p-3 bg-[#0A0F1D] border border-slate-700 text-xs text-white placeholder:text-slate-500 outline-none focus:border-cyan-400 transition"></textarea>
+            <!-- شريط الكتابة والتسجيل الأنيق -->
+            <div class="relative flex items-center bg-[#181B24] border border-slate-700/80 rounded-full px-3 py-1.5 shadow-inner gap-2">
+              <!-- زر التسجيل الصوتي المباشر بالمايك -->
+              <button type="button" id="recordBtn_${idx}" onclick="toggleVoiceRecording(${idx})" class="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition cursor-pointer shrink-0" title="اضغط للتسجيل الصوتي">
+                <i class="fa-solid fa-microphone text-sm"></i>
+              </button>
 
-            <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
-              <label class="flex items-center gap-1.5 text-xs text-slate-300 cursor-pointer bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700 transition">
-                <span>📎 رفع تسجيل صوتي / صورة / فيديو ملخص:</span>
-                <input type="file" id="summaryFile_${idx}" class="hidden" onchange="alert('تم إرفاق الملف: ' + this.files[0]?.name)" />
+              <!-- حقل النص -->
+              <input type="text" id="summaryText_${idx}" placeholder="اكتب ملخصاً لما تعلمته أو ملاحظاتك..." class="flex-1 bg-transparent text-xs text-white placeholder:text-slate-500 outline-none px-1" />
+
+              <!-- زر إرفاق الصور/الملفات -->
+              <label class="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition cursor-pointer shrink-0" title="إرفاق صورة أو ملف">
+                <i class="fa-solid fa-paperclip text-sm"></i>
+                <input type="file" id="summaryFile_${idx}" class="hidden" onchange="alert('📎 تم إرفاق: ' + this.files[0]?.name)" />
               </label>
 
-              <div class="flex items-center gap-2">
-                <button onclick="closeLessonInline(${idx})" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white text-xs font-bold transition">
-                  إغلاق المشغل
-                </button>
-                <button onclick="submitLessonSummary(${idx})" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg transition">
-                  إرسال وفتح المحاضرة التالية ←
-                </button>
-              </div>
+              <!-- زر الإرسال -->
+              <button type="button" onclick="submitLessonSummary(${idx})" class="w-8 h-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center text-xs transition shadow cursor-pointer shrink-0" title="إرسال">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+            </div>
+
+            <!-- مشغل معاينة الصوت المسجل -->
+            <audio id="audioPreview_${idx}" controls class="hidden w-full h-8 pt-1"></audio>
+
+            <div class="flex items-center justify-between pt-1 text-[11px]">
+              <button onclick="closeLessonInline(${idx})" class="text-slate-500 hover:text-slate-300 transition">إغلاق المشغل ✕</button>
+              <button onclick="unlockNextLesson(window.currentSelectedCourseId, ${idx})" class="text-cyan-400 hover:underline">تخطي وفتح المحاضرة التالية ←</button>
             </div>
           </div>
         </div>
@@ -4937,6 +5237,21 @@ function renderLevelDetails(data) {
     }).join("");
   }
 }
+
+// دالة اعتماد الملخص
+window.submitLessonSummary = function(idx) {
+  const summary = document.getElementById(`summaryText_${idx}`)?.value.trim();
+  const file = document.getElementById(`summaryFile_${idx}`)?.files[0];
+  const audioBlob = window.currentRecordedAudios ? window.currentRecordedAudios[idx] : null;
+
+  if (!summary && !file && !audioBlob) {
+    alert("⚠️ يُرجى كتابة ملخص أو تسجيل رسالة صوتية أو إرفاق ملف لتأكيد الاستيعاب.");
+    return;
+  }
+
+  alert("🎉 رائع جداً! تم تسليم ملخص المحاضرة وفتح المحاضرة التالية بنجاح.");
+  unlockNextLesson(window.currentSelectedCourseId, idx);
+};
 
 // تشغيل الفيديو تحت الدرس مباشرة مع إغلاق أي فيديو آخر مفتوح
 window.playLessonInline = function(title, videoUrl, idx) {
@@ -4964,19 +5279,7 @@ window.closeLessonInline = function(idx) {
   }
 };
 
-// إرسال الملخص وتأكيد الانتقال
-window.submitLessonSummary = function(idx) {
-  const summary = document.getElementById(`summaryText_${idx}`)?.value.trim();
-  const file = document.getElementById(`summaryFile_${idx}`)?.files[0];
 
-  if (!summary && !file) {
-    alert("⚠️ يُرجى كتابة ملخص نصي أو إرفاق ملف/تسجيل صوتي لتأكيد الاستيعاب وفتح المحاضرة التالية.");
-    return;
-  }
-
-  alert("🎉 تم حفظ ملخصك بنجاح! تم فتح المحاضرة التالية.");
-  unlockNextLesson(window.currentSelectedCourseId, idx);
-};
 
 // إغلاق الكورس والعودة للرئيسية مع تفريغ أي مشغل نشط
 function closeCourseView() {
@@ -4988,6 +5291,7 @@ function closeCourseView() {
   if (globalPlayer) globalPlayer.src = "";
   const globalWrapper = document.getElementById("videoContainerWrapper");
   if (globalWrapper) globalWrapper.classList.add("hidden");
+  if (typeof toggleProgIntroVideo === "function") toggleProgIntroVideo(true);
 
   document.getElementById("courseView").classList.add("hidden");
   ["mainNavbar", "hero", "courses", "features", "honors", "reviews", "instructor", "mainFooter", "years"].forEach(id => {
