@@ -238,19 +238,34 @@
 
   </div>
 </section>
-<div class="relative w-full max-w-md mb-4">
-  <input type="text" id="courseSearchInput" oninput="searchCoursesLive()" placeholder="🔎 ابحث عن أي كورس أو مسار..." class="w-full h-11 rounded-2xl px-4 border border-[#503d17] bg-[#11131A] text-xs text-white placeholder:text-slate-500 focus:border-[#C9A84C] outline-none shadow-inner" />
-</div>
+
 <!-- ============ COURSES & SLIDER SECTION ============ -->
 <section id="courses" class="w-full px-4 sm:px-6 lg:px-10 py-12 border-b border-slate-800 relative">
   <div class="w-full">
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+    
+    <!-- Header + Search Bar + Filters -->
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
       <div>
         <span class="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-cyan-400">المكتبة الرقمية والمقررات التفاعلية</span>
         <h2 class="text-2xl sm:text-4xl font-black mt-1 text-theme-main">الكورسات والمسارات المتاحة</h2>
       </div>
 
-<div id="coursesFilterBar" class="flex items-center gap-2 p-1.5 rounded-2xl border" style="background: var(--obsidian-dark); border-color: var(--border-gold);">
+      <!-- Search & Filters Container -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <!-- شريط البحث السريع -->
+        <div class="relative w-full sm:w-64">
+          <input type="text" id="courseSearchInput" oninput="searchCoursesLive()" placeholder="🔎 ابحث عن كورس..." class="w-full h-10 rounded-xl px-3.5 border border-[#503d17] bg-[#11131A] text-xs text-white placeholder:text-slate-500 focus:border-[#C9A84C] outline-none shadow-inner" />
+        </div>
+
+        <!-- أزرار الفلترة -->
+        <div id="coursesFilterBar" class="flex items-center justify-center gap-1.5 p-1 rounded-xl border shrink-0" style="background: var(--obsidian-dark); border-color: var(--border-gold);">
+          <button onclick="filterCourses('all')" class="filter-tab active px-4 py-1.5 rounded-lg text-xs font-bold transition bg-brand text-black" id="flt-all">الكل</button>
+          <button onclick="filterCourses('tech')" class="filter-tab px-4 py-1.5 rounded-lg text-xs font-bold transition text-slate-300 hover:text-white" id="flt-tech">برمجة وسكيورتي</button>
+          <button onclick="filterCourses('lang_office')" class="filter-tab px-4 py-1.5 rounded-lg text-xs font-bold transition text-slate-300 hover:text-white" id="flt-lang_office">لغات وOffice</button>
+        </div>
+      </div>
+    </div>
+ 
   <button onclick="filterCourses('all')" class="filter-tab active px-5 py-2 rounded-xl text-xs font-bold transition bg-brand text-black" id="flt-all">الكل</button>
   <button onclick="filterCourses('tech')" class="filter-tab px-5 py-2 rounded-xl text-xs font-bold transition text-slate-300 hover:text-white" id="flt-tech">برمجة وسكيورتي</button>
   <button onclick="filterCourses('lang_office')" class="filter-tab px-5 py-2 rounded-xl text-xs font-bold transition text-slate-300 hover:text-white" id="flt-lang_office">لغات وOffice</button>
@@ -1463,7 +1478,7 @@ c_data_analysis: {
     badge: { ar: "سوق العمل 📈", en: "Career Ready 📈" },
     price: "150",
     oldPrice: "300",
-    img: "image/marketing.png",
+    img: "image/c_digital_marketing.png",
     lessons: []
   }
 
@@ -1933,12 +1948,93 @@ window.programmingLanguagesDB = {
 
 
 
-  // مسار Java (جاهز لإضافة الفيديوهات)
+// ═══════════════════════════════════════════════════════════════
+  // 4. مسار لغة Java (ماستركلاس مجمع تمهيدي + 77 محاضرة عادل نسيم)
+  // ═══════════════════════════════════════════════════════════════
   lang_java: {
-    title: "مسار احتراف لغة جافا (Java Enterprise & OOP)",
-    overview: "تعلم لغة Java من الصفر لتطوير تطبيقات الأعمال الكبرى، الأندرويد، وهياكل البيانات.",
-    keySkills: ["Java Syntax", "OOP Concepts", "Exception Handling & Collections", "Java Multithreading"],
-    lectures: []
+    title: "مسار احتراف لغة جافا والبرمجة كائنية التوجه (Java Programming & OOP - Adel Nasim)",
+    overview: "المرجع العربي الأقوى لتعلم لغة Java: يبدأ بماستركلاس مجمع وتأسيسي شامل مع قناة (اتعلم ببساطة)، يليه المنهج الأكاديمي والتطبيقي المفصل مع الباشمهندس عادل نسيم (77 محاضرة عملية) يشمل: الأساسيات، الدوال، الـ Recursion، المصفوفات أحادية ومتعددة الأبعاد، مبادئ الـ OOP بالكامل (Inheritance, Polymorphism, Abstraction, Encapsulation)، والتعامل مع الملفات والـ Streams والتسلسل (Serialization).",
+    keySkills: ["Java Core Syntax & JVM", "Loops & Control Flow", "Object-Oriented Programming (OOP)", "Inheritance & Polymorphism", "Interfaces & Abstract Classes", "File Handling & Serialization"],
+    lectures: [
+      { title: "000. كورس لغة جافا من الصفر | Java Course (اتعلم ببساطة)", videoUrl: "https://youtu.be/FwxbTGxTcVI", desc: "الماستركلاس التلخيصي الشامل: مدخل عملي مكثف ومجمع يغطي أساسيات وقواعد لغة Java للتطبيق والمراجعة السريعة." },
+      { title: "001. #00 [JAVA] - Introduction", videoUrl: "https://www.youtube.com/watch?v=mNvJipMTKSM", desc: "مقدمة عامة عن لغة جافا وتاريخها ومجالات استخدامها في سوق العمل." },
+      { title: "002. #01 [JAVA] - Installing the Java Development Tools (JDK, Apache NetBeans IDE)", videoUrl: "https://www.youtube.com/watch?v=wJKgqYj4mtU", desc: "تثبيت حزمة التطوير JDK وبيئة العمل NetBeans IDE." },
+      { title: "003. #02 [JAVA] - Escape Sequences and Comments", videoUrl: "https://www.youtube.com/watch?v=vtHwpyk5v08", desc: "التعليقات ورموز الهروب الخاصة في نصوص جافا." },
+      { title: "004. #03 [JAVA] - Data Types", videoUrl: "https://www.youtube.com/watch?v=mY8yxPP9_AE", desc: "أنواع البيانات الأولية والمتغيرات في لغة جافا." },
+      { title: "005. #04 [JAVA] - Arithmetic Operators", videoUrl: "https://www.youtube.com/watch?v=r-msBvRW56g", desc: "المعاملات والعمليات الحسابية الأساسية." },
+      { title: "006. #05 [JAVA] - Arithmetic Operators (Prefix & Postfix)", videoUrl: "https://www.youtube.com/watch?v=XN2nusxpvPE", desc: "معاملات الزيادة والنقصان القبلية والبعدية (++ / --)." },
+      { title: "007. #06 [JAVA] - Java User Input (Scanner), Printf methods", videoUrl: "https://www.youtube.com/watch?v=kilmBWdI0NE", desc: "استقبال مدخلات المستخدم عبر كلاس Scanner وتنسيق الطباعة بـ printf." },
+      { title: "008. #07 [JAVA] - Selection Statement ( if - if else - if else if )", videoUrl: "https://www.youtube.com/watch?v=EDhPw1OI-KY", desc: "الجمل الشرطية والتحكم في تدفق البرنامج." },
+      { title: "009. #08 [JAVA] - Selection Statement ( Exercises, Practice, Ternary Operator ), Instanceof Method", videoUrl: "https://www.youtube.com/watch?v=SNJFgGXmmRQ", desc: "تمارين وتدريبات عملية على الشروط والمعامل الثلاثي و instanceof." },
+      { title: "010. #09 [JAVA] - Selection Statement (Switch Statements)", videoUrl: "https://www.youtube.com/watch?v=x-NRDz7RvtU", desc: "جملة الاختيار من متعدد Switch Case." },
+      { title: "011. #010 [JAVA] - Repetition Control Statement (While Loop)", videoUrl: "https://www.youtube.com/watch?v=YECkwn988-Q", desc: "حلقة التكرار While ومفاهيم التكرار الأساسية." },
+      { title: "012. #011 [JAVA] - Sentinel and Flag-Controlled While Loops", videoUrl: "https://www.youtube.com/watch?v=cUehdvQTH6c", desc: "الحلقات التكرارية المشروطة بأعلام التوقف (Flag / Sentinel)." },
+      { title: "013. #012 [JAVA] - Repetition Control Statement (Do-While Loop)", videoUrl: "https://www.youtube.com/watch?v=ZRRCM0HvIn4", desc: "حلقة التكرار Do-While وضمان التنفيذ مرة واحدة على الأقل." },
+      { title: "014. #013 [JAVA] - Repetition Control Statement (For Loop)", videoUrl: "https://www.youtube.com/watch?v=BnTI67QhuuU", desc: "حلقة التكرار المحددة For Loop وتطبيقاتها." },
+      { title: "015. #014 [JAVA] - Questions and Exercises in Loops", videoUrl: "https://www.youtube.com/watch?v=WSf_V9s_Cf4", desc: "تمارين ومسائل برمجية مكثفة على حلقات التكرار." },
+      { title: "016. #015 [JAVA] - Branching Statements ( Break/Continue )", videoUrl: "https://www.youtube.com/watch?v=tFkMZFSruhI", desc: "أوامر التحكم في الحلقات والتخطي بـ Break و Continue." },
+      { title: "017. #016 [JAVA] - Repetition Control Statement (Nested Loops)", videoUrl: "https://www.youtube.com/watch?v=b8EO1O6XDKM", desc: "الحلقات المتداخلة وطباعة الأنماط والمصفوفات." },
+      { title: "018. #017 [JAVA] - Branching Statements (Labeled Break / Labeled Continue)", videoUrl: "https://www.youtube.com/watch?v=HqCSeKHXrhQ", desc: "استخدام التسميات Labeled Break/Continue للتحكم الدقيق بالحلقات." },
+      { title: "019. #018 [JAVA] - Method / Function Part 1", videoUrl: "https://www.youtube.com/watch?v=izzJtoZnbHY", desc: "بناء الدوال واستدعاؤها وتمرير المعاملات." },
+      { title: "020. #019 [JAVA] - Method / Function Part 2 (Examples)", videoUrl: "https://www.youtube.com/watch?v=UJ-MVRviD28", desc: "أمثلة تطبيقية وتمارين على بناء الدوال." },
+      { title: "021. #020 [JAVA] - Built in Method / Function", videoUrl: "https://www.youtube.com/watch?v=Gxb4oZ5XIkY", desc: "الدوال الرياضية والجاهزة المضمنة في مكتبات جافا." },
+      { title: "022. #021 [JAVA] - Overloading Method / Function", videoUrl: "https://www.youtube.com/watch?v=kTqAyh8rjCM", desc: "تعدد تحميل الدوال البرمجية (Method Overloading)." },
+      { title: "023. #022 [JAVA] - Recursion/Recursive Methods Part 1", videoUrl: "https://www.youtube.com/watch?v=7DE2Jeyz4Y4", desc: "مفهوم الدوال التكرارية الذاتية (Recursion) وشروط التوقف." },
+      { title: "024. #023 [JAVA] - Recursion/Recursive Methods Part 2", videoUrl: "https://www.youtube.com/watch?v=waRfeq2TMTk", desc: "أمثلة ومسائل رياضية متقدمة على الـ Recursion." },
+      { title: "025. #024 [JAVA] - One Dimensional Arrays (1D Array)", videoUrl: "https://www.youtube.com/watch?v=gxUwwNX3Zco", desc: "المصفوفات أحادية البعد وحفظ مجموعات البيانات." },
+      { title: "026. #025 [JAVA] - One Dimensional Array (Exercises, Practice)", videoUrl: "https://www.youtube.com/watch?v=_X8qS5GoHt0", desc: "تدريبات وتمارين على البحث والفرز في المصفوفات." },
+      { title: "027. #026 [JAVA] - One Dimensional Array (Char Array)", videoUrl: "https://www.youtube.com/watch?v=wyhn_kT24Rc", desc: "مصفوفات الحروف والتعامل مع النصوص." },
+      { title: "028. #027 [JAVA] - Passing Arrays to Methods", videoUrl: "https://www.youtube.com/watch?v=jywJidiAAmU", desc: "تمرير المصفوفات كمعاملات داخل الدوال واسترجاعها." },
+      { title: "029. #028 [JAVA] - Multidimensional Arrays & Passing Multidimensional Arrays to Methods", videoUrl: "https://www.youtube.com/watch?v=9PlFCyLf-Ss", desc: "المصفوفات ثنائية ومتعددة الأبعاد وتطبيقات الجداول." },
+      { title: "030. #029 [JAVA] - String & Array String", videoUrl: "https://www.youtube.com/watch?v=FWiN9blk2O4", desc: "التعامل مع النصوص ومصفوفات السلاسل النصية." },
+      { title: "031. #030 [JAVA] - Introduction to Object-Oriented Programming", videoUrl: "https://www.youtube.com/watch?v=FaaM6uVbuJM", desc: "مدخل ومفاهيم البرمجة كائنية التوجه OOP." },
+      { title: "032. #031 [JAVA] - Classes and Objects", videoUrl: "https://www.youtube.com/watch?v=JIPwPCkYoLY", desc: "إنشاء الفئات (Classes) واستنساخ الكائنات (Objects)." },
+      { title: "033. #032 [JAVA] - Questions and Exercises - Classes and Objects", videoUrl: "https://www.youtube.com/watch?v=7iMtBSktIKw", desc: "تمارين وتطبيقات عملية على بناء الكلاسات والكائنات." },
+      { title: "034. #033 [JAVA] - Constructor (No-Arg, Parameterized, Default)", videoUrl: "https://www.youtube.com/watch?v=mfIAAwDbdag", desc: "دوال البناء وأنواعها وتهيئة خصائص الكائنات." },
+      { title: "035. #034 [JAVA] - Constructor (Copy Constructor) / Finalizers vs Destructor", videoUrl: "https://www.youtube.com/watch?v=rrgQ5P1g6Ys", desc: "منشئ النسخ والتدمير وإدارة الذاكرة." },
+      { title: "036. #035 [JAVA] - Static keyword (Static Variable and Methods)", videoUrl: "https://www.youtube.com/watch?v=7DbGHC8rF14", desc: "المتغيرات والدوال الساكنة التابعة للكلاس بـ Static." },
+      { title: "037. #036 [JAVA] - Static keyword (Static Block - Static Class)", videoUrl: "https://www.youtube.com/watch?v=3n47zkGMIxc", desc: "كتل التنفيذ الساكنة والفئات الساكنة المتداخلة." },
+      { title: "038. #037 [JAVA] - Passing Objects to Methods (by Value vs by Reference / Passing Objects as Arguments)", videoUrl: "https://www.youtube.com/watch?v=nDc83B16Baw", desc: "تمرير الكائنات إلى الدوال بالقيمة والمرجع." },
+      { title: "039. #038 [JAVA] - Passing Objects to Methods (Returning Objects / Comparing Objects)", videoUrl: "https://www.youtube.com/watch?v=b2vYxHhkBiw", desc: "استرجاع الكائنات من الدوال ومقارنة الكائنات." },
+      { title: "040. #039 [JAVA] - Inheritance (Types of Inheritance / Access Modifiers and inheritance)", videoUrl: "https://www.youtube.com/watch?v=vnzteHmCIg0", desc: "نظام الوراثة وأنواعه ومحددات الوصول في الوراثة." },
+      { title: "041. #040 [JAVA] - Inheritance (Super Keyword / Object Class / Package-Private vs Protected)", videoUrl: "https://www.youtube.com/watch?v=ltuACF2NCh0", desc: "استخدام كلمة super وكلاس Object ومحددات الحماية." },
+      { title: "042. #041 [JAVA] - Polymorphism (Method Overloading and Method Overriding)", videoUrl: "https://www.youtube.com/watch?v=bI1vqMrIGlQ", desc: "تعدد الأوجه وإعادة كتابة الدوال (Method Overriding)." },
+      { title: "043. #042 [JAVA] - Polymorphism(Explanation of Examples, Static Methods)", videoUrl: "https://www.youtube.com/watch?v=kBpkPU0zkNk", desc: "أمثلة تطبيقية وتفصيل سلوك الدوال الساكنة مع الـ Polymorphism." },
+      { title: "044. #043 [JAVA] - Polymorphism(Late binding \"Dynamic Polymorphism\", Early binding \"Static Polymorphism\")", videoUrl: "https://www.youtube.com/watch?v=mheL52HCGgE", desc: "الربط المبكر والربط المتأخر في تنفيذ الدوال." },
+      { title: "045. #044 [JAVA] - Types of Relationships (Association, Aggregation \"has-a\", Composition \"part-of\")", videoUrl: "https://www.youtube.com/watch?v=c-KSvbSoVW0", desc: "علاقات الكائنات: الاقتران والتجميع والتركيب." },
+      { title: "046. #045 [JAVA] - Types of Relationships (Association, Aggregation, Composition) With Example", videoUrl: "https://www.youtube.com/watch?v=JXzBz03szvI", desc: "أمثلة برمجية واقعية على علاقات الكائنات." },
+      { title: "047. #046 [JAVA] - Final Keyword (Final Variable, Final Blank Variable, Static Final Blank Variable)", videoUrl: "https://www.youtube.com/watch?v=yCvJn8kgNGM", desc: "تثبيت القيم ومنع التعديل باستخدام الكلمة المحجوزة final." },
+      { title: "048. #047 [JAVA] - Final Keyword (Final Parameters, Final Methods, Final Classes, Final References)", videoUrl: "https://www.youtube.com/watch?v=neWDRq8S8Lg", desc: "منع التوريث ومنع إعادة كتابة الدوال بـ final." },
+      { title: "049. #048 [JAVA] - ArrayList Class", videoUrl: "https://www.youtube.com/watch?v=e0_ZXY3kgDI", desc: "مدخل القوائم الديناميكية مع كلاس ArrayList." },
+      { title: "050. #049 [JAVA] - ArrayList, Declaration, Print, Methods(Add, Get, AddAll, Copy Constructor, Clone)", videoUrl: "https://www.youtube.com/watch?v=v74F4yG5LE8", desc: "دوال الإضافة والقراءة والنسخ في ArrayList." },
+      { title: "051. #050 [JAVA] - ArrayList Methods(Set, Remove, Remove All, Remove Range) Polymorphic ArrayList", videoUrl: "https://www.youtube.com/watch?v=kBcnOZvoxU0", desc: "دوال التعديل والحذف واستخدام الـ Polymorphic ArrayList." },
+      { title: "052. #051 [JAVA] - ArrayList Methods(contains, retainAll, subList, clear, ensureCapacity, sort, min, max)", videoUrl: "https://www.youtube.com/watch?v=HyqxTy93pXk", desc: "الفرز والبحث وتصفية عناصر القائمة." },
+      { title: "053. #052 [JAVA] - Abstraction (Real-Life Examples, Introduction to Abstract Class, UML Abstract Class)", videoUrl: "https://www.youtube.com/watch?v=TfYRMZD0pzk", desc: "مفهوم التجريد والفئات المجردة ومخططات UML." },
+      { title: "054. #053 [JAVA] - Abstract Class part 1 (Examples, Abstract rules)", videoUrl: "https://www.youtube.com/watch?v=Kp8o-j4FmF8", desc: "قواعد وأمثلة بناء الفئات والدوال المجردة." },
+      { title: "055. #054 [JAVA] - Abstract Class part 2 (Polymorphism, Benefits of Abstract Class)", videoUrl: "https://www.youtube.com/watch?v=gQGOCLU2KHs", desc: "فوائد الفئات المجردة وربطها بتعدد الأوجه." },
+      { title: "056. #055 [JAVA] - Interface Part1 (Real-Life Example, UML, Convention)", videoUrl: "https://www.youtube.com/watch?v=eC73VoeKlq4", desc: "مدخل الواجهات (Interfaces) وأهميتها في المعمارية البرمجية." },
+      { title: "057. #056 [JAVA] - Interface Part2(Practical, Implement Multiple Interfaces, Extends Multiple Interfaces)", videoUrl: "https://www.youtube.com/watch?v=W7KeYlaPUMM", desc: "تطبيق الواجهات المتعددة والوراثة بين الواجهات." },
+      { title: "058. #057 [JAVA] - Interface Part3 (Default - Private - Static Methods, Nested Interface)", videoUrl: "https://www.youtube.com/watch?v=hlmTREsjc0E", desc: "الدوال الافتراضية والساكنة والخاصة داخل الـ Interface." },
+      { title: "059. #058 [JAVA] - Interface Part4(Marker or Tagging Interface, Generic Interface, Benefits of Interface)", videoUrl: "https://www.youtube.com/watch?v=96hAMSmFP4E", desc: "واجهات الوسم والواجهات العامة (Generic Interfaces)." },
+      { title: "060. #059 [JAVA] - Anonymous Inner Class (Extends Class, Implements Interface, Defined Arguments, Lambda)", videoUrl: "https://www.youtube.com/watch?v=nvSZXiVFrjI", desc: "الفئات المجهولة المتداخلة ومدخل تعبيرات Lambda." },
+      { title: "061. #060 [JAVA] - Anonymous Inner Class (Constructor, Extra Methods, Local Variables , Var Keyword)", videoUrl: "https://www.youtube.com/watch?v=JKm9MUJKqi0", desc: "الخصائص المتقدمة للفئات المجهولة واستخدام var." },
+      { title: "062. #061 [JAVA] - Java Enum (What is Enum, Examples, UML, Enum with switch, Attributes & Methods)", videoUrl: "https://www.youtube.com/watch?v=4Iqf3c5kGFo", desc: "فئات التعداد (Enums) واستخدامها مع Switch." },
+      { title: "063. #062 [JAVA] - Java Enum ( Real life example, ordinal, compreTo, toString, name, valueOf, values )", videoUrl: "https://www.youtube.com/watch?v=pIT98j_Xx2s", desc: "الدوال المدمجة في فئات التعداد والتعامل مع الثوابت." },
+      { title: "064. #063 [JAVA] - Java Enum ( EnumSet & EnumMap classes, Benefits of Enums, Enums vs Classes )", videoUrl: "https://www.youtube.com/watch?v=zN7CkK_l028", desc: "استخدام EnumSet و EnumMap والمقارنة بين الـ Enum والـ Class." },
+      { title: "065. #064 [JAVA] - Exception Handling (Try-catch block, Multi-catch blocks, Union-catch blocks )", videoUrl: "https://www.youtube.com/watch?v=QtqPn4qxEL8", desc: "معالجة الأخطاء البرمجية وكتل Try-Catch." },
+      { title: "066. #065 [JAVA] - Exception Handling ( Finally Block, Throws Keyword, Checked vs Unchecked Exception )", videoUrl: "https://www.youtube.com/watch?v=hhwwFxSJGM0", desc: "كتلة Finally وتمرير الاستثناءات بـ Throws." },
+      { title: "067. #066 [JAVA] - Exception Handling (Throw keyword, Throw vs Throws, Throw & finally, Custom exception)", videoUrl: "https://www.youtube.com/watch?v=ebyGDZXWajQ", desc: "إطلاق الاستثناءات وبناء استثناءات مخصصة (Custom Exceptions)." },
+      { title: "068. #067 [JAVA] - File Handling(java.io, Byte & Character stream, InputStream & OutputStream subclasses)", videoUrl: "https://www.youtube.com/watch?v=DxWgHsM-rhs", desc: "مدخل التعامل مع الملفات وتدفقات البايت والحروف في java.io." },
+      { title: "069. #068 [JAVA] - File Handling ( FileInputStream class, Character size vs String size )", videoUrl: "https://www.youtube.com/watch?v=JDkClt0BizQ", desc: "قراءة الملفات باستخدام كلاس FileInputStream." },
+      { title: "070. #069 [JAVA] - File Handling (FileOutputStream class, Reading and Writing images, Arabic letters)", videoUrl: "https://www.youtube.com/watch?v=rz6MpY1QhkE", desc: "كتابة الملفات وحفظ الصور والنصوص العربية بـ FileOutputStream." },
+      { title: "071. #070 [JAVA] - File Handling (File class)", videoUrl: "https://www.youtube.com/watch?v=sHC31jGjjDI", desc: "التعامل مع خصائص الملفات ومساراتها عبر كلاس File." },
+      { title: "072. #071 [JAVA] - File Handling (File class, Directories \"Add/Remove\", Constructors)", videoUrl: "https://www.youtube.com/watch?v=YzRwDeGpcF0", desc: "إنشاء وحذف المجلدات وإدارتها برمجياً." },
+      { title: "073. #072 [JAVA] - File Handling (Reader class/Writer class hierarchy, FileWriter & FileReader)", videoUrl: "https://www.youtube.com/watch?v=9hE1z4_lWUc", desc: "قراءة وكتابة النصوص عبر FileReader و FileWriter." },
+      { title: "074. #073 [JAVA] - File Handling (BufferedReader / BufferedWriter classes, Read file line by line)", videoUrl: "https://www.youtube.com/watch?v=f8Ti5TP5WzY", desc: "القراءة السريعة سطر بسطر عبر BufferedReader و BufferedWriter." },
+      { title: "075. #074 [JAVA] - File Handling (PrintWriter class \"Constructors & Methods\")", videoUrl: "https://www.youtube.com/watch?v=Lv3Zug13iEA", desc: "تنسيق وكتابة البيانات المتقدمة بـ PrintWriter." },
+      { title: "076. #075 [JAVA] - File Handling (Scanner class \"Constructors & Methods\", useDelimiter, delimiter)", videoUrl: "https://www.youtube.com/watch?v=rn30519FPr8", desc: "استخراج البيانات وتقسيم النصوص بواسطة Scanner المحدد." },
+      { title: "077. #076 [JAVA] - File Handling (Serialization and Deserialization ,Read & Write multiple objects)", videoUrl: "https://www.youtube.com/watch?v=gPjMHDK4jz0", desc: "تسلسل واسترجاع الكائنات بالكامل من وإلى الملفات (Serialization)." }
+    ]
   },
 
   // مسار JavaScript (جاهز لإضافة الفيديوهات)
@@ -2104,20 +2200,207 @@ window.programmingLanguagesDB = {
     ]
   },
 
-  // مسار PHP & MySQL (جاهز لإضافة الفيديوهات)
+// ═══════════════════════════════════════════════════════════════
+  // 3. مسار لغة PHP 8 (ماستركلاس 6 ساعات تمهيدي + 105 محاضرات الزيرو)
+  // ═══════════════════════════════════════════════════════════════
   lang_php: {
-    title: "مسار تطوير الويب الخلفي بلغة PHP وقواعد بيانات MySQL",
-    overview: "بناء وإدارة مواقع الويب الديناميكية، لوحات التحكم، والتعامل مع قواعد البيانات.",
-    keySkills: ["PHP Core Syntax", "MySQL Relational DB", "Sessions & Cookies", "CRUD Operations & Security"],
-    lectures: []
+    title: "مسار تطوير الويب الخلفي بلغة PHP 8 وقواعد البيانات (Mastering PHP 8 & Web Backend)",
+    overview: "المرجع العربي الأضخم لتعلم لغة PHP 8 وتطوير خوادم الويب: يبدأ بماستركلاس تأسيسي شامل (6 ساعات مع يحيى تك)، يليه المنهج التفصيلي الكامل مع أسامة الزيرو (105 محاضرات عملية) متضمناً: الأنواع، المصفوفات المعقدة، دوال النصوص والرياضيات، نظام الملفات، الفلاتر والتحقق، وإدارة الجلسات والكوكيز (Sessions & Cookies).",
+    keySkills: ["PHP 8 Syntax & Juggling", "Array & String Manipulation", "File System & I/O Operations", "Filter & Input Sanitization", "Sessions, Cookies & Authentication", "Backend Routing & Headers"],
+    lectures: [
+      { title: "000. كورس شرح بي اتش بي متكامل في 6 ساعات | PHP Full Course in 6 Hours (Yehia Tech)", videoUrl: "https://youtu.be/qmvjwRbtNww", desc: "الماستركلاس التأسيسي الشامل: مدخل عملي مكثف مدته 6 ساعات لفهم ركائز لغة PHP وبناء تطبيقات الويب قبل التعمق في تفاصيل المنهج." },
+      { title: "001. Learn PHP 8 In Arabic 2022 - #001 - Introduction And Important Information", videoUrl: "https://www.youtube.com/watch?v=xcg9qq6SZ0w", desc: "" },
+      { title: "002. Learn PHP 8 In Arabic 2022 - #002 - What Is New And How To Study The Course", videoUrl: "https://www.youtube.com/watch?v=nQHqdi4gqh4", desc: "" },
+      { title: "003. Learn PHP 8 In Arabic 2022 - #003 - Install PHP And Prepare Environment To Work", videoUrl: "https://www.youtube.com/watch?v=79MQ7j06IOM", desc: "" },
+      { title: "004. Learn PHP 8 In Arabic 2022 - #004 - PHP Tags And Instructions Separation", videoUrl: "https://www.youtube.com/watch?v=tMczMZ6irB8", desc: "" },
+      { title: "005. Learn PHP 8 In Arabic 2022 - #005 - Comments And Best Practices", videoUrl: "https://www.youtube.com/watch?v=slVIpRJZ1_s", desc: "" },
+      { title: "006. Learn PHP 8 In Arabic 2022 - #006 - Introduction To Data Types", videoUrl: "https://www.youtube.com/watch?v=C5VjHQSdhOM", desc: "" },
+      { title: "007. Learn PHP 8 In Arabic 2022 - #007 - Type Juggling And Automatic Type Conversion", videoUrl: "https://www.youtube.com/watch?v=rHlzFVkaR0E", desc: "" },
+      { title: "008. Learn PHP 8 In Arabic 2022 - #008 - Type Casting", videoUrl: "https://www.youtube.com/watch?v=DAsfctr5agc", desc: "" },
+      { title: "009. Learn PHP 8 In Arabic 2022 - #009 - Boolean And Converting To Boolean", videoUrl: "https://www.youtube.com/watch?v=Jm9l3zXjIgc", desc: "" },
+      { title: "010. Learn PHP 8 In Arabic 2022 - #010 - String And Escaping", videoUrl: "https://www.youtube.com/watch?v=F9LgqsGDQo8", desc: "" },
+      { title: "011. Learn PHP 8 In Arabic 2022 - #011 - Heredoc And Nowdoc", videoUrl: "https://www.youtube.com/watch?v=aX_3F-8_zqI", desc: "" },
+      { title: "012. Learn PHP 8 In Arabic 2022 - #012 - Array With Complex Tests", videoUrl: "https://www.youtube.com/watch?v=SIXNWbe4Tok", desc: "" },
+      { title: "013. Learn PHP 8 In Arabic 2022 - #013 - Introduction To Variables And Naming Rules", videoUrl: "https://www.youtube.com/watch?v=UEn3YTEQItk", desc: "" },
+      { title: "014. Learn PHP 8 In Arabic 2022 - #014 - Testing Variables In Real World", videoUrl: "https://www.youtube.com/watch?v=zm363qMpN-Q", desc: "" },
+      { title: "015. Learn PHP 8 In Arabic 2022 - #015 - Variable Variable", videoUrl: "https://www.youtube.com/watch?v=F1xXCnkYmEE", desc: "" },
+      { title: "016. Learn PHP 8 In Arabic 2022 - #016 - Assign By Value And By Reference", videoUrl: "https://www.youtube.com/watch?v=hap05_VXP9I", desc: "" },
+      { title: "017. Learn PHP 8 In Arabic 2022 - #017 - Predefined Variables And Test", videoUrl: "https://www.youtube.com/watch?v=maniwbUMLUo", desc: "" },
+      { title: "018. Learn PHP 8 In Arabic 2022 - #018 - Introduction To Constants", videoUrl: "https://www.youtube.com/watch?v=udypm7K9GnA", desc: "" },
+      { title: "019. Learn PHP 8 In Arabic 2022 - #019 - Predefined And Magic Constants And Reserved Keywords", videoUrl: "https://www.youtube.com/watch?v=rqNDV3d1fKM", desc: "" },
+      { title: "020. Learn PHP 8 In Arabic 2022 - #020 - Arithmetic Operators", videoUrl: "https://www.youtube.com/watch?v=pCAJ5Y4kkII", desc: "" },
+      { title: "021. Learn PHP 8 In Arabic 2022 - #021 - Assignment Operators", videoUrl: "https://www.youtube.com/watch?v=wL9-kmSmQJU", desc: "" },
+      { title: "022. Learn PHP 8 In Arabic 2022 - #022 - Comparison Operators - Part 1", videoUrl: "https://www.youtube.com/watch?v=myglJleJkxQ", desc: "" },
+      { title: "023. Learn PHP 8 In Arabic 2022 - #023 - Comparison Operators - Part 2", videoUrl: "https://www.youtube.com/watch?v=rPjLbPTtxTw", desc: "" },
+      { title: "024. Learn PHP 8 In Arabic 2022 - #024 - Increment And Decrement Operators", videoUrl: "https://www.youtube.com/watch?v=jjUIazTRNy0", desc: "" },
+      { title: "025. Learn PHP 8 In Arabic 2022 - #025 - Logical Operators", videoUrl: "https://www.youtube.com/watch?v=kgVgQq_3Q2g", desc: "" },
+      { title: "026. Learn PHP 8 In Arabic 2022 - #026 - String Operators", videoUrl: "https://www.youtube.com/watch?v=MRxi9bWkamo", desc: "" },
+      { title: "027. Learn PHP 8 In Arabic 2022 - #027 - Array Operators", videoUrl: "https://www.youtube.com/watch?v=ANmGax3wEuU", desc: "" },
+      { title: "028. Learn PHP 8 In Arabic 2022 - #028 - Error Control Operator", videoUrl: "https://www.youtube.com/watch?v=4ve_G4ya3Sw", desc: "" },
+      { title: "029. Learn PHP 8 In Arabic 2022 - #029 - Operator Precedence", videoUrl: "https://www.youtube.com/watch?v=Y6Wqxw52pRU", desc: "" },
+      { title: "030. Learn PHP 8 In Arabic 2022 - #030 - If, Elseif, Else - Basics", videoUrl: "https://www.youtube.com/watch?v=Zc0naLMflrY", desc: "" },
+      { title: "031. Learn PHP 8 In Arabic 2022 - #031 - If, Elseif, Else - Real Life Examples", videoUrl: "https://www.youtube.com/watch?v=qEEyy7j4ugU", desc: "" },
+      { title: "032. Learn PHP 8 In Arabic 2022 - #032 - If, Elseif, Else - Advanced Practice", videoUrl: "https://www.youtube.com/watch?v=vMh5dw_J8DE", desc: "" },
+      { title: "033. Learn PHP 8 In Arabic 2022 - #033 - If, Elseif, Else - Alternate Syntax", videoUrl: "https://www.youtube.com/watch?v=iW1B3fo944w", desc: "" },
+      { title: "034. Learn PHP 8 In Arabic 2022 - #034 - Nested If And Advanced Practice", videoUrl: "https://www.youtube.com/watch?v=Y5Si0VzEMlY", desc: "" },
+      { title: "035. Learn PHP 8 In Arabic 2022 - #035 - Ternary Conditional Operator", videoUrl: "https://www.youtube.com/watch?v=ON1k04Y4qAg", desc: "" },
+      { title: "036. Learn PHP 8 In Arabic 2022 - #036 - Switch", videoUrl: "https://www.youtube.com/watch?v=ah1yfH4ykLE", desc: "" },
+      { title: "037. Learn PHP 8 In Arabic 2022 - #037 - While Loop And Concept Of Loop", videoUrl: "https://www.youtube.com/watch?v=kMeID6xJp_A", desc: "" },
+      { title: "038. Learn PHP 8 In Arabic 2022 - #038 - Do While", videoUrl: "https://www.youtube.com/watch?v=NAgLo4KBK2I", desc: "" },
+      { title: "039. Learn PHP 8 In Arabic 2022 - #039 - Loop For", videoUrl: "https://www.youtube.com/watch?v=mY9w5PB-CQA", desc: "" },
+      { title: "040. Learn PHP 8 In Arabic 2022 - #040 - Loop Foreach", videoUrl: "https://www.youtube.com/watch?v=vIYDrFI0V64", desc: "" },
+      { title: "041. Learn PHP 8 In Arabic 2022 - #041 - Break, Continue", videoUrl: "https://www.youtube.com/watch?v=k0djAOx6-CE", desc: "" },
+      { title: "042. Learn PHP 8 In Arabic 2022 - #042 - Include And Require", videoUrl: "https://www.youtube.com/watch?v=9osbz9DaAm8", desc: "" },
+      { title: "043. Learn PHP 8 In Arabic 2022 - #043 - Function Introduction And DRY Concept", videoUrl: "https://www.youtube.com/watch?v=MySD3bIkqpg", desc: "" },
+      { title: "044. Learn PHP 8 In Arabic 2022 - #044 - Advanced Examples With Parameters And Arguments", videoUrl: "https://www.youtube.com/watch?v=kxNnSJglqEI", desc: "" },
+      { title: "045. Learn PHP 8 In Arabic 2022 - #045 - Function Return And Echo", videoUrl: "https://www.youtube.com/watch?v=c67YKgd7RMY", desc: "" },
+      { title: "046. Learn PHP 8 In Arabic 2022 - #046 - Function Default Parameter Value", videoUrl: "https://www.youtube.com/watch?v=N9OVyB6FR3Q", desc: "" },
+      { title: "047. Learn PHP 8 In Arabic 2022 - #047 - Function Variable Arguments List", videoUrl: "https://www.youtube.com/watch?v=RZS6LMpZo68", desc: "" },
+      { title: "048. Learn PHP 8 In Arabic 2022 - #048 - Function Training And Unpacking Arguments", videoUrl: "https://www.youtube.com/watch?v=Z1PLYjlZrTY", desc: "" },
+      { title: "049. Learn PHP 8 In Arabic 2022 - #049 - Function Variable And Function Exists", videoUrl: "https://www.youtube.com/watch?v=JX_wpYCq-QU", desc: "" },
+      { title: "050. Learn PHP 8 In Arabic 2022 - #050 - Passing Arguments By Reference And Return Type Declaration", videoUrl: "https://www.youtube.com/watch?v=nXG8ecob__g", desc: "" },
+      { title: "051. Learn PHP 8 In Arabic 2022 - #051 - Anonymous Function", videoUrl: "https://www.youtube.com/watch?v=ejdgTEBPwi8", desc: "" },
+      { title: "052. Learn PHP 8 In Arabic 2022 - #052 - Arrow Function", videoUrl: "https://www.youtube.com/watch?v=LB-v3tz0uOw", desc: "" },
+      { title: "053. Learn PHP 8 In Arabic 2022 - #053 - String Access And Update Elements", videoUrl: "https://www.youtube.com/watch?v=RG7VLFEq_ac", desc: "" },
+      { title: "054. Learn PHP 8 In Arabic 2022 - #054 - String Functions - Part 1 - 6 Functions", videoUrl: "https://www.youtube.com/watch?v=NKcvgt1aDMs", desc: "" },
+      { title: "055. Learn PHP 8 In Arabic 2022 - #055 - String Functions - Part 2 - 7 Functions", videoUrl: "https://www.youtube.com/watch?v=KtWWU4BwodA", desc: "" },
+      { title: "056. Learn PHP 8 In Arabic 2022 - #056 - String Functions - Part 3 - 5 Functions", videoUrl: "https://www.youtube.com/watch?v=YRLvnDguvR4", desc: "" },
+      { title: "057. Learn PHP 8 In Arabic 2022 - #057 - String Functions - Part 4 - 5 Functions", videoUrl: "https://www.youtube.com/watch?v=w-UBrhHAv20", desc: "" },
+      { title: "058. Learn PHP 8 In Arabic 2022 - #058 - String Functions - Part 5 - 4 Functions", videoUrl: "https://www.youtube.com/watch?v=A5jD0TxpiVU", desc: "" },
+      { title: "059. Learn PHP 8 In Arabic 2022 - #059 - String Functions - str_replace str_ireplace", videoUrl: "https://www.youtube.com/watch?v=KuIPiLvWR-k", desc: "" },
+      { title: "060. Learn PHP 8 In Arabic 2022 - #060 - String Functions - substr_replace", videoUrl: "https://www.youtube.com/watch?v=AXuR8LLElew", desc: "" },
+      { title: "061. Learn PHP 8 In Arabic 2022 - #061 - String Functions - Part 8 - 4 Functions", videoUrl: "https://www.youtube.com/watch?v=22T6f86f_Hc", desc: "" },
+      { title: "062. Learn PHP 8 In Arabic 2022 - #062 - String Functions - Part 9 - 3 Functions", videoUrl: "https://www.youtube.com/watch?v=kvgAjh4by-M", desc: "" },
+      { title: "063. Learn PHP 8 In Arabic 2022 - #063 - Array Functions Part 1 - 4 Functions", videoUrl: "https://www.youtube.com/watch?v=DbyEbwB9H6c", desc: "" },
+      { title: "064. Learn PHP 8 In Arabic 2022 - #064 - Array Functions Part 2 - 5 Functions", videoUrl: "https://www.youtube.com/watch?v=5krHVHmB2yM", desc: "" },
+      { title: "065. Learn PHP 8 In Arabic 2022 - #065 - Array Functions Part 3 - 5 Functions", videoUrl: "https://www.youtube.com/watch?v=v1F78pzA74w", desc: "" },
+      { title: "066. Learn PHP 8 In Arabic 2022 - #066 - Current, Next, Prev, Reset, End", videoUrl: "https://www.youtube.com/watch?v=V5xWhmM3QM4", desc: "" },
+      { title: "067. Learn PHP 8 In Arabic 2022 - #067 - Array Merge, Array Replace, Array Rand, Shuffle", videoUrl: "https://www.youtube.com/watch?v=OxjIU9GRREM", desc: "" },
+      { title: "068. Learn PHP 8 In Arabic 2022 - #068 - Array Shift, Array Pop, Array Push, Array Unshift", videoUrl: "https://www.youtube.com/watch?v=eR3Fbjm2Zg4", desc: "" },
+      { title: "069. Learn PHP 8 In Arabic 2022 - #069 - Array Slice, Array Splice", videoUrl: "https://www.youtube.com/watch?v=DnoYgzMJmw4", desc: "" },
+      { title: "070. Learn PHP 8 In Arabic 2022 - #070 - Array Functions Part 8 - 7 Sorting Functions", videoUrl: "https://www.youtube.com/watch?v=bQDGGM0AJho", desc: "" },
+      { title: "071. Learn PHP 8 In Arabic 2022 - #071 - Array Filter, Array Map", videoUrl: "https://www.youtube.com/watch?v=mBL8WbixRRI", desc: "" },
+      { title: "072. Learn PHP 8 In Arabic 2022 - #072 - Array Reduce", videoUrl: "https://www.youtube.com/watch?v=QvuM2ll9Ta8", desc: "" },
+      { title: "073. Learn PHP 8 In Arabic 2022 - #073 - abs, mt_rand, intdiv, fmod", videoUrl: "https://www.youtube.com/watch?v=awWXkdAyChs", desc: "" },
+      { title: "074. Learn PHP 8 In Arabic 2022 - #074 - ceil, floor", videoUrl: "https://www.youtube.com/watch?v=5NrzMjDFlFE", desc: "" },
+      { title: "075. Learn PHP 8 In Arabic 2022 - #075 - round", videoUrl: "https://www.youtube.com/watch?v=EKuCZBrMucM", desc: "" },
+      { title: "076. Learn PHP 8 In Arabic 2022 - #076 - sqrt, min, max", videoUrl: "https://www.youtube.com/watch?v=XO0usv_kPYU", desc: "" },
+      { title: "077. Learn PHP 8 In Arabic 2022 - #077 - filter_list, filter_id, filter_var", videoUrl: "https://www.youtube.com/watch?v=Y5jnuK-DCTE", desc: "" },
+      { title: "078. Learn PHP 8 In Arabic 2022 - #078 - filter_var Validate Filters Part 1", videoUrl: "https://www.youtube.com/watch?v=MFm7DW93MAw", desc: "" },
+      { title: "079. Learn PHP 8 In Arabic 2022 - #079 - filter_var Validate Filters Part 2", videoUrl: "https://www.youtube.com/watch?v=AYEl7_qhoa4", desc: "" },
+      { title: "080. Learn PHP 8 In Arabic 2022 - #080 - filter_var Sanitize Filters", videoUrl: "https://www.youtube.com/watch?v=x856ztP56C8", desc: "" },
+      { title: "081. Learn PHP 8 In Arabic 2022 - #081 - filter_input", videoUrl: "https://www.youtube.com/watch?v=bNZChnZXZCA", desc: "" },
+      { title: "082. Learn PHP 8 In Arabic 2022 - #082 - File System Function Part One 4 Functions", videoUrl: "https://www.youtube.com/watch?v=breX4irNJLg", desc: "" },
+      { title: "083. Learn PHP 8 In Arabic 2022 - #083 - Is_Dir, MkDir, RmDir", videoUrl: "https://www.youtube.com/watch?v=nSLRk5TDmTE", desc: "" },
+      { title: "084. Learn PHP 8 In Arabic 2022 - #084 - Chmod, Fileperms, Clearstatcache", videoUrl: "https://www.youtube.com/watch?v=ByWkuedujKI", desc: "" },
+      { title: "085. Learn PHP 8 In Arabic 2022 - #085 - Basename, Dirname, Realpath, Pathinfo", videoUrl: "https://www.youtube.com/watch?v=GH3nU-l5h0o", desc: "" },
+      { title: "086. Learn PHP 8 In Arabic 2022 - #086 - fopen Part 1 - fgets, fread, fclose", videoUrl: "https://www.youtube.com/watch?v=CSMyqMHm0Hs", desc: "" },
+      { title: "087. Learn PHP 8 In Arabic 2022 - #087 - fopen Part 2 - fwrite", videoUrl: "https://www.youtube.com/watch?v=XaON9XdoWVo", desc: "" },
+      { title: "088. Learn PHP 8 In Arabic 2022 - #088 - fopen Part 3 - file, feof And Loop Practice", videoUrl: "https://www.youtube.com/watch?v=ylrf__E4RiU", desc: "" },
+      { title: "089. Learn PHP 8 In Arabic 2022 - #089 - ftell, fseek, rewind", videoUrl: "https://www.youtube.com/watch?v=KFpx9gmBNFk", desc: "" },
+      { title: "090. Learn PHP 8 In Arabic 2022 - #090 - glob, rename, copy, unlink", videoUrl: "https://www.youtube.com/watch?v=eRoR3fYfM6k", desc: "" },
+      { title: "091. Learn PHP 8 In Arabic 2022 - #091 - file_get_contents, file_put_contents", videoUrl: "https://www.youtube.com/watch?v=GaVpX83ekAI", desc: "" },
+      { title: "092. Learn PHP 8 In Arabic 2022 - #092 - Datetime Functions Part 1 - Five Functions", videoUrl: "https://www.youtube.com/watch?v=GBYN-FyFMKE", desc: "" },
+      { title: "093. Learn PHP 8 In Arabic 2022 - #093 - Datetime Functions Part 2 - Date Format Part 1", videoUrl: "https://www.youtube.com/watch?v=Mh71lcRU0FM", desc: "" },
+      { title: "094. Learn PHP 8 In Arabic 2022 - #094 - Datetime Functions Part 3 – Date Format Part 2", videoUrl: "https://www.youtube.com/watch?v=QEIULqGk6mM", desc: "" },
+      { title: "095. Learn PHP 8 In Arabic 2022 - #095 - Datetime Functions Part 4 - Add Sub Modify", videoUrl: "https://www.youtube.com/watch?v=8rGz85g4ZiQ", desc: "" },
+      { title: "096. Learn PHP 8 In Arabic 2022 - #096 - Datetime Functions Part 5 - Time, Get_Date, Date_Parse", videoUrl: "https://www.youtube.com/watch?v=IXLkZ12Ca7A", desc: "" },
+      { title: "097. Learn PHP 8 In Arabic 2022 - #097 - Datetime Functions Part 6 - Date_Diff StrToTime", videoUrl: "https://www.youtube.com/watch?v=X2H2Oe1qf3A", desc: "" },
+      { title: "098. Learn PHP 8 In Arabic 2022 - #098 - How To Use Cookies Part 1", videoUrl: "https://www.youtube.com/watch?v=8XUS9dnUK7g", desc: "" },
+      { title: "099. Learn PHP 8 In Arabic 2022 - #099 - How To Use Cookies Part 2", videoUrl: "https://www.youtube.com/watch?v=CIH0q4M4bN0", desc: "" },
+      { title: "100. Learn PHP 8 In Arabic 2022 - #100 - Cookies Modify And Delete And Add Array", videoUrl: "https://www.youtube.com/watch?v=Byptt4FBaR8", desc: "" },
+      { title: "101. Learn PHP 8 In Arabic 2022 - #101 - Cookies Practice", videoUrl: "https://www.youtube.com/watch?v=o88isqEZC08", desc: "" },
+      { title: "102. Learn PHP 8 In Arabic 2022 - #102 - Session Introduction", videoUrl: "https://www.youtube.com/watch?v=tZLJqHVWUa8", desc: "" },
+      { title: "103. Learn PHP 8 In Arabic 2022 - #103 - Session Edit And Practice", videoUrl: "https://www.youtube.com/watch?v=CE_FSxAzWs4", desc: "" },
+      { title: "104. Learn PHP 8 In Arabic 2022 - #104 - Session Destroy And Login Simulation", videoUrl: "https://www.youtube.com/watch?v=vYAdljV1-4c", desc: "" },
+      { title: "105. Learn PHP 8 In Arabic 2022 - #105 - Header And Redirect", videoUrl: "https://www.youtube.com/watch?v=B0KXzGKWlSY", desc: "" }
+    ]
   },
 
-  // مسار Dart (جاهز لإضافة الفيديوهات)
+// ═══════════════════════════════════════════════════════════════
+  // 5. مسار لغة Dart (ماستركلاس مجمع تمهيدي + 74 محاضرة وائل أبو حمزة)
+  // ═══════════════════════════════════════════════════════════════
   lang_dart: {
-    title: "مسار لغة Dart وبرمجة تطبيقات الموبايل",
-    overview: "التأسيس في لغة Dart للانطلاق القوي في بناء تطبيقات الموبايل مع Flutter.",
-    keySkills: ["Dart Fundamentals", "Null Safety", "Asynchronous Dart", "OOP with Dart"],
-    lectures: []
+    title: "مسار احتراف لغة دارت وتطوير تطبيقات فلاتر (Mastering Dart - Wael Abo Hamza)",
+    overview: "المرجع العربي الشامل لاحتراف لغة Dart لتطوير تطبيقات الموبايل مع Flutter: يبدأ بماستركلاس مجمع مع قناة (CodeRK - راكوان)، يليه المنهج التطبيقي المفصل مع الباشمهندس وائل أبو حمزة (74 محاضرة عملية) متضمناً: الـ Syntax، الـ Null Safety، أنواع البيانات والمجموعات (Lists, Sets, Maps)، التعامل مع الدوال والـ Scope، البرمجة كائنية التوجه OOP، الكلاسات المجردة، والـ Mixins.",
+    keySkills: ["Dart Core Syntax", "Null Safety Mastery", "Data Structures (List, Set, Map)", "Functions & Scope", "Object-Oriented Programming (OOP)", "Mixins & Advanced Dart"],
+    lectures: [
+      { title: "000. تعلم لغة دارت من أجل فلاتر بأبسط كورس في فيديو واحد | Dart for Flutter (CodeRK)", videoUrl: "https://youtu.be/8fJ_vtNV870", desc: "الماستركلاس التأسيسي الشامل: مراجعة كاملة ومكثفة لأساسيات لغة Dart لتجهيزك للانطلاق في بناء تطبيقات الموبايل بـ Flutter." },
+      { title: "001. #1 - introduction Dart Language [ Mastering Dart in Arabic ]", videoUrl: "https://www.youtube.com/watch?v=kgN7veo9tC0", desc: "مقدمة عامة عن لغة Dart ومميزاتها وعلاقتها بإطار عمل Flutter." },
+      { title: "002. 2 - create project", videoUrl: "https://www.youtube.com/watch?v=Dvm3mcvcOa0", desc: "إنشاء أول مشروع في بيئة Dart وضبط الملفات الأساسية." },
+      { title: "003. حل مشكلة عدم ظهور زر التشغيل", videoUrl: "https://www.youtube.com/watch?v=x0tLqtLraFg", desc: "حلول تقنية للمشاكل الشائعة لتشغيل الكود في المحرر." },
+      { title: "004. 3 syntax", videoUrl: "https://www.youtube.com/watch?v=jUXVa0MAuk8", desc: "بنية الكود وقواعد كتابة الأوامر البرمجية في دارت." },
+      { title: "005. 4 - variable", videoUrl: "https://www.youtube.com/watch?v=ud9oIVWAvH4", desc: "مفهوم المتغيرات وطرق تعريفها وحفظ القيم في الذاكرة." },
+      { title: "006. 5 - datatype", videoUrl: "https://www.youtube.com/watch?v=rpsvC1B4TV0", desc: "أنواع البيانات الأساسية (int, double, String, bool)." },
+      { title: "007. هام جدا Null Safety", videoUrl: "https://www.youtube.com/watch?v=eXkzl7buHec", desc: "فهم واستخدام ميزة أمان القيمة الفارغة (Null Safety) وحمايتها." },
+      { title: "008. 6 - Arithmetic Operators", videoUrl: "https://www.youtube.com/watch?v=g7xaVWXumbk", desc: "المعاملات الحسابية والعمليات الرياضية في دارت." },
+      { title: "009. 7 - quality and Relational Operators", videoUrl: "https://www.youtube.com/watch?v=Q-dFWdPLaDM", desc: "معاملات المقارنة والعلاقات المنطقية بين المتغيرات." },
+      { title: "010. 8 - Type test Operators And Assignment Operators", videoUrl: "https://www.youtube.com/watch?v=6rNfuCdrkOc", desc: "معاملات فحص النوع (is, is!) ومعاملات الإسناد المختلفة." },
+      { title: "011. 9 - Logical Operators", videoUrl: "https://www.youtube.com/watch?v=b3JzWJCUNf0", desc: "المعاملات المنطقية (AND, OR, NOT) وتطبيقاتها." },
+      { title: "012. 10 - comment", videoUrl: "https://www.youtube.com/watch?v=TrATTflA5vE", desc: "طرق كتابة التعليقات وتوثيق الأكواد البرمجية." },
+      { title: "013. 11 if else statement", videoUrl: "https://www.youtube.com/watch?v=Q3OuP0vVk2s", desc: "الجمل الشرطية والتحكم في مسار تنفيذ البرنامج." },
+      { title: "014. 12 - switch case", videoUrl: "https://www.youtube.com/watch?v=H-dRQm7cqsY", desc: "استخدام جملة Switch Case للاختيار من متعدد." },
+      { title: "015. 13 - for loop", videoUrl: "https://www.youtube.com/watch?v=mmOkTYwzyts", desc: "حلقة التكرار For والتكرار على القيم والمصفوفات." },
+      { title: "016. 14 - While Loop", videoUrl: "https://www.youtube.com/watch?v=IGjp0b-_8GY", desc: "حلقة التكرار While وشروط استمرار وتنفيذ التكرار." },
+      { title: "017. 15 - Do While", videoUrl: "https://www.youtube.com/watch?v=OGJg_5NVIiU", desc: "حلقة Do While وضمان التنفيذ مرة واحدة على الأقل." },
+      { title: "018. 16 - break", videoUrl: "https://www.youtube.com/watch?v=nFj3klC-vdM", desc: "إيقاف والخروج المباشر من حلقات التكرار باستخدام break." },
+      { title: "019. 17 - continue", videoUrl: "https://www.youtube.com/watch?v=z6TGZJYr-RY", desc: "تخطي دورة محددة داخل حلقة التكرار بـ continue." },
+      { title: "020. 18 - number", videoUrl: "https://www.youtube.com/watch?v=2PT9oY0KhFw", desc: "التعامل المتقدم مع الأرقام والدوال الملحقة بها." },
+      { title: "021. 19 - String Method", videoUrl: "https://www.youtube.com/watch?v=ecPlSa0c4oU", desc: "دوال معالجة وتنسيق السلاسل النصية." },
+      { title: "022. 20 - List", videoUrl: "https://www.youtube.com/watch?v=hHoNbON3IkE", desc: "مدخل القوائم (Lists) وتخزين البيانات المتسلسلة." },
+      { title: "023. 21 - List ( add - length )", videoUrl: "https://www.youtube.com/watch?v=850rmd6SDS8", desc: "إضافة العناصر وحساب طول المصفوفة." },
+      { title: "024. 22 - List ( first - last - isEmpty - isNotEmpty - reversed - single)", videoUrl: "https://www.youtube.com/watch?v=Zy-9uZawvjA", desc: "الخصائص الشائعة لفحص وعكس عناصر القوائم." },
+      { title: "025. 23 List( Add - AddAll - insert - insertAll)", videoUrl: "https://www.youtube.com/watch?v=2g7tEaCIqtI", desc: "دوال إدراج العناصر المتعددة وتحديد المواقع في القائمة." },
+      { title: "026. 24 - List method part 5", videoUrl: "https://www.youtube.com/watch?v=oNAvS1dXCcw", desc: "دوال متقدمة لحذف وفرز وتعديل القوائم." },
+      { title: "027. 25 - Map", videoUrl: "https://www.youtube.com/watch?v=4261E4Dwu4g", desc: "مدخل القواميس (Maps) وهيكل المفتاح والقيمة." },
+      { title: "028. 26 Map Part 2", videoUrl: "https://www.youtube.com/watch?v=nzbxzRTekec", desc: "الدوال المتقدمة للتعامل مع الـ Map واستخراج البيانات." },
+      { title: "029. 27 - dyanmic varibles", videoUrl: "https://www.youtube.com/watch?v=BBC01Rcn2L8", desc: "المتغيرات الديناميكية (dynamic و Object) واستخداماتها." },
+      { title: "030. 28 - final and const", videoUrl: "https://www.youtube.com/watch?v=ph6-6wft_0k", desc: "الفرق الجوهري بين الثوابت final و const." },
+      { title: "031. 29 - Set", videoUrl: "https://www.youtube.com/watch?v=CmxSR3kRt0Q", desc: "المجموعات (Sets) وخصائص عدم تكرار العناصر." },
+      { title: "032. 30 -Convert between List Map Set", videoUrl: "https://www.youtube.com/watch?v=Nx6LP5Edb30", desc: "التحويل السلس بين القوائم والمجموعات والقواميس." },
+      { title: "033. 31 function", videoUrl: "https://www.youtube.com/watch?v=rw6vpn-dN8Y", desc: "بناء الدوال البرمجية واستدعاؤها وتمرير القيم." },
+      { title: "034. 32 function types", videoUrl: "https://www.youtube.com/watch?v=8CV2cszI6Ys", desc: "أنواع البارامترات: Positional و Named Parameters." },
+      { title: "035. 32 function types (Part 2)", videoUrl: "https://www.youtube.com/watch?v=wu4LamZlpAA", desc: "القيم الافتراضية للبارامترات والبارامترات الإلزامية required." },
+      { title: "036. 33 - function scope", videoUrl: "https://www.youtube.com/watch?v=_j1aUul-BI8", desc: "نطاق المتغيرات المحلي والعام داخل الدوال." },
+      { title: "037. 34 import", videoUrl: "https://www.youtube.com/watch?v=3AvJGOPw4Io", desc: "استيراد الملفات والمكتبات الخارجية باستخدام import." },
+      { title: "038. 35 example", videoUrl: "https://www.youtube.com/watch?v=YQJnd9MzfFw", desc: "تطبيق عملي وتدريبات شاملة على الدوال والمجموعات." },
+      { title: "039. 36 - example 2", videoUrl: "https://www.youtube.com/watch?v=0QkhAxjwyrI", desc: "أمثلة ومسائل برمجية وتتبع الكود." },
+      { title: "040. 37 - example 3", videoUrl: "https://www.youtube.com/watch?v=uAzDZo7sQrE", desc: "تطبيقات متقدمة لحل المشكلات البرمجية بـ Dart." },
+      { title: "041. 38 - as with import", videoUrl: "https://www.youtube.com/watch?v=mpAY2tuoarg", desc: "استخدام الأسماء المستعارة (Aliases) مع الاستيراد بـ as." },
+      { title: "042. 39 - Runes", videoUrl: "https://www.youtube.com/watch?v=C-2jw5AQDb0", desc: "الرموز التعبيرية واليونيكود في دارت عبر Runes." },
+      { title: "043. 40 - Assert", videoUrl: "https://www.youtube.com/watch?v=4icTUdJbUtc", desc: "استخدام assert لفحص الشروط أثناء وضع التطوير Debug." },
+      { title: "044. 41 - Max And Min", videoUrl: "https://www.youtube.com/watch?v=AA5J8o6bPkk", desc: "استخراج القيم العظمى والصغرى من المجموعات." },
+      { title: "045. 42 - DataType (List - Set - Map)", videoUrl: "https://www.youtube.com/watch?v=PqlwOzD9SRk", desc: "مقارنة شاملة وتدريبات مركبة على الـ Collections." },
+      { title: "046. 43 - ( FirstWhere - AsMap - WhereType )", videoUrl: "https://www.youtube.com/watch?v=pTMf1R6U1D0", desc: "دوال الفلترة والبحث واستخراج الأنواع من القوائم." },
+      { title: "047. 44 - (Every - Any - Take)", videoUrl: "https://www.youtube.com/watch?v=9vZEU1RM_AE", desc: "التحقق من شروط العناصر واقتطاع أجزاء من المصفوفة." },
+      { title: "048. 45 - (Where - Indexwhere - Firestwhere )", videoUrl: "https://www.youtube.com/watch?v=W59NDVe9x3k", desc: "تصفية البيانات وإيجاد فهارس العناصر المطابقة." },
+      { title: "049. 46 - (Startswith - Endwith - Contain)", videoUrl: "https://www.youtube.com/watch?v=3daQQ2sifXE", desc: "دوال مطابقة وفحص النصوص والسلاسل." },
+      { title: "050. 47 - Example", videoUrl: "https://www.youtube.com/watch?v=C2-3eOj8TdY", desc: "تطبيقات شاملة على الدوال المتقدمة للمجموعات." },
+      { title: "051. 48 - Iterator And Iterable", videoUrl: "https://www.youtube.com/watch?v=J4Gv9vc-3o0", desc: "فهم الكائنات القابلة للتكرار والـ Iterators في دارت." },
+      { title: "052. 49 - Map Method", videoUrl: "https://www.youtube.com/watch?v=7m2SaZ4anUA", desc: "استخدام دالة map للتحويل السريع لعناصر القوائم." },
+      { title: "053. 50 - Try And Catch", videoUrl: "https://www.youtube.com/watch?v=9bHs0DxgKSI", desc: "معالجة الأخطاء والاستثناءات بـ try and catch." },
+      { title: "054. 51 - shorthand if", videoUrl: "https://www.youtube.com/watch?v=73PGK1vqO-0", desc: "الصيغة المختصرة للجمل الشرطية والمعامل الثلاثي." },
+      { title: "055. 52 - oop", videoUrl: "https://www.youtube.com/watch?v=Lu1W383CjAk", desc: "بداية البرمجة كائنية التوجه ومفهوم الـ OOP." },
+      { title: "056. 53 - method class", videoUrl: "https://www.youtube.com/watch?v=JorPQgDIYBE", desc: "بناء الدوال والخصائص داخل الفئات (Classes)." },
+      { title: "057. 54 - Constructor", videoUrl: "https://www.youtube.com/watch?v=uUiMyEYBHwE", desc: "دوال البناء Constructor وأنواعه وتمرير البيانات." },
+      { title: "058. 55 - Reset Variable", videoUrl: "https://www.youtube.com/watch?v=yKRaK9vTj-M", desc: "إعادة تعيين وتهيئة المتغيرات والخصائص." },
+      { title: "059. 56 - Setter And Getter", videoUrl: "https://www.youtube.com/watch?v=j5g5WmzJ4Sg", desc: "تغليف البيانات واستخدام دوال Setters و Getters." },
+      { title: "060. 57 - static", videoUrl: "https://www.youtube.com/watch?v=GsQ1alxwrhA", desc: "المتغيرات والدوال الساكنة على مستوى الكلاس بـ static." },
+      { title: "061. 58 - Cascade operator", videoUrl: "https://www.youtube.com/watch?v=qx1koXbTjgw", desc: "معامل التتابع (Cascade Notation ..) لتنفيذ عدة عمليات متتالية." },
+      { title: "062. 59 - inheritance", videoUrl: "https://www.youtube.com/watch?v=-GQIW8BHsNw", desc: "مفهوم التوريث (Inheritance) وإعادة استخدام الكود." },
+      { title: "063. 60 - override", videoUrl: "https://www.youtube.com/watch?v=zQ_gqDGQ0-w", desc: "إعادة تعريف الدوال المورثة باستخدام @override." },
+      { title: "064. 61 - mult level inherate", videoUrl: "https://www.youtube.com/watch?v=vQYrDKVx9PE", desc: "الوراثة متعددة المستويات وتدرج الفئات." },
+      { title: "065. 62 - super class", videoUrl: "https://www.youtube.com/watch?v=MG386ySR2f8", desc: "استدعاء باني وخصائص الفئة الأب باستخدام super." },
+      { title: "066. 63 - abstract class", videoUrl: "https://www.youtube.com/watch?v=zXzgLPrwfNU", desc: "الفئات المجردة وفرض القواعد على الفئات الوارثة." },
+      { title: "067. 64 - implements class", videoUrl: "https://www.youtube.com/watch?v=mVen74jK4Sk", desc: "تطبيق الواجهات البرمجية باستخدام implements." },
+      { title: "068. 65 - Collection", videoUrl: "https://www.youtube.com/watch?v=XPB21Yvzfg8", desc: "المجموعات المتقدمة وإدارة البيانات في الـ OOP." },
+      { title: "069. 66 - type map", videoUrl: "https://www.youtube.com/watch?v=lzvN1XL4ZwI", desc: "تحديد أنواع المفاتيح والقيم في الـ Map المخصصة." },
+      { title: "070. 67 - type map (Part 2)", videoUrl: "https://www.youtube.com/watch?v=CcgJwZgfXxs", desc: "تطبيقات متقدمة على القواميس داخل الكلاسات." },
+      { title: "071. 68 - regular expressions", videoUrl: "https://www.youtube.com/watch?v=2F-RVqeh-0k", desc: "التعبيرات النمطية (RegExp) لمطابقة النصوص والتحقق من صحتها." },
+      { title: "072. 69 - Private", videoUrl: "https://www.youtube.com/watch?v=6MNbcTIm9I8", desc: "حماية الخصائص وجعلها خاصة بـ Underscore (_)." },
+      { title: "073. 70 - mixin", videoUrl: "https://www.youtube.com/watch?v=rwcu7DScySg", desc: "إعادة استخدام الأكواد عبر فئات متعددة باستخدام الـ Mixins." },
+      { title: "074. The End", videoUrl: "https://www.youtube.com/watch?v=NAsVhJEmhi0", desc: "خاتمة دورة Dart والانتقال للخطوة التالية مع إطار عمل Flutter." }
+    ]
   },
 
   // مسار SQL (جاهز لإضافة الفيديوهات)
