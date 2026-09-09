@@ -6,8 +6,8 @@ module.exports = async function handler(req, res) {
 
     const { messages, catalog, enrolledIds } = req.body || {};
 
-    if (!process.env.ANTHROPIC_API_KEY) {
-      return res.status(500).json({ error: "ANTHROPIC_API_KEY is missing on server" });
+    if (!process.env.OPENROUTER_API_KEY) {
+      return res.status(500).json({ error: "OPENROUTER_API_KEY is missing on server" });
     }
 
     const systemPrompt = `أنت مساعد توجيه تعليمي في منصة "أطلس" التعليمية.
@@ -17,34 +17,41 @@ ${catalog || ""}
 الطالب مشترك حالياً في الكورسات دي (id): ${JSON.stringify(enrolledIds || [])}
 
 قواعدك:
-1. لو الطالب مشترك في كورس معين بالفعل، متنصحوش بيه تاني.
-2. افهم رغبته وارشحله كورس واحد أو اتنين بس من القائمة.
-3. اشرح باختصار هيفيده في إيه.
-4. في آخر ردك ضيف سطر بالشكل ده بالظبط:
+1. لو الطالب مشترك في كورس معين بالفعل، متنصحوش بيه تاني — رشحله الكورس المكمّل أو الخطوة الجاية بدل ما تكرر عليه.
+2. افهم رغبته (يتعلم إيه/يشتغل إيه) وارشحله كورس واحد أو اتنين بس من القائمة.
+3. اشرح باختصار هيفيده في إيه وهيقدر يشتغل في إيه بعده.
+4. لو مناسب اقترح شهادة مجانية خارجية معروفة تكمل بيها الـ CV.
+5. في آخر ردك ضيف سطر بالشكل ده بالظبط:
 RECOMMENDED_IDS: id1,id2`;
 
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const orMessages = [
+      { role: "system", content: systemPrompt },
+      ...(messages || []).map(m => ({
+        role: m.role === "assistant" ? "assistant" : "user",
+        content: m.content
+      }))
+    ];
+
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": process.env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01"
+        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-6",
+        model: "meta-llama/llama-3.3-70b-instruct:free",
         max_tokens: 700,
-        system: systemPrompt,
-        messages: messages || []
+        messages: orMessages
       })
     });
 
     const data = await response.json();
 
     if (!response.ok) {
-      return res.status(response.status).json({ error: "Anthropic API error", details: data });
+      return res.status(response.status).json({ error: "OpenRouter API error", details: data });
     }
 
-    const rawText = data.content?.[0]?.text || "";
+    const rawText = data.choices?.[0]?.message?.content || "";
     const match = rawText.match(/RECOMMENDED_IDS:\s*(.+)/);
     const recommendedIds = match ? match[1].split(",").map(s => s.trim()) : [];
     const reply = rawText.replace(/RECOMMENDED_IDS:.*/s, "").trim();
