@@ -5406,7 +5406,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (heroUserCta) heroUserCta.classList.remove("hidden");
       if (heroUserName) heroUserName.textContent = displayName;
 
+      try {
+        const studentSnap = await getDoc(doc(db, "students", user.uid));
+        if (studentSnap.exists()) {
+          window.currentUserEnrolledCourses = studentSnap.data().enrolledCourses || [];
+        } else {
+          window.currentUserEnrolledCourses = [];
+        }
+        if (typeof renderCatalog === "function") renderCatalog();
+      } catch (e) {
+        console.warn("تعذر جلب بيانات اشتراكات الطالب:", e);
+      }
+
       if (isAdmin) {
+
+        
         if (adminActions) { adminActions.classList.remove("hidden"); adminActions.classList.add("flex"); }
         if (studentActions) studentActions.classList.add("hidden");
       } else {
@@ -5419,6 +5433,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (adminActions) adminActions.classList.add("hidden");
       if (heroGuestCta) heroGuestCta.classList.remove("hidden");
       if (heroUserCta) heroUserCta.classList.add("hidden");
+            window.currentUserEnrolledCourses = [];
     }
   });
 window.searchCoursesLive = function() {
@@ -5550,6 +5565,87 @@ window.searchCoursesLive = function() {
     await signOut(auth);
     location.reload();
   };
+  
+  window.openAiAssistantView = function() {
+    document.getElementById("aiAssistantView").classList.remove("hidden");
+  };
+  window.closeAiAssistantView = function() {
+    document.getElementById("aiAssistantView").classList.add("hidden");
+  };
+
+  function buildCatalogContext() {
+    const enrolled = window.currentUserEnrolledCourses || [];
+    return Object.values(window.catalogData).map(c => {
+      const title = typeof c.title === "object" ? c.title.ar : c.title;
+      const desc = typeof c.desc === "object" ? c.desc.ar : c.desc;
+      const status = enrolled.includes(c.id) ? "الطالب مشترك فيه بالفعل" : "لسه مش مشترك فيه";
+      return `- id:${c.id} | ${title} | ${desc} | الحالة: ${status}`;
+    }).join("\n");
+  }
+
+  window.aiChatHistory = [];
+
+  window.sendAiChatMessage = async function() {
+    const input = document.getElementById("aiChatInput");
+    const msg = input.value.trim();
+    if (!msg) return;
+    input.value = "";
+
+    const body = document.getElementById("aiChatBody");
+    body.innerHTML += `
+      <div class="flex justify-end">
+        <div class="max-w-[85%] bg-blue-600/20 border border-blue-500/30 rounded-2xl rounded-tl-none p-3 text-xs text-white">${msg}</div>
+      </div>`;
+    body.scrollTop = body.scrollHeight;
+
+    window.aiChatHistory.push({ role: "user", content: msg });
+
+    const loadingId = "loading_" + Date.now();
+    body.innerHTML += `<div id="${loadingId}" class="text-[11px] text-slate-500">🎯 المساعد بيفكر...</div>`;
+    body.scrollTop = body.scrollHeight;
+
+    try {
+      const res = await fetch("/api/ai-assistant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: window.aiChatHistory,
+          catalog: buildCatalogContext(),
+          enrolledIds: window.currentUserEnrolledCourses || []
+        })
+      });
+      const data = await res.json();
+      document.getElementById(loadingId)?.remove();
+
+      window.aiChatHistory.push({ role: "assistant", content: data.reply });
+
+      let coursesCardsHtml = "";
+      if (data.recommendedIds && data.recommendedIds.length) {
+        coursesCardsHtml = data.recommendedIds.map(id => {
+          const c = window.catalogData[id];
+          if (!c) return "";
+          const title = typeof c.title === "object" ? c.title.ar : c.title;
+          return `
+            <button onclick="closeAiAssistantView(); openCourseView('${id}')" class="block w-full text-right mt-2 p-2.5 rounded-xl bg-[#181B24] border border-slate-700 hover:border-cyan-400 text-[11px] text-cyan-300 font-bold transition cursor-pointer">
+              📚 افتح كورس: ${title} ←
+            </button>`;
+        }).join("");
+      }
+
+      body.innerHTML += `
+        <div class="flex justify-start">
+          <div class="max-w-[85%] bg-[#0A0F1D] border border-slate-800 rounded-2xl rounded-tr-none p-3 text-xs text-slate-200 leading-6">
+            ${data.reply.replace(/\n/g, "<br>")}
+            ${coursesCardsHtml}
+          </div>
+        </div>`;
+      body.scrollTop = body.scrollHeight;
+
+    } catch (err) {
+      document.getElementById(loadingId)?.remove();
+      body.innerHTML += `<div class="text-[11px] text-rose-400">⚠️ حصل خطأ في الاتصال، حاول تاني.</div>`;
+    }
+  };
 </script>
 
 <!-- نافذة تكبير بوستر الكورس (Image Lightbox Modal) -->
@@ -5560,9 +5656,47 @@ window.searchCoursesLive = function() {
     <span class="text-xs text-slate-300 font-bold mt-3 bg-black/60 px-4 py-1.5 rounded-full border border-white/10">🔍 اضغط في أي مكان خارج الصورة للإغلاق</span>
   </div>
 </div>
+
+  <!-- ============ AI ASSISTANT CHAT VIEW ============ -->
+<div id="aiAssistantView" class="hidden fixed inset-0 z-[900] bg-black/85 backdrop-blur-md flex flex-col items-center justify-center p-4 py-8" onclick="if(event.target === this) closeAiAssistantView();">
+  <div class="w-full max-w-lg h-[85vh] rounded-3xl border border-slate-800 bg-[#111827] flex flex-col shadow-2xl overflow-hidden">
+
+    <div class="flex items-center justify-between p-4 border-b border-slate-800 shrink-0">
+      <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white text-xs font-black">AI</span>
+        <h3 class="text-sm font-black text-white">مساعد أطلس الذكي</h3>
+      </div>
+      <button onclick="closeAiAssistantView()" class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 hover:text-white text-xs cursor-pointer">✕</button>
+    </div>
+
+    <div id="aiChatBody" class="flex-1 overflow-y-auto p-4 space-y-3">
+      <div class="flex justify-start">
+        <div class="max-w-[85%] bg-[#0A0F1D] border border-slate-800 rounded-2xl rounded-tr-none p-3 text-xs text-slate-200 leading-6">
+          أهلاً بيك 👋 قولّي عايز تتعلم إيه أو تشتغل في مجال إيه، وأنا هرشحلك أنسب مسار من منصة أطلس على حسب اللي إنت داخل عليه فعلاً.
+        </div>
+      </div>
+    </div>
+
+    <div class="p-3 border-t border-slate-800 shrink-0">
+      <div class="flex items-center gap-2 bg-[#0A0F1D] border border-slate-700 rounded-full px-3 py-1.5">
+        <input id="aiChatInput" type="text" placeholder="مثال: عايز أشتغل مبرمج ويب..." onkeypress="if(event.key==='Enter') sendAiChatMessage()" class="flex-1 bg-transparent text-xs text-white outline-none px-1" />
+        <button onclick="sendAiChatMessage()" class="w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center text-xs cursor-pointer">➤</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <!-- Floating Back To Top Button -->
 <button class="btn-up_body position-fixed" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="للأعلى">
   <i class="fa-solid fa-arrow-up"></i>
 </button>
+<!-- AI Assistant Floating Button -->
+<button onclick="openAiAssistantView()" id="aiFloatingBtn"
+  class="fixed bottom-24 end-5 z-[500] w-14 h-14 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 text-white shadow-[0_0_25px_rgba(56,189,248,0.5)] flex flex-col items-center justify-center transition-transform hover:scale-110 active:scale-95 cursor-pointer border-2 border-white/20"
+  title="اسأل مساعد أطلس الذكي">
+  <span class="text-sm font-black leading-none">AI</span>
+  <span class="text-[8px] font-bold leading-none mt-0.5">اسألني</span>
+</button>
+  
 </body>
 </html>
