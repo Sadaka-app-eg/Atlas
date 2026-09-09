@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {  
   const { messages, catalog, enrolledIds } = req.body;
 
   const systemPrompt = `أنت مساعد توجيه تعليمي في منصة "أطلس" التعليمية.
