@@ -266,20 +266,10 @@
       </div>
     </div>
  
-  <button onclick="filterCourses('all')" class="filter-tab active px-5 py-2 rounded-xl text-xs font-bold transition bg-brand text-black" id="flt-all">الكل</button>
-  <button onclick="filterCourses('tech')" class="filter-tab px-5 py-2 rounded-xl text-xs font-bold transition text-slate-300 hover:text-white" id="flt-tech">برمجة وسكيورتي</button>
-  <button onclick="filterCourses('lang_office')" class="filter-tab px-5 py-2 rounded-xl text-xs font-bold transition text-slate-300 hover:text-white" id="flt-lang_office">لغات وOffice</button>
-</div>
       
     </div>
 
-    <div class="relative group">
-      <button onclick="scrollSlider('right')" class="slider-arrow absolute -end-2 md:-end-5 top-1/2 -translate-y-1/2 z-20 text-cyan-500/50 hover:text-cyan-400 text-4xl md:text-6xl transition select-none" title="السابق">›</button>
-      <button onclick="scrollSlider('left')" class="slider-arrow absolute -start-2 md:-start-5 top-1/2 -translate-y-1/2 z-20 text-cyan-500/50 hover:text-cyan-400 text-4xl md:text-6xl transition select-none" title="التالي">‹</button>
-
-      <div id="coursesSlider" class="flex gap-5 overflow-x-auto px-2 py-4 scroll-smooth snap-x snap-mandatory" style="scrollbar-width: none; -ms-overflow-style: none;">
-        <!-- يتم ملء الكروت ديناميكياً -->
-      </div>
+    <div id="coursesSlider" class="flex flex-col gap-8"></div>
     </div>
   </div>
 </section>
@@ -1381,61 +1371,50 @@ function renderCatalog() {
     return;
   }
 
-  container.innerHTML = items.map(item => {
+  container.innerHTML = items.map((item, index) => {
     const isPkg = item.type === "package";
-    const isEnrolled = enrolledList.includes(item.id);
     const isPinned = pinnedList.includes(item.id);
     const titleText = typeof item.title === "object" ? item.title[lang] : item.title;
     const categoryText = typeof item.category === "object" ? item.category[lang] : item.category;
     const descText = isPkg ? item.sub[lang] : item.desc[lang];
     const badgeText = item.badge ? item.badge[lang] : "";
-    const priceText = `${item.price} ${isEn ? 'EGP' : 'ج.م'}`;
+    const reverse = index % 2 === 1;
+    const openFn = isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`;
+    const num = String(index + 1).padStart(2, "0");
+    const duaText = isEn
+      ? "This course is free — all I ask is a prayer for me in my absence 🤲"
+      : "الكورس ده لوجه الله.. كل اللي بطلبه دعوة ليا بظهر الغيب 🤲";
 
     return `
-      <article class="kemet-card-hover min-w-[290px] md:min-w-[340px] snap-start rounded-3xl p-4 flex flex-col justify-between relative transition-all duration-300 ${isPinned ? 'border-2 border-amber-400/80 shadow-[0_0_20px_rgba(251,191,36,0.15)]' : ''}" style="background: var(--obsidian-light);">
-        
-        <!-- بوستر الكورس مع الأوسمة وزر التثبيت 📌 -->
-        <div class="rounded-2xl overflow-hidden relative aspect-[4/3] bg-black border border-[#503d17]">
-          
-          <!-- زر الدبوس التثبيت -->
-          <button type="button" onclick="togglePinCourse('${item.id}', event)" class="absolute top-2.5 end-2.5 z-20 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 shadow-md ${isPinned ? 'bg-amber-400 text-slate-950 scale-110' : 'bg-black/70 text-slate-400 hover:text-amber-300 hover:bg-black/90'}" title="${isPinned ? 'إلغاء التثبيت' : 'تثبيت الكورس في المقدمة'}">
-            <i class="fa-solid fa-thumbtack text-xs transform ${isPinned ? '-rotate-45' : 'rotate-0'}"></i>
+      <article class="kemet-card-hover w-full rounded-3xl overflow-hidden flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} transition-all duration-300 ${isPinned ? 'border-2 border-amber-400/80 shadow-[0_0_25px_rgba(251,191,36,0.2)]' : 'border border-[#503d17]'}" style="background: var(--obsidian-light);">
+
+        <!-- الصورة -->
+        <div class="relative w-full lg:w-5/12 aspect-[4/3] lg:aspect-auto lg:min-h-[320px] bg-black shrink-0">
+          <button type="button" onclick="togglePinCourse('${item.id}', event)" class="absolute top-3 end-3 z-20 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 shadow-md ${isPinned ? 'bg-amber-400 text-slate-950 scale-110' : 'bg-black/70 text-slate-300 hover:text-amber-300 hover:bg-black/90'}" title="${isPinned ? 'إلغاء التثبيت' : 'تثبيت الكورس في المقدمة'}">
+            <i class="fa-solid fa-thumbtack text-sm transform ${isPinned ? '-rotate-45' : 'rotate-0'}"></i>
           </button>
-
-          <!-- شارات الكورس -->
-          <div class="absolute top-2.5 start-2.5 z-10 flex flex-col gap-1">
+          <div class="absolute top-3 start-3 z-10 flex flex-col gap-1">
             ${isPinned ? `<span class="text-[10px] font-black bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full shadow">مثبت 📌</span>` : ''}
-            ${isEnrolled ? `<span class="text-[10px] font-bold bg-emerald-700 text-white px-2 py-0.5 rounded-full shadow">مشترك ومفعّل ✓</span>` : (badgeText ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background: var(--obsidian-dark); color: var(--gold); border: 1px solid var(--gold);">${badgeText}</span>` : '')}
+            ${badgeText ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background: var(--obsidian-dark); color: var(--gold); border: 1px solid var(--gold);">${badgeText}</span>` : ''}
+          </div>
+          <img onclick="openImageLightbox('${item.img}')" src="${item.img}" class="absolute inset-0 w-full h-full object-cover cursor-pointer transition duration-500 hover:scale-105" onerror="this.style.display='none'" />
+        </div>
+
+        <!-- التفاصيل -->
+        <div class="flex-1 p-6 lg:p-10 flex flex-col justify-center gap-4 relative">
+          <span class="absolute top-4 end-6 text-6xl font-black opacity-10 select-none" style="color: var(--gold); font-family: 'Amiri', serif;">${num}</span>
+          <span class="text-xs font-bold tracking-wide" style="color: var(--gold-dark);">${categoryText}</span>
+          <h3 class="font-black text-xl lg:text-2xl leading-snug" style="color: var(--papyrus); font-family: 'Amiri', serif;">${titleText}</h3>
+          <p class="text-sm leading-7" style="color: #BFAE84;">${descText}</p>
+
+          <div class="p-3 rounded-2xl text-xs font-bold leading-6" style="background: rgba(201,168,76,0.08); border: 1px dashed rgba(201,168,76,0.4); color: var(--gold-light);">
+            ${duaText}
           </div>
 
-          <img onclick="openImageLightbox('${item.img}')" src="${item.img}" class="w-full h-full object-cover transition duration-300 hover:scale-105 cursor-pointer" onerror="this.style.display='none'" />
-        </div>
-        
-        <div class="p-2 flex-1 flex flex-col justify-between space-y-3 mt-3">
-          <div>
-            <div class="flex items-center justify-between text-xs" style="color: var(--gold-dark);">
-              <span>${categoryText}</span>
-              <span class="font-bold text-sm font-mono" style="color: var(--gold-light);">${isEnrolled ? 'تم الاشتراك' : priceText}</span>
-            </div>
-            <h3 class="font-bold text-base mt-1.5" style="color: var(--papyrus); font-family: 'Amiri', serif;">${titleText}</h3>
-            <p class="text-xs line-clamp-2 mt-1" style="color: #BFAE84;">${descText}</p>
-          </div>
-          
-          <div class="pt-2">
-            ${isEnrolled ? `
-              <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl bg-brand text-xs font-bold transition cursor-pointer text-center">
-                متابعة دراسة المسار ←
-              </button>
-            ` : `
-              <div class="grid grid-cols-2 gap-2">
-                <button onclick="${isPkg ? `openPackageDetails('${item.id}')` : `openCourseView('${item.id}')`}" class="w-full py-2.5 rounded-xl text-xs font-bold transition cursor-pointer text-center" style="background: var(--obsidian); border: 1px solid var(--border-gold); color: var(--sand-light);">
-                  ${isEn ? 'Syllabus' : 'استعراض المحتوى'}
-                </button>
-                <button onclick="openPaymentModal('${item.id}', '${titleText.replace(/'/g, "\\'")}', '${priceText}')" class="w-full py-2.5 rounded-xl bg-brand text-xs font-bold transition cursor-pointer text-center">
-                  ${isEn ? 'Enroll Now' : 'اشترك الآن'}
-                </button>
-              </div>
-            `}
+          <div class="pt-1">
+            <button onclick="${openFn}" class="px-8 py-3 rounded-xl bg-brand text-sm font-bold transition cursor-pointer">
+              ${isEn ? 'Start Learning →' : 'ابدأ التعلم ←'}
+            </button>
           </div>
         </div>
       </article>
